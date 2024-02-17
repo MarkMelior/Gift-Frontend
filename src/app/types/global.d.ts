@@ -17,3 +17,8 @@ declare module '*.svg' {
 }
 
 declare const IS_DEV: boolean;
+
+type Messages = typeof import('../../../public/locales/ru/translation.json');
+type EnMessages = typeof import('../../../public/locales/en/translation.json');
+
+declare interface IntlMessages extends Messages, EnMessages {}
