@@ -22,7 +22,7 @@ const ThemeProvider: FC<ThemeProviderProps> = ({ initialTheme, children }) => {
 				setTheme(savedTheme as Theme);
 			}
 		}
-	}, []);
+	}, [initialTheme]);
 
 	const contextValue = useMemo(
 		() => ({

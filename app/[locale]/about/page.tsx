@@ -5,7 +5,7 @@ import cls from './AboutPage.module.scss';
 
 interface AboutPageProps {}
 
-const AboutPage: FC<AboutPageProps> = ({}) => {
+const AboutPage: FC<AboutPageProps> = () => {
 	const t = useTranslations();
 
 	return <div className={cl(cls.AboutPage, {}, [])}>{t('О нас')}</div>;

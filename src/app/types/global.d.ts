@@ -16,9 +16,11 @@ declare module '*.svg' {
 	export default SVG;
 }
 
+// eslint-disable-next-line no-unused-vars
 declare const IS_DEV: boolean;
 
 type Messages = typeof import('../../../public/locales/ru/translation.json');
 type EnMessages = typeof import('../../../public/locales/en/translation.json');
 
+// eslint-disable-next-line no-unused-vars
 declare interface IntlMessages extends Messages, EnMessages {}

@@ -2,7 +2,7 @@ import { ThemeProvider } from 'app/providers/ThemeProvider';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { Inter } from 'next/font/google';
-import { Suspense } from 'react';
+import { ReactNode, Suspense } from 'react';
 // import 'shared/config/i18n/i18n';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -16,7 +16,7 @@ export default function RootLayout({
 	children,
 	params: { locale },
 }: Readonly<{
-	children: React.ReactNode;
+	children: ReactNode;
 	params: { locale: string };
 }>) {
 	const messages = useMessages();

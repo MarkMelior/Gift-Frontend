@@ -9,6 +9,7 @@ module.exports = {
 		'plugin:react/recommended',
 		'airbnb',
 		'plugin:i18next/recommended',
+		'plugin:storybook/recommended',
 	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
@@ -33,7 +34,7 @@ module.exports = {
 		],
 		'import/no-unresolved': 'off',
 		'import/prefer-default-export': 'off',
-		'no-unused-vars': 'warn',
+		'no-unused-vars': 'off',
 		'react/require-default-props': 'off',
 		'react/react-in-jsx-scope': 'off',
 		'react/jsx-props-no-spreading': 'warn',
@@ -59,6 +60,7 @@ module.exports = {
 		'react/prop-types': 'off',
 		'arrow-body-style': 'off',
 		'max-len': 'off',
+		'linebreak-style': 'off',
 	},
 	globals: {
 		IS_DEV: true,

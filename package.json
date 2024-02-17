@@ -2,13 +2,14 @@
 	"name": "gift",
 	"version": "0.1.0",
 	"private": true,
-	"type": "module",
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
 		"analyze": "set ANALYZE=true&&next dev",
 		"start": "next start",
-		"lint": "next lint"
+		"lint": "next lint",
+		"lint:ts": "eslint \"**/*.{ts,tsx}\"",
+		"lint:ts:fix": "eslint \"**/*.{ts,tsx}\" --fix"
 	},
 	"dependencies": {
 		"next": "14.1.0",
@@ -21,8 +22,17 @@
 		"@types/node": "^20",
 		"@types/react": "^18.2.56",
 		"@types/react-dom": "^18.2.19",
+		"@typescript-eslint/eslint-plugin": "^7.0.1",
+		"@typescript-eslint/parser": "^7.0.1",
 		"eslint": "^8.56.0",
+		"eslint-config-airbnb": "^19.0.4",
 		"eslint-config-next": "14.1.0",
+		"eslint-plugin-i18next": "^6.0.3",
+		"eslint-plugin-import": "^2.25.3",
+		"eslint-plugin-jsx-a11y": "^6.5.1",
+		"eslint-plugin-react": "^7.28.0",
+		"eslint-plugin-react-hooks": "^4.3.0",
+		"eslint-plugin-storybook": "^0.8.0",
 		"sass": "^1.71.0",
 		"typescript": "^5.3.3",
 		"webpack-bundle-analyzer": "^4.10.1"
