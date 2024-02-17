@@ -10,10 +10,10 @@
 		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"module": "ESNext",
-		"moduleResolution": "Bundler",
+		"moduleResolution": "Node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"jsx": "preserve",
+		"jsx": "react-jsx",
 		"incremental": true,
 		"noImplicitAny": true,
 		"plugins": [
@@ -22,15 +22,20 @@
 			}
 		],
 		"paths": {
-			"*": ["./src/*"]
+			"@/*": ["./src/*"]
+		}
+	},
+	"ts-node": {
+		"compilerOptions": {
+			"module": "CommonJS"
 		}
 	},
 	"include": [
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		".next/types/**/*.ts",
-		"./src/**/*.scss"
+		"**/*.scss",
+		".next/types/**/*.ts"
 	],
 	"exclude": ["node_modules"]
 }

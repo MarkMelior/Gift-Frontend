@@ -1,4 +1,5 @@
 .idea
+/analyze
 
 # dependencies
 /node_modules

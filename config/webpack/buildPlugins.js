@@ -8,7 +8,7 @@ export default function buildPlugins(config, isDev) {
 			new BundleAnalyzerPlugin({
 				analyzerMode: 'static',
 				openAnalyzer: true,
-				reportFilename: `./analyze/client.html`,
+				reportFilename: './analyze/client.html',
 			}),
 		);
 	}

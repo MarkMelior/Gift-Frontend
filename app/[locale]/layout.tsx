@@ -1,4 +1,4 @@
-import { ThemeProvider } from 'app/providers/ThemeProvider';
+import { ThemeProvider } from '@/app/providers/ThemeProvider';
 import type { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { Inter } from 'next/font/google';

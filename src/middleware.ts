@@ -1,4 +1,4 @@
-import { defaultLocale, localePrefix, locales } from 'navigation';
+import { defaultLocale, localePrefix, locales } from '@/navigation';
 import createMiddleware from 'next-intl/middleware';
 
 export default createMiddleware({

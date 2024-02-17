@@ -1,11 +1,11 @@
+import { classNames as cl } from '@/shared/lib/classNames/classNames';
+import { ThemeSwitcher } from '@/shared/ui/ThemeSwitcher';
 import { FC } from 'react';
-import { classNames as cl } from 'shared/lib/classNames/classNames';
-import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 // import { Navbar } from 'widgets/Navbar';
 
+import { LangSwitcher } from '@/shared/ui/LangSwitcher';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { LangSwitcher } from 'shared/ui/LangSwitcher';
 import cls from './HomePage.module.scss';
 
 interface HomePageProps {}
