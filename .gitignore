@@ -1,6 +1,9 @@
 .idea
 /analyze
 
+# * remove after
+/.loki
+
 # dependencies
 /node_modules
 /.pnp
