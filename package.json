@@ -2,9 +2,11 @@
 	"name": "gift",
 	"version": "0.1.0",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
+		"analyze": "set ANALYZE=true&&next dev",
 		"start": "next start",
 		"lint": "next lint"
 	},
@@ -14,12 +16,14 @@
 		"react-dom": "^18.2.0"
 	},
 	"devDependencies": {
+		"@svgr/webpack": "^8.1.0",
 		"@types/node": "^20",
 		"@types/react": "^18.2.56",
 		"@types/react-dom": "^18.2.19",
 		"eslint": "^8.56.0",
 		"eslint-config-next": "14.1.0",
 		"sass": "^1.71.0",
-		"typescript": "^5.3.3"
+		"typescript": "^5.3.3",
+		"webpack-bundle-analyzer": "^4.10.1"
 	}
 }

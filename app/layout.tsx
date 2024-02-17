@@ -1,3 +1,4 @@
+import { ThemeProvider } from 'app/providers/ThemeProvider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -15,7 +16,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='ru'>
-			<body className={inter.className}>{children}</body>
+			<body className={inter.className}>
+				<ThemeProvider>{children}</ThemeProvider>
+			</body>
 		</html>
 	);
 }
