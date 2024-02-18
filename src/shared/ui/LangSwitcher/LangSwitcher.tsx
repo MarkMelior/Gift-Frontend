@@ -2,8 +2,13 @@
 
 import { Link, usePathname } from '@/navigation';
 import { useLocale, useTranslations } from 'next-intl';
+import { ReactNode } from 'react';
 
-export default function LocaleSwitcher() {
+interface LocaleSwitcherProps {
+	children?: ReactNode;
+}
+
+export default function LocaleSwitcher({ children }: LocaleSwitcherProps) {
 	const t = useTranslations();
 	const locale = useLocale();
 	const otherLocale = locale === 'en' ? 'ru' : 'en';

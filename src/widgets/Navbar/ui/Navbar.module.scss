@@ -1,16 +1,44 @@
 .Navbar {
 	width: 100%;
 	height: var(--navbar-height);
-	background: var(--inverted-bg-color);
+	background: var(--bg-noise), var(--main-color);
+	border-bottom: 1px solid rgba(255, 255, 255, .1);
+	backdrop-filter: var(--main-blur);
+}
+
+.Content {
 	display: flex;
 	align-items: center;
-	padding: 20px;
+	justify-content: center;
+	height: 100%;
 }
 
-.links {
-	margin-left: auto;
+.Left {
+	display: flex;
+	flex: 1;
+	justify-content: left;
+	align-items: center;
 }
 
-.mainLink {
-	margin-right: 15px;
+.Center {
+	display: flex;
+	flex: 0 0 auto;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+
+	a {
+		font-size: var(--font-size-s);
+	}
 }
+
+.Right {
+	display: flex;
+	flex: 1;
+	justify-content: right;
+	align-items: center;
+}
+
+.controlButtons {}
+
+.Logo {}

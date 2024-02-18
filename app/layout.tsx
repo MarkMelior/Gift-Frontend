@@ -1,9 +1,8 @@
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
+import '@/app/styles/index.scss';
 import type { Metadata } from 'next';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { Inter } from 'next/font/google';
 import { ReactNode, Suspense } from 'react';
-// import 'shared/config/i18n/i18n';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,21 +13,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
 	children,
-	params: { locale },
 }: Readonly<{
 	children: ReactNode;
-	params: { locale: string };
 }>) {
-	const messages = useMessages();
-
 	return (
-		<html lang={locale}>
+		<html lang='ru'>
 			<body className={inter.className}>
-				<NextIntlClientProvider locale={locale} messages={messages}>
-					<ThemeProvider>
-						<Suspense fallback=''>{children}</Suspense>
-					</ThemeProvider>
-				</NextIntlClientProvider>
+				<ThemeProvider>
+					<Suspense fallback=''>{children}</Suspense>
+				</ThemeProvider>
 			</body>
 		</html>
 	);

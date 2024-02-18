@@ -1,8 +1,14 @@
 :root {
-	--bg-color: #EDEEF0;
-	--inverted-bg-color: #03020D;
-	--primary-color: #30004e;
-	--inverted-primary-color: #B336FF;
-	--secondary-color: #001e6b;
-	--inverted-secondary-color: #346DFF;
+	--bg-color: #03020D;
+	--bg-dots: #2e3135;
+	--main-color: #03020D;
+	--inverted-main-color: #FFFFFF;
+	--primary-color: #B336FF;
+	--inverted-primary-color: #30004e;
+	--secondary-color: #346DFF;
+	--inverted-secondary-color: #001e6b;
+
+	// text
+	--text-opacity-color: rgba(255, 255, 255, .5);
+	--text-color: rgba(255, 255, 255, 1);
 }

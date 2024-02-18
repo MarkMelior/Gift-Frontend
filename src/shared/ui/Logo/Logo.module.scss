@@ -1,0 +1,11 @@
+.Logo {
+	display: flex;
+
+	svg *[fill] {
+		fill: var(--inverted-main-color);
+	}
+
+	svg *[stroke] {
+		stroke: var(--inverted-main-color);
+	}
+}

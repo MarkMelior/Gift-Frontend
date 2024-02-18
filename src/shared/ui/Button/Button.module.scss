@@ -1,9 +1,18 @@
 .Button {
 	cursor: pointer;
-	color: var(--text-redesigned);
 	padding: 6px 16px;
+	border-radius: 15px;
+	gap: 10px;
+
 	display: flex;
+	text-align: center;
 	align-items: center;
+	justify-content: center;
+
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	background: rgba(255, 255, 255, 0.01);
+	color: rgba(255, 255, 255, 0.30);
+	transition: all 0.2s ease;
 
 	&:hover {
 		color: var(--accent-redesigned);
@@ -14,6 +23,41 @@
 		}
 	}
 }
+
+.slice {
+	overflow: hidden;
+	position: relative;
+	user-select: none;
+	transition: ease-out 0.1s;
+	background-size: 300% 300%;
+
+	&:hover {
+		&:after {
+			left: 120%;
+			transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+		}
+	}
+
+	&:after {
+		background: #fff;
+		content: "";
+		height: 200px;
+		left: -90px;
+		opacity: .35;
+		position: absolute;
+		top: -50px;
+		transform: rotate(35deg);
+		transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+		width: 50px;
+		z-index: 0;
+
+		// @include mediaMax($tablet) {
+		// 	content: none;
+		// }
+	}
+}
+
+
 
 .withAddon {
 	padding: 0 16px;
