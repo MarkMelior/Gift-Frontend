@@ -2,9 +2,11 @@
 
 import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
-// import { LangSwitcher } from '@/shared/ui/LangSwitcher';
 import { Logo } from '@/shared/ui/Logo';
 import { ThemeSwitcher } from '@/shared/ui/ThemeSwitcher';
+import { useTranslations } from 'next-intl';
+// eslint-disable-next-line camelcase
+import { LangSwitcher } from '@/shared/ui/LangSwitcher';
 import Link from 'next/link';
 import { memo, useCallback, useState } from 'react';
 import cls from './Navbar.module.scss';
@@ -36,6 +38,8 @@ export const Navbar = memo(({ className = '' }: NavbarProps) => {
 	// 	);
 	// }
 
+	const t = useTranslations();
+
 	return (
 		<header className={cl(cls.Navbar, {}, [className])}>
 			<div className={cl(cls.Content, {}, ['content'])}>
@@ -45,12 +49,12 @@ export const Navbar = memo(({ className = '' }: NavbarProps) => {
 					</Link>
 				</div>
 				<div className={cl(cls.Center, {}, [])}>
-					<Link href='/'>Главная страница</Link>
-					<Link href='/about'>О нас</Link>
+					<Link href='/'>{t('Главная страница')}</Link>
+					<Link href='/about'>{t('О нас')}</Link>
 				</div>
 				<div className={cl(cls.Right, {}, [])}>
 					<div className={cl(cls.controlButtons, {}, [])}>
-						{/* <LangSwitcher /> */}
+						<LangSwitcher />
 						<ThemeSwitcher />
 					</div>
 					<Button variant='clear' className={cls.Links} onClick={onShowModal}>

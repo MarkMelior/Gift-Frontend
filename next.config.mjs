@@ -1,7 +1,10 @@
+import createNextIntlPlugin from 'next-intl/plugin';
 import buildLoaders from './config/webpack/buildLoaders.mjs';
 import buildPlugins from './config/webpack/buildPlugins.mjs';
 
 const isDev = process.env.NODE_ENV === 'development';
+
+const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -14,6 +17,7 @@ const nextConfig = {
 
 		return config;
 	},
+	trailingSlash: true,
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);
