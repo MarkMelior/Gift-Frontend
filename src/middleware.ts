@@ -6,12 +6,14 @@ import {
 } from '@/shared/config/i18n/config';
 import createMiddleware from 'next-intl/middleware';
 
-export default createMiddleware({
+const nextIntMiddleware = createMiddleware({
 	defaultLocale,
 	locales,
 	pathnames,
 	localePrefix,
 });
+
+export default nextIntMiddleware;
 
 export const config = {
 	matcher: [

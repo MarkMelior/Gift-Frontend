@@ -1,6 +1,6 @@
 'use client';
 
-import { Link } from '@/navigation';
+import { Link } from '@/shared/config/i18n/navigation';
 import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
 import { LangSwitcher } from '@/shared/ui/LangSwitcher';

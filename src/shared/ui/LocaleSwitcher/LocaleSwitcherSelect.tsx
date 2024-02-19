@@ -1,7 +1,6 @@
 'use client';
 
-import { usePathname, useRouter } from '@/navigation';
-import clsx from 'clsx';
+import { usePathname, useRouter } from '@/shared/config/i18n/navigation';
 import { ChangeEvent, ReactNode, useTransition } from 'react';
 
 type Props = {
@@ -26,12 +25,7 @@ export default function LocaleSwitcherSelect({
 
 	return (
 		// eslint-disable-next-line jsx-a11y/label-has-associated-control
-		<label
-			className={clsx(
-				'relative text-gray-400',
-				isPending && 'transition-opacity [&:disabled]:opacity-30',
-			)}
-		>
+		<label>
 			<select
 				className='inline-flex appearance-none bg-transparent py-3 pl-2 pr-6'
 				defaultValue={defaultValue}

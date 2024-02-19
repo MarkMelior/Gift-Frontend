@@ -1,6 +1,6 @@
 'use client';
 
-import { Link, usePathname } from '@/navigation';
+import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
 

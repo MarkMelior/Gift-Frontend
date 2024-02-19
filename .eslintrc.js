@@ -8,6 +8,7 @@ module.exports = {
 		'next/core-web-vitals',
 		'plugin:react/recommended',
 		'airbnb',
+		'plugin:i18next/recommended',
 		'plugin:storybook/recommended',
 	],
 	parser: '@typescript-eslint/parser',
@@ -18,7 +19,7 @@ module.exports = {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
 	},
-	plugins: ['react', '@typescript-eslint', 'react-hooks'],
+	plugins: ['react', '@typescript-eslint', 'react-hooks', 'i18next'],
 	rules: {
 		'react/jsx-indent': [2, 'tab'],
 		'react/jsx-indent-props': [2, 'tab'],
@@ -42,13 +43,13 @@ module.exports = {
 		'import/extensions': 'off',
 		'import/no-extraneous-dependencies': 'off',
 		'no-underscore-dangle': 'off',
-		// 'i18next/no-literal-string': [
-		// 	'warn',
-		// 	{
-		// 		markupOnly: true,
-		// 		ignoreAttribute: ['data-testid', 'to'],
-		// 	},
-		// ],
+		'i18next/no-literal-string': [
+			'warn',
+			{
+				markupOnly: true,
+				ignoreAttribute: ['data-testid', 'to'],
+			},
+		],
 		'jsx-a11y/no-static-element-interactions': 'off',
 		'jsx-a11y/click-events-have-key-events': 'off',
 		'react-hooks/rules-of-hooks': 'error',
@@ -61,6 +62,7 @@ module.exports = {
 		'max-len': 'off',
 		'linebreak-style': 'off',
 		'import/order': 'off',
+		camelcase: 'off',
 	},
 	globals: {
 		IS_DEV: true,

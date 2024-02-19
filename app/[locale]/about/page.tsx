@@ -12,7 +12,7 @@ const AboutPage: FC<AboutPageProps> = () => {
 	return (
 		<>
 			<Navbar />
-			<div className={cl(cls.AboutPage, {}, [])}>{t('IndexPage.О нас')}</div>
+			<div className={cl(cls.AboutPage, {}, [])}>{t('О нас')}</div>
 		</>
 	);
 };

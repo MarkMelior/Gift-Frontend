@@ -1,6 +1,7 @@
 {
 	"RootLayout": {
-		"title": "Пример next-intl"
+		"title": "Пример next-intl",
+		"description": "Описание зверское сайта"
 	},
 	"IndexPage": {
 		"title": "Пример next-intl",
