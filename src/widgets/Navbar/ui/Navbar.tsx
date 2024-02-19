@@ -1,13 +1,13 @@
 'use client';
 
+import { Link } from '@/navigation';
 import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
+import { LangSwitcher } from '@/shared/ui/LangSwitcher';
+import { LocaleSwitcher } from '@/shared/ui/LocaleSwitcher';
 import { Logo } from '@/shared/ui/Logo';
 import { ThemeSwitcher } from '@/shared/ui/ThemeSwitcher';
 import { useTranslations } from 'next-intl';
-// eslint-disable-next-line camelcase
-import { LangSwitcher } from '@/shared/ui/LangSwitcher';
-import Link from 'next/link';
 import { memo, useCallback, useState } from 'react';
 import cls from './Navbar.module.scss';
 
@@ -49,11 +49,12 @@ export const Navbar = memo(({ className = '' }: NavbarProps) => {
 					</Link>
 				</div>
 				<div className={cl(cls.Center, {}, [])}>
-					<Link href='/'>{t('Главная страница')}</Link>
-					<Link href='/about'>{t('О нас')}</Link>
+					<Link href='/'>{t('Navbar.home')}</Link>
+					<Link href='/about'>{t('Navbar.about')}</Link>
 				</div>
 				<div className={cl(cls.Right, {}, [])}>
 					<div className={cl(cls.controlButtons, {}, [])}>
+						<LocaleSwitcher />
 						<LangSwitcher />
 						<ThemeSwitcher />
 					</div>

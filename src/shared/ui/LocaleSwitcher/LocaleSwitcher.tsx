@@ -1,16 +1,16 @@
+import { locales } from '@/shared/config/i18n/config';
 import { useLocale, useTranslations } from 'next-intl';
-import { locales } from '../config';
 import LocaleSwitcherSelect from './LocaleSwitcherSelect';
 
 export default function LocaleSwitcher() {
-	const t = useTranslations('LocaleSwitcher');
+	const t = useTranslations();
 	const locale = useLocale();
 
 	return (
-		<LocaleSwitcherSelect defaultValue={locale} label={t('label')}>
+		<LocaleSwitcherSelect defaultValue={locale}>
 			{locales.map((cur) => (
 				<option key={cur} value={cur}>
-					{t('locale', { locale: cur })}
+					{t('Язык', { locale: cur })}
 				</option>
 			))}
 		</LocaleSwitcherSelect>

@@ -1,0 +1,26 @@
+{
+	"RootLayout": {
+		"title": "next-intl example"
+	},
+	"IndexPage": {
+		"title": "next-intl example",
+		"description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes."
+	},
+	"Error": {
+		"title": "Something went wrong!",
+		"description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
+	},
+	"NotFoundPage": {
+		"title": "Page not found",
+		"description": "Please double-check the browser address bar or use the navigation to go to a known page."
+	},
+	"Navbar": {
+		"home": "Home",
+		"about": "About"
+	},
+	"Главная страница": "Home page",
+	"О нас": "About page",
+	"Язык": "English",
+	"Короткий язык": "Eng",
+	"Войти": "Login"
+}

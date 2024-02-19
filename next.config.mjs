@@ -4,7 +4,7 @@ import buildPlugins from './config/webpack/buildPlugins.mjs';
 
 const isDev = process.env.NODE_ENV === 'development';
 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin('./src/shared/config/i18n/i18n.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

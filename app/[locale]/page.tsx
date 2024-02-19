@@ -1,26 +1,23 @@
-import PageLayout from '@/components/PageLayout';
+import { classNames as cl } from '@/shared/lib/classNames/classNames';
+import { Button } from '@/shared/ui/Button';
+import { Navbar } from '@/widgets/Navbar';
 import { useTranslations } from 'next-intl';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { FC } from 'react';
+import cls from './HomePage.module.scss';
 
-type Props = {
-	params: { locale: string };
-};
+interface HomePageProps {}
 
-export default function IndexPage({ params: { locale } }: Props) {
-	// Enable static rendering
-	unstable_setRequestLocale(locale);
-
-	const t = useTranslations('IndexPage');
+const HomePage: FC<HomePageProps> = () => {
+	const t = useTranslations();
 
 	return (
-		<PageLayout title={t('title')}>
-			<p className='max-w-[590px]'>
-				{t.rich('description', {
-					code: (chunks) => (
-						<code className='font-mono text-white'>{chunks}</code>
-					),
-				})}
-			</p>
-		</PageLayout>
+		<>
+			<Navbar />
+			<Button variant='slice' className={cl(cls.HomePage, {}, [])}>
+				{t('IndexPage.title')}
+			</Button>
+		</>
 	);
-}
+};
+
+export default HomePage;
