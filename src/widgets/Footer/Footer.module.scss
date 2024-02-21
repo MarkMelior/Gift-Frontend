@@ -1,0 +1,11 @@
+.Footer {
+	width: 100%;
+	background: var(--bg-noise), var(--main-color);
+	border-top: 1px solid var(--border-color);
+	padding: 30px 0;
+
+	p {
+		color: var(--text-opacity-color);
+		font-size: var(--font-size-s);
+	}
+}

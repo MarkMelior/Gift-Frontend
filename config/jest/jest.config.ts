@@ -18,9 +18,24 @@ export default {
 	moduleNameMapper: {
 		'\\.s?css$': 'identity-obj-proxy',
 		'\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+		'^@/(.*)$': '<rootDir>src/$1',
 	},
 	globals: {
 		IS_DEV: true,
+	},
+	transform: {
+		'^.+\\.(t|j)sx?$': [
+			'@swc/jest',
+			{
+				jsc: {
+					transform: {
+						react: {
+							runtime: 'automatic',
+						},
+					},
+				},
+			},
+		],
 	},
 	// Indicates whether the coverage information should be collected while executing the test
 	// collectCoverage: false,

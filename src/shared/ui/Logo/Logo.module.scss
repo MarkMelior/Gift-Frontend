@@ -1,5 +1,10 @@
 .Logo {
 	display: flex;
+	transition: all .3s ease;
+
+	&:hover {
+		opacity: 1 !important;
+	}
 
 	svg *[fill] {
 		fill: var(--inverted-main-color);

@@ -2,7 +2,7 @@
 	width: 100%;
 	height: var(--navbar-height);
 	background: var(--bg-noise), var(--main-color);
-	border-bottom: 1px solid rgba(255, 255, 255, .1);
+	border-bottom: 1px solid var(--border-color);
 	backdrop-filter: var(--main-blur);
 }
 
@@ -18,6 +18,7 @@
 	flex: 1;
 	justify-content: left;
 	align-items: center;
+	gap: 40px;
 }
 
 .Center {
@@ -28,7 +29,7 @@
 	gap: 50px;
 
 	a {
-		font-size: var(--font-size-s);
+		font-size: var(--font-size-m);
 	}
 }
 
@@ -39,6 +40,73 @@
 	align-items: center;
 }
 
-.controlButtons {}
+.Selected {
+	color: var(--inverted-main-color);
+}
+
+.controlButtons {
+	display: flex;
+
+	button {
+		width: 42px;
+		height: 42px;
+		border-radius: 10px;
+		border: none;
+		padding: 0;
+
+		&:hover {
+			border: 1px solid var(--border-color);
+			transition: all .3s ease;
+
+			img,
+			svg {
+				opacity: 1;
+			}
+		}
+	}
+
+	img,
+	svg {
+		min-width: 24px;
+		height: 24px;
+		transition: all .3s ease;
+		opacity: .2;
+	}
+
+	svg *[stroke] {
+		stroke: var(--inverted-main-color);
+	}
+}
 
 .Logo {}
+
+.blackhole {
+	transition: all .5s ease;
+	position: absolute;
+	rotate: 180deg;
+	height: 1000px;
+	top: -395px;
+	// top: -415px;
+	width: 100%;
+	z-index: -100;
+	// mix-blend-mode: lighten;
+	object-fit: cover;
+
+	@media (max-width: --display-notebook) {
+		display: none;
+	}
+
+	animation: fadeInBlackhole 1s ease-out forwards;
+}
+
+@keyframes fadeInBlackhole {
+	from {
+		opacity: 0;
+		transform: scale(.1);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}

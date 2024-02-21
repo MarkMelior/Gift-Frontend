@@ -20,6 +20,7 @@ const ThemeProvider: FC<ThemeProviderProps> = ({ initialTheme, children }) => {
 			const savedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY);
 			if (savedTheme) {
 				setTheme(savedTheme as Theme);
+				document.body.classList.add(savedTheme);
 			}
 		}
 	}, [initialTheme]);
@@ -29,7 +30,7 @@ const ThemeProvider: FC<ThemeProviderProps> = ({ initialTheme, children }) => {
 			theme,
 			setTheme,
 		}),
-		[theme, setTheme],
+		[theme],
 	);
 
 	return (

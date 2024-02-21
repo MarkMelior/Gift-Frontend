@@ -1,0 +1,8 @@
+.Content {
+	width: 100%;
+	height: auto;
+	position: fixed;
+	z-index: var(--space-z-index);
+	inset: 0;
+	background: var(--bg-color);
+}

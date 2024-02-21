@@ -1,0 +1,44 @@
+.container {
+	width: 100%;
+	height: 200px;
+	position: relative;
+	overflow: hidden;
+	opacity: .4;
+
+	@media (max-width: --display-notebook) {
+		display: none;
+	}
+}
+
+.wrap {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	transition: all 1s ease-in-out 0s;
+}
+
+.object {
+	background: url("/images/wavebar.svg") repeat-x;
+	position: absolute;
+	top: -198px;
+	width: 6144px;
+	height: 198px;
+	animation: 10s cubic-bezier(.36, .45, .63, .53) 0s infinite normal none running wavebar-svg-object;
+	transform: translate3d(0px, 0px, 0px);
+
+	&:nth-of-type(2) {
+		top: -174px;
+		animation: 5s cubic-bezier(.36, .45, .63, .53) 0s infinite normal none running wavebar-svg-object;
+		opacity: 1;
+	}
+}
+
+@keyframes wavebar-svg-object {
+	0% {
+		margin-left: 0
+	}
+
+	100% {
+		margin-left: -1600px
+	}
+}

@@ -2,6 +2,10 @@ import { ThemeProvider } from '@/app/providers/ThemeProvider';
 import '@/app/styles/index.scss';
 import { locales } from '@/shared/config/i18n/config';
 import { classNames as cl } from '@/shared/lib/classNames/classNames';
+import { PageLoader } from '@/shared/ui/PageLoader';
+import { ScrollUp } from '@/shared/ui/ScrollUp';
+import { Footer } from '@/widgets/Footer';
+import { Navbar } from '@/widgets/Navbar';
 import { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
@@ -43,7 +47,13 @@ export default function RootLayout({
 			<body className={cl(inter.className, {}, [])}>
 				<ThemeProvider>
 					<NextIntlClientProvider messages={messages}>
-						<Suspense fallback=''>{children}</Suspense>
+						<Suspense fallback={<PageLoader />}>
+							<Navbar blackhole />
+							{children}
+							{/* <SpaceCanvas /> */}
+							<ScrollUp />
+							<Footer />
+						</Suspense>
 					</NextIntlClientProvider>
 				</ThemeProvider>
 			</body>

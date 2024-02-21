@@ -3,6 +3,7 @@
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
+import { Button } from '../Button';
 
 interface LocaleSwitcherProps {
 	children?: ReactNode;
@@ -16,7 +17,9 @@ export default function LocaleSwitcher({ children }: LocaleSwitcherProps) {
 
 	return (
 		<Link href={pathname} locale={otherLocale}>
-			{t('Язык', { locale: otherLocale })}
+			<Button variant='slice'>
+				{t('Короткий язык', { locale: otherLocale })}
+			</Button>
 		</Link>
 	);
 }

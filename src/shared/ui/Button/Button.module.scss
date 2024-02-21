@@ -9,13 +9,14 @@
 	align-items: center;
 	justify-content: center;
 
-	border: 1px solid rgba(255, 255, 255, 0.08);
-	background: rgba(255, 255, 255, 0.01);
-	color: rgba(255, 255, 255, 0.30);
+	border: 1px solid var(--border-color);
+	background: none;
+	color: var(--text-opacity-3-color);
 	transition: all 0.2s ease;
 
 	&:hover {
 		color: var(--accent-redesigned);
+		// background: rgba(255, 255, 255, .1);
 
 		.addonLeft svg,
 		.addonRight svg {
@@ -39,7 +40,7 @@
 	}
 
 	&:after {
-		background: #fff;
+		background: var(--inverted-main-color);
 		content: "";
 		height: 200px;
 		left: -90px;

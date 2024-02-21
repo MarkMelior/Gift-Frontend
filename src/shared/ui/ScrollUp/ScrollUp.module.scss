@@ -1,0 +1,47 @@
+.ScrollUp {
+	position: fixed;
+	bottom: 45px;
+	right: 30px;
+	opacity: 0;
+
+	&::before {
+		content: '';
+		width: 20px;
+		height: 20px;
+		background-image: url("/images/icons/arrow-up.svg");
+	}
+
+	&.visible {
+		animation: slideInFromRight 0.5s forwards;
+		opacity: .7;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+
+	&.hidden {
+		animation: slideOutToRight 0.5s forwards;
+		opacity: 0;
+	}
+}
+
+@keyframes slideInFromRight {
+	from {
+		transform: translateX(100%);
+	}
+
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slideOutToRight {
+	from {
+		transform: translateX(0);
+	}
+
+	to {
+		transform: translateX(100%);
+	}
+}

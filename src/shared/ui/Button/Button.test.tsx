@@ -7,9 +7,9 @@ describe('Button', () => {
 		expect(screen.getByText('TEST')).toBeInTheDocument();
 	});
 
-	// test('Test clear theme', () => {
-	// 	render(<Button variant={ButtonVariant.CLEAR}>TEST</Button>);
-	// 	expect(screen.getByText('TEST')).toHaveClass('clear');
-	// 	screen.debug();
-	// });
+	test('Test slice theme', () => {
+		render(<Button variant='slice'>TEST</Button>);
+		expect(screen.getByText('TEST')).toHaveClass('slice');
+		screen.debug();
+	});
 });
