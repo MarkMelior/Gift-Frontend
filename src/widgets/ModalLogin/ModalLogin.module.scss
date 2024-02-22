@@ -1,0 +1,69 @@
+.ModalLogin {
+	$color-gradient: #93c5fd; // #2DB3FF
+
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	height: 150px;
+	box-shadow: 1px 1px 70px #93c5fd4d;
+	position: relative;
+	z-index: 0;
+	border-radius: 10px;
+	overflow: hidden;
+	padding: 1px;
+
+	transition-property: all;
+	transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+	transition-duration: .15s;
+
+	&::after {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		left: 6px;
+		top: 6px;
+		width: calc(100% - 12px);
+		height: calc(100% - 12px);
+		background: black;
+		border-radius: 5px;
+		animation: opacityChange 3s infinite alternate;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		z-index: -2;
+		left: -50%;
+		top: -50%;
+		width: 200%;
+		height: 200%;
+		background-repeat: no-repeat;
+		background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+		background-image: linear-gradient(#000, $color-gradient, #000), linear-gradient($color-gradient, #000000, $color-gradient), linear-gradient($color-gradient, #000, $color-gradient), linear-gradient(#000, $color-gradient, #000);
+		animation: rotate 4s linear infinite;
+	}
+}
+
+.Content {
+	background: var(--bg-noise), var(--main-color);
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	padding: 40px 45px;
+}
+
+@keyframes rotate {
+	to {
+		transform: rotate(1turn);
+	}
+}
+
+@keyframes opacityChange {
+	50% {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0.5;
+	}
+}

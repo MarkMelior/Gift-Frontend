@@ -1,4 +1,4 @@
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { classNames as cl, Mods } from '@/shared/lib/classNames/classNames';
 import {
 	ButtonHTMLAttributes,
 	ForwardedRef,
@@ -7,9 +7,21 @@ import {
 } from 'react';
 import cls from './Button.module.scss';
 
-export type ButtonVariant = 'clear' | 'layer' | 'slice';
+export type ButtonVariant = 'clear' | 'layer' | 'slice' | 'default';
+export type ButtonSize = 'small' | 'medium' | 'large';
+export type ButtonPadding =
+	| 'padding-small'
+	| 'padding-medium'
+	| 'padding-large'
+	| 'padding-none';
+export type ButtonRadius =
+	| 'radius-full'
+	| 'radius-large'
+	| 'radius-medium'
+	| 'radius-small'
+	| 'radius-none';
+
 export type ButtonColor = 'normal' | 'success' | 'error';
-export type ButtonSize = 'm' | 'l' | 'xl';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	className?: string;
@@ -17,10 +29,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	 * Тема кнопки. Отвечает за визуал (в рамке, без стилей, противоположный теме приложения цвет и тд)
 	 */
 	variant?: ButtonVariant;
-	/**
-	 * Флаг, делающий кнопку квадратной
-	 */
-	square?: boolean;
 	/**
 	 * Размер кнопки в соответствии с дизайн системой
 	 */
@@ -38,25 +46,35 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	 */
 	fullWidth?: boolean;
 
+	radius?: ButtonRadius;
+	padding?: ButtonPadding;
+
+	leftIcon?: ReactNode;
+	rightIcon?: ReactNode;
+
 	color?: ButtonColor;
 }
 
 export const Button = forwardRef(
-	(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
-		const {
+	(
+		{
 			className = '',
 			children,
-			variant = 'outline',
-			square,
-			disabled,
+			variant = 'clear',
 			fullWidth,
-			size = 'm',
+			disabled,
+			padding = 'padding-medium',
+			size = 'medium',
+			radius = 'radius-medium',
+			leftIcon,
+			rightIcon,
+			// isLoading,
 			color = 'normal',
 			...otherProps
-		} = props;
-
+		}: ButtonProps,
+		ref: ForwardedRef<HTMLButtonElement>,
+	) => {
 		const mods: Mods = {
-			[cls.square]: square,
 			[cls.disabled]: disabled,
 			[cls.fullWidth]: fullWidth,
 		};
@@ -64,17 +82,27 @@ export const Button = forwardRef(
 		return (
 			<button
 				type='button'
-				className={classNames(cls.Button, mods, [
+				className={cl(cls.Button, mods, [
 					className,
 					cls[variant],
 					cls[size],
+					cls[radius],
+					cls[padding],
 					cls[color],
 				])}
 				disabled={disabled}
 				{...otherProps}
 				ref={ref}
 			>
-				{children}
+				{leftIcon && <span className={cls.Icon}>{leftIcon}</span>}
+				{variant === 'layer' ? (
+					<div className={cl(cls.layerInner, {}, [cls[radius]])}>
+						{children}
+					</div>
+				) : (
+					children
+				)}
+				{rightIcon && <span className={cls.Icon}>{rightIcon}</span>}
 			</button>
 		);
 	},

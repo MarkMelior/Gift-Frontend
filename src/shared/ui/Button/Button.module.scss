@@ -1,8 +1,10 @@
+@import "@/app/styles/variables/var";
+
 .Button {
 	cursor: pointer;
 	padding: 6px 16px;
-	border-radius: 15px;
-	gap: 10px;
+	gap: 5px;
+	position: relative;
 
 	display: flex;
 	text-align: center;
@@ -11,20 +13,50 @@
 
 	border: 1px solid var(--border-color);
 	background: none;
-	color: rgba(var(--text-color), .3);
-	transition: all 0.2s ease;
+	color: rgba(var(--text-color), .5);
+	transition: all 0.1s ease;
+	outline: none;
+
+	&::before,
+	img {
+		transition: all 0.1s ease;
+		opacity: .5;
+	}
 
 	&:hover {
+
+		&::before,
+		img {
+			opacity: 1;
+		}
+
 		color: rgba(var(--text-color), 1);
 	}
 }
 
+
+// Variants
 .slice {
 	overflow: hidden;
 	position: relative;
 	user-select: none;
 	transition: ease-out 0.1s;
 	background-size: 300% 300%;
+	border: 1px solid transparent;
+
+	color: rgba(var(--inverted-main-color-rgb), .2);
+	font-weight: 200;
+	font-size: var(--font-size-large);
+
+	&:hover {
+		border: 1px solid var(--border-color);
+		transition: all .3s ease;
+
+		img,
+		svg {
+			opacity: 1;
+		}
+	}
 
 	&:hover {
 		&:after {
@@ -46,28 +78,27 @@
 		width: 50px;
 		z-index: 0;
 
-		// @include mediaMax($tablet) {
-		// 	content: none;
-		// }
+		@media (max-width: $display-tablet) {
+			content: none;
+		}
 	}
 }
 
+.layer {
+	background: rgba(var(--inverted-main-color-rgb), .05);
+	padding: 5px !important;
 
-
-.withAddon {
-	padding: 0 16px;
+	.layerInner {
+		padding: 20px 40px;
+		background: var(--bg-noise), rgba(var(--main-color-rgb), .4);
+	}
 }
 
-.addonLeft,
-.addonRight {
-	display: flex;
+.default {
+	padding: 7px 15px;
+	background: var(--bg-noise), rgba(var(--main-color-rgb), .2);
+	border: var(--border-color) 1px solid;
 }
-
-.addonRight svg,
-.addonLeft svg {
-	color: var(--hint-redesigned);
-}
-
 
 .clear {
 	padding: 0;
@@ -76,69 +107,56 @@
 	outline: none;
 }
 
-.filled {
-	background: var(--light-bg-redesigned);
-	border: none;
-	outline: none;
-	border-radius: 34px;
-}
 
-.outline {
-	background: none;
-	border-radius: 34px;
-
-	&:hover {
-		border: 2px solid var(--accent-redesigned);
-	}
-
-	&.normal {
-		border: 2px solid var(--icon-redesigned);
-	}
-
-	&.error {
-		border: 2px solid var(--cancel-redesigned);
-	}
-
-	&.success {
-		border: 2px solid var(--save-redesigned);
-	}
-}
-
-.square {
-	padding: 0;
-}
-
-.square.m {
-	width: var(--font-line-m);
-	height: var(--font-line-m);
-}
-
-.square.l {
-	width: var(--font-line-l);
-	height: var(--font-line-l);
-}
-
-.square.xl {
-	width: var(--font-line-xl);
-	height: var(--font-line-xl);
-}
-
-.m {
-	font: var(--font-m-redesigned);
-}
-
-.l {
-	font: var(--font-l-redesigned);
-}
-
-.xl {
-	font: var(--font-xl-redesigned);
-}
-
+// Others
 .disabled {
 	opacity: 0.5;
 }
 
 .fullWidth {
 	width: 100%;
+}
+
+
+// Border radius
+.radius-full {
+	border-radius: 9999px;
+}
+
+.radius-large {
+	border-radius: var(--radius-large);
+}
+
+.radius-medium {
+	border-radius: var(--radius-medium);
+}
+
+.radius-small {
+	border-radius: var(--radius-small);
+}
+
+.radius-tiny {
+	border-radius: var(--radius-tiny);
+}
+
+.radius-none {
+	border-radius: 0;
+}
+
+
+// Paddings
+.padding-large {
+	padding: var(--padding-large);
+}
+
+.padding-medium {
+	padding: var(--padding-medium);
+}
+
+.padding-small {
+	padding: var(--padding-small);
+}
+
+.padding-none {
+	padding: 0;
 }

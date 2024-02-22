@@ -1,36 +1,64 @@
 :root {
-	--font-family-main: Inter, "Times New Roman", serif;
-	--font-size-s: 14px;
-	// --font-line-s: 24px;
-	--font-size-m: 16px;
-	--font-line-m: 24px;
-	--font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
-	--font-size-l: 24px;
-	--font-line-l: 32px;
-	--font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
-	--font-size-xl: 32px;
-	--font-line-xl: 40px;
-	--font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+	// Fonts
+	--font-family-main: Inter, sans-serif;
+
+	--font-size-tiny: 0.75rem;
+	--font-size-small: 0.875rem;
+	--font-size-medium: 1rem;
+	--font-size-large: 1.125rem;
+
+	--line-height-tiny: 1rem;
+	--line-height-small: 1.25rem;
+	--line-height-medium: 1.5rem;
+	--line-height-large: 1.75rem;
+
+	--font-tiny: var(--font-size-tiny) / var(--line-height-tiny) var(--font-family-main);
+	--font-small: var(--font-size-small) / var(--line-height-small) var(--font-family-main);
+	--font-medium: var(--font-size-medium) / var(--line-height-medium) var(--font-family-main);
+	--font-large: var(--font-size-large) / var(--line-height-large) var(--font-family-main);
+
+	// Border Radius
+	--radius-tiny: 4px;
+	--radius-small: 7px;
+	--radius-medium: 10px;
+	--radius-large: 16px;
+
+	// Paddings
+	--padding-y-small: 5px;
+	--padding-x-small: 10px;
+	--padding-small: var(--padding-y-small) var(--padding-x-small);
+
+	--padding-y-medium: 10px;
+	--padding-x-medium: 20px;
+	--padding-medium: var(--padding-y-medium) var(--padding-x-medium);
+
+	--padding-y-large: 20px;
+	--padding-x-large: 40px;
+	--padding-large: var(--padding-y-large) var(--padding-x-large);
 
 	// Sizes
 	--navbar-height: 80px;
 	--sidebar-width: 300px;
 	--sidebar-width-collapsed: 80px;
 
-	// z - Индексы
+	// z Indexes
 	--modal-z-index: 10;
 	--space-z-index: -50;
 	--navbar-z-index: 100;
-	--footer-z-index: 100;
+	--footer-z-index: 90;
 	--light-z-index: -10;
 	--scroll-up-z-index: 110;
+	--notification-z-index: 110;
 
-	// Цвета
+	// Colors
 	--overlay-color: rgba(0 0 0 / 60%);
 	--red-light: #ff0000;
 	--red-dark: #a30000;
 
-	// filters
+	// Filters
 	--main-blur: blur(128px);
 	--bg-noise: url('/images/noise.png') repeat;
+
+	// Others
+	--position-bottom: 45px;
 }

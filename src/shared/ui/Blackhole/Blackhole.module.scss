@@ -1,0 +1,79 @@
+.Blackhole {}
+
+.Video {
+	transition: all .5s ease;
+	position: absolute;
+	rotate: 180deg;
+	height: 800px;
+	top: -320px;
+	// left: 50%;
+	// transform: translateX(-50%);
+	// width: 100%;
+	z-index: -100;
+	mix-blend-mode: lighten;
+	object-fit: cover;
+
+	@media (max-width: --display-notebook) {
+		display: none;
+	}
+
+	animation: fadeInBlackhole 1s ease-out forwards;
+}
+
+@keyframes fadeInBlackhole {
+	from {
+		opacity: 0;
+		transform: scale(.1);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.Circles {
+	left: 50%;
+	position: absolute;
+	top: 100%; // 50%
+	transform: translateZ(0) translate(-50%, -50%);
+	height: 808px;
+	margin-top: -12px;
+	width: 808px;
+	z-index: 9999;
+
+	&>div {
+		height: 100%;
+		mask-image: linear-gradient(180deg, rgba(186, 156, 255, .6) 9.41%, rgba(186, 156, 255, 0) 29.79%);
+		width: 100%;
+		left: 50%;
+		position: absolute;
+		top: 50%;
+		transform: translateZ(0) translate(-50%, -50%);
+
+		&::before {
+			background: rgba(186, 156, 255, .04);
+			border: 1px solid rgba(186, 156, 255, .3);
+			border-radius: 50%;
+			content: "";
+			height: calc(100% - 2px);
+			left: 0;
+			pointer-events: none;
+			position: absolute;
+			top: 0;
+			width: calc(100% - 2px);
+		}
+
+		&:nth-child(2) {
+			height: 608px;
+			opacity: .6;
+			width: 608px;
+		}
+
+		&:nth-child(3) {
+			height: 416px;
+			width: 416px;
+			z-index: 1;
+		}
+	}
+}

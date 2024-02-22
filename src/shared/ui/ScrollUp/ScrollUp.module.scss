@@ -1,6 +1,6 @@
 .ScrollUp {
-	position: fixed;
-	bottom: 45px;
+	position: fixed !important;
+	bottom: var(--position-bottom);
 	right: 30px;
 	opacity: 0;
 	z-index: var(--scroll-up-z-index);
@@ -13,6 +13,7 @@
 	}
 
 	&.visible {
+		transition: all .3s ease;
 		animation: slideInFromRight 0.5s forwards;
 		opacity: .7;
 
@@ -21,7 +22,9 @@
 		}
 	}
 
+
 	&.hidden {
+		transition: all .3s ease;
 		animation: slideOutToRight 0.5s forwards;
 		opacity: 0;
 	}

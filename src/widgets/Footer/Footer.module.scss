@@ -8,6 +8,33 @@
 
 	p {
 		color: rgba(var(--text-color), .3);
-		font-size: var(--font-size-s);
+		font: var(--font-small);
 	}
+}
+
+.Content {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.LinksContent {
+	display: flex;
+	gap: 10px;
+
+	img {
+		opacity: .3;
+		transition: all .1s ease;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.Spaces {
+	margin: auto 0;
+	height: 22px;
+	width: 1px;
+	background: rgba(var(--inverted-main-color-rgb), .1);
 }

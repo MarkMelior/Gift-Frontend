@@ -1,11 +1,14 @@
 'use client';
 
+import { classNames as cl } from '@/shared/lib/classNames/classNames';
+import { Button } from '@/shared/ui/Button';
 import Image from 'next/image';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
+import cls from './Notification.module.scss';
 
 interface NotificationProps {
 	message: string;
-	duration?: number;
+	// duration?: number;
 	closable?: boolean;
 	onClose?: () => void;
 	onCancel?: () => void;
@@ -14,7 +17,7 @@ interface NotificationProps {
 
 export const Notification: FC<NotificationProps> = ({
 	message,
-	duration = 5000,
+	// duration = 5000,
 	closable = true,
 	onClose,
 	onCancel,
@@ -22,14 +25,14 @@ export const Notification: FC<NotificationProps> = ({
 }) => {
 	const [visible, setVisible] = useState(true);
 
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setVisible(false);
-			if (onClose) onClose();
-		}, duration);
+	// useEffect(() => {
+	// 	const timer = setTimeout(() => {
+	// 		setVisible(false);
+	// 		if (onClose) onClose();
+	// 	}, duration);
 
-		return () => clearTimeout(timer);
-	}, []);
+	// 	return () => clearTimeout(timer);
+	// }, []);
 
 	const handleClose = () => {
 		setVisible(false);
@@ -42,28 +45,38 @@ export const Notification: FC<NotificationProps> = ({
 	};
 
 	return (
-		<div className={`notification ${visible ? 'show' : 'hide'}`}>
-			{icon && (
-				<Image
-					width={24}
-					height={24}
-					src={icon}
-					alt='icon'
-					className='notification-icon'
-				/>
-			)}
-			<div className='notification-content'>
+		<div className={cl(cls.Notification, { [cls.Hide]: !visible }, [])}>
+			<div className={cls.Content}>
+				{icon && (
+					<Image
+						width={20}
+						height={20}
+						src={icon}
+						alt='icon'
+						className={`${cls.Icon} noselect`}
+					/>
+				)}
 				<p>{message}</p>
 			</div>
 			{closable && (
-				<button type='button' className='close-btn' onClick={handleClose}>
-					×
-				</button>
+				<Button
+					padding='padding-none'
+					variant='slice'
+					className='animation-click'
+					onClick={handleClose}
+				>
+					<Image
+						src='/images/icons/cross.svg'
+						alt='Иконка крестика'
+						width={12}
+						height={12}
+					/>
+				</Button>
 			)}
 			{onCancel && (
-				<button type='button' className='cancel-btn' onClick={handleCancel}>
+				<Button className='animation-click' onClick={handleCancel}>
 					Cancel
-				</button>
+				</Button>
 			)}
 		</div>
 	);

@@ -7,6 +7,7 @@ import { PageLoader } from '@/shared/ui/PageLoader';
 import { ScrollUp } from '@/shared/ui/ScrollUp';
 import { Footer } from '@/widgets/Footer';
 import { Navbar } from '@/widgets/Navbar';
+import { Notification } from '@/widgets/Notification';
 import { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
@@ -52,6 +53,10 @@ export default function RootLayout({
 							<Navbar blackhole />
 							<Light />
 							{children}
+							<Notification
+								message='Добавьте наш сайт в закладки, чтобы не потерять'
+								icon='/images/icons/bookmark-fill.svg'
+							/>
 							{/* <SpaceCanvas /> */}
 							<ScrollUp />
 							<Footer />

@@ -41,6 +41,8 @@ export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
 
 	return (
 		<Button
+			radius='radius-full'
+			variant='default'
 			onClick={scrollToTop}
 			className={cl(cls.ScrollUp, { [cls.Hide]: !isVisible }, [
 				className,

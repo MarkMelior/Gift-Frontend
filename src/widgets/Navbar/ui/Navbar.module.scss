@@ -36,7 +36,7 @@
 	gap: 50px;
 
 	a {
-		font-size: var(--font-size-m);
+		font: var(--font-medium);
 	}
 }
 
@@ -56,24 +56,9 @@
 	display: flex;
 
 	button {
-		width: 42px;
-		height: 42px;
-		border-radius: 10px;
-		border: none;
+		width: 44px;
+		height: 44px;
 		padding: 0;
-		color: rgba(var(--inverted-main-color-rgb), $opacity-buttons);
-		font-weight: 200;
-		font-size: 18px;
-
-		&:hover {
-			border: 1px solid var(--border-color);
-			transition: all .3s ease;
-
-			img,
-			svg {
-				opacity: 1;
-			}
-		}
 	}
 
 	img,

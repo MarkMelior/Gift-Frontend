@@ -10,7 +10,8 @@ const HomePage: FC<HomePageProps> = () => {
 	return (
 		// eslint-disable-next-line react/jsx-no-useless-fragment
 		<>
-			<Button variant='slice'>{t('IndexPage.title')}</Button>
+			<Button variant='layer'>{t('IndexPage.title')}</Button>
+			{/* <Blackhole /> */}
 		</>
 	);
 };

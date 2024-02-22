@@ -5,5 +5,9 @@ import cls from './Loader.module.scss';
 interface LoaderProps {}
 
 export const Loader: FC<LoaderProps> = () => {
-	return <span className={cl(cls.Loader, {}, [])} />;
+	return (
+		// <Portal element={document.body}>
+		<span className={cl(cls.Loader, {}, [])} />
+		// </Portal>
+	);
 };

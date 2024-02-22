@@ -3,9 +3,14 @@
 @import "themes/normal";
 @import "themes/light";
 @import "variables/var";
+@import "animations";
 
 body {
-	font: var(--font-m);
+	font-size: 16px;
+	line-height: 1.5;
+	font-family: var(--font-family-main);
+	height: 500vh;
+
 	color: rgb(var(--text-color));
 	background: linear-gradient(90deg, var(--bg-color) 15px, transparent 1%) 50%, linear-gradient(var(--bg-color) 15px, var(--bg-dots) 1%) 0, hsla(0, 0%, 100%, .16);
 	background-size: 16px 16px;

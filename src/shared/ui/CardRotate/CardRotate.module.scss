@@ -84,12 +84,12 @@
 		justify-content: center;
 		align-items: center;
 		gap: 15px;
-		font-size: 16px !important;
+		font: var(--font-medium) !important;
 		padding: 20px;
 
 		h1 {
 			font-weight: 500;
-			font-size: 18px;
+			font-size: var(--font-size-large);
 			line-height: 22px;
 			width: 100%;
 			text-align: center;
@@ -97,8 +97,7 @@
 
 		p {
 			text-align: center;
-			font-size: 14px;
-			font-weight: 400;
+			font: var(--font-small);
 		}
 	}
 }
@@ -131,7 +130,7 @@
 
 		h1 {
 			font-weight: 500;
-			font-size: 18px;
+			font-size: var(--font-size-large);
 			line-height: 22px;
 			width: 100%;
 			text-align: center;
