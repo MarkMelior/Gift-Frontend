@@ -1,7 +1,6 @@
 import { Link } from '@/shared/config/i18n/navigation';
 import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
-import { Wave } from '@/shared/ui/Wave';
 import { useTranslations } from 'next-intl';
 import cls from './not-found.module.scss';
 
@@ -20,7 +19,7 @@ export default function NotFoundPage() {
 			<Link href='/'>
 				<Button variant='slice'>Вернуться на главную</Button>
 			</Link>
-			<Wave style={{ position: 'absolute', bottom: 0 }} />
+			{/* <Wave style={{ position: 'absolute', bottom: 0 }} /> */}
 		</div>
 	);
 }

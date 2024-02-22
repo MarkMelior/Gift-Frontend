@@ -2,10 +2,11 @@
 @import "variables/global";
 @import "themes/normal";
 @import "themes/light";
+@import "variables/var";
 
 body {
 	font: var(--font-m);
-	color: var(--text-color);
+	color: rgb(var(--text-color));
 	background: linear-gradient(90deg, var(--bg-color) 15px, transparent 1%) 50%, linear-gradient(var(--bg-color) 15px, var(--bg-dots) 1%) 0, hsla(0, 0%, 100%, .16);
 	background-size: 16px 16px;
 }
@@ -16,8 +17,15 @@ body {
 
 .content {
 	max-width: 1320px;
-	max-width: 1320px;
 	margin: 0 auto;
+
+	@media (max-width: 1350px) {
+		margin: 0 30px;
+	}
+
+	@media (max-width: $display-phone) {
+		margin: 0 10px;
+	}
 }
 
 .content-page {
@@ -30,12 +38,12 @@ body {
 }
 
 a {
-	color: var(--text-opacity-color);
+	color: rgba(var(--text-color), .5);
 	text-decoration: none;
 	transition: color .1s ease;
 
 	&:hover {
-		color: var(--text-color)
+		color: rgba(var(--text-color), 1)
 	}
 }
 

@@ -3,6 +3,7 @@
 	bottom: 45px;
 	right: 30px;
 	opacity: 0;
+	z-index: var(--scroll-up-z-index);
 
 	&::before {
 		content: '';

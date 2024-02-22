@@ -1,17 +1,40 @@
+@import "@/app/styles/variables/var";
+
 :root {
 	--bg-color: #03020D;
 	--bg-dots: #2e3135;
+
 	--main-color: #03020D;
+	--main-color-rgb: 3, 2, 13;
+
 	--inverted-main-color: #FFFFFF;
+	--inverted-main-color-rgb: 255, 255, 255;
+
 	--primary-color: #B336FF;
 	--inverted-primary-color: #30004e;
+
 	--secondary-color: #346DFF;
 	--inverted-secondary-color: #001e6b;
 
 	--border-color: rgba(255, 255, 255, .1);
 
 	// text
-	--text-opacity-color: rgba(255, 255, 255, .5);
-	--text-opacity-3-color: rgba(255, 255, 255, .3);
-	--text-color: rgba(255, 255, 255, 1);
+	--text-color: 255, 255, 255;
+
+	// Light ellipse
+	--light-color-ellipse-1: rgba(90, 186, 255, 0.4);
+	--light-blur-ellipse-1: blur(400px);
+	--light-color-ellipse-2: rgba(255, 90, 209, 0.4);
+	--light-blur-ellipse-2: blur(600px);
+	--light-color-ellipse-3: rgba(255, 90, 209, 0.4);
+	--light-blur-ellipse-3: blur(400px);
+
+	// @media (max-width: $display-desktop) {
+	// --light-color-ellipse-1: rgba(90, 186, 255, 0.9);
+	// --light-blur-ellipse-1: blur(100px);
+	// --light-color-ellipse-2: rgba(255, 90, 209, 0.9);
+	// --light-blur-ellipse-2: blur(200px);
+	// --light-color-ellipse-3: rgba(255, 90, 209, 0.9);
+	// --light-blur-ellipse-3: blur(100px);
+	// }
 }

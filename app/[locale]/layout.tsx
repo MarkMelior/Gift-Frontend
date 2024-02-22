@@ -2,6 +2,7 @@ import { ThemeProvider } from '@/app/providers/ThemeProvider';
 import '@/app/styles/index.scss';
 import { locales } from '@/shared/config/i18n/config';
 import { classNames as cl } from '@/shared/lib/classNames/classNames';
+import { Light } from '@/shared/ui/Light';
 import { PageLoader } from '@/shared/ui/PageLoader';
 import { ScrollUp } from '@/shared/ui/ScrollUp';
 import { Footer } from '@/widgets/Footer';
@@ -49,6 +50,7 @@ export default function RootLayout({
 					<NextIntlClientProvider messages={messages}>
 						<Suspense fallback={<PageLoader />}>
 							<Navbar blackhole />
+							<Light />
 							{children}
 							{/* <SpaceCanvas /> */}
 							<ScrollUp />

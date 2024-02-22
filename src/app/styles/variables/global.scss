@@ -20,6 +20,10 @@
 	// z - Индексы
 	--modal-z-index: 10;
 	--space-z-index: -50;
+	--navbar-z-index: 100;
+	--footer-z-index: 100;
+	--light-z-index: -10;
+	--scroll-up-z-index: 110;
 
 	// Цвета
 	--overlay-color: rgba(0 0 0 / 60%);
@@ -29,12 +33,4 @@
 	// filters
 	--main-blur: blur(128px);
 	--bg-noise: url('/images/noise.png') repeat;
-
-	// display sizes
-	--display-large: 1800px;
-	--display-projector: 1650px;
-	--display-desktop: 1024px;
-	--display-notebook: 992px;
-	--display-tablet: 768px;
-	--display-phone: 576px;
 }

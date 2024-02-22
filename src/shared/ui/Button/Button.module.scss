@@ -11,17 +11,11 @@
 
 	border: 1px solid var(--border-color);
 	background: none;
-	color: var(--text-opacity-3-color);
+	color: rgba(var(--text-color), .3);
 	transition: all 0.2s ease;
 
 	&:hover {
-		color: var(--accent-redesigned);
-		// background: rgba(255, 255, 255, .1);
-
-		.addonLeft svg,
-		.addonRight svg {
-			color: var(--accent-redesigned);
-		}
+		color: rgba(var(--text-color), 1);
 	}
 }
 

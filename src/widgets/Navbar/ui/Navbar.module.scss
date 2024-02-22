@@ -1,9 +1,11 @@
 .Navbar {
 	width: 100%;
 	height: var(--navbar-height);
-	background: var(--bg-noise), var(--main-color);
+	background: var(--bg-noise), rgba(var(--main-color-rgb), 0.5);
 	border-bottom: 1px solid var(--border-color);
 	backdrop-filter: var(--main-blur);
+	position: fixed;
+	z-index: var(--navbar-z-index);
 }
 
 .Content {
@@ -11,6 +13,11 @@
 	align-items: center;
 	justify-content: center;
 	height: 100%;
+}
+
+.Spacer {
+	position: relative;
+	height: var(--navbar-height);
 }
 
 .Left {
@@ -45,6 +52,7 @@
 }
 
 .controlButtons {
+	$opacity-buttons: .2;
 	display: flex;
 
 	button {
@@ -53,6 +61,9 @@
 		border-radius: 10px;
 		border: none;
 		padding: 0;
+		color: rgba(var(--inverted-main-color-rgb), $opacity-buttons);
+		font-weight: 200;
+		font-size: 18px;
 
 		&:hover {
 			border: 1px solid var(--border-color);
@@ -70,7 +81,7 @@
 		min-width: 24px;
 		height: 24px;
 		transition: all .3s ease;
-		opacity: .2;
+		opacity: $opacity-buttons;
 	}
 
 	svg *[stroke] {

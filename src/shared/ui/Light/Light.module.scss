@@ -1,0 +1,43 @@
+.Light {
+	overflow: hidden;
+	z-index: var(--light-z-index);
+}
+
+.Ellipse1,
+.Ellipse2,
+.Ellipse3 {
+	transition: all 1s ease;
+}
+
+.Ellipse1 {
+	position: absolute;
+	width: 45.36%;
+	height: 80.65%;
+	left: -22.66%;
+	top: 3.61%;
+
+	filter: var(--light-blur-ellipse-1);
+	background: var(--light-color-ellipse-1);
+}
+
+.Ellipse2 {
+	position: absolute;
+	width: 38.13%;
+	height: 67.78%;
+	right: 0;
+	top: 46.30%;
+
+	filter: var(--light-blur-ellipse-2);
+	background: var(--light-color-ellipse-2);
+}
+
+.Ellipse3 {
+	position: absolute;
+	width: 25.10%;
+	height: 44.63%;
+	left: 15.47%;
+	top: -17.69%;
+
+	filter: var(--light-blur-ellipse-3);
+	background: var(--light-color-ellipse-3);
+}

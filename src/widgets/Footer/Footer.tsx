@@ -19,7 +19,7 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 			<div className={cl(cls.Footer, {}, [className])}>
 				<div className={cl(cls.Content, {}, ['content'])}>
 					<Link href='/' className={cl(cls.Logo, {}, [])}>
-						<Logo opacity={0.5} />
+						<Logo opacity={0.3} />
 					</Link>
 					<p>{t('Footer.copyright')}</p>
 				</div>

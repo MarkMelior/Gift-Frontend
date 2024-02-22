@@ -39,9 +39,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	fullWidth?: boolean;
 
 	color?: ButtonColor;
-
-	addonLeft?: ReactNode;
-	addonRight?: ReactNode;
 }
 
 export const Button = forwardRef(
@@ -54,8 +51,6 @@ export const Button = forwardRef(
 			disabled,
 			fullWidth,
 			size = 'm',
-			addonLeft,
-			addonRight,
 			color = 'normal',
 			...otherProps
 		} = props;
@@ -64,7 +59,6 @@ export const Button = forwardRef(
 			[cls.square]: square,
 			[cls.disabled]: disabled,
 			[cls.fullWidth]: fullWidth,
-			[cls.withAddon]: Boolean(addonLeft) || Boolean(addonRight),
 		};
 
 		return (
@@ -80,9 +74,7 @@ export const Button = forwardRef(
 				{...otherProps}
 				ref={ref}
 			>
-				<div className={cls.addonLeft}>{addonLeft}</div>
 				{children}
-				<div className={cls.addonRight}>{addonRight}</div>
 			</button>
 		);
 	},

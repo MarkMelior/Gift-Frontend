@@ -1,11 +1,13 @@
 .Footer {
+	position: relative;
 	width: 100%;
 	background: var(--bg-noise), var(--main-color);
 	border-top: 1px solid var(--border-color);
 	padding: 30px 0;
+	z-index: var(--footer-z-index);
 
 	p {
-		color: var(--text-opacity-color);
+		color: rgba(var(--text-color), .3);
 		font-size: var(--font-size-s);
 	}
 }
