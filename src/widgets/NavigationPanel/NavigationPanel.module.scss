@@ -1,0 +1,46 @@
+.Content {
+	margin-top: -100px;
+}
+
+.NavigationPanel {
+	background: var(--bg-noise), rgba(var(--main-color-rgb), .1);
+	border-radius: var(--radius-medium);
+	width: 100%;
+	padding: 15px 20px;
+	border: 1px solid var(--border-color);
+	display: flex;
+	gap: 15px;
+	backdrop-filter: var(--medium-blur);
+
+	a {
+		width: 100%;
+	}
+}
+
+.Item {
+	display: flex;
+	gap: 5px;
+}
+
+.Button {
+	display: flex;
+	flex-direction: column;
+	background: rgba(var(--inverted-main-color-rgb), .02);
+	border: 1px solid transparent;
+
+	&:hover {
+		border: 1px solid var(--border-color);
+	}
+
+	&>p {
+		opacity: .5;
+		font-size: var(--font-size-small);
+	}
+}
+
+.Selected {
+	.Button {
+		border: 1px solid var(--border-color);
+		background: rgba(var(--inverted-main-color-rgb), .05);
+	}
+}

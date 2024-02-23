@@ -28,12 +28,12 @@
 	--padding-x-small: 10px;
 	--padding-small: var(--padding-y-small) var(--padding-x-small);
 
-	--padding-y-medium: 10px;
-	--padding-x-medium: 20px;
+	--padding-y-medium: 7px;
+	--padding-x-medium: 16px;
 	--padding-medium: var(--padding-y-medium) var(--padding-x-medium);
 
 	--padding-y-large: 20px;
-	--padding-x-large: 40px;
+	--padding-x-large: 50px;
 	--padding-large: var(--padding-y-large) var(--padding-x-large);
 
 	// Sizes
@@ -42,11 +42,14 @@
 	--sidebar-width-collapsed: 80px;
 
 	// z Indexes
-	--modal-z-index: 10;
 	--space-z-index: -50;
-	--navbar-z-index: 100;
-	--footer-z-index: 90;
+	--title-heading-z-index: -20;
 	--light-z-index: -10;
+	--blackhole-z-index: -9;
+	--hero-images-z-index: -5;
+	--modal-z-index: 10;
+	--footer-z-index: 90;
+	--navbar-z-index: 100;
 	--scroll-up-z-index: 110;
 	--notification-z-index: 110;
 
@@ -57,6 +60,10 @@
 
 	// Filters
 	--main-blur: blur(128px);
+	--large-blur: blur(64px);
+	--medium-blur: blur(32px);
+	--small-blur: blur(16px);
+	--tiny-blur: blur(8px);
 	--bg-noise: url('/images/noise.png') repeat;
 
 	// Others

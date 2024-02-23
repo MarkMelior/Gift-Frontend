@@ -14,4 +14,7 @@ export const pathnames = {
 	// },
 } satisfies Pathnames<typeof locales>;
 
+export type PathnamesType = typeof pathnames;
+export type PathnamesKeys = keyof PathnamesType;
+
 export type AppPathnames = keyof typeof pathnames;

@@ -17,7 +17,9 @@ export default function NotFoundPage() {
 				<p>{t('description')}</p>
 			</div>
 			<Link href='/'>
-				<Button variant='slice'>Вернуться на главную</Button>
+				<Button padding='padding-large' variant='layer'>
+					{t('Вернуться на главную')}
+				</Button>
 			</Link>
 			{/* <Wave style={{ position: 'absolute', bottom: 0 }} /> */}
 		</div>

@@ -55,31 +55,31 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 					</video>
 				</Suspense>
 			)} */}
-				<div className={cl(cls.Content, {}, ['content'])}>
-					<div className={cl(cls.Left, {}, [])}>
+				<nav className={cl(cls.Content, {}, ['content'])}>
+					<nav className={cl(cls.Left, {}, [])}>
 						<Link href='/' className={cl(cls.Logo, {}, [])}>
 							<Logo />
 						</Link>
 						<Loader />
-					</div>
-					<div className={cl(cls.Center, {}, [])}>
+					</nav>
+					<nav className={cl(cls.Center, {}, [])}>
 						<Link href='/' className={isActive('/')}>
 							{t('Navbar.home')}
 						</Link>
 						<Link href='/about' className={isActive('/about/')}>
 							{t('Navbar.about')}
 						</Link>
-					</div>
-					<div className={cl(cls.Right, {}, [])}>
-						<div className={cl(cls.controlButtons, {}, [])}>
+					</nav>
+					<nav className={cl(cls.Right, {}, [])}>
+						<nav className={cl(cls.controlButtons, {}, [])}>
 							<LangSwitcher />
 							<Button variant='slice' onClick={toggleTheme}>
 								<Moon />
 							</Button>
 							{/* <ThemeSwitcher /> */}
-						</div>
-					</div>
-				</div>
+						</nav>
+					</nav>
+				</nav>
 
 				{/* {isAuthModal && (
 				<LoginModal isOpen={isAuthModal} onClose={onCloseModal} />

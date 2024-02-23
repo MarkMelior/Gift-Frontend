@@ -4,17 +4,23 @@ import cls from './Blackhole.module.scss';
 
 interface BlackholeProps {
 	className?: string;
+	flip?: boolean;
 }
 
-export const Blackhole: FC<BlackholeProps> = ({ className = '' }) => {
+export const Blackhole: FC<BlackholeProps> = ({ className = '', flip }) => {
 	return (
-		<div className={cl(cls.Blackhole, {}, [className])}>
+		<div
+			className={cl(cls.Blackhole, { [cls.flip]: flip }, [
+				className,
+				'noselect',
+			])}
+		>
 			<div className={cls.Circles}>
 				<div />
 				<div />
 				<div />
 			</div>
-			{/* <video
+			<video
 				autoPlay
 				loop
 				muted
@@ -22,7 +28,7 @@ export const Blackhole: FC<BlackholeProps> = ({ className = '' }) => {
 				className={`${cls.Video} noselect`}
 			>
 				<source src='/videos/blackhole.webm' />
-			</video> */}
+			</video>
 		</div>
 	);
 };

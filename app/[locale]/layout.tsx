@@ -5,6 +5,7 @@ import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Light } from '@/shared/ui/Light';
 import { PageLoader } from '@/shared/ui/PageLoader';
 import { ScrollUp } from '@/shared/ui/ScrollUp';
+import { SpaceCanvas } from '@/shared/ui/SpaceCanvas';
 import { Footer } from '@/widgets/Footer';
 import { Navbar } from '@/widgets/Navbar';
 import { Notification } from '@/widgets/Notification';
@@ -57,7 +58,7 @@ export default function RootLayout({
 								message='Добавьте наш сайт в закладки, чтобы не потерять'
 								icon='/images/icons/bookmark-fill.svg'
 							/>
-							{/* <SpaceCanvas /> */}
+							<SpaceCanvas />
 							<ScrollUp />
 							<Footer />
 						</Suspense>

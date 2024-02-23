@@ -1,0 +1,1 @@
+export { useRippleAnimation } from './useRippleAnimation';

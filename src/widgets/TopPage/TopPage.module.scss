@@ -1,0 +1,60 @@
+.Content {}
+
+.BackgroundTop {
+	height: 220px;
+	margin-bottom: -220px;
+
+	background-image: url('/images/pages/background-top.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	position: relative;
+
+	z-index: var(--hero-images-z-index);
+}
+
+.Background {
+	mask-image: url('/images/pages/background-top-mask.png');
+
+	transition: 1s cubic-bezier(.6, .6, 0, 1) opacity;
+
+	width: 100%;
+	mask-repeat: no-repeat;
+	mask-size: 100%;
+	position: absolute;
+
+	&>div {
+		animation: topAnimation 6s infinite cubic-bezier(.62, .62, .28, .67);
+		background: linear-gradient(180deg, rgba(183, 164, 251, 0) 0, #b5a4ff 100%, #8562ff 100%, rgba(133, 98, 255, 0) 0%);
+		height: 200px;
+	}
+}
+
+@keyframes topAnimation {
+	0% {
+		transform: translateY(-202px);
+	}
+
+	33%,
+	100% {
+		transform: translateY(202px);
+	}
+}
+
+.Main {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	width: 100%;
+	align-items: center;
+	padding-top: 100px;
+}
+
+.Information {
+	display: flex;
+	flex-direction: column;
+	gap: 80px;
+}
+
+.Image {
+	display: flex;
+	justify-content: center;
+}

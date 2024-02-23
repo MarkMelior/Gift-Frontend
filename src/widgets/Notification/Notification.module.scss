@@ -2,12 +2,12 @@
 	position: fixed;
 	left: 50%;
 	transform: translateX(-50%);
-	backdrop-filter: var(--main-blur);
+	backdrop-filter: var(--medium-blur);
 	bottom: var(--position-bottom);
 	z-index: var(--notification-z-index);
 
 	display: flex;
-	background: var(--bg-noise), rgba(var(--main-color-rgb), 0.5);
+	background: var(--bg-noise), rgba(var(--main-color-rgb), 0.3);
 	gap: 20px;
 	justify-content: center;
 	align-items: center;

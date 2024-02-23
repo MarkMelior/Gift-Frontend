@@ -31,6 +31,7 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 								alt='Иконка Telegram'
 								width={24}
 								height={24}
+								className='noselect'
 							/>
 						</Link>
 						<span className={cls.Spaces} />
@@ -40,6 +41,7 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 								alt='Иконка почты Gmail'
 								width={24}
 								height={24}
+								className='noselect'
 							/>
 						</Link>
 					</div>

@@ -1,4 +1,5 @@
-import { Button } from '@/shared/ui/Button';
+import { NavigationPanel } from '@/widgets/NavigationPanel';
+import { TopPage } from '@/widgets/TopPage';
 import { useTranslations } from 'next-intl';
 import { FC } from 'react';
 
@@ -8,10 +9,14 @@ const HomePage: FC<HomePageProps> = () => {
 	const t = useTranslations();
 
 	return (
-		// eslint-disable-next-line react/jsx-no-useless-fragment
 		<>
-			<Button variant='layer'>{t('IndexPage.title')}</Button>
-			{/* <Blackhole /> */}
+			<TopPage
+				title='Easy Gift'
+				description='Каждый подарок может быть искусством'
+				note='Лучший выбор в мире'
+				// compact
+			/>
+			<NavigationPanel />
 		</>
 	);
 };

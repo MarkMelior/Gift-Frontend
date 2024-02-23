@@ -1,11 +1,11 @@
 .Light {
 	overflow: hidden;
-	z-index: var(--light-z-index);
 }
 
 .Ellipse1,
 .Ellipse2,
 .Ellipse3 {
+	z-index: var(--light-z-index);
 	transition: all 1s ease;
 }
 

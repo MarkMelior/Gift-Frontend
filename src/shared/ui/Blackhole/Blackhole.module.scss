@@ -1,16 +1,15 @@
-.Blackhole {}
+.Blackhole {
+	position: relative;
+	height: 220px;
+}
 
 .Video {
+	z-index: var(--blackhole-z-index);
+	mix-blend-mode: lighten;
 	transition: all .5s ease;
 	position: absolute;
-	rotate: 180deg;
-	height: 800px;
-	top: -320px;
-	// left: 50%;
-	// transform: translateX(-50%);
-	// width: 100%;
-	z-index: -100;
-	mix-blend-mode: lighten;
+	top: -153px;
+	width: 100%;
 	object-fit: cover;
 
 	@media (max-width: --display-notebook) {
@@ -35,12 +34,11 @@
 .Circles {
 	left: 50%;
 	position: absolute;
-	top: 100%; // 50%
+	top: 100%;
 	transform: translateZ(0) translate(-50%, -50%);
 	height: 808px;
-	margin-top: -12px;
 	width: 808px;
-	z-index: 9999;
+	z-index: var(--blackhole-z-index);
 
 	&>div {
 		height: 100%;
@@ -50,6 +48,7 @@
 		position: absolute;
 		top: 50%;
 		transform: translateZ(0) translate(-50%, -50%);
+		opacity: .3;
 
 		&::before {
 			background: rgba(186, 156, 255, .04);
@@ -64,6 +63,10 @@
 			width: calc(100% - 2px);
 		}
 
+		// &:nth-child(1) {
+		// 	opacity: .3;
+		// }
+
 		&:nth-child(2) {
 			height: 608px;
 			opacity: .6;
@@ -73,7 +76,14 @@
 		&:nth-child(3) {
 			height: 416px;
 			width: 416px;
+			opacity: 1;
 			z-index: 1;
 		}
 	}
+}
+
+.flip {
+	transform: rotate(180deg);
+	z-index: var(--blackhole-z-index);
+	mix-blend-mode: lighten;
 }

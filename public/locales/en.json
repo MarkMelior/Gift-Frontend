@@ -13,7 +13,8 @@
 	},
 	"NotFoundPage": {
 		"title": "Error 404",
-		"description": "Page not found"
+		"description": "Page not found",
+		"Вернуться на главную": "Go back to the main page"
 	},
 	"Navbar": {
 		"home": "Home",
@@ -28,5 +29,6 @@
 	"Наверх": "Scroll up",
 	"Footer": {
 		"copyright": "© 2024 Brand Melior. All rights reserved"
-	}
+	},
+	"Найти подарок": "Find a gift"
 }

@@ -1,13 +1,18 @@
+'use client';
+
 import { classNames as cl, Mods } from '@/shared/lib/classNames/classNames';
 import {
 	ButtonHTMLAttributes,
 	ForwardedRef,
 	forwardRef,
 	ReactNode,
+	useRef,
 } from 'react';
+import { useRippleAnimation } from '../RippleEffect';
+import { RippleConfigProps } from '../RippleEffect/useRippleAnimation';
 import cls from './Button.module.scss';
 
-export type ButtonVariant = 'clear' | 'layer' | 'slice' | 'default';
+export type ButtonVariant = 'layer' | 'slice' | 'default';
 export type ButtonSize = 'small' | 'medium' | 'large';
 export type ButtonPadding =
 	| 'padding-small'
@@ -25,34 +30,20 @@ export type ButtonColor = 'normal' | 'success' | 'error';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	className?: string;
-	/**
-	 * Тема кнопки. Отвечает за визуал (в рамке, без стилей, противоположный теме приложения цвет и тд)
-	 */
-	variant?: ButtonVariant;
-	/**
-	 * Размер кнопки в соответствии с дизайн системой
-	 */
-	size?: ButtonSize;
-	/**
-	 * Флаг, отвечающий за работу кнопки
-	 */
-	disabled?: boolean;
-	/**
-	 * Содержимое кнопки
-	 */
 	children?: ReactNode;
-	/**
-	 * Увеличивает кнопку на всю свободную ширину
-	 */
+
+	variant?: ButtonVariant;
+	color?: ButtonColor;
+	size?: ButtonSize;
+	disabled?: boolean;
 	fullWidth?: boolean;
 
 	radius?: ButtonRadius;
 	padding?: ButtonPadding;
+	rippleConfig?: RippleConfigProps;
 
 	leftIcon?: ReactNode;
 	rightIcon?: ReactNode;
-
-	color?: ButtonColor;
 }
 
 export const Button = forwardRef(
@@ -60,14 +51,13 @@ export const Button = forwardRef(
 		{
 			className = '',
 			children,
-			variant = 'clear',
+			variant = 'default',
 			fullWidth,
 			disabled,
+			rippleConfig,
 			padding = 'padding-medium',
 			size = 'medium',
 			radius = 'radius-medium',
-			leftIcon,
-			rightIcon,
 			// isLoading,
 			color = 'normal',
 			...otherProps
@@ -78,6 +68,9 @@ export const Button = forwardRef(
 			[cls.disabled]: disabled,
 			[cls.fullWidth]: fullWidth,
 		};
+
+		ref = useRef<HTMLButtonElement>(null);
+		useRippleAnimation(ref, rippleConfig);
 
 		return (
 			<button
@@ -91,18 +84,18 @@ export const Button = forwardRef(
 					cls[color],
 				])}
 				disabled={disabled}
-				{...otherProps}
 				ref={ref}
+				{...otherProps}
 			>
-				{leftIcon && <span className={cls.Icon}>{leftIcon}</span>}
-				{variant === 'layer' ? (
-					<div className={cl(cls.layerInner, {}, [cls[radius]])}>
+				{variant === 'layer' && (
+					<div className={cl(cls.layerInner, {}, [cls[radius], cls[padding]])}>
+						<div className={cls.Starlight} />
+						<div className={cls.Starlight} />
 						{children}
 					</div>
-				) : (
-					children
 				)}
-				{rightIcon && <span className={cls.Icon}>{rightIcon}</span>}
+
+				{variant !== 'layer' && children}
 			</button>
 		);
 	},
