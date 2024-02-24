@@ -21,16 +21,18 @@ body {
 }
 
 .content {
-	max-width: 1320px;
-	margin: 0 auto;
+	--content-margin: auto;
 
 	@media (max-width: 1350px) {
-		margin: 0 30px;
+		--content-margin: 30px;
 	}
 
 	@media (max-width: $display-phone) {
-		margin: 0 10px;
+		--content-margin: 10px
 	}
+
+	max-width: 1320px;
+	margin: 0 var(--content-margin);
 }
 
 .content-page {

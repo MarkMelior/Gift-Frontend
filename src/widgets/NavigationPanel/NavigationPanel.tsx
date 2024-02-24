@@ -33,7 +33,7 @@ export const NavigationPanel: FC<NavigationPanelProps> = ({
 						NavigationPanelData[key];
 					return (
 						<Link key={key} href={to} className={isActive(to)}>
-							<Button fullWidth className={cls.Button}>
+							<Button variant='flat' fullWidth className={cls.Button}>
 								<div className={cls.Item}>
 									<Image
 										src={image}

@@ -12,8 +12,14 @@ import { useRippleAnimation } from '../RippleEffect';
 import { RippleConfigProps } from '../RippleEffect/useRippleAnimation';
 import cls from './Button.module.scss';
 
-export type ButtonVariant = 'layer' | 'slice' | 'default';
-export type ButtonSize = 'small' | 'medium' | 'large';
+export type ButtonVariant =
+	| 'layer'
+	| 'slice'
+	| 'default'
+	| 'hero'
+	| 'glowing'
+	| 'flat';
+export type ButtonSize = 'tiny' | 'small' | 'medium' | 'large';
 export type ButtonPadding =
 	| 'padding-small'
 	| 'padding-medium'
@@ -26,14 +32,11 @@ export type ButtonRadius =
 	| 'radius-small'
 	| 'radius-none';
 
-export type ButtonColor = 'normal' | 'success' | 'error';
-
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	className?: string;
 	children?: ReactNode;
 
 	variant?: ButtonVariant;
-	color?: ButtonColor;
 	size?: ButtonSize;
 	disabled?: boolean;
 	fullWidth?: boolean;
@@ -67,6 +70,7 @@ export const Button = forwardRef(
 		const mods: Mods = {
 			[cls.disabled]: disabled,
 			[cls.fullWidth]: fullWidth,
+			[cls.Glowing]: variant === 'glowing',
 		};
 
 		ref = useRef<HTMLButtonElement>(null);
@@ -81,7 +85,6 @@ export const Button = forwardRef(
 					cls[size],
 					cls[radius],
 					cls[padding],
-					cls[color],
 				])}
 				disabled={disabled}
 				ref={ref}
@@ -95,7 +98,24 @@ export const Button = forwardRef(
 					</div>
 				)}
 
-				{variant !== 'layer' && children}
+				{variant === 'glowing' && (
+					<>
+						<div className={cls.Animation}>
+							<div className={cls.Glow} />
+							<div className={cls.StarsMask}>
+								<div className={cls.Stars} />
+							</div>
+						</div>
+						<div className={cl(cls.BorderMask, {}, [cls[radius]])}>
+							<div className={cls.Border} />
+						</div>
+						<div className={cl(cls.Button, {}, [cls[radius], cls[padding]])}>
+							{children}
+						</div>
+					</>
+				)}
+
+				{variant !== 'layer' && variant !== 'glowing' && children}
 			</button>
 		);
 	},

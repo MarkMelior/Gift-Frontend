@@ -7,6 +7,7 @@
 	position: relative;
 	overflow: hidden;
 	width: fit-content;
+	white-space: nowrap;
 
 	display: flex;
 	text-align: center;
@@ -169,6 +170,153 @@
 	border: var(--border-color) 1px solid;
 }
 
+.Glowing {
+	--animation-speed: 4s;
+
+	padding: 0 !important;
+	border: none !important;
+
+	isolation: isolate;
+	overflow: hidden;
+	display: inline-block;
+	position: relative;
+
+	.Animation {
+		pointer-events: none;
+		transition: 1s ease opacity;
+
+		// & * {
+		// 	height: 100%;
+		// 	left: 0;
+		// 	position: absolute;
+		// 	top: 0;
+		// 	width: 100%;
+		// }
+
+		& .Glow,
+		.Stars {
+			height: 100%;
+			left: 50%;
+			position: absolute;
+			top: 50%;
+			width: 100%;
+		}
+
+		.StarsMask {
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+		}
+	}
+
+	.BorderMask {
+		content: "";
+		height: 100%;
+		inset: 0;
+		left: 0;
+		-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		mask-composite: xor;
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+		padding: 1px;
+		pointer-events: none;
+		position: absolute;
+		top: 0;
+		transition: 1s ease opacity;
+		width: 100%;
+	}
+
+	.Border {
+		animation-name: borderTurnWithTranslate;
+	}
+
+	.Animation,
+	.Border {
+		left: 50%;
+		position: absolute;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+	}
+
+	.Animation::before,
+	.Border::before {
+		content: "";
+		float: left;
+		padding-top: 100%;
+	}
+
+	.Animation::after,
+	.Border::after {
+		clear: both;
+		content: "";
+		display: block;
+	}
+
+	.Border,
+	.Glow,
+	.Stars {
+		animation: borderTurnWithTranslate var(--animation-speed) infinite linear;
+		background-image: conic-gradient(from 0 at 50% 50%, rgba(255, 255, 255, .5) 0deg, rgba(255, 255, 255, 0) 60deg, rgba(255, 255, 255, 0) 310deg, rgba(255, 255, 255, .5) 360deg);
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.Glow {
+		filter: blur(8px);
+		opacity: .12;
+	}
+
+	.StarsMask {
+		mask: url('/images/icons/star-mask.svg');
+		mask-repeat: repeat;
+		mask-size: auto;
+	}
+}
+
+@keyframes borderTurnWithTranslate {
+	0% {
+		transform: translate(-50%, -50%) rotate(0);
+	}
+
+	100% {
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}
+
+.flat {
+	border: 1px solid transparent;
+	background: rgba(var(--inverted-main-color-rgb), .02);
+	color: rgba(var(--text-color), 1);
+
+	&:hover {
+		border: 1px solid var(--border-color);
+	}
+}
+
+.hero {
+	box-shadow: inset -3px -4px 8px 0px rgba(255, 255, 255, 0.1),
+		0px 2px 32px 0px rgba(176, 74, 255, 0.3);
+	backdrop-filter: blur(16px);
+	background: linear-gradient(135.00deg, rgba(92, 66, 255, 0.15) 0%, rgba(240, 66, 255, 0.15) 100%);
+	border: solid 1px #9442ffaf;
+	// color: #c885ff;
+
+	&:active {
+		transform: scale(0.98);
+	}
+
+	img {
+		transition: all 0.2s ease;
+		opacity: 1;
+	}
+}
+
+
 // Others
 .disabled {
 	opacity: .5;
@@ -220,4 +368,22 @@
 
 .padding-none {
 	padding: 0;
+}
+
+
+// Font size
+.tiny {
+	font-size: var(--font-size-tiny);
+}
+
+.small {
+	font-size: var(--font-size-small);
+}
+
+.medium {
+	font-size: var(--font-size-medium);
+}
+
+.large {
+	font-size: var(--font-size-large);
 }

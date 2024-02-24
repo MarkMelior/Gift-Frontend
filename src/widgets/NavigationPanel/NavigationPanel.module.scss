@@ -23,18 +23,16 @@
 }
 
 .Button {
-	display: flex;
 	flex-direction: column;
-	background: rgba(var(--inverted-main-color-rgb), .02);
-	border: 1px solid transparent;
-
-	&:hover {
-		border: 1px solid var(--border-color);
-	}
 
 	&>p {
 		opacity: .5;
 		font-size: var(--font-size-small);
+	}
+
+	img {
+		transition: all 0.2s ease;
+		opacity: 1;
 	}
 }
 

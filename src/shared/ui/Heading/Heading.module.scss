@@ -33,9 +33,11 @@
 	h1 {
 		font-size: 64px;
 		font-weight: 900;
+		white-space: nowrap;
 	}
 
 	p {
+		white-space: nowrap;
 		position: absolute;
 		bottom: -5px;
 		left: 15px;
