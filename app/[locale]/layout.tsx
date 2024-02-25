@@ -1,14 +1,14 @@
 import { ThemeProvider } from '@/app/providers/ThemeProvider';
 import '@/app/styles/index.scss';
+import { Notification } from '@/entities/Notification';
 import { locales } from '@/shared/config/i18n/config';
 import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Light } from '@/shared/ui/Light';
-import { PageLoader } from '@/shared/ui/PageLoader';
-import { ScrollUp } from '@/shared/ui/ScrollUp';
 import { SpaceCanvas } from '@/shared/ui/SpaceCanvas';
 import { Footer } from '@/widgets/Footer';
 import { Navbar } from '@/widgets/Navbar';
-import { Notification } from '@/widgets/Notification';
+import { PageLoader } from '@/widgets/PageLoader';
+import { ScrollUp } from '@/widgets/ScrollUp';
 import { Metadata } from 'next';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations } from 'next-intl/server';

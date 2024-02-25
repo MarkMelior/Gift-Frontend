@@ -19,7 +19,7 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 		<>
 			<Wave />
 			<div className={cl(cls.Footer, {}, [className])}>
-				<div className={cl(cls.Content, {}, ['content'])}>
+				<nav className={cl(cls.Content, {}, ['content'])}>
 					<Link href='/' className={cl(cls.Logo, {}, [])}>
 						<Logo opacity={0.3} />
 					</Link>
@@ -45,7 +45,7 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 							/>
 						</Link>
 					</div>
-				</div>
+				</nav>
 			</div>
 		</>
 	);

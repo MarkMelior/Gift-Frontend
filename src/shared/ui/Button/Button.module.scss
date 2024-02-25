@@ -320,6 +320,11 @@
 // Others
 .disabled {
 	opacity: .5;
+	cursor: not-allowed;
+
+	// &:active {
+	// 	transform: none;
+	// }
 }
 
 .fullWidth {

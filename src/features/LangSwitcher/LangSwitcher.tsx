@@ -3,7 +3,7 @@
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { ReactNode } from 'react';
-import { Button } from '../Button';
+import { Button } from '../../shared/ui/Button';
 
 interface LocaleSwitcherProps {
 	children?: ReactNode;

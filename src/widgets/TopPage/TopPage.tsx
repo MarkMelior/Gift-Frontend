@@ -1,6 +1,6 @@
 import { classNames as cl } from '@/shared/lib/classNames';
 import { Button } from '@/shared/ui/Button';
-import { Heading } from '@/shared/ui/Heading';
+import { Heading } from '@/widgets/Heading';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC, memo } from 'react';
@@ -28,16 +28,19 @@ export const TopPage: FC<TopPageProps> = memo(
 					<div className={cls.Information}>
 						<Heading title={title} description={description} note={note} />
 						{!compact && (
-							<Button padding='padding-large' variant='layer'>
-								<Image
-									src='/images/icons/gift.svg'
-									width={24}
-									height={24}
-									alt='Иконка подарка'
-									className='noselect'
-								/>
-								{t('Найти подарок')}
-							</Button>
+							<>
+								<div className={`${cls.Dots} noselect`} />
+								<Button padding='padding-large' variant='layer'>
+									<Image
+										src='/images/icons/gift.svg'
+										width={24}
+										height={24}
+										alt='Иконка подарка'
+										className='noselect'
+									/>
+									{t('Найти подарок')}
+								</Button>
+							</>
 						)}
 					</div>
 					<div className={cls.Image}>

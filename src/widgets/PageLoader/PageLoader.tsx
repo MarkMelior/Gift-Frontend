@@ -10,7 +10,7 @@ export const PageLoader: FC<PageLoaderProps> = () => {
 	const t = useTranslations();
 
 	return (
-		<div className={cl(cls.PageLoader, {}, [])}>
+		<section className={cl(cls.PageLoader, {}, [])}>
 			<div className={cl(cls.Loader, {}, [])}>
 				<span className={cl(cls.Spinner, {}, [])} />
 				<Image
@@ -21,6 +21,6 @@ export const PageLoader: FC<PageLoaderProps> = () => {
 				/>
 				<p>{t('Загрузка')}</p>
 			</div>
-		</div>
+		</section>
 	);
 };

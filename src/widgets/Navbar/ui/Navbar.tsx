@@ -1,12 +1,12 @@
 'use client';
 
 import { useTheme } from '@/app/providers/ThemeProvider';
+import { LangSwitcher } from '@/features/LangSwitcher';
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
-import { LangSwitcher } from '@/shared/ui/LangSwitcher';
-import { Loader } from '@/shared/ui/Loader';
 import { Logo } from '@/shared/ui/Logo';
+import { Loader } from '@/widgets/Loader';
 import { useTranslations } from 'next-intl';
 import Moon from 'public/images/icons/moon.svg';
 import { memo } from 'react';

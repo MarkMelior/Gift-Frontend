@@ -46,7 +46,7 @@ export const Notification: FC<NotificationProps> = memo(
 		};
 
 		return (
-			<div className={cl(cls.Notification, { [cls.Hide]: !visible }, [])}>
+			<article className={cl(cls.Notification, { [cls.Hide]: !visible }, [])}>
 				<div className={cls.Content}>
 					{icon && (
 						<Image
@@ -79,7 +79,7 @@ export const Notification: FC<NotificationProps> = memo(
 						Cancel
 					</Button>
 				)}
-			</div>
+			</article>
 		);
 	},
 );

@@ -1,3 +1,4 @@
+import { About } from '@/widgets/About';
 import { NavigationPanel } from '@/widgets/NavigationPanel';
 import { TopPage } from '@/widgets/TopPage';
 import { useTranslations } from 'next-intl';
@@ -17,6 +18,7 @@ const HomePage: FC<HomePageProps> = () => {
 				// compact
 			/>
 			<NavigationPanel />
+			<About />
 		</>
 	);
 };

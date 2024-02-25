@@ -73,6 +73,11 @@ export const Button = forwardRef(
 			[cls.Glowing]: variant === 'glowing',
 		};
 
+		if (disabled) {
+			rippleConfig = {
+				disabled: true,
+			};
+		}
 		ref = useRef<HTMLButtonElement>(null);
 		useRippleAnimation(ref, rippleConfig);
 
