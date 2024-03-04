@@ -1,4 +1,5 @@
-import { ThemeProvider } from '@/app/providers/ThemeProvider';
+import { ClientProviders } from '@/app/providers/ClientProviders';
+import { ServerProviders } from '@/app/providers/ServerProviders';
 import '@/app/styles/index.scss';
 import { Notification } from '@/entities/Notification';
 import { locales } from '@/shared/config/i18n/config';
@@ -10,7 +11,6 @@ import { Navbar } from '@/widgets/Navbar';
 import { PageLoader } from '@/widgets/PageLoader';
 import { ScrollUp } from '@/widgets/ScrollUp';
 import { Metadata } from 'next';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { Inter } from 'next/font/google';
 import { ReactNode, Suspense } from 'react';
@@ -43,13 +43,11 @@ export default function RootLayout({
 	children,
 	params: { locale },
 }: RootLayoutProps) {
-	const messages = useMessages();
-
 	return (
 		<html lang={locale}>
 			<body className={cl(inter.className, {}, [])}>
-				<ThemeProvider>
-					<NextIntlClientProvider messages={messages}>
+				<ServerProviders>
+					<ClientProviders>
 						<Suspense fallback={<PageLoader />}>
 							<Navbar blackhole />
 							<Light />
@@ -62,8 +60,8 @@ export default function RootLayout({
 							<ScrollUp />
 							<Footer />
 						</Suspense>
-					</NextIntlClientProvider>
-				</ThemeProvider>
+					</ClientProviders>
+				</ServerProviders>
 			</body>
 		</html>
 	);

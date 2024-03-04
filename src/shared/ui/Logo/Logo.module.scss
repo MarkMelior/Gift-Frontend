@@ -7,10 +7,10 @@
 	}
 
 	svg *[fill] {
-		fill: var(--inverted-main-color);
+		fill: var(--color-main-inverted);
 	}
 
 	svg *[stroke] {
-		stroke: var(--inverted-main-color);
+		stroke: var(--color-main-inverted);
 	}
 }

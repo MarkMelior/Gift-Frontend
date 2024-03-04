@@ -1,27 +1,27 @@
 @import "@/app/styles/variables/var";
 
 :root {
-	--bg-color: #03020D;
-	--bg-dots: #2e3135;
+	--color-background: #03020D;
+	--color-background-dots: #2e3135;
 
-	--main-color: #03020D;
-	--main-color-rgb: 3, 2, 13;
+	--color-main: #03020D;
+	--color-main-rgb: 3, 2, 13;
 
-	--inverted-main-color: #FFFFFF;
-	--inverted-main-color-rgb: 255, 255, 255;
+	--color-main-inverted: #FFFFFF;
+	--color-main-inverted-rgb: 255, 255, 255;
 
-	--primary-color: #B336FF;
-	--inverted-primary-color: #30004e;
+	--color-default: #3a3641;
+	--color-primary: #B336FF;
+	--color-secondary: #006FEE;
+	--color-success: #17c964;
+	--color-warning: #f5a524;
+	--color-danger: #f31260;
 
-	--secondary-color: #346DFF;
-	--inverted-secondary-color: #001e6b;
+	--color-border: rgba(255, 255, 255, .1);
+	--color-border-select: rgba(255, 255, 255, .15);
+	--color-border-active: rgba(255, 255, 255, .2);
 
-	--border-color: rgba(255, 255, 255, .1);
-	--border-select-color: rgba(255, 255, 255, .15);
-	--border-active-color: rgba(255, 255, 255, .2);
-
-	// text
-	--text-color: 255, 255, 255;
+	--color-text: 255, 255, 255;
 
 	// Light ellipse
 	--light-color-ellipse-1: rgba(90, 186, 255, 0.4);

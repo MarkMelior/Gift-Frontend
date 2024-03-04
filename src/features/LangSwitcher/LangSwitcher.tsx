@@ -17,9 +17,7 @@ export default function LocaleSwitcher({ children }: LocaleSwitcherProps) {
 
 	return (
 		<Link href={pathname} locale={otherLocale}>
-			<Button variant='slice'>
-				{t('Короткий язык', { locale: otherLocale })}
-			</Button>
+			<Button slice>{t('Короткий язык', { locale: otherLocale })}</Button>
 		</Link>
 	);
 }

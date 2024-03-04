@@ -62,7 +62,7 @@ export const Notification: FC<NotificationProps> = memo(
 				{closable && (
 					<Button
 						padding='padding-none'
-						variant='slice'
+						slice
 						className='animation-click'
 						onClick={handleClose}
 					>

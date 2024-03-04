@@ -1,6 +1,7 @@
 'use client';
 
 import { classNames as cl, Mods } from '@/shared/lib/classNames/classNames';
+import { Size } from '@/shared/types/ui';
 import {
 	ButtonHTMLAttributes,
 	ForwardedRef,
@@ -12,38 +13,26 @@ import { useRippleAnimation } from '../RippleEffect';
 import { RippleConfigProps } from '../RippleEffect/useRippleAnimation';
 import cls from './Button.module.scss';
 
-export type ButtonVariant =
-	| 'layer'
-	| 'slice'
-	| 'default'
-	| 'hero'
-	| 'glowing'
-	| 'flat';
-export type ButtonSize = 'tiny' | 'small' | 'medium' | 'large';
-export type ButtonPadding =
-	| 'padding-small'
-	| 'padding-medium'
-	| 'padding-large'
-	| 'padding-none';
-export type ButtonRadius =
-	| 'radius-full'
-	| 'radius-large'
-	| 'radius-medium'
-	| 'radius-small'
-	| 'radius-none';
+export type ButtonVariant = 'layer' | 'default' | 'hero' | 'glowing' | 'flat';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	className?: string;
 	children?: ReactNode;
 
 	variant?: ButtonVariant;
-	size?: ButtonSize;
+	fontSize?: Size;
 	disabled?: boolean;
 	fullWidth?: boolean;
 
-	radius?: ButtonRadius;
-	padding?: ButtonPadding;
+	slice?: boolean;
+	lines?: boolean;
+	clear?: boolean;
+
+	radius?: Size;
+	padding?: Size;
 	rippleConfig?: RippleConfigProps;
+
+	// color?: Color;
 
 	leftIcon?: ReactNode;
 	rightIcon?: ReactNode;
@@ -57,12 +46,14 @@ export const Button = forwardRef(
 			variant = 'default',
 			fullWidth,
 			disabled,
+			slice,
+			lines,
 			rippleConfig,
-			padding = 'padding-medium',
-			size = 'medium',
-			radius = 'radius-medium',
+			padding = 'md',
+			fontSize = 'md',
+			radius = 'md',
 			// isLoading,
-			color = 'normal',
+			// color,
 			...otherProps
 		}: ButtonProps,
 		ref: ForwardedRef<HTMLButtonElement>,
@@ -70,33 +61,34 @@ export const Button = forwardRef(
 		const mods: Mods = {
 			[cls.disabled]: disabled,
 			[cls.fullWidth]: fullWidth,
+			[cls.slice]: slice,
 			[cls.Glowing]: variant === 'glowing',
 		};
 
-		if (disabled) {
-			rippleConfig = {
-				disabled: true,
-			};
-		}
 		ref = useRef<HTMLButtonElement>(null);
 		useRippleAnimation(ref, rippleConfig);
 
-		return (
+		const button = (
 			<button
 				type='button'
 				className={cl(cls.Button, mods, [
 					className,
 					cls[variant],
-					cls[size],
-					cls[radius],
-					cls[padding],
+					cls[`fontSize-${fontSize}`],
+					cls[`radius-${radius}`],
+					cls[`padding-${padding}`],
 				])}
 				disabled={disabled}
 				ref={ref}
 				{...otherProps}
 			>
 				{variant === 'layer' && (
-					<div className={cl(cls.layerInner, {}, [cls[radius], cls[padding]])}>
+					<div
+						className={cl(cls.layerInner, {}, [
+							cls[`radius-${radius}`],
+							cls[`padding-${padding}`],
+						])}
+					>
 						<div className={cls.Starlight} />
 						<div className={cls.Starlight} />
 						{children}
@@ -111,11 +103,30 @@ export const Button = forwardRef(
 								<div className={cls.Stars} />
 							</div>
 						</div>
-						<div className={cl(cls.BorderMask, {}, [cls[radius]])}>
+						<div className={cl(cls.BorderMask, {}, [cls[`radius-${radius}`]])}>
 							<div className={cls.Border} />
 						</div>
-						<div className={cl(cls.Button, {}, [cls[radius], cls[padding]])}>
+						<div
+							className={cl(cls.Button, {}, [
+								cls[`radius-${radius}`],
+								cls[`padding-${padding}`],
+							])}
+						>
 							{children}
+						</div>
+					</>
+				)}
+
+				{lines && (
+					<>
+						<div className={cls.SquareItem}>
+							<div />
+						</div>
+						<div className={cls.SquareItem}>
+							<div />
+						</div>
+						<div className={cls.SquareItem}>
+							<div />
 						</div>
 					</>
 				)}
@@ -123,5 +134,7 @@ export const Button = forwardRef(
 				{variant !== 'layer' && variant !== 'glowing' && children}
 			</button>
 		);
+
+		return button;
 	},
 );

@@ -4,7 +4,7 @@
 }
 
 .Video {
-	z-index: var(--blackhole-z-index);
+	z-index: var(--z-index-blackhole);
 	mix-blend-mode: lighten;
 	transition: all .5s ease;
 	position: absolute;
@@ -41,7 +41,7 @@
 	transform: translateZ(0) translate(-50%, -50%);
 	height: 808px;
 	width: 808px;
-	z-index: var(--blackhole-z-index);
+	z-index: var(--z-index-blackhole);
 
 	&>div {
 		height: 100%;
@@ -87,6 +87,6 @@
 
 .flip {
 	transform: rotate(180deg);
-	z-index: var(--blackhole-z-index);
+	z-index: var(--z-index-blackhole);
 	mix-blend-mode: lighten;
 }

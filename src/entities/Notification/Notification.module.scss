@@ -2,18 +2,18 @@
 	position: fixed;
 	left: 50%;
 	transform: translateX(-50%);
-	backdrop-filter: var(--medium-blur);
+	backdrop-filter: var(--blur-md);
 	bottom: var(--position-bottom);
-	z-index: var(--notification-z-index);
+	z-index: var(--z-index-notification);
 
 	display: flex;
-	background: var(--bg-noise), rgba(var(--main-color-rgb), 0.3);
+	background: var(--bg-noise), rgba(var(--color-main-rgb), 0.3);
 	gap: 20px;
 	justify-content: center;
 	align-items: center;
-	border: solid 1px var(--border-color);
+	border: solid 1px var(--color-border);
 	padding: 15px 30px;
-	border-radius: var(--radius-medium);
+	border-radius: var(--radius-md);
 
 	animation: fadeIn .3s ease-out forwards;
 

@@ -1,13 +1,13 @@
 .Footer {
 	position: relative;
 	width: 100%;
-	background: var(--bg-noise), var(--main-color);
-	border-top: 1px solid var(--border-color);
+	background: var(--bg-noise), var(--color-main);
+	border-top: 1px solid var(--color-border);
 	padding: 30px 0;
-	z-index: var(--footer-z-index);
+	z-index: var(--z-index-footer);
 
 	p {
-		color: rgba(var(--text-color), .3);
+		color: rgba(var(--color-text), .3);
 		font: var(--font-small);
 	}
 }
@@ -38,5 +38,5 @@
 	margin: auto 0;
 	height: 22px;
 	width: 1px;
-	background: rgba(var(--inverted-main-color-rgb), .1);
+	background: rgba(var(--color-main-inverted-rgb), .1);
 }

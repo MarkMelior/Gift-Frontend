@@ -1,12 +1,12 @@
 .app_light_theme {
-	--bg-color: #fafafa;
+	--color-background: #fafafa;
 	--bg-dots: #cacaca;
 
 	--main-color: #FFFFFF;
-	--main-color-rgb: 255, 255, 255;
+	--color-main-rgb: 255, 255, 255;
 
-	--inverted-main-color: #03020D;
-	--inverted-main-color-rgb: 3, 2, 13;
+	--color-main-inverted: #03020D;
+	--color-main-inverted-rgb: 3, 2, 13;
 
 	--primary-color: #30004e;
 	--inverted-primary-color: #B336FF;
@@ -14,12 +14,12 @@
 	--secondary-color: #001e6b;
 	--inverted-secondary-color: #346DFF;
 
-	--border-color: rgba(0, 0, 0, .1);
-	--border-select-color: rgba(0, 0, 0, .2);
-	--border-active-color: rgba(0, 0, 0, .2);
+	--color-border: rgba(0, 0, 0, .1);
+	--color-border-select: rgba(0, 0, 0, .2);
+	--color-border-active: rgba(0, 0, 0, .2);
 
 	// text
-	--text-color: 0, 0, 0;
+	--color-text: 0, 0, 0;
 
 	// Light ellipse
 	// --light-color-ellipse-1: rgba(90, 186, 255, 0.3);

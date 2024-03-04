@@ -2,39 +2,52 @@
 	// Fonts
 	--font-family-main: Inter, sans-serif;
 
-	--font-size-tiny: 0.75rem;
-	--font-size-small: 0.875rem;
-	--font-size-medium: 1rem;
-	--font-size-large: 1.125rem;
+	--font-size-xs: 0.75rem;
+	--font-size-sm: 0.875rem;
+	--font-size-md: 1rem;
+	--font-size-lg: 1.125rem;
+	--font-size-xl: 1.325rem;
 
-	--line-height-tiny: 1rem;
-	--line-height-small: 1.25rem;
-	--line-height-medium: 1.5rem;
-	--line-height-large: 1.75rem;
+	--line-height-xs: 1rem;
+	--line-height-sm: 1.25rem;
+	--line-height-md: 1.5rem;
+	--line-height-lg: 1.75rem;
+	--line-height-xl: 2rem;
 
-	--font-tiny: var(--font-size-tiny) / var(--line-height-tiny) var(--font-family-main);
-	--font-small: var(--font-size-small) / var(--line-height-small) var(--font-family-main);
-	--font-medium: var(--font-size-medium) / var(--line-height-medium) var(--font-family-main);
-	--font-large: var(--font-size-large) / var(--line-height-large) var(--font-family-main);
+	--font-xs: var(--font-size-xs) / var(--line-height-xs);
+	--font-sm: var(--font-size-sm) / var(--line-height-sm);
+	--font-md: var(--font-size-md) / var(--line-height-md);
+	--font-lg: var(--font-size-lg) / var(--line-height-lg);
+	--font-xl: var(--font-size-xl) / var(--line-height-xl);
+
+	// Colors
+	// --color-default: #3f3f46;
+	// --color-primary: #006FEE;
+	// --color-secondary: #9353d3;
+	// --color-success: #17c964;
+	// --color-warning: #f5a524;
+	// --color-danger: #f31260;
+	--color-overlay: rgba(0 0 0 / 60%);
 
 	// Border Radius
-	--radius-tiny: 4px;
-	--radius-small: 7px;
-	--radius-medium: 10px;
-	--radius-large: 16px;
+	--radius-xs: 4px;
+	--radius-sm: 7px;
+	--radius-md: 10px;
+	--radius-lg: 16px;
+	--radius-xl: 20px;
 
 	// Paddings
-	--padding-y-small: 5px;
-	--padding-x-small: 10px;
-	--padding-small: var(--padding-y-small) var(--padding-x-small);
+	--padding-y-sm: 5px;
+	--padding-x-sm: 10px;
+	--padding-sm: var(--padding-y-sm) var(--padding-x-sm);
 
-	--padding-y-medium: 7px;
-	--padding-x-medium: 16px;
-	--padding-medium: var(--padding-y-medium) var(--padding-x-medium);
+	--padding-y-md: 7px;
+	--padding-x-md: 16px;
+	--padding-md: var(--padding-y-md) var(--padding-x-md);
 
-	--padding-y-large: 20px;
-	--padding-x-large: 50px;
-	--padding-large: var(--padding-y-large) var(--padding-x-large);
+	--padding-y-lg: 20px;
+	--padding-x-lg: 50px;
+	--padding-lg: var(--padding-y-lg) var(--padding-x-lg);
 
 	// Sizes
 	--navbar-height: 80px;
@@ -42,29 +55,24 @@
 	--sidebar-width-collapsed: 80px;
 
 	// z Indexes
-	--space-z-index: -50;
-	--title-heading-z-index: -20;
-	--bg-images-z-index: -15;
-	--light-z-index: -10;
-	--blackhole-z-index: -9;
-	--hero-images-z-index: -5;
-	--modal-z-index: 10;
-	--footer-z-index: 90;
-	--navbar-z-index: 100;
-	--scroll-up-z-index: 110;
-	--notification-z-index: 110;
-
-	// Colors
-	--overlay-color: rgba(0 0 0 / 60%);
-	--red-light: #ff0000;
-	--red-dark: #a30000;
+	--z-index-space: -50;
+	--z-index-title-heading: -20;
+	--z-index-bg-images: -15;
+	--z-index-light: -10;
+	--z-index-blackhole: -9;
+	--z-index-hero-images: -5;
+	--z-index-modal: 10;
+	--z-index-footer: 90;
+	--z-index-navbar: 100;
+	--z-index-scroll-up: 110;
+	--z-index-notification: 110;
 
 	// Filters
-	--main-blur: blur(128px);
-	--large-blur: blur(64px);
-	--medium-blur: blur(32px);
-	--small-blur: blur(16px);
-	--tiny-blur: blur(8px);
+	--blur-xs: blur(8px);
+	--blur-sm: blur(16px);
+	--blur-md: blur(32px);
+	--blur-lg: blur(64px);
+	--blur-xl: blur(128px);
 	--bg-noise: url('/images/noise.png') repeat;
 
 	// Others

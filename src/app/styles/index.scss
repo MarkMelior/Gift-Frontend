@@ -11,8 +11,8 @@ body {
 	line-height: 1.5;
 	font-family: var(--font-family-main);
 
-	color: rgb(var(--text-color));
-	background: linear-gradient(90deg, var(--bg-color) 15px, transparent 1%) 50%, linear-gradient(var(--bg-color) 15px, var(--bg-dots) 1%) 0, hsla(0, 0%, 100%, .16);
+	color: rgb(var(--color-text));
+	background: linear-gradient(90deg, var(--color-background) 15px, transparent 1%) 50%, linear-gradient(var(--color-background) 15px, var(--bg-dots) 1%) 0, hsla(0, 0%, 100%, .16);
 	background-size: 16px 16px;
 }
 
@@ -45,12 +45,12 @@ body {
 }
 
 a {
-	color: rgba(var(--text-color), .5);
+	color: rgba(var(--color-text), .5);
 	text-decoration: none;
 	transition: color .1s ease;
 
 	&:hover {
-		color: rgba(var(--text-color), 1)
+		color: rgba(var(--color-text), 1)
 	}
 }
 
@@ -64,11 +64,11 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-	background: var(--bg-color);
+	background: var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb {
-	background: var(--inverted-main-color);
+	background: var(--color-main-inverted);
 	border-radius: 100px;
 
 	&:hover {

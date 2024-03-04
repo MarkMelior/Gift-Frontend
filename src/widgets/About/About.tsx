@@ -1,5 +1,5 @@
 import { classNames as cl } from '@/shared/lib/classNames/classNames';
-import { CardRotate } from '@/shared/ui/CardRotate';
+import { SquareLines } from '@/shared/ui/SquareLines';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
@@ -17,16 +17,18 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 			<div className={cl(cls.Content, {}, ['content'])}>
 				<Image
 					src='/images/pages/design-about-top.png'
-					width={1320}
-					height={505}
+					width={2640}
+					height={1010}
 					alt='Background image'
 					className={cls.Image}
-					// className='noselect'
 				/>
-				<Image
+				<SquareLines>
+					<span className={cls.box} />
+				</SquareLines>
+				{/* <Image
 					src='/images/pages/glow-about.png'
-					width={806}
-					height={849}
+					width={1612}
+					height={1698}
 					alt='Background glow image'
 					className={cls.Image}
 					// className='noselect'
@@ -56,7 +58,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 					color='#8875ff'
 					icon='/images/pages/code.png'
 					text='Интеграция новейших технологий разработки, обеспечивающих высокую производительность'
-				/>
+				/> */}
 			</div>
 		</div>
 	);

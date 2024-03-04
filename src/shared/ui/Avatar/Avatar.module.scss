@@ -1,0 +1,28 @@
+.Avatar {
+	$size: 42px;
+
+	width: $size;
+	height: $size;
+	background-color: var(--color-default);
+	border-radius: 9999px;
+	cursor: pointer;
+	overflow: hidden;
+	transition: all .3s ease;
+
+	img {
+		width: $size;
+		height: $size;
+	}
+}
+
+.border {
+	box-shadow: 0px 0px 0px 2px rgba(var(--color-main-rgb), 1), 0px 0px 0px 4px var(--color-default);
+
+	&:hover {
+		box-shadow: 0px 0px 0px 2px rgba(var(--color-main-rgb), 1), 0px 0px 0px 4px var(--color-primary);
+	}
+}
+
+.disabled {
+	opacity: .5;
+}

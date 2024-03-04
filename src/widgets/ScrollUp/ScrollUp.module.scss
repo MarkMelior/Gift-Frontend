@@ -3,7 +3,7 @@
 	bottom: var(--position-bottom);
 	right: 30px;
 	opacity: 0;
-	z-index: var(--scroll-up-z-index);
+	z-index: var(--z-index-scroll-up);
 
 	&::before {
 		content: '';
@@ -16,6 +16,7 @@
 		transition: all .3s ease;
 		animation: slideInFromRight 0.5s forwards;
 		opacity: .7;
+		background: rgba(var(--color-main-rgb), .6);
 
 		&:hover {
 			opacity: 1;

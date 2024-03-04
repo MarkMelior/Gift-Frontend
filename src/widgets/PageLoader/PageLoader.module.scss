@@ -10,7 +10,7 @@
 		left: 50%;
 		transform: translate(-50%);
 		font: var(--font-medium);
-		color: rgba(var(--text-color), 1);
+		color: rgba(var(--color-text), 1);
 	}
 }
 
@@ -29,7 +29,7 @@
 
 	width: $spinner-size;
 	height: $spinner-size;
-	border: 6px solid var(--inverted-main-color);
+	border: 6px solid var(--color-main-inverted);
 	border-bottom-color: transparent;
 	border-radius: 50%;
 	display: inline-block;

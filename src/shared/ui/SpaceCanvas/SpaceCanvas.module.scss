@@ -2,7 +2,7 @@
 	width: 100%;
 	height: auto;
 	position: fixed;
-	z-index: var(--space-z-index);
+	z-index: var(--z-index-space);
 	inset: 0;
-	background: var(--bg-color);
+	background: var(--color-background);
 }
