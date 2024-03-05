@@ -21,12 +21,17 @@ export const useRippleAnimation = (
 		disabled = false,
 	} = config || {};
 
-	useEffect(() => {
-		if (disabled) return;
+	if (disabled) return;
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	useEffect(() => {
 		const onClick = (e: MouseEvent) => {
 			const button = element.current;
 			if (!button) return;
+
+			const rippleRoot = element.current.querySelector('.RippleRoot');
+			if (!rippleRoot) return;
+			rippleRoot.classList.add(cls.RippleRoot);
 
 			const rect = button.getBoundingClientRect();
 			const offsetX = e.clientX - rect.left;
@@ -43,7 +48,7 @@ export const useRippleAnimation = (
 			span.style.setProperty('--effect-color', color);
 			span.style.setProperty('--effect-opacity', String(opacity));
 
-			button.appendChild(span);
+			rippleRoot.appendChild(span);
 
 			setTimeout(() => {
 				span.remove();
@@ -54,7 +59,6 @@ export const useRippleAnimation = (
 
 		const cleanup = element.current;
 
-		// eslint-disable-next-line consistent-return
 		return () => {
 			cleanup?.removeEventListener('mouseup', onClick);
 		};

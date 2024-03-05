@@ -6,12 +6,13 @@
 	background-color: var(--color-default);
 	border-radius: 9999px;
 	cursor: pointer;
-	overflow: hidden;
+	// overflow: hidden;
 	transition: all .3s ease;
 
 	img {
 		width: $size;
 		height: $size;
+		border-radius: inherit;
 	}
 }
 

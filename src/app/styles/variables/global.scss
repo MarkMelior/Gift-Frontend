@@ -6,19 +6,38 @@
 	--font-size-sm: 0.875rem;
 	--font-size-md: 1rem;
 	--font-size-lg: 1.125rem;
-	--font-size-xl: 1.325rem;
+	--font-size-xl: 1.25rem;
+	--font-size-2xl: 1.5rem;
+	--font-size-3xl: 1.875rem;
+	--font-size-4xl: 2.25rem;
+	--font-size-5xl: 3rem;
+	--font-size-6xl: 3.75rem;
+	--font-size-7xl: 4.5rem;
+	--font-size-8xl: 6rem;
+	--font-size-9xl: 8rem;
 
 	--line-height-xs: 1rem;
 	--line-height-sm: 1.25rem;
 	--line-height-md: 1.5rem;
 	--line-height-lg: 1.75rem;
-	--line-height-xl: 2rem;
+	--line-height-xl: 1.75rem;
+	--line-height-2xl: 2rem;
+	--line-height-3xl: 2.25rem;
+	--line-height-4xl: 2.5rem;
 
-	--font-xs: var(--font-size-xs) / var(--line-height-xs);
-	--font-sm: var(--font-size-sm) / var(--line-height-sm);
-	--font-md: var(--font-size-md) / var(--line-height-md);
-	--font-lg: var(--font-size-lg) / var(--line-height-lg);
-	--font-xl: var(--font-size-xl) / var(--line-height-xl);
+	--text-xs: var(--font-size-xs) / var(--line-height-xs);
+	--text-sm: var(--font-size-sm) / var(--line-height-sm);
+	--text-md: var(--font-size-md) / var(--line-height-md);
+	--text-lg: var(--font-size-lg) / var(--line-height-lg);
+	--text-xl: var(--font-size-xl) / var(--line-height-xl);
+	--text-2xl: var(--font-size-2xl) / var(--line-height-2xl);
+	--text-3xl: var(--font-size-3xl) / var(--line-height-3xl);
+	--text-4xl: var(--font-size-4xl) / var(--line-height-4xl);
+	--text-5xl: var(--font-size-5xl) / 1;
+	--text-6xl: var(--font-size-6xl) / 1;
+	--text-7xl: var(--font-size-7xl) / 1;
+	--text-8xl: var(--font-size-8xl) / 1;
+	--text-9xl: var(--font-size-9xl) / 1;
 
 	// Colors
 	// --color-default: #3f3f46;
@@ -30,24 +49,24 @@
 	--color-overlay: rgba(0 0 0 / 60%);
 
 	// Border Radius
-	--radius-xs: 4px;
-	--radius-sm: 7px;
-	--radius-md: 10px;
-	--radius-lg: 16px;
-	--radius-xl: 20px;
+	--radius-xs: 0.25rem;
+	--radius-sm: 0.375rem;
+	--radius-md: 0.625rem;
+	--radius-lg: 1rem;
+	--radius-xl: 1.25rem;
 
 	// Paddings
-	--padding-y-sm: 5px;
-	--padding-x-sm: 10px;
-	--padding-sm: var(--padding-y-sm) var(--padding-x-sm);
+	--py-sm: 0.25rem;
+	--px-sm: 0.625rem;
+	--p-sm: var(--py-sm) var(--px-sm);
 
-	--padding-y-md: 7px;
-	--padding-x-md: 16px;
-	--padding-md: var(--padding-y-md) var(--padding-x-md);
+	--py-md: 0.5rem;
+	--px-md: 1rem;
+	--p-md: var(--py-md) var(--px-md);
 
-	--padding-y-lg: 20px;
-	--padding-x-lg: 50px;
-	--padding-lg: var(--padding-y-lg) var(--padding-x-lg);
+	--py-lg: 1.25rem;
+	--px-lg: 3.125rem;
+	--p-lg: var(--py-lg) var(--px-lg);
 
 	// Sizes
 	--navbar-height: 80px;

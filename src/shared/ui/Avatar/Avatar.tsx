@@ -42,7 +42,7 @@ export const Avatar: FC<AvatarProps> = ({
 	};
 
 	return (
-		<Button className={cl(cls.Avatar, mods, [className, cls[size]])}>
+		<Button clear className={cl(cls.Avatar, mods, [className, cls[size]])}>
 			{src && (
 				<Image
 					className='noselect'

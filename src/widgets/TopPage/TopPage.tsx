@@ -40,19 +40,6 @@ export const TopPage: FC<TopPageProps> = memo(
 					</div>
 				</div>
 				<div className={cls.Main}>
-					{/* <div>
-						<Button variant='layer'>Привет</Button>
-						<Button clear>Привет</Button>
-						<Button padding='lg' variant='default'>
-							Привет
-						</Button>
-						<Button padding='md' variant='flat'>
-							Привет
-						</Button>
-						<Button padding='md' variant='glowing' slice>
-							Привет
-						</Button>
-					</div> */}
 					<div className={cls.Information}>
 						<Heading title={title} description={description} note={note} />
 						{!compact && (
