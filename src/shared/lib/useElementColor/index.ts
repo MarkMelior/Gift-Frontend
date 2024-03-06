@@ -1,0 +1,1 @@
+export { useElementColor } from './useElementColor';

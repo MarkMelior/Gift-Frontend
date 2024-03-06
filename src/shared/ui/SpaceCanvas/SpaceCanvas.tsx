@@ -1,11 +1,11 @@
 'use client';
 
+import { Theme, useTheme } from '@/app/providers/ThemeProvider';
 import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { PointMaterial, Points } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Suspense, useEffect, useRef, useState } from 'react';
 // @ts-ignore
-import { Theme, useTheme } from '@/app/providers/ThemeProvider';
 import * as random from 'maath/random/dist/maath-random.esm';
 import cls from './SpaceCanvas.module.scss';
 
@@ -25,7 +25,7 @@ const StarBackground = (props: any) => {
 
 	return (
 		// eslint-disable-next-line react/no-unknown-property
-		<group rotation={[0, 0, Math.PI / 4]}>
+		<group rotation={[0, 0, 0]}>
 			<Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
 				<PointMaterial
 					transparent

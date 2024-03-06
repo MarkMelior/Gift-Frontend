@@ -1,0 +1,1 @@
+export { BestProduct } from './BestProduct';

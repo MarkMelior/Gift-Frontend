@@ -19,12 +19,12 @@ export function CardRotate({ name, color, icon, text }: CardRotateProps) {
 					}}
 				>
 					<div className={`${cls.inner}`}>
-						<div className='relative flex w-full'>
+						<div>
 							<h1>{name}</h1>
 							<Image
 								src='/images/icons/refresh.svg'
 								alt='Иконка перезагрузки'
-								className={cls.refresh}
+								className={`${cls.refresh} noselect`}
 								width={20}
 								height={20}
 							/>

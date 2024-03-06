@@ -2,6 +2,7 @@
 
 import { classNames as cl, Mods } from '@/shared/lib/classNames/classNames';
 import { Size } from '@/shared/types/ui';
+import { Loader } from '@/widgets/Loader';
 import {
 	ButtonHTMLAttributes,
 	ForwardedRef,
@@ -13,12 +14,19 @@ import { useRippleAnimation } from '../RippleEffect';
 import { RippleConfigProps } from '../RippleEffect/useRippleAnimation';
 import cls from './Button.module.scss';
 
-export type ButtonVariant = 'layer' | 'hero' | 'glowing' | 'flat';
+export type ButtonVariant =
+	| 'layer'
+	| 'hero'
+	| 'glowing'
+	| 'flat'
+	| 'default'
+	| 'gradient';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	className?: string;
 	children?: ReactNode;
 	fullWidth?: boolean;
+	isLoading?: boolean;
 	isDisabled?: boolean;
 
 	disableRipple?: boolean;
@@ -35,8 +43,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	padding?: Size;
 	// color?: Color;
 
-	leftIcon?: ReactNode;
-	rightIcon?: ReactNode;
+	startContent?: ReactNode;
+	endContent?: ReactNode;
 }
 
 export const Button = forwardRef(
@@ -45,8 +53,8 @@ export const Button = forwardRef(
 			className,
 			children,
 			fullWidth,
-			isDisabled,
-			// isLoading,
+			isLoading,
+			isDisabled = isLoading,
 
 			variant,
 			slice,
@@ -62,20 +70,38 @@ export const Button = forwardRef(
 			radius = !clear ? 'md' : undefined,
 			padding = !clear ? 'md' : undefined,
 
+			startContent,
+			endContent,
+
 			...otherProps
 		}: ButtonProps,
 		ref: ForwardedRef<HTMLButtonElement>,
 	) => {
 		ref = useRef<HTMLButtonElement>(null);
+		// const currentColor = useElementColor({ ref, disableRipple });
+
 		useRippleAnimation(ref, {
 			...rippleConfig,
+			// color: currentColor,
 			disabled: disableRipple,
 		});
+
+		if (isLoading && startContent) startContent = <Loader />;
+		if (isLoading && endContent) endContent = <Loader />;
 
 		const renderStarlight = () => (
 			<>
 				<div className={cls.Starlight} />
 				<div className={cls.Starlight} />
+			</>
+		);
+
+		const renderChildren = () => (
+			<>
+				{starlight && renderStarlight()}
+				{startContent}
+				{children}
+				{endContent}
 			</>
 		);
 
@@ -86,8 +112,7 @@ export const Button = forwardRef(
 					`padding-${padding}`,
 				])}
 			>
-				{!starlight && renderStarlight()}
-				{children}
+				{renderChildren()}
 			</div>
 		);
 
@@ -108,7 +133,7 @@ export const Button = forwardRef(
 						`padding-${padding}`,
 					])}
 				>
-					{children}
+					{renderChildren()}
 				</div>
 			</>
 		);
@@ -128,15 +153,19 @@ export const Button = forwardRef(
 		);
 
 		const renderButtonContent = () => {
-			if (variant === 'layer') return renderLayer();
-			if (variant === 'glowing') return renderGlowing();
-			// eslint-disable-next-line react/jsx-no-useless-fragment
-			return <>{children}</>;
+			switch (variant) {
+				case 'layer':
+					return renderLayer();
+				case 'glowing':
+					return renderGlowing();
+				default:
+					return <>{renderChildren()}</>;
+			}
 		};
 
 		const buttonMods: Mods = {
 			[cls.disabled]: isDisabled,
-			[cls.fullWidth]: fullWidth,
+			['fullWidth']: fullWidth,
 			[cls.slice]: slice,
 			[cls.default]: !clear,
 			[cls.glowing]: variant === 'glowing',
@@ -160,7 +189,6 @@ export const Button = forwardRef(
 			>
 				{lines && renderLinesItem()}
 				{renderButtonContent()}
-				{starlight && renderStarlight()}
 				{!disableRipple && <div className='RippleRoot' />}
 			</button>
 		);

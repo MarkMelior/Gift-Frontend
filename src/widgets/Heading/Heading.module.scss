@@ -4,6 +4,15 @@
 	gap: 5px;
 }
 
+.center {
+	align-items: center;
+	gap: 10px;
+
+	.Description {
+		text-align: center;
+	}
+}
+
 .Note {
 	width: fit-content;
 	display: flex;
@@ -50,5 +59,6 @@
 }
 
 .Description {
+	max-width: 528px;
 	color: rgba(var(--color-text), .5);
 }

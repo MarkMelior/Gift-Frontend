@@ -45,6 +45,16 @@
 
 
 // Variants
+.gradient {
+	box-shadow: inset 0px 2.52px 11.42px 0px rgba(255, 255, 255, 0.8);
+	background: linear-gradient(135.00deg, rgb(52, 109, 255) 0%, rgb(255, 64, 247) 100%);
+	border: none;
+
+	&:hover {
+		border: none;
+	}
+}
+
 .slice {
 	overflow: hidden;
 	position: relative;
@@ -104,16 +114,7 @@
 		align-items: center;
 		display: flex;
 		gap: 7px;
-	}
-
-	.Starlight {
-		&:nth-child(1) {
-			top: 5px;
-		}
-
-		&:nth-child(2) {
-			left: 15px;
-		}
+		position: relative;
 	}
 }
 
@@ -127,7 +128,7 @@
 
 	&:nth-child(1) {
 		right: 15px;
-		top: 0px;
+		top: -1px;
 
 		&::before {
 			animation-name: aiShowcaseStarlight1;
@@ -135,7 +136,7 @@
 	}
 
 	&:nth-child(2) {
-		bottom: -7px;
+		bottom: -8px;
 		left: 15px;
 
 		&::before {

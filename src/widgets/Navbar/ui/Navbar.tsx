@@ -74,6 +74,7 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 										alt='Иконка поиска'
 										width={18}
 										height={18}
+										className='noselect'
 									/>
 								}
 							/>

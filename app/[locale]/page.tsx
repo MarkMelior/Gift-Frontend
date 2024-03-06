@@ -1,6 +1,8 @@
-import { About } from '@/widgets/About';
+import { About } from '@/pages/About';
+import { Advantages } from '@/pages/Advantages';
+import { BestProduct } from '@/pages/BestProduct';
+import { TopPage } from '@/pages/TopPage';
 import { NavigationPanel } from '@/widgets/NavigationPanel';
-import { TopPage } from '@/widgets/TopPage';
 import { useTranslations } from 'next-intl';
 import { FC } from 'react';
 
@@ -29,7 +31,9 @@ const HomePage: FC<HomePageProps> = () => {
 					</div>
 				</PopoverContent>
 			</Popover> */}
+			<Advantages />
 			<About />
+			<BestProduct />
 		</>
 	);
 };

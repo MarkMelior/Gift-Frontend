@@ -45,14 +45,20 @@ export const TopPage: FC<TopPageProps> = memo(
 						{!compact && (
 							<>
 								<div className={`${cls.Dots} noselect`} />
-								<Button padding='lg' variant='layer'>
-									<Image
-										src='/images/icons/gift.svg'
-										width={24}
-										height={24}
-										alt='Иконка подарка'
-										className='noselect'
-									/>
+								<Button
+									starlight
+									padding='lg'
+									variant='layer'
+									startContent={
+										<Image
+											src='/images/icons/gift.svg'
+											width={24}
+											height={24}
+											alt='Иконка подарка'
+											className='noselect'
+										/>
+									}
+								>
 									{t('Найти подарок')}
 								</Button>
 							</>

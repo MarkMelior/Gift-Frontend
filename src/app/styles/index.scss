@@ -12,7 +12,7 @@ body {
 	font-family: var(--font-family-main);
 
 	color: rgb(var(--color-text));
-	background: linear-gradient(90deg, var(--color-background) 15px, transparent 1%) 50%, linear-gradient(var(--color-background) 15px, var(--bg-dots) 1%) 0, hsla(0, 0%, 100%, .16);
+	background: linear-gradient(90deg, var(--color-background) 15px, transparent 1%) 50%, linear-gradient(var(--color-background) 15px, var(--color-background-dots) 1%) 0, hsla(0, 0%, 100%, .16);
 	background-size: 16px 16px;
 }
 

@@ -21,9 +21,9 @@ module.exports = {
 	},
 	plugins: ['react', '@typescript-eslint', 'react-hooks', 'i18next'],
 	rules: {
-		'react/jsx-indent': [2, 'tab'],
-		'react/jsx-indent-props': [2, 'tab'],
-		indent: [2, 'tab'],
+		'react/jsx-indent': [2, 'tab', { SwitchCase: 1 }],
+		'react/jsx-indent-props': [2, 'tab', { SwitchCase: 1 }],
+		indent: [2, 'tab', { SwitchCase: 1 }],
 		'no-tabs': 0,
 		'react/jsx-wrap-multilines': 'off',
 		'operator-linebreak': 'off',

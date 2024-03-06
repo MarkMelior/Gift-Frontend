@@ -9,12 +9,22 @@ interface HeadingProps {
 	doubleTitle?: boolean;
 	description: string;
 	note?: string;
+	center?: boolean;
+	customSize?: number;
 }
 
 export const Heading: FC<HeadingProps> = memo(
-	({ className = '', title, doubleTitle = true, description, note }) => {
+	({
+		className = '',
+		title,
+		doubleTitle = true,
+		description,
+		note,
+		center,
+		customSize,
+	}) => {
 		return (
-			<div className={cl(cls.Heading, {}, [className])}>
+			<div className={cl(cls.Heading, { [cls.center]: center }, [className])}>
 				<span className={cls.Note}>
 					<Image
 						src='/images/icons/stars-heading-colored.svg'
@@ -26,7 +36,7 @@ export const Heading: FC<HeadingProps> = memo(
 					{note}
 				</span>
 				<div className={cls.Title}>
-					<h1>{title}</h1>
+					<h1 style={{ fontSize: `${customSize}rem` }}>{title}</h1>
 					{doubleTitle && <p className='noselect'>{title}</p>}
 				</div>
 				<p className={cls.Description}>{description}</p>

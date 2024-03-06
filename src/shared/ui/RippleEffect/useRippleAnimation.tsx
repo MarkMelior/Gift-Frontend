@@ -15,7 +15,7 @@ export const useRippleAnimation = (
 ) => {
 	const {
 		size = 100,
-		color = '#fff',
+		color = 'var(--color-main-inverted)',
 		duration = 500,
 		opacity = 0.3,
 		disabled = false,

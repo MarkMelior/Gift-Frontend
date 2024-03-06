@@ -1,0 +1,139 @@
+.BackgroundImage {
+	position: absolute;
+	z-index: var(--z-index-bg-images);
+	width: 1320px;
+	height: auto;
+	left: 0;
+	top: 0;
+}
+
+.BackgroundWrapper {
+	position: relative;
+	padding: 200px 158px 0;
+
+	&::before {
+		content: "";
+		width: 1px;
+		position: absolute;
+		top: 0;
+		right: 546px;
+		background-image: linear-gradient(to top, transparent, var(--color-main));
+		height: 148px;
+		z-index: calc(var(--z-index-blackhole) - 1);
+	}
+}
+
+.Icon {
+	width: 64px;
+	height: 64px;
+
+	img {
+		opacity: 1 !important;
+	}
+}
+
+.Heading {
+	margin-top: 40px;
+
+	h2 {
+		font-size: var(--font-size-4xl);
+	}
+
+	p {
+		opacity: .5;
+	}
+}
+
+.CardRotateWrapper {
+	display: flex;
+	gap: 50px;
+	justify-content: center;
+	align-items: center;
+	padding-top: 95px;
+
+	&>*:nth-child(1),
+	&>*:nth-child(3) {
+		transform: scale(.85);
+		transition: transform .2s ease;
+
+		&:hover {
+			transform: scale(1);
+		}
+	}
+}
+
+.Line {
+	position: absolute;
+	top: 0;
+	border-right: 1px solid rgba(226, 232, 255, .1);
+	border-bottom: 1px solid rgba(226, 232, 255, .1);
+	border-bottom-right-radius: 12px;
+	z-index: calc(var(--z-index-blackhole) - 2);
+
+	&:nth-child(1) {
+		width: 300px;
+		height: 228px;
+		left: 246px;
+	}
+
+	&:nth-child(2) {
+		width: 220px;
+		height: 164px;
+		left: 554px;
+	}
+
+	&::before {
+		background: var(--color-main);
+		width: 12px;
+		bottom: -4px;
+		height: 12px;
+	}
+
+	&::after {
+		background: #202039;
+		width: 4px;
+		height: 4px;
+		z-index: 2;
+		bottom: -2.5px;
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		left: 50%;
+		transform: translate(-50%);
+		position: absolute;
+		border-radius: 50%;
+	}
+}
+
+.LineMask {
+	mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+	mask-composite: exclude;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: calc(100% + 1px);
+	height: calc(100% + 1px);
+	padding: 0 1px 1px 0;
+	border-radius: inherit;
+
+	div {
+		width: 500px;
+		height: 500px;
+		position: absolute;
+		bottom: -100px;
+		left: -100px;
+		background: conic-gradient(rgba(109, 46, 255, 0), rgba(158, 122, 255, .3) 6%, rgba(144, 124, 255, 0.7) 10%, var(--color-primary) 14.9%, rgba(109, 46, 255, 0) 15%);
+
+		animation: build-line-rotate 15s linear infinite;
+	}
+}
+
+@keyframes build-line-rotate {
+
+	60%,
+	100% {
+		transform: translateZ(0) rotate(1turn);
+	}
+}
