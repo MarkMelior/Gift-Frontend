@@ -37,8 +37,7 @@ export const NavigationPanel: FC<NavigationPanelProps> = ({
 							key={key}
 							isDisabled
 							variant='flat'
-							fullWidth
-							className={cls.Button}
+							className={cn(cls.Button, '!w-full')}
 						>
 							<div className={cls.Item}>
 								<Image

@@ -28,9 +28,7 @@ export const Heading: FC<HeadingProps> = memo(
 			<div className={cn(cls.Heading, { [cls.center]: center }, className)}>
 				<Button
 					variant='hero'
-					padding='sm'
-					fontSize='sm'
-					radius='full'
+					className='text-sm py-0.5 px-2.5 rounded-full'
 					startContent={
 						<Image
 							src='/images/icons/stars-heading-colored.svg'

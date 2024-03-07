@@ -41,13 +41,15 @@ export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
 
 	return (
 		<Button
-			radius='full'
 			variant='default'
 			onClick={scrollToTop}
-			className={cn(cls.ScrollUp, { [cls.Hide]: !isVisible }, [
+			className={cn(
+				cls.ScrollUp,
+				{ [cls.Hide]: !isVisible },
 				className,
 				isVisible ? cls.visible : cls.hidden,
-			])}
+				'rounded-full',
+			)}
 		>
 			{t('Наверх')}
 		</Button>

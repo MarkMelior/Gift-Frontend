@@ -3,7 +3,7 @@ $z-index-card: 1;
 .Card {
 	width: 385px;
 	height: 253px;
-	border-radius: var(--radius-md);
+	@apply rounded-md;
 	padding: 20px;
 	position: relative;
 	overflow: hidden;
@@ -60,7 +60,7 @@ $z-index-card: 1;
 
 .Info {
 	&>* {
-		font-size: var(--font-size-sm);
+		@apply text-sm;
 	}
 }
 
@@ -69,20 +69,20 @@ $z-index-card: 1;
 	display: flex;
 	gap: 10px;
 	background: rgba(var(--color-main-rgb), .05);
-	border-radius: var(--radius-sm);
 	padding: 0px 7px;
 	backdrop-filter: var(--blur-sm);
+	@apply rounded-s;
 }
 
 .Price {
 	align-items: baseline;
 	font-weight: 700;
-	font-size: var(--font-size-lg);
+	@apply text-lg;
 }
 
 .oldPrice {
 	font-weight: 500;
-	font-size: var(--font-size-sm);
+	@apply text-sm;
 	opacity: .5;
 	text-decoration: line-through;
 }

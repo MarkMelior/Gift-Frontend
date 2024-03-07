@@ -9,7 +9,7 @@
 		position: absolute;
 		left: 50%;
 		transform: translate(-50%);
-		font: var(--font-medium);
+		@apply text-base;
 		color: rgba(var(--color-text), 1);
 	}
 }

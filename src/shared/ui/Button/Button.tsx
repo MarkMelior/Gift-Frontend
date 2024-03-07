@@ -1,8 +1,8 @@
 'use client';
 
-import { clsxMods, Size } from '@/shared/types';
+import { cn } from '@/shared/lib/tailwindMerge';
+import { clsxMods } from '@/shared/types';
 import { Loader } from '@/widgets/Loader';
-import cn from 'clsx';
 import {
 	ButtonHTMLAttributes,
 	ForwardedRef,
@@ -38,11 +38,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	starlight?: boolean;
 	clear?: boolean;
 
-	fontSize?: Size;
-	radius?: Size;
-	padding?: Size;
-	// color?: Color;
-
 	startContent?: ReactNode;
 	endContent?: ReactNode;
 }
@@ -65,10 +60,6 @@ export const Button = forwardRef(
 
 			disableRipple = !!clear,
 			rippleConfig,
-
-			fontSize = !clear ? 'md' : undefined,
-			radius = !clear ? 'md' : undefined,
-			padding = !clear ? 'md' : undefined,
 
 			startContent,
 			endContent,
@@ -106,11 +97,7 @@ export const Button = forwardRef(
 		);
 
 		const renderLayer = () => (
-			<div
-				className={cn(cls.layerInner, `radius-${radius}`, `padding-${padding}`)}
-			>
-				{renderChildren()}
-			</div>
+			<div className={cn(cls.layerInner, className)}>{renderChildren()}</div>
 		);
 
 		const renderGlowing = () => (
@@ -121,14 +108,10 @@ export const Button = forwardRef(
 						<div className={cls.Stars} />
 					</div>
 				</div>
-				<div className={cn(cls.BorderMask, `radius-${radius}`)}>
+				<div className={cn(cls.BorderMask)}>
 					<div className={cls.Border} />
 				</div>
-				<div
-					className={cn(cls.Button, `radius-${radius}`, `padding-${padding}`)}
-				>
-					{renderChildren()}
-				</div>
+				<div className={cn(cls.Button, cls.Inherit)}>{renderChildren()}</div>
 			</>
 		);
 
@@ -162,21 +145,19 @@ export const Button = forwardRef(
 			['fullWidth']: fullWidth,
 			[cls.slice]: slice,
 			[cls.default]: !clear,
+			['py-2 px-4 rounded-lg']: !clear,
 			[cls.glowing]: variant === 'glowing',
-			[`text-${fontSize}`]: fontSize,
-			[`radius-${radius}`]: radius,
-			[`padding-${padding}`]: padding,
 		};
-
-		const buttonClassName: string[] = [
-			variant && cls[variant],
-			className,
-		].filter(Boolean) as string[];
 
 		return (
 			<button
 				type='button'
-				className={cn(cls.Button, buttonMods, buttonClassName)}
+				className={cn(
+					cls.Button,
+					buttonMods,
+					variant && cls[variant],
+					className,
+				)}
 				disabled={isDisabled}
 				ref={ref}
 				{...otherProps}

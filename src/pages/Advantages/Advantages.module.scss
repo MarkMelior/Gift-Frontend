@@ -16,7 +16,7 @@
 		width: 1px;
 		position: absolute;
 		top: 0;
-		right: 546px;
+		right: 382px;
 		background-image: linear-gradient(to top, transparent, var(--color-main));
 		height: 148px;
 		z-index: calc(var(--z-index-blackhole) - 1);
@@ -36,7 +36,8 @@
 	margin-top: 40px;
 
 	h2 {
-		font-size: var(--font-size-4xl);
+		font-weight: 700;
+		@apply text-4xl;
 	}
 
 	p {

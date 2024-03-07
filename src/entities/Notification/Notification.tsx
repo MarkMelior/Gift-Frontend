@@ -61,9 +61,8 @@ export const Notification: FC<NotificationProps> = memo(
 				</div>
 				{closable && (
 					<Button
-						padding='none'
 						slice
-						className='animation-click'
+						className='animation-click rounded-lg py-0 px-0'
 						onClick={handleClose}
 					>
 						<Image

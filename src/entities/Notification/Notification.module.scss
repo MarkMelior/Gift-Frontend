@@ -13,7 +13,7 @@
 	align-items: center;
 	border: solid 1px var(--color-border);
 	padding: 15px 30px;
-	border-radius: var(--radius-md);
+	@apply rounded-xl;
 
 	animation: fadeIn .3s ease-out forwards;
 

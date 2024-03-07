@@ -4,7 +4,7 @@
 
 .NavigationPanel {
 	background: var(--bg-noise), rgba(var(--color-main-rgb), .1);
-	border-radius: var(--radius-md);
+	@apply rounded-xl;
 	width: 100%;
 	padding: 15px 20px;
 	border: 1px solid var(--color-border);
@@ -27,7 +27,7 @@
 
 	&>p {
 		opacity: .5;
-		font-size: var(--font-size-sm);
+		@apply text-sm;
 	}
 
 	img {

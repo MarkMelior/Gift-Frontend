@@ -90,22 +90,19 @@
 		justify-content: center;
 		align-items: center;
 		gap: 15px;
-		// font: var(--text-md) !important;
-		font-size: var(--font-size-md);
 		padding: 20px;
 
 		h1 {
 			font-weight: 500;
-			font-size: var(--font-size-lg);
 			line-height: 22px;
 			width: 100%;
 			text-align: center;
+			@apply text-lg;
 		}
 
 		p {
 			text-align: center;
-			font-size: var(--font-size-sm);
-			// font: var(--text-sm);
+			@apply text-sm;
 		}
 	}
 }
@@ -138,10 +135,10 @@
 
 		h1 {
 			font-weight: 500;
-			font-size: var(--font-size-lg);
 			line-height: 22px;
 			width: 100%;
 			text-align: center;
+			@apply text-lg;
 		}
 	}
 }

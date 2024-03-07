@@ -4,10 +4,10 @@
 	border-radius: 6px;
 	padding: 6px 12px;
 	background: rgba(var(--color-main-inverted-rgb), .05);
-	font-size: var(--font-size-sm);
 	color: rgba(255, 255, 255, .5);
 	gap: 10px;
 	max-width: 185px;
+	@apply text-sm;
 
 	img {
 		opacity: .5;

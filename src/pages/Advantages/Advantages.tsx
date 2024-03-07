@@ -36,7 +36,11 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 						alt='Фоновое изображение'
 						className={`${cls.BackgroundImage} noselect`}
 					/>
-					<Button variant='gradient' lines className={cls.Icon}>
+					<Button
+						variant='gradient'
+						lines
+						className={cn(cls.Icon, 'rounded-xl')}
+					>
 						<Image
 							src='/images/icons/gift.svg'
 							width={32}
