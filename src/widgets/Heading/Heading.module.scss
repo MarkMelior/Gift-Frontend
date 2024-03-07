@@ -13,29 +13,6 @@
 	}
 }
 
-.Note {
-	width: fit-content;
-	display: flex;
-	gap: 5px;
-	align-items: center;
-	padding: 1px 12px;
-	font-size: var(--font-size-sm);
-	cursor: pointer;
-	transition: all .1s ease;
-
-	&:active {
-		transform: scale(0.98);
-	}
-
-	border-radius: 100px;
-	box-shadow: inset -3px -4px 8px 0px rgba(255, 255, 255, 0.1),
-	0px 2px 32px 0px rgba(176, 74, 255, 0.3);
-	backdrop-filter: blur(16px);
-	background: linear-gradient(135.00deg, rgba(92, 66, 255, 0.15) 0%, rgba(240, 66, 255, 0.15) 100%);
-	border: solid 1px #9442ffaf;
-	color: #c885ff;
-}
-
 .Title {
 	position: relative;
 

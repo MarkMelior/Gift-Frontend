@@ -67,7 +67,7 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 							<Input
 								type='email'
 								label='Email'
-								placeholder='Поиск...'
+								placeholder={t('Поиск')}
 								addonLeft={
 									<Image
 										src='/images/icons/search.svg'

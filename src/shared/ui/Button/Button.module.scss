@@ -310,7 +310,13 @@
 	backdrop-filter: blur(16px);
 	background: linear-gradient(135.00deg, rgba(92, 66, 255, 0.15) 0%, rgba(240, 66, 255, 0.15) 100%);
 	border: solid 1px #9442ffaf;
-	// color: #c885ff;
+	color: #c885ff;
+
+	&:hover {
+		// color: #c885ff;
+		border: solid 1px #9442ffaf;
+		box-shadow: inset 0 0 6px #bf97ff70;
+	}
 
 	&:active {
 		transform: scale(0.98);

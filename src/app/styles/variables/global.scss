@@ -97,3 +97,68 @@
 	// Others
 	--position-bottom: 45px;
 }
+
+.fullWidth {
+	width: 100% !important;
+}
+
+// Border radius
+.radius-full {
+	border-radius: 9999px;
+}
+
+.radius-lg {
+	border-radius: var(--radius-lg);
+}
+
+.radius-md {
+	border-radius: var(--radius-md);
+}
+
+.radius-sm {
+	border-radius: var(--radius-sm);
+}
+
+.radius-xs {
+	border-radius: var(--radius-xs);
+}
+
+.radius-none {
+	border-radius: 0;
+}
+
+
+// Paddings
+.padding-lg {
+	padding: var(--p-lg);
+}
+
+.padding-md {
+	padding: var(--p-md);
+}
+
+.padding-sm {
+	padding: var(--p-sm);
+}
+
+.padding-none {
+	padding: 0;
+}
+
+
+// Font size
+.text-xs {
+	font-size: var(--font-size-xs);
+}
+
+.text-sm {
+	font-size: var(--font-size-sm);
+}
+
+.text-md {
+	font-size: var(--font-size-md);
+}
+
+.text-lg {
+	font-size: var(--font-size-lg);
+}

@@ -47,7 +47,7 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 					</Button>
 					<div className={cls.Heading}>
 						<h2>Easy Gift</h2>
-						<p>Каждый подарок может быть искусством</p>
+						<p>{t('Каждый подарок может быть искусством')}</p>
 					</div>
 					<div className={cls.CardRotateWrapper}>
 						<CardRotate

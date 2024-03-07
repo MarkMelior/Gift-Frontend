@@ -50,7 +50,7 @@ export default function RootLayout({
 					<ClientProviders>
 						<Suspense fallback={<PageLoader />}>
 							<Navbar blackhole />
-							<Light />
+							{/* <Light /> */}
 							{children}
 							<Notification
 								message='Добавьте наш сайт в закладки, чтобы не потерять'

@@ -30,10 +30,11 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 					alt='Иконка бесконечности'
 					className='noselect'
 				/>
-				<h3>Все, что вам нужно, на одной платформе</h3>
+				<h3>{t('Все, что вам нужно, на одной платформе')}</h3>
 				<p>
-					От прототипирования к производству - разрабатывайте, не переключая
-					вкладки
+					{t(
+						'От прототипирования к производству - разрабатывайте, не переключая вкладки',
+					)}
 				</p>
 			</div>
 			<div className={cls.BackgroundWrapper}>
@@ -42,7 +43,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 						<Image
 							width={40}
 							height={40}
-							src={'/images/icons/infinity.svg'}
+							src={'/images/icons/microphone.svg'}
 							alt='Иконка бесконечности'
 							className='noselect'
 						/>
@@ -53,7 +54,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 						<Image
 							width={40}
 							height={40}
-							src={'/images/icons/infinity.svg'}
+							src={'/images/icons/list.svg'}
 							alt='Иконка бесконечности'
 							className='noselect'
 						/>
@@ -64,7 +65,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 						<Image
 							width={40}
 							height={40}
-							src={'/images/icons/infinity.svg'}
+							src={'/images/icons/list-success.svg'}
 							alt='Иконка бесконечности'
 							className='noselect'
 						/>
@@ -77,7 +78,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 						<Image
 							width={40}
 							height={40}
-							src={'/images/icons/infinity.svg'}
+							src={'/images/icons/search-symbol.svg'}
 							alt='Иконка бесконечности'
 							className='noselect'
 						/>
@@ -88,7 +89,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 						<Image
 							width={40}
 							height={40}
-							src={'/images/icons/infinity.svg'}
+							src={'/images/icons/save.svg'}
 							alt='Иконка бесконечности'
 							className='noselect'
 						/>

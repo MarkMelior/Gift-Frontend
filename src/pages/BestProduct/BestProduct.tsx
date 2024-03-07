@@ -22,9 +22,11 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 				className={`${cls.Image} noselect`}
 			/>
 			<Heading
-				title='Лучшие подарки'
-				description='Не стесняйтесь настраивать свои отчеты. Используйте нашу супертаблицу вместо многократного экспорта и импорта данных'
-				note='Топ из топов'
+				title={t('Лучшие подарки')}
+				description={t(
+					'Это забота и внимание, которые приносят радость и оставляют незабываемые впечатления',
+				)}
+				note={t('Топ из топов')}
 				doubleTitle={false}
 				center
 				customSize={3}

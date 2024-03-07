@@ -71,7 +71,7 @@ $swipe-size: 280px;
 	&::before {
 		background: linear-gradient(90deg, rgba(255, 255, 255, 0) -.89%, rgba(255, 255, 255, .08) 24.33%, rgba(255, 255, 255, .08) 49.55%, rgba(255, 255, 255, .08) 74.78%, rgba(255, 255, 255, 0) 100%);
 		content: "";
-		height: 1px;
+		height: 2px;
 		left: 76px;
 		position: absolute;
 		top: 164px;
@@ -89,6 +89,8 @@ $swipe-size: 280px;
 	align-items: center;
 	cursor: pointer;
 	transition: transform .1s ease;
+	user-select: none;
+	font-weight: 500;
 
 	&:active {
 		transform: scale(0.98);
@@ -99,6 +101,7 @@ $swipe-size: 280px;
 	}
 
 	.SwipeDescription {
+		font-weight: 300;
 		font-size: var(--font-size-sm);
 		opacity: .5;
 	}
