@@ -1,4 +1,4 @@
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
+import cn from 'clsx';
 import { FC } from 'react';
 import cls from './Blackhole.module.scss';
 
@@ -10,10 +10,7 @@ interface BlackholeProps {
 export const Blackhole: FC<BlackholeProps> = ({ className = '', flip }) => {
 	return (
 		<div
-			className={cl(cls.Blackhole, { [cls.flip]: flip }, [
-				className,
-				'noselect',
-			])}
+			className={cn(cls.Blackhole, { [cls.flip]: flip }, className, 'noselect')}
 		>
 			<div className={cls.Circles}>
 				<div />

@@ -1,9 +1,9 @@
 /* eslint-disable i18next/no-literal-string */
 'use client';
 
-import { classNames as cl } from '@/shared/lib/classNames';
 import { Button } from '@/shared/ui/Button';
 import { Heading } from '@/widgets/Heading';
+import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC, memo } from 'react';
@@ -33,7 +33,7 @@ export const TopPage: FC<TopPageProps> = memo(
 		// }, []);
 
 		return (
-			<section className={cl(cls.Content, {}, ['content'])}>
+			<section className={cn(cls.Content, 'content')}>
 				<div className={cls.BackgroundTop}>
 					<div className={cls.Background}>
 						<div />

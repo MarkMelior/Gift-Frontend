@@ -1,7 +1,7 @@
 'use client';
 
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
+import cn from 'clsx';
 import Image from 'next/image';
 import { FC, memo, useState } from 'react';
 import cls from './Notification.module.scss';
@@ -46,7 +46,7 @@ export const Notification: FC<NotificationProps> = memo(
 		};
 
 		return (
-			<article className={cl(cls.Notification, { [cls.Hide]: !visible }, [])}>
+			<article className={cn(cls.Notification, { [cls.Hide]: !visible })}>
 				<div className={cls.Content}>
 					{icon && (
 						<Image

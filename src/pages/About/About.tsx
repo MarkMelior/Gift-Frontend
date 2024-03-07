@@ -1,4 +1,4 @@
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
+import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC, ReactNode } from 'react';
@@ -13,7 +13,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 	const t = useTranslations();
 
 	return (
-		<div className={cl(cls.Content, {}, [className, 'content'])}>
+		<div className={cn(cls.Content, className, 'content')}>
 			<Image
 				src='/images/pages/glow-about.png'
 				width={1612}

@@ -1,5 +1,4 @@
 import { Link } from '@/shared/config/i18n/navigation';
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -12,8 +11,8 @@ export default function NotFoundPage() {
 	const t = useTranslations('NotFoundPage');
 
 	return (
-		<div className={cl(cls.Content, {}, [])}>
-			<div className={cl(cls.Information, {}, [])}>
+		<div className={cls.Content}>
+			<div className={cls.Information}>
 				<h1>{t('title')}</h1>
 				<p>{t('description')}</p>
 			</div>

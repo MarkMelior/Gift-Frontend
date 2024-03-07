@@ -1,6 +1,7 @@
 'use client';
 
-import { Mods, classNames as cn } from '@/shared/lib/classNames/classNames';
+import { clsxMods } from '@/shared/types';
+import cn from 'clsx';
 import {
 	ChangeEvent,
 	FC,
@@ -67,7 +68,7 @@ export const Input: FC<InputProps> = ({
 		setIsFocused(true);
 	};
 
-	const mods: Mods = {
+	const mods: clsxMods = {
 		[cls.readonly]: readonly,
 		[cls.focused]: isFocused,
 		[cls.withAddonLeft]: Boolean(addonLeft),
@@ -75,7 +76,7 @@ export const Input: FC<InputProps> = ({
 	};
 
 	return (
-		<div className={cn(cls.InputWrapper, mods, [className, cls[size]])}>
+		<div className={cn(cls.InputWrapper, mods, className, cls[size])}>
 			<div className={cls.addonLeft}>{addonLeft}</div>
 			<input
 				ref={ref}

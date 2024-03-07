@@ -1,7 +1,6 @@
 'use client';
 
 import { Theme, useTheme } from '@/app/providers/ThemeProvider';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import DarkIcon from 'public/images/icons/theme-dark.svg';
 import LightIcon from 'public/images/icons/theme-light.svg';
 import { memo } from 'react';
@@ -14,12 +13,7 @@ export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
 	const { theme, toggleTheme } = useTheme();
 
 	return (
-		<button
-			type='button'
-			// theme={ButtonTheme.CLEAR}
-			onClick={toggleTheme}
-			className={classNames('', {}, [className || ''])}
-		>
+		<button type='button' onClick={toggleTheme} className={className}>
 			{theme === Theme.DARK ? <DarkIcon /> : <LightIcon />}
 		</button>
 	);

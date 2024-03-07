@@ -1,7 +1,7 @@
 import { Links } from '@/shared/const/links';
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Logo } from '@/shared/ui/Logo';
 import { Wave } from '@/shared/ui/Wave';
+import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,9 +18,9 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 	return (
 		<>
 			<Wave />
-			<div className={cl(cls.Footer, {}, [className])}>
-				<nav className={cl(cls.Content, {}, ['content'])}>
-					<Link href='/' className={cl(cls.Logo, {}, [])}>
+			<div className={cn(cls.Footer, className)}>
+				<nav className={cn(cls.Content, 'content')}>
+					<Link href='/' className={cn(cls.Logo)}>
 						<Logo opacity={0.3} />
 					</Link>
 					<p>{t('Footer.copyright')}</p>

@@ -2,7 +2,6 @@ import { About } from '@/pages/About';
 import { Advantages } from '@/pages/Advantages';
 import { BestProduct } from '@/pages/BestProduct';
 import { TopPage } from '@/pages/TopPage';
-import { Card } from '@/widgets/Card';
 import { NavigationPanel } from '@/widgets/NavigationPanel';
 import { useTranslations } from 'next-intl';
 import { FC } from 'react';
@@ -35,7 +34,6 @@ const HomePage: FC<HomePageProps> = () => {
 			<Advantages />
 			<About />
 			<BestProduct />
-			<Card price={0} title={''} defaultMarket={'ozon'} images={[]} />
 		</>
 	);
 };

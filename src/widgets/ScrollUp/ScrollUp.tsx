@@ -1,7 +1,7 @@
 'use client';
 
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
+import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import { FC, useEffect, useState } from 'react';
 import cls from './ScrollUp.module.scss';
@@ -44,7 +44,7 @@ export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
 			radius='full'
 			variant='default'
 			onClick={scrollToTop}
-			className={cl(cls.ScrollUp, { [cls.Hide]: !isVisible }, [
+			className={cn(cls.ScrollUp, { [cls.Hide]: !isVisible }, [
 				className,
 				isVisible ? cls.visible : cls.hidden,
 			])}

@@ -2,9 +2,9 @@
 
 import { usePathname } from '@/shared/config/i18n/navigation';
 import { NavigationPanelData } from '@/shared/const/navigationPanel';
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Blackhole } from '@/shared/ui/Blackhole';
 import { Button } from '@/shared/ui/Button';
+import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
@@ -25,7 +25,7 @@ export const NavigationPanel: FC<NavigationPanelProps> = ({
 	};
 
 	return (
-		<section className={cl(cls.Content, {}, [className, 'content'])}>
+		<section className={cn(cls.Content, className, 'content')}>
 			<Blackhole />
 			<nav className={cls.NavigationPanel}>
 				{Object.keys(NavigationPanelData).map((key) => {

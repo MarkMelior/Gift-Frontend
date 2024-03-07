@@ -1,5 +1,5 @@
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
+import cn from 'clsx';
 import Image from 'next/image';
 import { FC, memo } from 'react';
 import cls from './Heading.module.scss';
@@ -25,7 +25,7 @@ export const Heading: FC<HeadingProps> = memo(
 		customSize,
 	}) => {
 		return (
-			<div className={cl(cls.Heading, { [cls.center]: center }, [className])}>
+			<div className={cn(cls.Heading, { [cls.center]: center }, className)}>
 				<Button
 					variant='hero'
 					padding='sm'

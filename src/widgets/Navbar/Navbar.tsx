@@ -3,12 +3,12 @@
 import { useTheme } from '@/app/providers/ThemeProvider';
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Logo } from '@/shared/ui/Logo';
 import { Loader } from '@/widgets/Loader';
+import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Moon from 'public/images/icons/moon.svg';
@@ -44,7 +44,7 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 
 	return (
 		<>
-			<header className={cl(cls.Navbar, {}, [className])}>
+			<header className={cn(cls.Navbar, className)}>
 				{/* {blackhole && (
 				<Suspense fallback={null}>
 					<video
@@ -58,9 +58,9 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 					</video>
 				</Suspense>
 			)} */}
-				<nav className={cl(cls.Content, {}, ['content'])}>
-					<nav className={cl(cls.Left, {}, [])}>
-						<Link href='/' className={cl(cls.Logo, {}, [])}>
+				<nav className={cn(cls.Content, 'content')}>
+					<nav className={cls.Left}>
+						<Link href='/' className={cls.Logo}>
 							<Logo />
 						</Link>
 						<div className={cls.LeftWrapper}>
@@ -81,7 +81,7 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 							<Loader />
 						</div>
 					</nav>
-					<nav className={cl(cls.Center, {}, [])}>
+					<nav className={cls.Center}>
 						<Link href='/' className={isActive('/')}>
 							{t('Navbar.home')}
 						</Link>
@@ -89,8 +89,8 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 							{t('Navbar.about')}
 						</Link>
 					</nav>
-					<nav className={cl(cls.Right, {}, [])}>
-						<nav className={cl(cls.controlButtons, {}, [])}>
+					<nav className={cls.Right}>
+						<nav className={cls.controlButtons}>
 							<LangSwitcher />
 							<Button slice onClick={toggleTheme}>
 								<Moon />

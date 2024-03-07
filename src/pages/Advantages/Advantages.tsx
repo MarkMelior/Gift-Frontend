@@ -1,6 +1,6 @@
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { Button } from '@/shared/ui/Button';
 import { CardRotate } from '@/shared/ui/CardRotate';
+import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
@@ -14,8 +14,8 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 	const t = useTranslations();
 
 	return (
-		<div className={cl(cls.Advantages, {}, [className])}>
-			<div className={cl(cls.Content, {}, ['content'])}>
+		<div className={cn(cls.Advantages, className)}>
+			<div className={cn(cls.Content, 'content')}>
 				<div className={cls.BackgroundWrapper}>
 					<div className={cls.Lines}>
 						<div className={cls.Line}>

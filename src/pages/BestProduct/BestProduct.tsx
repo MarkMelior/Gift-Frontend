@@ -1,5 +1,6 @@
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
+import { Card } from '@/widgets/Card';
 import { Heading } from '@/widgets/Heading';
+import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
@@ -13,7 +14,7 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 	const t = useTranslations();
 
 	return (
-		<div className={cl(cls.BestProduct, {}, [className, 'content'])}>
+		<div className={cn(cls.BestProduct, className, 'content')}>
 			<Image
 				src='/images/pages/glow-best.png'
 				width={1624}
@@ -31,6 +32,58 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 				center
 				customSize={3}
 			></Heading>
+			<div className={cls.Slider}>
+				<Card
+					hot
+					oldPrice={58600}
+					price={29245}
+					title={'Xiaomi Mi Power Bank 3 20000 mAh'}
+					defaultMarket={'ozon'}
+					images={['/images/temp/cat.png']}
+					rating={4.5}
+					reviewCount={10}
+				/>
+				<Card
+					hot
+					oldPrice={58600}
+					price={29245}
+					title={'Xiaomi Mi Power Bank 3 20000 mAh'}
+					defaultMarket={'ozon'}
+					images={['/images/temp/cat.png']}
+					rating={4.5}
+					reviewCount={10}
+				/>
+				<Card
+					hot
+					oldPrice={58600}
+					price={29245}
+					title={'Xiaomi Mi Power Bank 3 20000 mAh'}
+					defaultMarket={'ozon'}
+					images={['/images/temp/cat.png']}
+					rating={4.5}
+					reviewCount={10}
+				/>
+				<Card
+					hot
+					oldPrice={58600}
+					price={29245}
+					title={'Xiaomi Mi Power Bank 3 20000 mAh'}
+					defaultMarket={'ozon'}
+					images={['/images/temp/cat.png']}
+					rating={4.5}
+					reviewCount={10}
+				/>
+				<Card
+					hot
+					oldPrice={58600}
+					price={29245}
+					title={'Xiaomi Mi Power Bank 3 20000 mAh'}
+					defaultMarket={'ozon'}
+					images={['/images/temp/cat.png']}
+					rating={4.5}
+					reviewCount={10}
+				/>
+			</div>
 		</div>
 	);
 };

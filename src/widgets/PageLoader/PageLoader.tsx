@@ -1,4 +1,3 @@
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
@@ -10,9 +9,9 @@ export const PageLoader: FC<PageLoaderProps> = () => {
 	const t = useTranslations();
 
 	return (
-		<section className={cl(cls.PageLoader, {}, [])}>
-			<div className={cl(cls.Loader, {}, [])}>
-				<span className={cl(cls.Spinner, {}, [])} />
+		<section className={cls.PageLoader}>
+			<div className={cls.Loader}>
+				<span className={cls.Spinner} />
 				<Image
 					src='/images/icons/logo-melior-white.svg'
 					alt='Логотип'

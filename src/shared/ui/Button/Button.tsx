@@ -1,8 +1,8 @@
 'use client';
 
-import { classNames as cl, Mods } from '@/shared/lib/classNames/classNames';
-import { Size } from '@/shared/types/ui';
+import { clsxMods, Size } from '@/shared/types';
 import { Loader } from '@/widgets/Loader';
+import cn from 'clsx';
 import {
 	ButtonHTMLAttributes,
 	ForwardedRef,
@@ -107,10 +107,7 @@ export const Button = forwardRef(
 
 		const renderLayer = () => (
 			<div
-				className={cl(cls.layerInner, {}, [
-					`radius-${radius}`,
-					`padding-${padding}`,
-				])}
+				className={cn(cls.layerInner, `radius-${radius}`, `padding-${padding}`)}
 			>
 				{renderChildren()}
 			</div>
@@ -124,14 +121,11 @@ export const Button = forwardRef(
 						<div className={cls.Stars} />
 					</div>
 				</div>
-				<div className={cl(cls.BorderMask, {}, [`radius-${radius}`])}>
+				<div className={cn(cls.BorderMask, `radius-${radius}`)}>
 					<div className={cls.Border} />
 				</div>
 				<div
-					className={cl(cls.Button, {}, [
-						`radius-${radius}`,
-						`padding-${padding}`,
-					])}
+					className={cn(cls.Button, `radius-${radius}`, `padding-${padding}`)}
 				>
 					{renderChildren()}
 				</div>
@@ -163,7 +157,7 @@ export const Button = forwardRef(
 			}
 		};
 
-		const buttonMods: Mods = {
+		const buttonMods: clsxMods = {
 			[cls.disabled]: isDisabled,
 			['fullWidth']: fullWidth,
 			[cls.slice]: slice,
@@ -182,7 +176,7 @@ export const Button = forwardRef(
 		return (
 			<button
 				type='button'
-				className={cl(cls.Button, buttonMods, buttonClassName)}
+				className={cn(cls.Button, buttonMods, buttonClassName)}
 				disabled={isDisabled}
 				ref={ref}
 				{...otherProps}

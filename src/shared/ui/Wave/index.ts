@@ -1,3 +1,1 @@
-import { Wave } from './Wave';
-
-export { Wave };
+export { Wave } from './Wave';

@@ -10,15 +10,15 @@ interface CardRotateProps {
 
 export function CardRotate({ name, color, icon, text }: CardRotateProps) {
 	return (
-		<div className={`${cls.Container}`}>
-			<div className={`${cls.card}`}>
+		<div className={cls.Container}>
+			<div className={cls.card}>
 				<div
-					className={`${cls.front}`}
+					className={cls.front}
 					style={{
 						boxShadow: `0px -6px 0px -1px ${color}, 0px 0px 0px 1px rgba(255, 255, 255, 0.08)`,
 					}}
 				>
-					<div className={`${cls.inner}`}>
+					<div className={cls.inner}>
 						<div>
 							<h1>{name}</h1>
 							<Image
@@ -44,7 +44,7 @@ export function CardRotate({ name, color, icon, text }: CardRotateProps) {
 						boxShadow: `0px -6px 0px -1px ${color}, 0px 0px 0px 1px rgba(255, 255, 255, 0.08)`,
 					}}
 				>
-					<div className={`${cls.inner}`}>
+					<div className={cls.inner}>
 						<h1 style={{ color }}>{name}</h1>
 						<p>{text}</p>
 					</div>

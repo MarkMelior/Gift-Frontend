@@ -1,9 +1,9 @@
 'use client';
 
 import { Theme, useTheme } from '@/app/providers/ThemeProvider';
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
 import { PointMaterial, Points } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
+import cn from 'clsx';
 import { Suspense, useEffect, useRef, useState } from 'react';
 // @ts-ignore
 import * as random from 'maath/random/dist/maath-random.esm';
@@ -62,7 +62,7 @@ export const SpaceCanvas = () => {
 	}
 
 	return (
-		<div className={cl(cls.Content, {}, ['noselect'])}>
+		<div className={cn(cls.Content, 'noselect')}>
 			<Canvas camera={{ position: [0, 0, 1] }}>
 				<Suspense fallback={null}>
 					<StarBackground />

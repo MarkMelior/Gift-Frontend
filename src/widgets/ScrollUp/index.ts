@@ -1,3 +1,1 @@
-import { ScrollUp } from './ScrollUp';
-
-export { ScrollUp };
+export { ScrollUp } from './ScrollUp';

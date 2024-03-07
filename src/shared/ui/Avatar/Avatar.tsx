@@ -1,5 +1,6 @@
-import { Mods, classNames as cl } from '@/shared/lib/classNames/classNames';
+import { clsxMods } from '@/shared/types';
 import { Button } from '@/shared/ui/Button';
+import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
@@ -36,13 +37,13 @@ export const Avatar: FC<AvatarProps> = ({
 }) => {
 	const t = useTranslations();
 
-	const mods: Mods = {
+	const mods: clsxMods = {
 		[cls.disabled]: disabled,
 		[cls.border]: border,
 	};
 
 	return (
-		<Button clear className={cl(cls.Avatar, mods, [className, cls[size]])}>
+		<Button clear className={cn(cls.Avatar, mods, className, cls[size])}>
 			{src && (
 				<Image
 					className='noselect'

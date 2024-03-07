@@ -1,4 +1,4 @@
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
+import cn from 'clsx';
 import IconLogo from 'public/images/icons/logo-melior-white.svg';
 import { FC } from 'react';
 import cls from './Logo.module.scss';
@@ -20,7 +20,7 @@ export const Logo: FC<LogoProps> = ({ className = '', size = 48, opacity }) => {
 		// 	{...otherProps}
 		// />
 		<div
-			className={cl(cls.Logo, {}, [className])}
+			className={cn(cls.Logo, className)}
 			style={{ width: size, height: size, opacity }}
 		>
 			<IconLogo width={size} height={size} />

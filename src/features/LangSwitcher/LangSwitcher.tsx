@@ -9,7 +9,7 @@ interface LocaleSwitcherProps {
 	children?: ReactNode;
 }
 
-export default function LocaleSwitcher({ children }: LocaleSwitcherProps) {
+export const LangSwitcher = ({ children }: LocaleSwitcherProps) => {
 	const t = useTranslations();
 	const locale = useLocale();
 	const otherLocale = locale === 'en' ? 'ru' : 'en';
@@ -20,4 +20,4 @@ export default function LocaleSwitcher({ children }: LocaleSwitcherProps) {
 			<Button slice>{t('Короткий язык', { locale: otherLocale })}</Button>
 		</Link>
 	);
-}
+};

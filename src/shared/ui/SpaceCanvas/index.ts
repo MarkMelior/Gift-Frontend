@@ -1,3 +1,1 @@
-import { SpaceCanvas } from './SpaceCanvas';
-
-export { SpaceCanvas };
+export { SpaceCanvas } from './SpaceCanvas';

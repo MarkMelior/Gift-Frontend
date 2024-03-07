@@ -1,4 +1,4 @@
-import { classNames as cl } from '@/shared/lib/classNames/classNames';
+import cn from 'clsx';
 import { FC, ReactNode } from 'react';
 import cls from './SquareLines.module.scss';
 
@@ -24,7 +24,7 @@ export const SquareLines: FC<SquareLinesProps> = ({
 	}
 
 	return (
-		<div className={cl(cls.Square, {}, [className])}>
+		<div className={cn(cls.Square, className)}>
 			{children}
 			{squareItems}
 		</div>
