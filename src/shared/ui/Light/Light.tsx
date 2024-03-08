@@ -8,10 +8,10 @@ interface LightProps {
 
 export const Light: FC<LightProps> = ({ className = '' }) => {
 	return (
-		<div className={cn(cls.Light, className, 'noselect')}>
-			<span className={cls.Ellipse1} />
-			<span className={cls.Ellipse2} />
-			<span className={cls.Ellipse3} />
+		<div className={cn(cls.light, className, 'noselect')}>
+			<span className={cls.ellipse1} />
+			<span className={cls.ellipse2} />
+			<span className={cls.ellipse3} />
 		</div>
 	);
 };

@@ -10,7 +10,7 @@ interface CardRotateProps {
 
 export function CardRotate({ name, color, icon, text }: CardRotateProps) {
 	return (
-		<div className={cls.Container}>
+		<div className={cls.container}>
 			<div className={cls.card}>
 				<div
 					className={cls.front}

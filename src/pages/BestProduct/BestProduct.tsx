@@ -14,13 +14,13 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 	const t = useTranslations();
 
 	return (
-		<div className={cn(cls.BestProduct, className, 'content')}>
+		<div className={cn(className, 'content')}>
 			<Image
 				src='/images/pages/glow-best.png'
 				width={1624}
 				height={862}
 				alt='Background glow image'
-				className={`${cls.Image} noselect`}
+				className={`${cls.image} noselect`}
 			/>
 			<Heading
 				title={t('Лучшие подарки')}
@@ -32,7 +32,7 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 				center
 				customSize={3}
 			></Heading>
-			<div className={cls.Slider}>
+			<div className={cls.slider}>
 				<Card
 					hot
 					oldPrice={58600}

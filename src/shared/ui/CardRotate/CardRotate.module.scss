@@ -1,6 +1,6 @@
 @import "@/app/styles/variables/var";
 
-.Container {
+.container {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	gap: 50px;
@@ -10,51 +10,16 @@
 	}
 }
 
-.card {
-	transform-style: preserve-3d;
-	perspective: 1000px;
-	cursor: pointer;
-	transition: transform .2s ease;
-
-	&:hover {
-		transform: scale(1.1);
-	}
-
-	.back {
-		transform: rotateY(180deg);
-		transform-style: preserve-3d;
-	}
-
-	.front {
-		transform: rotateY(0deg);
-		transform-style: preserve-3d;
-	}
-
-	&:hover {
-		.back {
-			transform: rotateY(0deg);
-			transform-style: preserve-3d;
-			transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1)
-		}
-
-		.front {
-			transform: rotateY(-180deg);
-			transform-style: preserve-3d;
-			transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1)
-		}
-	}
-}
-
 .inner {
-	transform: translateY(-50%) translateZ(60px) scale(0.94);
-	top: 50%;
 	position: absolute;
+	top: 50%;
 	left: 0;
+	z-index: 2;
+	box-sizing: border-box;
 	width: 100%;
 	height: 100%;
-	box-sizing: border-box;
+	transform: translateY(-50%) translateZ(60px) scale(0.94);
 	perspective: inherit;
-	z-index: 2;
 
 	&>img {
 		width: 100px;
@@ -68,11 +33,44 @@
 	}
 }
 
+.front {
+	&::before {
+		position: absolute;
+		inset: 0 0 -30px;
+		width: 110px;
+		height: 110px;
+		margin: auto;
+		content: '';
+		background: rgb(231 212 255 / 30%);
+		filter: blur(30px);
+		border-radius: 100px;
+	}
+
+	.inner {
+		display: flex;
+		flex-direction: column;
+		gap: 25px;
+		align-items: center;
+		justify-content: center;
+		padding: 15px 20px;
+		overflow: hidden;
+
+		h1 {
+			width: 100%;
+			font-weight: 500;
+			line-height: 22px;
+			text-align: center;
+
+			@apply text-lg;
+		}
+	}
+}
+
 .front,
 .back {
 	height: 200px;
 	background: url('/images/noise.png') repeat, #020014;
-	border: 1px solid rgba(255, 255, 255, .1);
+	border: 1px solid rgb(255 255 255 / 10%);
 	border-radius: 10px;
 	transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
 	backface-visibility: hidden;
@@ -85,67 +83,66 @@
 	width: 100%;
 
 	.inner {
-		height: auto;
 		display: grid;
-		justify-content: center;
-		align-items: center;
 		gap: 15px;
+		align-items: center;
+		justify-content: center;
+		height: auto;
 		padding: 20px;
 
 		h1 {
+			width: 100%;
 			font-weight: 500;
 			line-height: 22px;
-			width: 100%;
 			text-align: center;
+
 			@apply text-lg;
 		}
 
 		p {
 			text-align: center;
+
 			@apply text-sm;
 		}
 	}
 }
 
-.front {
-	&::before {
-		content: '';
-		background: rgba(231, 212, 255, 0.3);
-		position: absolute;
-		filter: blur(30px);
-		width: 110px;
-		height: 110px;
-		border-radius: 100px;
+.card {
+	cursor: pointer;
+	transition: transform .2s ease;
+	perspective: 1000px;
+	transform-style: preserve-3d;
 
-		left: 0;
-		right: 0;
-		bottom: -30px;
-		top: 0;
-		margin: auto;
+	.back {
+		transform: rotateY(180deg);
+		transform-style: preserve-3d;
 	}
 
-	.inner {
-		display: flex;
-		flex-direction: column;
-		padding: 15px 20px;
-		justify-content: center;
-		align-items: center;
-		overflow: hidden;
-		gap: 25px;
+	.front {
+		transform: rotateY(0deg);
+		transform-style: preserve-3d;
+	}
 
-		h1 {
-			font-weight: 500;
-			line-height: 22px;
-			width: 100%;
-			text-align: center;
-			@apply text-lg;
+	&:hover {
+		transform: scale(1.1);
+
+		.back {
+			transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+			transform: rotateY(0deg);
+			transform-style: preserve-3d
+		}
+
+		.front {
+			transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+			transform: rotateY(-180deg);
+			transform-style: preserve-3d
 		}
 	}
 }
 
 .refresh {
 	position: absolute;
-	opacity: .15;
-	right: 0;
 	top: 0;
+	right: 0;
+	opacity: .15;
 }

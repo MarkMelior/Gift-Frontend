@@ -11,8 +11,8 @@ export const ModalLogin: FC<ModalLoginProps> = ({ className = '' }) => {
 	const t = useTranslations();
 
 	return (
-		<aside className={cn(cls.ModalLogin, className)}>
-			<div className={cls.Content}>Login</div>
+		<aside className={cn(cls.modalLogin, className)}>
+			<div className={cls.content}>Login</div>
 		</aside>
 	);
 };

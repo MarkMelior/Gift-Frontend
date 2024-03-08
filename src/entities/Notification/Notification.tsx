@@ -46,15 +46,15 @@ export const Notification: FC<NotificationProps> = memo(
 		};
 
 		return (
-			<article className={cn(cls.Notification, { [cls.Hide]: !visible })}>
-				<div className={cls.Content}>
+			<article className={cn(cls.notification, { [cls.hide]: !visible })}>
+				<div className={cls.content}>
 					{icon && (
 						<Image
 							width={20}
 							height={20}
 							src={icon}
 							alt='icon'
-							className={`${cls.Icon} noselect`}
+							className={`${cls.icon} noselect`}
 						/>
 					)}
 					<p>{message}</p>

@@ -13,16 +13,16 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 	const t = useTranslations();
 
 	return (
-		<div className={cn(cls.Content, className, 'content')}>
+		<div className={cn(cls.content, className, 'content')}>
 			<Image
 				src='/images/pages/glow-about.png'
 				width={1612}
 				height={1698}
 				alt='Background glow image'
-				className={`${cls.Image} noselect`}
+				className={`${cls.image} noselect`}
 				// className='noselect'
 			/>
-			<div className={cls.Heading}>
+			<div className={cls.heading}>
 				<Image
 					width={24}
 					height={24}
@@ -37,9 +37,9 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 					)}
 				</p>
 			</div>
-			<div className={cls.BackgroundWrapper}>
-				<div className={cls.SwipeWrapper}>
-					<div className={cls.Swipe}>
+			<div className={cls.backgroundWrapper}>
+				<div className={cls.swipeWrapper}>
+					<div className={cls.swipe}>
 						<Image
 							width={40}
 							height={40}
@@ -48,9 +48,9 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 							className='noselect'
 						/>
 						<p>Transcribe voice notes</p>
-						<p className={cls.SwipeDescription}>with human-level accuracy</p>
+						<p className={cls.swipeDescription}>with human-level accuracy</p>
 					</div>
-					<div className={cls.Swipe}>
+					<div className={cls.swipe}>
 						<Image
 							width={40}
 							height={40}
@@ -59,9 +59,9 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 							className='noselect'
 						/>
 						<p>Generate article outlines</p>
-						<p className={cls.SwipeDescription}>from your scattered thoughts</p>
+						<p className={cls.swipeDescription}>from your scattered thoughts</p>
 					</div>
-					<div className={cls.Swipe}>
+					<div className={cls.swipe}>
 						<Image
 							width={40}
 							height={40}
@@ -70,11 +70,11 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 							className='noselect'
 						/>
 						<p>List key takeaways and action</p>
-						<p className={cls.SwipeDescription}>
+						<p className={cls.swipeDescription}>
 							items from your meeting notes
 						</p>
 					</div>
-					<div className={cls.Swipe}>
+					<div className={cls.swipe}>
 						<Image
 							width={40}
 							height={40}
@@ -83,9 +83,9 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 							className='noselect'
 						/>
 						<p>Fix grammar, spelling,</p>
-						<p className={cls.SwipeDescription}>and improve your writing</p>
+						<p className={cls.swipeDescription}>and improve your writing</p>
 					</div>
-					<div className={cls.Swipe}>
+					<div className={cls.swipe}>
 						<Image
 							width={40}
 							height={40}
@@ -94,7 +94,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 							className='noselect'
 						/>
 						<p>Save your own</p>
-						<p className={cls.SwipeDescription}>custom prompts</p>
+						<p className={cls.swipeDescription}>custom prompts</p>
 					</div>
 				</div>
 				<Image
@@ -102,7 +102,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 					width={1320}
 					height={460}
 					alt='Background image'
-					className={`${cls.BackgroundImage} noselect`}
+					className={`${cls.backgroundImage} noselect`}
 					// className='noselect'
 				/>
 			</div>

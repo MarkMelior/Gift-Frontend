@@ -1,16 +1,13 @@
-.RippleEffect {
+.rippleEffect {
 	position: absolute;
-	border-radius: 50%;
-	opacity: var(--effect-opacity);
-
 	top: var(--effect-top);
 	left: var(--effect-left);
-	height: var(--effect-height);
 	width: var(--effect-width);
-	border-radius: 50%;
-	transform: scale(0);
+	height: var(--effect-height);
 	background: var(--effect-color);
-
+	border-radius: 50%;
+	opacity: var(--effect-opacity);
+	transform: scale(0);
 	animation: ripple var(--effect-duration) ease-out forwards;
 
 	--effect-duration: 1000ms;
@@ -28,7 +25,7 @@
 	}
 
 	to {
-		transform: scale(3);
 		opacity: 0;
+		transform: scale(3);
 	}
 }

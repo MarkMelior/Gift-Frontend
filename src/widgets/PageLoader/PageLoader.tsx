@@ -9,9 +9,9 @@ export const PageLoader: FC<PageLoaderProps> = () => {
 	const t = useTranslations();
 
 	return (
-		<section className={cls.PageLoader}>
-			<div className={cls.Loader}>
-				<span className={cls.Spinner} />
+		<section className={cls.pageLoader}>
+			<div className={cls.loader}>
+				<span className={cls.spinner} />
 				<Image
 					src='/images/icons/logo-melior-white.svg'
 					alt='Логотип'

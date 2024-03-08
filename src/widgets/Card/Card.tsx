@@ -38,14 +38,14 @@ export const Card: FC<CardProps> = ({
 	const formattedOldPrice = numberToCurrency(oldPrice);
 
 	return (
-		<div className={cn(cls.Card, className)}>
+		<div className={cn(cls.card, className)}>
 			<img src={images[0]} alt={title} />
-			<div className={cls.Title}>{title}</div>
-			<div className={cls.Wrapper}>
-				<div className={cls.Info}>
+			<div className={cls.title}>{title}</div>
+			<div className={cls.wrapper}>
+				<div className={cls.info}>
 					{rating && reviewCount && (
 						<>
-							<div className={cls.Rating}>
+							<div className={cls.rating}>
 								<Image
 									src='/images/icons/star.svg'
 									alt='star'
@@ -55,7 +55,7 @@ export const Card: FC<CardProps> = ({
 								/>
 								{rating}
 							</div>
-							<div className={cls.Review}>
+							<div className={cls.review}>
 								<Image
 									src='/images/icons/comment.svg'
 									alt='star'
@@ -68,7 +68,7 @@ export const Card: FC<CardProps> = ({
 						</>
 					)}
 					{hot && (
-						<div className={cls.Hot}>
+						<div className={cls.hot}>
 							{' '}
 							<Image
 								src='/images/icons/hot.svg'
@@ -80,7 +80,7 @@ export const Card: FC<CardProps> = ({
 						</div>
 					)}
 				</div>
-				<div className={cls.Price}>
+				<div className={cls.price}>
 					{oldPrice && (
 						<span className={cls.oldPrice}>{formattedOldPrice}</span>
 					)}

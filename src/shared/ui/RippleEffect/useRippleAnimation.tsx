@@ -31,7 +31,7 @@ export const useRippleAnimation = (
 
 			const rippleRoot = element.current.querySelector('.RippleRoot');
 			if (!rippleRoot) return;
-			rippleRoot.classList.add(cls.RippleRoot);
+			rippleRoot.classList.add(cls.rippleRoot);
 
 			const rect = button.getBoundingClientRect();
 			const offsetX = e.clientX - rect.left;
@@ -39,7 +39,7 @@ export const useRippleAnimation = (
 			const sizeOffset = 50;
 
 			const span = document.createElement('span');
-			span.classList.add(cls.RippleEffect);
+			span.classList.add(cls.rippleEffect);
 			span.style.setProperty('--effect-duration', `${duration}ms`);
 			span.style.setProperty('--effect-left', `${offsetX - sizeOffset}px`);
 			span.style.setProperty('--effect-top', `${offsetY - sizeOffset}px`);

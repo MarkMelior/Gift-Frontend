@@ -82,8 +82,8 @@ export const Button = forwardRef(
 
 		const renderStarlight = () => (
 			<>
-				<div className={cls.Starlight} />
-				<div className={cls.Starlight} />
+				<div className={cls.starlight} />
+				<div className={cls.starlight} />
 			</>
 		);
 
@@ -102,28 +102,28 @@ export const Button = forwardRef(
 
 		const renderGlowing = () => (
 			<>
-				<div className={cls.Animation}>
-					<div className={cls.Glow} />
-					<div className={cls.StarsMask}>
-						<div className={cls.Stars} />
+				<div className={cls.animation}>
+					<div className={cls.glow} />
+					<div className={cls.starsMask}>
+						<div className={cls.stars} />
 					</div>
 				</div>
-				<div className={cn(cls.BorderMask)}>
-					<div className={cls.Border} />
+				<div className={cn(cls.borderMask)}>
+					<div className={cls.border} />
 				</div>
-				<div className={cn(cls.Button, cls.Inherit)}>{renderChildren()}</div>
+				<div className={cn(cls.button, cls.inherit)}>{renderChildren()}</div>
 			</>
 		);
 
 		const renderLinesItem = () => (
 			<>
-				<div className={cls.SquareItem}>
+				<div className={cls.squareItem}>
 					<div />
 				</div>
-				<div className={cls.SquareItem}>
+				<div className={cls.squareItem}>
 					<div />
 				</div>
-				<div className={cls.SquareItem}>
+				<div className={cls.squareItem}>
 					<div />
 				</div>
 			</>
@@ -153,7 +153,7 @@ export const Button = forwardRef(
 			<button
 				type='button'
 				className={cn(
-					cls.Button,
+					cls.button,
 					buttonMods,
 					variant && cls[variant],
 					className,

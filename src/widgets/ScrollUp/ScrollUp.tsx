@@ -44,7 +44,7 @@ export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
 			variant='default'
 			onClick={scrollToTop}
 			className={cn(
-				cls.ScrollUp,
+				cls.scrollUp,
 				{ [cls.Hide]: !isVisible },
 				className,
 				isVisible ? cls.visible : cls.hidden,

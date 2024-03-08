@@ -3,7 +3,6 @@
 
 import { Button } from '@/shared/ui/Button';
 import { Heading } from '@/widgets/Heading';
-import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC, memo } from 'react';
@@ -33,18 +32,18 @@ export const TopPage: FC<TopPageProps> = memo(
 		// }, []);
 
 		return (
-			<section className={cn(cls.Content, 'content')}>
-				<div className={cls.BackgroundTop}>
-					<div className={cls.Background}>
+			<section className='content'>
+				<div className={cls.backgroundTop}>
+					<div className={cls.background}>
 						<div />
 					</div>
 				</div>
-				<div className={cls.Main}>
-					<div className={cls.Information}>
+				<div className={cls.main}>
+					<div className={cls.information}>
 						<Heading title={title} description={description} note={note} />
 						{!compact && (
 							<>
-								<div className={`${cls.Dots} noselect`} />
+								<div className={`${cls.dots} noselect`} />
 								<Button
 									starlight
 									// padding='lg'
@@ -65,7 +64,7 @@ export const TopPage: FC<TopPageProps> = memo(
 							</>
 						)}
 					</div>
-					<div className={cls.Image}>
+					<div className={cls.image}>
 						<Image
 							src='/images/pages/gift.png'
 							alt='gift'

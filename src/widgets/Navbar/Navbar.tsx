@@ -39,12 +39,12 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 	const { theme, toggleTheme } = useTheme();
 
 	const isActive = (href: string) => {
-		return pathname === href ? cls.Selected : '';
+		return pathname === href ? cls.selected : '';
 	};
 
 	return (
 		<>
-			<header className={cn(cls.Navbar, className)}>
+			<header className={cn(cls.navbar, className)}>
 				{/* {blackhole && (
 				<Suspense fallback={null}>
 					<video
@@ -58,12 +58,12 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 					</video>
 				</Suspense>
 			)} */}
-				<nav className={cn(cls.Content, 'content')}>
-					<nav className={cls.Left}>
-						<Link href='/' className={cls.Logo}>
+				<nav className={cn(cls.content, 'content')}>
+					<nav className={cls.left}>
+						<Link href='/' className={cls.logo}>
 							<Logo />
 						</Link>
-						<div className={cls.LeftWrapper}>
+						<div className={cls.leftWrapper}>
 							<Input
 								type='email'
 								label='Email'
@@ -81,7 +81,7 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 							<Loader />
 						</div>
 					</nav>
-					<nav className={cls.Center}>
+					<nav className={cls.center}>
 						<Link href='/' className={isActive('/')}>
 							{t('Navbar.home')}
 						</Link>
@@ -89,7 +89,7 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 							{t('Navbar.about')}
 						</Link>
 					</nav>
-					<nav className={cls.Right}>
+					<nav className={cls.right}>
 						<nav className={cls.controlButtons}>
 							<LangSwitcher />
 							<Button slice onClick={toggleTheme}>
@@ -109,7 +109,7 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 				<LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
 			)} */}
 			</header>
-			<div className={cls.Spacer} />
+			<div className={cls.spacer} />
 		</>
 	);
 });

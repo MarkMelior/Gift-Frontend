@@ -62,7 +62,7 @@ export const SpaceCanvas = () => {
 	}
 
 	return (
-		<div className={cn(cls.Content, 'noselect')}>
+		<div className={cn(cls.content, 'noselect')}>
 			<Canvas camera={{ position: [0, 0, 1] }}>
 				<Suspense fallback={null}>
 					<StarBackground />

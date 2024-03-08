@@ -3,32 +3,27 @@
 :root {
 	--color-background: #03020D;
 	--color-background-dots: #2e3135;
-
 	--color-main: #03020D;
 	--color-main-rgb: 3, 2, 13;
-
-	--color-main-inverted: #FFFFFF;
+	--color-main-inverted: #FFF;
 	--color-main-inverted-rgb: 255, 255, 255;
-
 	--color-default: #3a3641;
 	--color-primary: #B336FF;
 	--color-secondary: #006FEE;
 	--color-success: #17c964;
 	--color-warning: #f5a524;
 	--color-danger: #f31260;
-
-	--color-border: rgba(255, 255, 255, .1);
-	--color-border-select: rgba(255, 255, 255, .15);
-	--color-border-active: rgba(255, 255, 255, .2);
-
+	--color-border: rgb(255 255 255 / 10%);
+	--color-border-select: rgb(255 255 255 / 15%);
+	--color-border-active: rgb(255 255 255 / 20%);
 	--color-text: 255, 255, 255;
 
 	// Light ellipse
-	--light-color-ellipse-1: rgba(90, 186, 255, 0.3);
+	--light-color-ellipse-1: rgb(90 186 255 / 30%);
 	--light-blur-ellipse-1: blur(400px);
-	--light-color-ellipse-2: rgba(255, 90, 209, 0.3);
+	--light-color-ellipse-2: rgb(255 90 209 / 30%);
 	--light-blur-ellipse-2: blur(600px);
-	--light-color-ellipse-3: rgba(255, 90, 209, 0.3);
+	--light-color-ellipse-3: rgb(255 90 209 / 30%);
 	--light-blur-ellipse-3: blur(400px);
 
 	// @media (max-width: $display-desktop) {

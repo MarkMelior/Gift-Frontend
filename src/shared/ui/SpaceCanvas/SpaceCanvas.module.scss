@@ -1,8 +1,8 @@
-.Content {
+.content {
+	position: fixed;
+	inset: 0;
+	z-index: var(--z-index-space);
 	width: 100%;
 	height: auto;
-	position: fixed;
-	z-index: var(--z-index-space);
-	inset: 0;
 	background: var(--color-background);
 }

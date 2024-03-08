@@ -1,44 +1,46 @@
-.Content {
+.content {
 	margin-top: -100px;
 }
 
-.NavigationPanel {
-	background: var(--bg-noise), rgba(var(--color-main-rgb), .1);
-	@apply rounded-xl;
-	width: 100%;
-	padding: 15px 20px;
-	border: 1px solid var(--color-border);
+.navigationPanel {
 	display: flex;
 	gap: 15px;
+	width: 100%;
+	padding: 15px 20px;
+	background: var(--bg-noise), rgb(var(--color-main-rgb) .1);
 	backdrop-filter: var(--blur-md);
+	border: 1px solid var(--color-border);
+
+	@apply rounded-xl;
 
 	a {
 		width: 100%;
 	}
 }
 
-.Item {
+.item {
 	display: flex;
 	gap: 5px;
 }
 
-.Button {
+.button {
 	flex-direction: column;
 
 	&>p {
 		opacity: .5;
+
 		@apply text-sm;
 	}
 
 	img {
-		transition: all 0.2s ease;
 		opacity: 1;
+		transition: all 0.2s ease;
 	}
 }
 
-.Selected {
-	.Button {
+.selected {
+	.button {
+		background: rgb(var(--color-main-inverted-rgb) .05);
 		border: 1px solid var(--color-border);
-		background: rgba(var(--color-main-inverted-rgb), .05);
 	}
 }

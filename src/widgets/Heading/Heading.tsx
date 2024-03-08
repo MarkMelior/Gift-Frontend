@@ -25,7 +25,7 @@ export const Heading: FC<HeadingProps> = memo(
 		customSize,
 	}) => {
 		return (
-			<div className={cn(cls.Heading, { [cls.center]: center }, className)}>
+			<div className={cn(cls.heading, { [cls.center]: center }, className)}>
 				<Button
 					variant='hero'
 					className='text-sm py-0.5 px-2.5 rounded-full'
@@ -41,11 +41,11 @@ export const Heading: FC<HeadingProps> = memo(
 				>
 					{note}
 				</Button>
-				<div className={cls.Title}>
+				<div className={cls.title}>
 					<h1 style={{ fontSize: `${customSize}rem` }}>{title}</h1>
 					{doubleTitle && <p className='noselect'>{title}</p>}
 				</div>
-				<p className={cls.Description}>{description}</p>
+				<p className={cls.description}>{description}</p>
 			</div>
 		);
 	},

@@ -76,7 +76,7 @@ export const Input: FC<InputProps> = ({
 	};
 
 	return (
-		<div className={cn(cls.InputWrapper, mods, className, cls[size])}>
+		<div className={cn(cls.inputWrapper, mods, className, cls[size])}>
 			<div className={cls.addonLeft}>{addonLeft}</div>
 			<input
 				ref={ref}

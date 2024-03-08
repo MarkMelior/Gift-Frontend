@@ -1,43 +1,40 @@
-.Light {
+.light {
 	overflow: hidden;
 }
 
-.Ellipse1,
-.Ellipse2,
-.Ellipse3 {
+.ellipse1,
+.ellipse2,
+.ellipse3 {
 	z-index: var(--z-index-light);
 	transition: all 1s ease;
 }
 
-.Ellipse1 {
+.ellipse1 {
 	position: absolute;
+	top: 3.61vh;
+	left: -22.66vw;
 	width: 45.36vw;
 	height: 80.65vh;
-	left: -22.66vw;
-	top: 3.61vh;
-
-	filter: var(--light-blur-ellipse-1);
 	background: var(--light-color-ellipse-1);
+	filter: var(--light-blur-ellipse-1);
 }
 
-.Ellipse2 {
+.ellipse2 {
 	position: absolute;
+	top: 46.30vh;
+	right: 0;
 	width: 38.13vw;
 	height: 67.78vh;
-	right: 0;
-	top: 46.30vh;
-
-	filter: var(--light-blur-ellipse-2);
 	background: var(--light-color-ellipse-2);
+	filter: var(--light-blur-ellipse-2);
 }
 
-.Ellipse3 {
+.ellipse3 {
 	position: absolute;
+	top: -17.69vh;
+	left: 15.47vw;
 	width: 25.10vw;
 	height: 44.63vh;
-	left: 15.47vw;
-	top: -17.69vh;
-
-	filter: var(--light-blur-ellipse-3);
 	background: var(--light-color-ellipse-3);
+	filter: var(--light-blur-ellipse-3);
 }

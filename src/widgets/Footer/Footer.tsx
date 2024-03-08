@@ -18,13 +18,13 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 	return (
 		<>
 			<Wave />
-			<div className={cn(cls.Footer, className)}>
-				<nav className={cn(cls.Content, 'content')}>
-					<Link href='/' className={cn(cls.Logo)}>
+			<div className={cn(cls.footer, className)}>
+				<nav className={cn(cls.content, 'content')}>
+					<Link href='/' className={cn(cls.logo)}>
 						<Logo opacity={0.3} />
 					</Link>
 					<p>{t('Footer.copyright')}</p>
-					<div className={cls.LinksContent}>
+					<div className={cls.linksContent}>
 						<Link target='blank' href={Links.telegram.link}>
 							<Image
 								src={Links.telegram.image}
@@ -34,7 +34,7 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 								className='noselect'
 							/>
 						</Link>
-						<span className={cls.Spaces} />
+						<span className={cls.spaces} />
 						<Link target='blank' href={Links.gmail.link}>
 							<Image
 								src={Links.gmail.image}

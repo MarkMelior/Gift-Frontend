@@ -6,7 +6,7 @@ interface LoaderProps {}
 export const Loader: FC<LoaderProps> = () => {
 	return (
 		// <Portal element={document.body}>
-		<span className={cls.Loader} />
+		<span className={cls.loader} />
 		// </Portal>
 	);
 };

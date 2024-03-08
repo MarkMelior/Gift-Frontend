@@ -1,4 +1,6 @@
-.Loader {
+.loader {
+	box-sizing: border-box;
+	display: inline-block;
 	min-width: 18px;
 	max-width: 18px;
 	min-height: 18px;
@@ -6,8 +8,6 @@
 	border: 2px solid var(--color-main-inverted);
 	border-bottom-color: transparent;
 	border-radius: 50%;
-	display: inline-block;
-	box-sizing: border-box;
 	animation: rotation 1s linear infinite;
 }
 

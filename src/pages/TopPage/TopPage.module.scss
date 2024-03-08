@@ -1,31 +1,25 @@
-.Content {}
-
-.BackgroundTop {
+.backgroundTop {
+	position: relative;
+	z-index: var(--z-index-hero-images);
 	height: 220px;
 	margin-bottom: -220px;
-
 	background-image: url('/images/pages/background-top.png');
-	background-size: contain;
 	background-repeat: no-repeat;
-	position: relative;
-
-	z-index: var(--z-index-hero-images);
+	background-size: contain;
 }
 
-.Background {
-	mask-image: url('/images/pages/background-top-mask.png');
-
-	transition: 1s cubic-bezier(.6, .6, 0, 1) opacity;
-
+.background {
+	position: absolute;
 	width: 100%;
+	mask-image: url('/images/pages/background-top-mask.png');
 	mask-repeat: no-repeat;
 	mask-size: 100%;
-	position: absolute;
+	transition: 1s cubic-bezier(.6, .6, 0, 1) opacity;
 
 	&>div {
-		animation: topAnimation 6s infinite cubic-bezier(.62, .62, .28, .67);
-		background: linear-gradient(180deg, rgba(183, 164, 251, 0) 0, #b5a4ff 100%, #8562ff 100%, rgba(133, 98, 255, 0) 0%);
 		height: 200px;
+		background: linear-gradient(180deg, rgb(183 164 251 / 0%) 0, #b5a4ff 100%, #8562ff 100%, rgb(133 98 255 / 0%) 0%);
+		animation: topAnimation 6s infinite cubic-bezier(.62, .62, .28, .67);
 	}
 }
 
@@ -40,31 +34,31 @@
 	}
 }
 
-.Main {
+.main {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	width: 100%;
 	align-items: center;
+	width: 100%;
 	padding-top: 100px;
 }
 
-.Information {
+.information {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 80px;
-	position: relative;
 }
 
-.Image {
+.image {
 	display: flex;
 	justify-content: center;
 }
 
-.Dots {
-	background-image: url('/images/pages/design-top-page.png');
+.dots {
 	position: absolute;
 	bottom: -120px;
-	opacity: .1;
 	width: 100%;
 	height: 100%;
+	background-image: url('/images/pages/design-top-page.png');
+	opacity: .1;
 }

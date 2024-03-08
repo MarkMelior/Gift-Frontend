@@ -21,13 +21,13 @@ export const NavigationPanel: FC<NavigationPanelProps> = ({
 	const pathname = usePathname();
 
 	const isActive = (href: string) => {
-		return pathname === href ? cls.Selected : '';
+		return pathname === href ? cls.selected : '';
 	};
 
 	return (
-		<section className={cn(cls.Content, className, 'content')}>
+		<section className={cn(cls.content, className, 'content')}>
 			<Blackhole />
-			<nav className={cls.NavigationPanel}>
+			<nav className={cls.navigationPanel}>
 				{Object.keys(NavigationPanelData).map((key) => {
 					const { to, image, alt, title, description } =
 						NavigationPanelData[key];
@@ -37,9 +37,9 @@ export const NavigationPanel: FC<NavigationPanelProps> = ({
 							key={key}
 							isDisabled
 							variant='flat'
-							className={cn(cls.Button, '!w-full')}
+							className={cn(cls.button, '!w-full')}
 						>
-							<div className={cls.Item}>
+							<div className={cls.item}>
 								<Image
 									src={image}
 									width={24}

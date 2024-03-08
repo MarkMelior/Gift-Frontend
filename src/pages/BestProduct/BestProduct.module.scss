@@ -1,18 +1,16 @@
-.BestProduct {}
-
-.Image {
+.image {
+	position: relative;
+	left: 50%;
 	width: 1006px;
 	height: auto;
-	mix-blend-mode: lighten;
-	left: 50%;
-	transform: translateX(-50%);
-	position: relative;
-	margin-bottom: -250px;
 	margin-top: -100px;
+	margin-bottom: -250px;
+	mix-blend-mode: lighten;
+	transform: translateX(-50%);
 }
 
-.Slider {
-	padding-top: 80px;
+.slider {
 	display: flex;
 	gap: 30px;
+	padding-top: 80px;
 }

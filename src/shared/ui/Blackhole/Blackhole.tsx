@@ -10,9 +10,9 @@ interface BlackholeProps {
 export const Blackhole: FC<BlackholeProps> = ({ className = '', flip }) => {
 	return (
 		<div
-			className={cn(cls.Blackhole, { [cls.flip]: flip }, className, 'noselect')}
+			className={cn(cls.blackhole, { [cls.flip]: flip }, className, 'noselect')}
 		>
-			<div className={cls.Circles}>
+			<div className={cls.circles}>
 				<div />
 				<div />
 				<div />
@@ -22,7 +22,7 @@ export const Blackhole: FC<BlackholeProps> = ({ className = '', flip }) => {
 				loop
 				muted
 				playsInline
-				className={`${cls.Video} noselect`}
+				className={`${cls.video} noselect`}
 			>
 				<source src='/videos/blackhole.webm' />
 			</video>

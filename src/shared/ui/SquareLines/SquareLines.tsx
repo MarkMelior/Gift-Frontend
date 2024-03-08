@@ -17,14 +17,14 @@ export const SquareLines: FC<SquareLinesProps> = ({
 
 	for (let i = 0; i < lineCount && i < 4; i += 1) {
 		squareItems.push(
-			<div key={i} className={cls.SquareItem}>
+			<div key={i} className={cls.squareItem}>
 				<div />
 			</div>,
 		);
 	}
 
 	return (
-		<div className={cn(cls.Square, className)}>
+		<div className={cn(cls.square, className)}>
 			{children}
 			{squareItems}
 		</div>

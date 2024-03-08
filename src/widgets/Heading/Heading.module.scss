@@ -1,19 +1,24 @@
-.Heading {
+.heading {
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
 }
 
-.center {
-	align-items: center;
-	gap: 10px;
+.description {
+	max-width: 528px;
+	color: rgba(var(--color-text), .5);
+}
 
-	.Description {
+.center {
+	gap: 10px;
+	align-items: center;
+
+	.description {
 		text-align: center;
 	}
 }
 
-.Title {
+.title {
 	position: relative;
 
 	h1 {
@@ -23,19 +28,14 @@
 	}
 
 	p {
-		white-space: nowrap;
 		position: absolute;
 		bottom: -5px;
 		left: 15px;
+		z-index: var(--z-index-title-heading);
 		font-size: 96px;
 		font-weight: 900;
 		color: var(--color-background);
-		text-shadow: 0px 0px 0px rgba(var(--color-text), .3);
-		z-index: var(--z-index-title-heading);
+		text-shadow: 0 0 0 rgba(var(--color-text), .3);
+		white-space: nowrap;
 	}
-}
-
-.Description {
-	max-width: 528px;
-	color: rgba(var(--color-text), .5);
 }

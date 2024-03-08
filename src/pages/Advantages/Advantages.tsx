@@ -14,17 +14,17 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 	const t = useTranslations();
 
 	return (
-		<div className={cn(cls.Advantages, className)}>
-			<div className={cn(cls.Content, 'content')}>
-				<div className={cls.BackgroundWrapper}>
-					<div className={cls.Lines}>
-						<div className={cls.Line}>
-							<div className={cls.LineMask}>
+		<div className={cn(cls.advantages, className)}>
+			<div className={cn(cls.content, 'content')}>
+				<div className={cls.backgroundWrapper}>
+					<div className={cls.lines}>
+						<div className={cls.line}>
+							<div className={cls.lineMask}>
 								<div />
 							</div>
 						</div>
-						<div className={cls.Line}>
-							<div className={cls.LineMask}>
+						<div className={cls.line}>
+							<div className={cls.lineMask}>
 								<div />
 							</div>
 						</div>
@@ -34,12 +34,12 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 						width={2640}
 						height={1010}
 						alt='Фоновое изображение'
-						className={`${cls.BackgroundImage} noselect`}
+						className={`${cls.backgroundImage} noselect`}
 					/>
 					<Button
 						variant='gradient'
 						lines
-						className={cn(cls.Icon, 'rounded-xl')}
+						className={cn(cls.icon, 'rounded-xl')}
 					>
 						<Image
 							src='/images/icons/gift.svg'
@@ -49,11 +49,11 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 							className='noselect'
 						/>
 					</Button>
-					<div className={cls.Heading}>
+					<div className={cls.heading}>
 						<h2>Easy Gift</h2>
 						<p>{t('Каждый подарок может быть искусством')}</p>
 					</div>
-					<div className={cls.CardRotateWrapper}>
+					<div className={cls.cardRotateWrapper}>
 						<CardRotate
 							name='Расширяемый'
 							color='#80eead'

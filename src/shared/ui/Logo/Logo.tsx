@@ -20,7 +20,7 @@ export const Logo: FC<LogoProps> = ({ className = '', size = 48, opacity }) => {
 		// 	{...otherProps}
 		// />
 		<div
-			className={cn(cls.Logo, className)}
+			className={cn(cls.logo, className)}
 			style={{ width: size, height: size, opacity }}
 		>
 			<IconLogo width={size} height={size} />
