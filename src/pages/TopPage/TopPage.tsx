@@ -46,7 +46,6 @@ export const TopPage: FC<TopPageProps> = memo(
 								<div className={`${cls.dots} noselect`} />
 								<Button
 									starlight
-									// padding='lg'
 									className='py-5 px-12 rounded-xl'
 									variant='layer'
 									startContent={

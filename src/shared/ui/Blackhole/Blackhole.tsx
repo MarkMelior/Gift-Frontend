@@ -1,5 +1,7 @@
+'use client';
+
 import cn from 'clsx';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import cls from './Blackhole.module.scss';
 
 interface BlackholeProps {
@@ -8,6 +10,16 @@ interface BlackholeProps {
 }
 
 export const Blackhole: FC<BlackholeProps> = ({ className = '', flip }) => {
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!mounted) {
+		return null;
+	}
+
 	return (
 		<div
 			className={cn(cls.blackhole, { [cls.flip]: flip }, className, 'noselect')}

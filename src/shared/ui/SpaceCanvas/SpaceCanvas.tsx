@@ -1,12 +1,13 @@
 'use client';
 
-import { Theme, useTheme } from '@/app/providers/ThemeProvider';
+import { Theme } from '@/shared/types';
 import { PointMaterial, Points } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import cn from 'clsx';
 import { Suspense, useEffect, useRef, useState } from 'react';
 // @ts-ignore
 import * as random from 'maath/random/dist/maath-random.esm';
+import { useTheme } from 'next-themes';
 import cls from './SpaceCanvas.module.scss';
 
 const StarBackground = (props: any) => {

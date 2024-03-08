@@ -1,8 +1,13 @@
 'use client';
 
+import { Theme } from '@/shared/types';
+import { ThemeProvider } from 'next-themes';
 import { ReactNode } from 'react';
 
 export function ClientProviders({ children }: { children: ReactNode }) {
-	// eslint-disable-next-line react/jsx-no-useless-fragment
-	return <>{children}</>;
+	return (
+		<ThemeProvider attribute='class' defaultTheme={Theme.DARK}>
+			{children}
+		</ThemeProvider>
+	);
 }

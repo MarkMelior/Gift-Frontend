@@ -1,17 +1,15 @@
 'use client';
 
-import { useTheme } from '@/app/providers/ThemeProvider';
 import { LangSwitcher } from '@/features/LangSwitcher';
+import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { Avatar } from '@/shared/ui/Avatar';
-import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Logo } from '@/shared/ui/Logo';
 import { Loader } from '@/widgets/Loader';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Moon from 'public/images/icons/moon.svg';
 import { memo } from 'react';
 import cls from './Navbar.module.scss';
 
@@ -36,7 +34,6 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 
 	const t = useTranslations();
 	const pathname = usePathname();
-	const { theme, toggleTheme } = useTheme();
 
 	const isActive = (href: string) => {
 		return pathname === href ? cls.selected : '';
@@ -92,10 +89,7 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 					<nav className={cls.right}>
 						<nav className={cls.controlButtons}>
 							<LangSwitcher />
-							<Button slice onClick={toggleTheme}>
-								<Moon />
-							</Button>
-							{/* <ThemeSwitcher /> */}
+							<ThemeSwitcher />
 						</nav>
 						<Avatar
 							border
