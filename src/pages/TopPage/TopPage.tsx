@@ -17,7 +17,7 @@ interface TopPageProps {
 
 export const TopPage: FC<TopPageProps> = memo(
 	({ title, description, note, compact }) => {
-		const t = useTranslations();
+		const t = useTranslations('TopPage');
 		// const splineRef = useRef(null);
 
 		// Shadow DOM
@@ -58,7 +58,7 @@ export const TopPage: FC<TopPageProps> = memo(
 										/>
 									}
 								>
-									{t('Найти подарок')}
+									{t('button')}
 								</Button>
 							</>
 						)}
@@ -66,7 +66,7 @@ export const TopPage: FC<TopPageProps> = memo(
 					<div className={cls.image}>
 						<Image
 							src='/images/pages/gift.png'
-							alt='gift'
+							alt={t('image')}
 							width={371}
 							height={419}
 							className='noselect'

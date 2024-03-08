@@ -11,7 +11,7 @@ interface BestProductProps {
 }
 
 export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
-	const t = useTranslations();
+	const t = useTranslations('BestProduct');
 
 	return (
 		<div className={cn(className, 'content')}>
@@ -19,15 +19,13 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 				src='/images/pages/glow-best.png'
 				width={1624}
 				height={862}
-				alt='Background glow image'
+				alt={t('background-glow-image-alt')}
 				className={`${cls.image} noselect`}
 			/>
 			<Heading
-				title={t('Лучшие подарки')}
-				description={t(
-					'Это забота и внимание, которые приносят радость и оставляют незабываемые впечатления',
-				)}
-				note={t('Топ из топов')}
+				title={t('title')}
+				description={t('description')}
+				note={t('note')}
 				doubleTitle={false}
 				center
 				customSize={3}

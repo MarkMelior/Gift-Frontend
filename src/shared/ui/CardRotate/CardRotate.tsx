@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import cls from './CardRotate.module.scss';
 
@@ -9,6 +10,8 @@ interface CardRotateProps {
 }
 
 export function CardRotate({ name, color, icon, text }: CardRotateProps) {
+	const t = useTranslations('CardRotate');
+
 	return (
 		<div className={cls.container}>
 			<div className={cls.card}>
@@ -23,7 +26,7 @@ export function CardRotate({ name, color, icon, text }: CardRotateProps) {
 							<h1>{name}</h1>
 							<Image
 								src='/images/icons/refresh.svg'
-								alt='Иконка перезагрузки'
+								alt={t('icon-reload')}
 								className={`${cls.refresh} noselect`}
 								width={20}
 								height={20}
@@ -31,7 +34,7 @@ export function CardRotate({ name, color, icon, text }: CardRotateProps) {
 						</div>
 						<Image
 							src={icon}
-							alt='Картинка карточки'
+							alt={t('image')}
 							className='noselect'
 							width={256}
 							height={256}

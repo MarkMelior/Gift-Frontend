@@ -13,7 +13,7 @@ interface FooterProps {
 }
 
 export const Footer: FC<FooterProps> = ({ className = '' }) => {
-	const t = useTranslations();
+	const t = useTranslations('Footer');
 
 	return (
 		<>
@@ -23,12 +23,12 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 					<Link href='/' className={cn(cls.logo)}>
 						<Logo opacity={0.3} />
 					</Link>
-					<p>{t('Footer.copyright')}</p>
+					<p>{t('copyright')}</p>
 					<div className={cls.linksContent}>
 						<Link target='blank' href={Links.telegram.link}>
 							<Image
 								src={Links.telegram.image}
-								alt='Иконка Telegram'
+								alt={t('icon-telegram')}
 								width={24}
 								height={24}
 								className='noselect'
@@ -38,7 +38,7 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 						<Link target='blank' href={Links.gmail.link}>
 							<Image
 								src={Links.gmail.image}
-								alt='Иконка почты Gmail'
+								alt={t('icon-gmail')}
 								width={24}
 								height={24}
 								className='noselect'

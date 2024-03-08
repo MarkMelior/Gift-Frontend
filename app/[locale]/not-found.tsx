@@ -19,18 +19,18 @@ export default function NotFoundPage() {
 			<Link href='/'>
 				<Button
 					starlight
-					padding='lg'
+					className='py-5 px-12 rounded-xl'
 					variant='layer'
 					startContent={
 						<Image
 							src='/images/icons/logo-melior-white.svg'
 							width={24}
 							height={24}
-							alt='Логотип сайта'
+							alt={t('button-image')}
 						/>
 					}
 				>
-					{t('Вернуться на главную')}
+					{t('back')}
 				</Button>
 			</Link>
 			{/* <Wave style={{ position: 'absolute', bottom: 0 }} /> */}

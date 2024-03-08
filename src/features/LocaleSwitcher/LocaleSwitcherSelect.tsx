@@ -24,7 +24,6 @@ export default function LocaleSwitcherSelect({
 	}
 
 	return (
-		// eslint-disable-next-line jsx-a11y/label-has-associated-control
 		<label>
 			<select
 				className='inline-flex appearance-none bg-transparent py-3 pl-2 pr-6'

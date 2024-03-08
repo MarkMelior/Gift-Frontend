@@ -5,7 +5,6 @@ import { NavigationPanelData } from '@/shared/const/navigationPanel';
 import { Blackhole } from '@/shared/ui/Blackhole';
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
 import cls from './NavigationPanel.module.scss';
@@ -17,7 +16,6 @@ interface NavigationPanelProps {
 export const NavigationPanel: FC<NavigationPanelProps> = ({
 	className = '',
 }) => {
-	const t = useTranslations();
 	const pathname = usePathname();
 
 	const isActive = (href: string) => {

@@ -6,7 +6,7 @@ import cls from './PageLoader.module.scss';
 interface PageLoaderProps {}
 
 export const PageLoader: FC<PageLoaderProps> = () => {
-	const t = useTranslations();
+	const t = useTranslations('PageLoader');
 
 	return (
 		<section className={cls.pageLoader}>
@@ -14,11 +14,11 @@ export const PageLoader: FC<PageLoaderProps> = () => {
 				<span className={cls.spinner} />
 				<Image
 					src='/images/icons/logo-melior-white.svg'
-					alt='Логотип'
+					alt={t('logo-alt')}
 					width={100}
 					height={100}
 				/>
-				<p>{t('Загрузка')}</p>
+				<p>{t('title')}</p>
 			</div>
 		</section>
 	);

@@ -3,14 +3,14 @@ import { useLocale, useTranslations } from 'next-intl';
 import LocaleSwitcherSelect from './LocaleSwitcherSelect';
 
 export const LocaleSwitcher = () => {
-	const t = useTranslations();
+	const t = useTranslations('LangSwitcher');
 	const locale = useLocale();
 
 	return (
 		<LocaleSwitcherSelect defaultValue={locale}>
 			{locales.map((cur) => (
 				<option key={cur} value={cur}>
-					{t('Язык', { locale: cur })}
+					{t('language', { locale: cur })}
 				</option>
 			))}
 		</LocaleSwitcherSelect>

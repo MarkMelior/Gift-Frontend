@@ -10,14 +10,14 @@ interface LocaleSwitcherProps {
 }
 
 export const LangSwitcher = ({ children }: LocaleSwitcherProps) => {
-	const t = useTranslations();
+	const t = useTranslations('LangSwitcher');
 	const locale = useLocale();
 	const otherLocale = locale === 'en' ? 'ru' : 'en';
 	const pathname = usePathname();
 
 	return (
 		<Link href={pathname} locale={otherLocale}>
-			<Button slice>{t('Короткий язык', { locale: otherLocale })}</Button>
+			<Button slice>{t('short-language', { locale: otherLocale })}</Button>
 		</Link>
 	);
 };

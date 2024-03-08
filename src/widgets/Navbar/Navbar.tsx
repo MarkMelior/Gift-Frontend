@@ -32,7 +32,7 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 	// 	);
 	// }
 
-	const t = useTranslations();
+	const t = useTranslations('Navbar');
 	const pathname = usePathname();
 
 	const isActive = (href: string) => {
@@ -64,11 +64,11 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 							<Input
 								type='email'
 								label='Email'
-								placeholder={t('Поиск')}
+								placeholder={t('search')}
 								addonLeft={
 									<Image
 										src='/images/icons/search.svg'
-										alt='Иконка поиска'
+										alt={t('search-icon')}
 										width={18}
 										height={18}
 										className='noselect'
@@ -80,10 +80,10 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 					</nav>
 					<nav className={cls.center}>
 						<Link href='/' className={isActive('/')}>
-							{t('Navbar.home')}
+							{t('home')}
 						</Link>
 						<Link href='/about' className={isActive('/about/')}>
-							{t('Navbar.about')}
+							{t('about')}
 						</Link>
 					</nav>
 					<nav className={cls.right}>
@@ -91,11 +91,7 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 							<LangSwitcher />
 							<ThemeSwitcher />
 						</nav>
-						<Avatar
-							border
-							src='/images/temp/ava.jpg'
-							alt='Иконка пользователя'
-						/>
+						<Avatar border src='/images/temp/ava.jpg' alt={t('user-logo')} />
 					</nav>
 				</nav>
 

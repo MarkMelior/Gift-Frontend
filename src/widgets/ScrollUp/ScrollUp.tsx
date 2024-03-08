@@ -11,14 +11,13 @@ interface ScrollUpProps {
 }
 
 export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
-	const t = useTranslations();
+	const t = useTranslations('ScrollUp');
 	const [isVisible, setIsVisible] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
 			const currentScrollY = window.scrollY;
 			if (currentScrollY > 200) {
-				// Вы можете изменить этот порог по вашему усмотрению
 				setIsVisible(true);
 			} else {
 				setIsVisible(false);
@@ -51,7 +50,7 @@ export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
 				'rounded-full',
 			)}
 		>
-			{t('Наверх')}
+			{t('top')}
 		</Button>
 	);
 };

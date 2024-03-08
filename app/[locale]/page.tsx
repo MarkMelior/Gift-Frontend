@@ -9,14 +9,14 @@ import { FC } from 'react';
 interface HomePageProps {}
 
 const HomePage: FC<HomePageProps> = () => {
-	const t = useTranslations();
+	const t = useTranslations('MainPage');
 
 	return (
 		<>
 			<TopPage
-				title='Easy Gift'
-				description={t('Каждый подарок может быть искусством')}
-				note={t('Лучший выбор в мире')}
+				title={t('title')}
+				description={t('description')}
+				note={t('note')}
 				// compact
 			/>
 			<NavigationPanel />

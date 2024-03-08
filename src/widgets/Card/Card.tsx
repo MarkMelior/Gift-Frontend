@@ -32,7 +32,7 @@ export const Card: FC<CardProps> = ({
 	oldPrice,
 	hot,
 }) => {
-	const t = useTranslations();
+	const t = useTranslations('Card');
 
 	const formattedPrice = numberToCurrency(price);
 	const formattedOldPrice = numberToCurrency(oldPrice);
@@ -48,7 +48,7 @@ export const Card: FC<CardProps> = ({
 							<div className={cls.rating}>
 								<Image
 									src='/images/icons/star.svg'
-									alt='star'
+									alt={t('icon-star')}
 									width={16}
 									height={16}
 									className='noselect'
@@ -58,7 +58,7 @@ export const Card: FC<CardProps> = ({
 							<div className={cls.review}>
 								<Image
 									src='/images/icons/comment.svg'
-									alt='star'
+									alt={t('icon-comment')}
 									width={16}
 									height={16}
 									className='noselect'
@@ -72,7 +72,7 @@ export const Card: FC<CardProps> = ({
 							{' '}
 							<Image
 								src='/images/icons/hot.svg'
-								alt='star'
+								alt={t('icon-hot')}
 								width={16}
 								height={16}
 								className='noselect'

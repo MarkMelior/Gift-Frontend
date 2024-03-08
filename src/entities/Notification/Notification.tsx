@@ -2,6 +2,7 @@
 
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC, memo, useState } from 'react';
 import cls from './Notification.module.scss';
@@ -24,6 +25,7 @@ export const Notification: FC<NotificationProps> = memo(
 		onCancel,
 		icon,
 	}) => {
+		const t = useTranslations('Notification');
 		const [visible, setVisible] = useState(true);
 
 		// useEffect(() => {
@@ -53,7 +55,7 @@ export const Notification: FC<NotificationProps> = memo(
 							width={20}
 							height={20}
 							src={icon}
-							alt='icon'
+							alt={t('icon')}
 							className={`${cls.icon} noselect`}
 						/>
 					)}
@@ -67,7 +69,7 @@ export const Notification: FC<NotificationProps> = memo(
 					>
 						<Image
 							src='/images/icons/cross.svg'
-							alt='Иконка крестика'
+							alt={t('icon-cross')}
 							width={12}
 							height={12}
 						/>
@@ -75,7 +77,7 @@ export const Notification: FC<NotificationProps> = memo(
 				)}
 				{onCancel && (
 					<Button className='animation-click' onClick={handleCancel}>
-						Cancel
+						{t('close')}
 					</Button>
 				)}
 			</article>

@@ -11,7 +11,7 @@ interface AdvantagesProps {
 }
 
 export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
-	const t = useTranslations();
+	const t = useTranslations('Advantages');
 
 	return (
 		<div className={cn(cls.advantages, className)}>
@@ -33,7 +33,7 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 						src='/images/pages/design-advantages.png'
 						width={2640}
 						height={1010}
-						alt='Фоновое изображение'
+						alt={t('background-image-alt')}
 						className={`${cls.backgroundImage} noselect`}
 					/>
 					<Button
@@ -50,27 +50,27 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 						/>
 					</Button>
 					<div className={cls.heading}>
-						<h2>Easy Gift</h2>
-						<p>{t('Каждый подарок может быть искусством')}</p>
+						<h2>{t('title')}</h2>
+						<p>{t('description')}</p>
 					</div>
 					<div className={cls.cardRotateWrapper}>
 						<CardRotate
-							name='Расширяемый'
+							name={t('card-1-title')}
 							color='#80eead'
 							icon='/images/pages/scale_more.png'
-							text='Проект построен на модульной структуре, обеспечивающей легкость добавления новых функций и компонентов'
+							text={t('card-1-description')}
 						/>
 						<CardRotate
-							name='Стильный'
+							name={t('card-2-title')}
 							color='#ff6464'
 							icon='/images/pages/design_palette.png'
-							text='Привлекательный дизайн, следующий современным визуальным трендам и лучшим практикам веб-дизайна'
+							text={t('card-2-description')}
 						/>
 						<CardRotate
-							name='Современный'
+							name={t('card-3-title')}
 							color='#8875ff'
 							icon='/images/pages/code.png'
-							text='Интеграция новейших технологий разработки, обеспечивающих высокую производительность'
+							text={t('card-3-description')}
 						/>
 					</div>
 				</div>
