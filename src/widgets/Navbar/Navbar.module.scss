@@ -44,6 +44,17 @@
 	justify-content: right;
 }
 
+.logo {
+	&>div {
+		transition: transform .3s ease;
+
+		&:active {
+			transform: scale(0.95);
+		}
+	}
+
+}
+
 .selected {
 	color: var(--color-main-inverted);
 }
@@ -82,36 +93,52 @@
 	display: inherit;
 	gap: 15px;
 	align-items: inherit;
-}
 
-.blackhole {
-	position: absolute;
-	top: -395px;
-	z-index: -100;
-
-	// top: -415px;
-	width: 100%;
-	height: 1000px;
-
-	// mix-blend-mode: lighten;
-	object-fit: cover;
-	transition: all .5s ease;
-	rotate: 180deg;
-	animation: fadeInBlackhole 1s ease-out forwards;
-
-	@media (width <=--display-notebook) {
-		display: none;
+	input {
+		background: none;
 	}
 }
 
-@keyframes fadeInBlackhole {
-	from {
-		opacity: 0;
-		transform: scale(.1);
+.dropdown {
+	width: 240px;
+	background: var(--bg-noise), var(--color-background);
+	border: 1px solid var(--color-border);
+}
+
+
+.input {
+	max-width: 155px;
+	transition: all .3s ease;
+
+	input {
+		color: rgb(255, 255, 255, 50%);
 	}
 
-	to {
-		opacity: 1;
-		transform: scale(1);
+	img {
+		opacity: .5;
+		transition: opacity .3s ease;
+	}
+
+	[data-focus="true"] {
+		// max-width: 185px !important;
+		background: rgb(var(--color-main-inverted-rgb), .1) !important;
+
+		img {
+			opacity: 1;
+		}
+	}
+
+	[data-slot="input-wrapper"] {
+		background: rgb(var(--color-main-inverted-rgb), .05);
+
+		&:hover {
+			background: rgb(var(--color-main-inverted-rgb), .1);
+		}
+	}
+}
+
+.spinner {
+	i {
+		border-bottom-color: var(--color-main-inverted);
 	}
 }

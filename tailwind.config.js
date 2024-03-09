@@ -1,7 +1,8 @@
-const { nextui } = require('@nextui-org/react');
+import { nextui } from '@nextui-org/react';
+import { nextuiThemes } from './src/shared/config/nextuiThemes/index.js';
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const config = {
 	content: [
 		'./app/**/*.{js,ts,jsx,tsx}',
 		'./src/**/*.{js,ts,jsx,tsx}',
@@ -14,27 +15,10 @@ module.exports = {
 	darkMode: 'class',
 	plugins: [
 		nextui({
-			themes: {
-				light: {
-					colors: {},
-				},
-				dark: {
-					colors: {
-						default: {
-							foreground: '#FFFFFF',
-							DEFAULT: '#3a3641',
-						},
-						primary: {
-							foreground: '#FFFFFF',
-							DEFAULT: '#B336FF',
-						},
-						secondary: {
-							foreground: '#FFFFFF',
-							DEFAULT: '#006FEE',
-						},
-					},
-				},
-			},
+			prefix: 'gift',
+			themes: nextuiThemes,
 		}),
 	],
 };
+
+export default config;

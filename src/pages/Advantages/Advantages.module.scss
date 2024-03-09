@@ -11,16 +11,16 @@
 	position: relative;
 	padding: 200px 158px 0;
 
-	&::before {
-		position: absolute;
-		top: 0;
-		right: 382px;
-		z-index: calc(var(--z-index-blackhole) - 1);
-		width: 1px;
-		height: 148px;
-		content: "";
-		background-image: linear-gradient(to top, transparent, var(--color-main));
-	}
+	// &::before {
+	// 	position: absolute;
+	// 	top: 0;
+	// 	right: 546px;
+	// 	z-index: calc(var(--z-index-blackhole) - 1);
+	// 	width: 1px;
+	// 	height: 148px;
+	// 	content: "";
+	// 	background-image: linear-gradient(to top, transparent, var(--color-main));
+	// }
 }
 
 .icon {
@@ -126,7 +126,7 @@
 		left: -100px;
 		width: 500px;
 		height: 500px;
-		background: conic-gradient(rgb(109, 46, 255, 0%), rgb(158, 122, 255, 30%) 6%, rgb(144, 124, 255, 70%) 10%, var(--color-primary) 14.9%, rgb(109, 46, 255, 0%) 15%);
+		background: conic-gradient(rgb(109, 46, 255, 0%), rgb(158, 122, 255, 30%) 6%, rgb(144, 124, 255, 70%) 10%, #B336FF 14.9%, rgb(109, 46, 255, 0%) 15%);
 		animation: buildLineRotate 15s linear infinite;
 	}
 }

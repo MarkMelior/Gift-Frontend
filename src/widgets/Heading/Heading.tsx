@@ -38,6 +38,7 @@ export const Heading: FC<HeadingProps> = memo(
 							alt={t('icon-star')}
 							width={16}
 							height={16}
+							style={{ width: '16px', height: '16px' }}
 							className='noselect'
 						/>
 					}

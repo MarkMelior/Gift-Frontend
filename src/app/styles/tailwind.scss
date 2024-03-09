@@ -1,3 +1,21 @@
-// @tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+
+	/* your custom styles here */
+	*,
+	::before,
+	::after {
+		border-color: transparent;
+	}
+}
+
+@layer utilities {
+	/* your utility classes here */
+}
+
+@layer components {
+	/* your components classes here */
+}

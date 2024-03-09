@@ -6,14 +6,19 @@ import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Input } from '@/shared/ui/Input';
 import { Logo } from '@/shared/ui/Logo';
-import { Loader } from '@/widgets/Loader';
-import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
+import {
+	Dropdown,
+	DropdownItem,
+	DropdownMenu,
+	DropdownSection,
+	DropdownTrigger,
+	Spinner,
+} from '@nextui-org/react';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { memo } from 'react';
 import cls from './Navbar.module.scss';
-
 interface NavbarProps {
 	className?: string;
 	blackhole?: boolean;
@@ -43,30 +48,22 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 	return (
 		<>
 			<header className={cn(cls.navbar, className)}>
-				{/* {blackhole && (
-				<Suspense fallback={null}>
-					<video
-						autoPlay
-						loop
-						muted
-						playsInline
-						className={`${cls.blackhole} noselect`}
-					>
-						<source src='/videos/blackhole.webm' />
-					</video>
-				</Suspense>
-			)} */}
 				<nav className={cn(cls.content, 'content')}>
-					<nav className={cls.left}>
-						<Link href='/' className={cls.logo}>
-							<Logo />
-						</Link>
-						<div className={cls.leftWrapper}>
+					<ul className={cls.left}>
+						<li>
+							<Link href='/' className={cls.logo}>
+								<Logo />
+							</Link>
+						</li>
+
+						<li className={cls.leftWrapper}>
 							<Input
-								type='email'
-								label='Email'
+								isClearable
+								size='sm'
+								radius='sm'
 								placeholder={t('search')}
-								addonLeft={
+								className={cls.input}
+								startContent={
 									<Image
 										src='/images/icons/search.svg'
 										alt={t('search-icon')}
@@ -76,28 +73,37 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 									/>
 								}
 							/>
-							<Loader />
-						</div>
-					</nav>
-					<nav className={cls.center}>
-						<Link href='/' className={isActive('/')}>
-							{t('home')}
-						</Link>
-						<Link href='/about' className={isActive('/about/')}>
-							{t('about')}
-						</Link>
-					</nav>
-					<nav className={cls.right}>
-						<nav className={cls.controlButtons}>
+							<Spinner size='sm' className={cls.spinner} />
+						</li>
+					</ul>
+					<ul className={cls.center}>
+						<li>
+							<Link href='/' className={isActive('/')}>
+								{t('home')}
+							</Link>
+						</li>
+						<li>
+							<Link href='/about' className={isActive('/about/')}>
+								{t('about')}
+							</Link>
+						</li>
+					</ul>
+					<ul className={cls.right}>
+						<li className={cls.controlButtons}>
 							<LangSwitcher />
 							<ThemeSwitcher />
-						</nav>
+						</li>
 
-						<Popover placement='bottom-end' showArrow offset={10}>
+						{/* <Popover
+							shouldBlockScroll
+							backdrop='opaque'
+							placement='bottom-end'
+							offset={30}
+						>
 							<PopoverTrigger>
 								<Avatar
 									isBordered
-									color='primary'
+									color='success'
 									src='/images/temp/ava.jpg'
 									alt={t('user-logo')}
 								/>
@@ -108,15 +114,53 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 									<div className='text-tiny'>This is the popover content</div>
 								</div>
 							</PopoverContent>
-						</Popover>
-
-						{/* <Avatar border src='/images/temp/ava.jpg' alt={t('user-logo')} /> */}
-					</nav>
+						</Popover> */}
+						<Dropdown
+							backdrop='opaque'
+							placement='bottom-end'
+							offset={30}
+							className={cls.dropdown}
+						>
+							<DropdownTrigger>
+								<Avatar
+									isBordered
+									color='success'
+									src='/images/temp/ava.jpg'
+									alt={t('user-logo')}
+								/>
+							</DropdownTrigger>
+							<DropdownMenu
+								variant='faded'
+								aria-label='Dropdown menu with description'
+							>
+								<DropdownSection title='Actions' showDivider>
+									<DropdownItem key='new' description='Create a new file'>
+										New file
+									</DropdownItem>
+									<DropdownItem key='copy' description='Copy the file link'>
+										Copy link
+									</DropdownItem>
+									<DropdownItem
+										key='edit'
+										description='Allows you to edit the file'
+									>
+										Edit file
+									</DropdownItem>
+								</DropdownSection>
+								<DropdownSection title='Danger zone'>
+									<DropdownItem
+										key='delete'
+										className='text-danger'
+										color='danger'
+										description='Permanently delete the file'
+									>
+										Delete file
+									</DropdownItem>
+								</DropdownSection>
+							</DropdownMenu>
+						</Dropdown>
+					</ul>
 				</nav>
-
-				{/* {isAuthModal && (
-				<LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
-			)} */}
 			</header>
 			<div className={cls.spacer} />
 		</>

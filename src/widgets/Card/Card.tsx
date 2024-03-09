@@ -1,7 +1,7 @@
 import { numberToCurrency } from '@/shared/lib/numberToCurrency';
+import { Image } from '@nextui-org/react';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 import { FC } from 'react';
 import cls from './Card.module.scss';
 

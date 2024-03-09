@@ -1,96 +1,132 @@
 'use client';
 
-import { clsxMods } from '@/shared/types';
-import cn from 'clsx';
-import {
-	ChangeEvent,
-	FC,
-	InputHTMLAttributes,
-	ReactNode,
-	useEffect,
-	useRef,
-	useState,
-} from 'react';
-import cls from './Input.module.scss';
+import { InputProps as NextInputProps, useInput } from '@nextui-org/react';
+import { CloseFilledIcon } from '@nextui-org/shared-icons';
+import { forwardRef } from '@nextui-org/system';
+import { useMemo } from 'react';
 
-type HTMLInputProps = Omit<
-	InputHTMLAttributes<HTMLInputElement>,
-	'value' | 'onChange' | 'readOnly' | 'size'
->;
+export interface InputProps extends Omit<NextInputProps, 'isMultiline'> {}
 
-type InputSize = 's' | 'm' | 'l';
+export const Input = forwardRef<'input', InputProps>((props, ref) => {
+	const {
+		Component,
+		label,
+		description,
+		isClearable,
+		startContent,
+		endContent,
+		labelPlacement,
+		hasHelper,
+		isOutsideLeft,
+		shouldLabelBeOutside,
+		errorMessage,
+		getBaseProps,
+		getLabelProps,
+		getInputProps,
+		getInnerWrapperProps,
+		getInputWrapperProps,
+		getMainWrapperProps,
+		getHelperWrapperProps,
+		getDescriptionProps,
+		getErrorMessageProps,
+		getClearButtonProps,
+	} = useInput({ ...props, ref });
 
-interface InputProps extends HTMLInputProps {
-	className?: string;
-	value?: string | number;
-	label?: string;
-	onChange?: (value: string) => void;
-	autofocus?: boolean;
-	readonly?: boolean;
-	addonLeft?: ReactNode;
-	addonRight?: ReactNode;
-	size?: InputSize;
-}
+	const labelContent = label ? (
+		<label {...getLabelProps()}>{label}</label>
+	) : null;
 
-export const Input: FC<InputProps> = ({
-	className = '',
-	value,
-	onChange,
-	type = 'text',
-	placeholder,
-	autofocus,
-	readonly,
-	addonLeft,
-	addonRight,
-	label,
-	size = 'm',
-	...otherProps
-}) => {
-	const ref = useRef<HTMLInputElement>(null);
-	const [isFocused, setIsFocused] = useState(false);
-
-	useEffect(() => {
-		if (autofocus) {
-			setIsFocused(true);
-			ref.current?.focus();
+	const end = useMemo(() => {
+		if (isClearable) {
+			return (
+				<span {...getClearButtonProps()}>
+					{endContent || <CloseFilledIcon />}
+				</span>
+			);
 		}
-	}, [autofocus]);
 
-	const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-		onChange?.(e.target.value);
-	};
+		return endContent;
+	}, [isClearable, getClearButtonProps]);
 
-	const onBlur = () => {
-		setIsFocused(false);
-	};
+	const helperWrapper = useMemo(() => {
+		if (!hasHelper) return null;
 
-	const onFocus = () => {
-		setIsFocused(true);
-	};
+		return (
+			<div {...getHelperWrapperProps()}>
+				{errorMessage ? (
+					<div {...getErrorMessageProps()}>{errorMessage}</div>
+				) : description ? (
+					<div {...getDescriptionProps()}>{description}</div>
+				) : null}
+			</div>
+		);
+	}, [
+		hasHelper,
+		errorMessage,
+		description,
+		getHelperWrapperProps,
+		getErrorMessageProps,
+		getDescriptionProps,
+	]);
 
-	const mods: clsxMods = {
-		[cls.readonly]: readonly,
-		[cls.focused]: isFocused,
-		[cls.withAddonLeft]: Boolean(addonLeft),
-		[cls.withAddonRight]: Boolean(addonRight),
-	};
+	const innerWrapper = useMemo(() => {
+		if (startContent || end) {
+			return (
+				<div {...getInnerWrapperProps()}>
+					{startContent}
+					<input {...getInputProps()} />
+					{end}
+				</div>
+			);
+		}
+
+		return (
+			<div {...getInnerWrapperProps()}>
+				<input {...getInputProps()} />
+			</div>
+		);
+	}, [startContent, end, getInputProps, getInnerWrapperProps]);
+
+	const mainWrapper = useMemo(() => {
+		if (shouldLabelBeOutside) {
+			return (
+				<div {...getMainWrapperProps()}>
+					<div {...getInputWrapperProps()}>
+						{!isOutsideLeft ? labelContent : null}
+						{innerWrapper}
+					</div>
+					{helperWrapper}
+				</div>
+			);
+		}
+
+		return (
+			<>
+				<div {...getInputWrapperProps()}>
+					{labelContent}
+					{innerWrapper}
+				</div>
+				{helperWrapper}
+			</>
+		);
+	}, [
+		labelPlacement,
+		helperWrapper,
+		shouldLabelBeOutside,
+		labelContent,
+		innerWrapper,
+		errorMessage,
+		description,
+		getMainWrapperProps,
+		getInputWrapperProps,
+		getErrorMessageProps,
+		getDescriptionProps,
+	]);
 
 	return (
-		<div className={cn(cls.inputWrapper, mods, className, cls[size])}>
-			<div className={cls.addonLeft}>{addonLeft}</div>
-			<input
-				ref={ref}
-				type={type}
-				value={value}
-				onChange={onChangeHandler}
-				className={cls.input}
-				onFocus={onFocus}
-				onBlur={onBlur}
-				readOnly={readonly}
-				placeholder={placeholder}
-				{...otherProps}
-			/>
-			<div className={cls.addonRight}>{addonRight}</div>
-		</div>
+		<Component {...getBaseProps()}>
+			{isOutsideLeft ? labelContent : null}
+			{mainWrapper}
+		</Component>
 	);
-};
+});
