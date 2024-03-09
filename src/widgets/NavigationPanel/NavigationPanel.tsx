@@ -33,7 +33,7 @@ export const NavigationPanel: FC<NavigationPanelProps> = ({
 						// <Link key={key} href={to} className={isActive(to)}>
 						<Button
 							key={key}
-							isDisabled
+							disabled
 							variant='flat'
 							className={cn(cls.button, '!w-full')}
 						>

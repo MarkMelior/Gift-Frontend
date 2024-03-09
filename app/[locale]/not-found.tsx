@@ -11,8 +11,8 @@ export default function NotFoundPage() {
 	const t = useTranslations('NotFoundPage');
 
 	return (
-		<div className={cls.Content}>
-			<div className={cls.Information}>
+		<div className={cls.content}>
+			<div className={cls.information}>
 				<h1>{t('title')}</h1>
 				<p>{t('description')}</p>
 			</div>
@@ -20,7 +20,7 @@ export default function NotFoundPage() {
 				<Button
 					starlight
 					className='py-5 px-12 rounded-xl'
-					variant='layer'
+					customVariant='layer'
 					startContent={
 						<Image
 							src='/images/icons/logo-melior-white.svg'

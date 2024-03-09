@@ -1,6 +1,6 @@
 import CenteredDecorator from '@/shared/config/storybook/CenteredDecorator';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from './Button';
+import { Button } from './deprecated/Button';
 
 const meta: Meta<typeof Button> = {
 	title: 'Example/Button',

@@ -37,7 +37,7 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 						className={`${cls.backgroundImage} noselect`}
 					/>
 					<Button
-						variant='gradient'
+						customVariant='gradient'
 						lines
 						className={cn(cls.icon, 'rounded-xl')}
 					>

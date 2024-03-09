@@ -1,59 +1,73 @@
-import { clsxMods } from '@/shared/types';
-import { Button } from '@/shared/ui/Button';
-import cn from 'clsx';
-import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import { FC } from 'react';
-import cls from './Avatar.module.scss';
+'use client';
 
-type AvatarRadius =
-	| 'radius-full'
-	| 'radius-large'
-	| 'radius-medium'
-	| 'radius-small'
-	| 'radius-none';
+import { forwardRef, useMemo } from 'react';
 
-type AvatarSize = 'tiny' | 'small' | 'medium' | 'large';
+import {
+	AvatarIcon,
+	AvatarProps as BaseAvatarProps,
+	useAvatar,
+} from '@nextui-org/react';
 
-interface AvatarProps {
-	src?: string;
-	alt?: string;
-	className?: string;
-	disabled?: boolean;
-	size?: AvatarSize;
-	border?: boolean;
-	radius?: AvatarRadius;
-}
+export interface AvatarProps extends BaseAvatarProps {}
 
-export const Avatar: FC<AvatarProps> = ({
-	src,
-	alt = 'Фото профиля пользователя',
-	className = '',
-	disabled,
-	size = 40,
-	border,
-	radius = 'radius-full',
-	...otherProps
-}) => {
-	const t = useTranslations();
+export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
+	const {
+		src,
+		icon = <AvatarIcon />,
+		alt,
+		classNames,
+		slots,
+		name,
+		showFallback,
+		fallback: fallbackComponent,
+		getInitials,
+		getAvatarProps,
+		getImageProps,
+	} = useAvatar({
+		ref,
+		...props,
+	});
 
-	const mods: clsxMods = {
-		[cls.disabled]: disabled,
-		[cls.border]: border,
-	};
+	const fallback = useMemo(() => {
+		if (!showFallback && src) return null;
+
+		const ariaLabel = alt || name || 'avatar';
+
+		if (fallbackComponent) {
+			return (
+				<div
+					aria-label={ariaLabel}
+					className={slots.fallback({ class: classNames?.fallback })}
+					role='img'
+				>
+					{fallbackComponent}
+				</div>
+			);
+		}
+
+		return name ? (
+			<span
+				aria-label={ariaLabel}
+				className={slots.name({ class: classNames?.name })}
+				role='img'
+			>
+				{getInitials(name)}
+			</span>
+		) : (
+			<span
+				aria-label={ariaLabel}
+				className={slots.icon({ class: classNames?.icon })}
+				role='img'
+			>
+				{icon}
+			</span>
+		);
+	}, [showFallback, src, fallbackComponent, name, classNames]);
 
 	return (
-		<Button clear className={cn(cls.avatar, mods, className, cls[size])}>
-			{src && (
-				<Image
-					className='noselect'
-					src={src}
-					alt={alt}
-					width={128}
-					height={128}
-					{...otherProps}
-				/>
-			)}
-		</Button>
+		<div {...getAvatarProps()}>
+			{src && <img {...getImageProps()} alt={alt} />}
+			{fallback}
+		</div>
 	);
-};
+});

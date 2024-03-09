@@ -68,8 +68,8 @@
 	position: absolute;
 	top: 0;
 	z-index: calc(var(--z-index-blackhole) - 2);
-	border-right: 1px solid rgb(226 232 255 / 10%);
-	border-bottom: 1px solid rgb(226 232 255 / 10%);
+	border-right: 1px solid rgb(226, 232, 255, 10%);
+	border-bottom: 1px solid rgb(226, 232, 255, 10%);
 	border-bottom-right-radius: 12px;
 
 	&:nth-child(1) {
@@ -126,7 +126,7 @@
 		left: -100px;
 		width: 500px;
 		height: 500px;
-		background: conic-gradient(rgb(109 46 255 / 0%), rgb(158 122 255 / 30%) 6%, rgb(144 124 255 / 70%) 10%, var(--color-primary) 14.9%, rgb(109 46 255 / 0%) 15%);
+		background: conic-gradient(rgb(109, 46, 255, 0%), rgb(158, 122, 255, 30%) 6%, rgb(144, 124, 255, 70%) 10%, var(--color-primary) 14.9%, rgb(109, 46, 255, 0%) 15%);
 		animation: buildLineRotate 15s linear infinite;
 	}
 }

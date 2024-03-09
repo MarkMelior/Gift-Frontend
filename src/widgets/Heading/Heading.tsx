@@ -30,7 +30,7 @@ export const Heading: FC<HeadingProps> = memo(
 		return (
 			<div className={cn(cls.heading, { [cls.center]: center }, className)}>
 				<Button
-					variant='hero'
+					customVariant='hero'
 					className='text-sm py-0.5 px-2.5 rounded-full'
 					startContent={
 						<Image

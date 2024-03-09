@@ -47,7 +47,7 @@ export const TopPage: FC<TopPageProps> = memo(
 								<Button
 									starlight
 									className='py-5 px-12 rounded-xl'
-									variant='layer'
+									customVariant='layer'
 									startContent={
 										<Image
 											src='/images/icons/gift.svg'

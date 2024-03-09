@@ -7,6 +7,7 @@ import { Avatar } from '@/shared/ui/Avatar';
 import { Input } from '@/shared/ui/Input';
 import { Logo } from '@/shared/ui/Logo';
 import { Loader } from '@/widgets/Loader';
+import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -91,7 +92,25 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 							<LangSwitcher />
 							<ThemeSwitcher />
 						</nav>
-						<Avatar border src='/images/temp/ava.jpg' alt={t('user-logo')} />
+
+						<Popover placement='bottom-end' showArrow offset={10}>
+							<PopoverTrigger>
+								<Avatar
+									isBordered
+									color='primary'
+									src='/images/temp/ava.jpg'
+									alt={t('user-logo')}
+								/>
+							</PopoverTrigger>
+							<PopoverContent>
+								<div className='px-1 py-2'>
+									<div className='text-small font-bold'>Popover Content</div>
+									<div className='text-tiny'>This is the popover content</div>
+								</div>
+							</PopoverContent>
+						</Popover>
+
+						{/* <Avatar border src='/images/temp/ava.jpg' alt={t('user-logo')} /> */}
 					</nav>
 				</nav>
 

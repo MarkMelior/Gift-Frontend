@@ -1,11 +1,9 @@
-@import "@/app/styles/variables/var";
-
 .container {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	gap: 50px;
 
-	@media (max-width: $display-phone) {
+	@media (max-width: theme('screens.sm')) {
 		width: 60%;
 	}
 }
@@ -41,7 +39,7 @@
 		height: 110px;
 		margin: auto;
 		content: '';
-		background: rgb(231 212 255 / 30%);
+		background: rgb(231, 212, 255, 30%);
 		filter: blur(30px);
 		border-radius: 100px;
 	}
@@ -59,6 +57,7 @@
 			width: 100%;
 			font-weight: 500;
 			line-height: 22px;
+			color: #FFF;
 			text-align: center;
 
 			@apply text-lg;
@@ -70,7 +69,7 @@
 .back {
 	height: 200px;
 	background: url('/images/noise.png') repeat, #020014;
-	border: 1px solid rgb(255 255 255 / 10%);
+	border: 1px solid rgb(255, 255, 255, 10%);
 	border-radius: 10px;
 	transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
 	backface-visibility: hidden;
@@ -100,6 +99,7 @@
 		}
 
 		p {
+			color: #FFF;
 			text-align: center;
 
 			@apply text-sm;

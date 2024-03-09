@@ -2,13 +2,17 @@
 
 import { cn } from '@/shared/lib/tailwindMerge';
 import { clsxMods } from '@/shared/types';
+import { Loader } from '@/widgets/Loader';
 import {
-	ButtonProps as BaseButtonProps,
-	Ripple,
-	Spinner,
-	useButton,
-} from '@nextui-org/react';
-import { forwardRef } from 'react';
+	ButtonHTMLAttributes,
+	FC,
+	ForwardedRef,
+	forwardRef,
+	ReactNode,
+	useRef,
+} from 'react';
+import { useRippleAnimation } from '../../RippleEffect';
+import { RippleConfigProps } from '../../RippleEffect/useRippleAnimation';
 import cls from './Button.module.scss';
 
 export type ButtonVariant =
@@ -19,46 +23,62 @@ export type ButtonVariant =
 	| 'default'
 	| 'gradient';
 
-export interface ButtonProps extends BaseButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	className?: string;
-	disabled?: boolean;
-	customVariant?: ButtonVariant;
+	children?: ReactNode;
+	fullWidth?: boolean;
+	isLoading?: boolean;
+	isDisabled?: boolean;
+
+	disableRipple?: boolean;
+	rippleConfig?: RippleConfigProps;
+
+	variant?: ButtonVariant;
 	slice?: boolean;
 	lines?: boolean;
 	starlight?: boolean;
 	clear?: boolean;
+
+	startContent?: ReactNode;
+	endContent?: ReactNode;
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-	(props, ref) => {
-		const {
+export const Button: FC<ButtonProps> = forwardRef(
+	(
+		{
 			className,
-			disabled,
-			customVariant,
+			children,
+			fullWidth,
+			isLoading,
+			isDisabled = isLoading,
+
+			variant,
 			slice,
 			lines,
 			starlight,
 			clear,
-		} = props;
 
-		const {
-			domRef,
-			children,
-			styles,
-			spinnerSize,
-			spinner = <Spinner color='current' size={spinnerSize} />,
-			spinnerPlacement,
+			disableRipple = !!clear,
+			rippleConfig,
+
 			startContent,
 			endContent,
-			isLoading,
-			disableRipple,
-			getButtonProps,
-			getRippleProps,
-			isIconOnly,
-		} = useButton({
-			ref,
-			...props,
+
+			...otherProps
+		},
+		ref: ForwardedRef<HTMLButtonElement>,
+	) => {
+		ref = useRef<HTMLButtonElement>(null);
+		// const currentColor = useElementColor({ ref, disableRipple });
+
+		useRippleAnimation(ref, {
+			...rippleConfig,
+			// color: currentColor,
+			disabled: disableRipple,
 		});
+
+		if (isLoading && startContent) startContent = <Loader />;
+		if (isLoading && endContent) endContent = <Loader />;
 
 		const renderStarlight = () => (
 			<>
@@ -71,9 +91,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			<>
 				{starlight && renderStarlight()}
 				{startContent}
-				{isLoading && spinnerPlacement === 'start' && spinner}
-				{isLoading && isIconOnly ? null : children}
-				{isLoading && spinnerPlacement === 'end' && spinner}
+				{children}
 				{endContent}
 			</>
 		);
@@ -112,7 +130,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 		);
 
 		const renderButtonContent = () => {
-			switch (customVariant) {
+			switch (variant) {
 				case 'layer':
 					return renderLayer();
 				case 'glowing':
@@ -123,11 +141,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 		};
 
 		const buttonMods: clsxMods = {
-			[cls.disabled]: disabled,
+			[cls.disabled]: isDisabled,
+			['fullWidth']: fullWidth,
 			[cls.slice]: slice,
 			[cls.default]: !clear,
 			['py-2 px-4 rounded-lg']: !clear,
-			[cls.glowing]: customVariant === 'glowing',
+			[cls.glowing]: variant === 'glowing',
 		};
 
 		return (
@@ -136,20 +155,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 				className={cn(
 					cls.button,
 					buttonMods,
-					customVariant && cls[customVariant],
+					variant && cls[variant],
 					className,
 				)}
-				disabled={disabled}
-				ref={domRef}
-				{...getButtonProps()}
+				disabled={isDisabled}
+				ref={ref}
+				{...otherProps}
 			>
 				{lines && renderLinesItem()}
 				{renderButtonContent()}
-				{!disableRipple && (
-					<div className='rippleRoot'>
-						<Ripple {...getRippleProps()} />
-					</div>
-				)}
+				{!disableRipple && <div className='RippleRoot' />}
 			</button>
 		);
 	},

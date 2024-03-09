@@ -1,20 +1,17 @@
 @import 'tailwind';
-
 @import "reset";
-@import "variables/global";
-@import "themes/normal";
+@import "variables";
+@import "themes/dark";
 @import "themes/light";
-@import "variables/var";
 @import "animations";
 
 body {
+	font-family: var(--font-family-main);
 	font-size: 16px;
 	font-weight: 300;
 	line-height: 1.5;
-	font-family: var(--font-family-main);
-
 	color: rgb(var(--color-text));
-	background: linear-gradient(90deg, var(--color-background) 15px, transparent 1%) 50%, linear-gradient(var(--color-background) 15px, var(--color-background-dots) 1%) 0, hsla(0, 0%, 100%, .16);
+	background: linear-gradient(90deg, var(--color-background) 15px, transparent 1%) 50%, linear-gradient(var(--color-background) 15px, var(--color-background-dots) 1%) 0, hsla(0deg, 0%, 100%, 16%);
 	background-size: 16px 16px;
 }
 
@@ -25,11 +22,11 @@ body {
 .content {
 	--content-margin: auto;
 
-	@media (max-width: 1350px) {
+	@media (width <=1350px) {
 		--content-margin: 30px;
 	}
 
-	@media (max-width: $display-phone) {
+	@media (max-width: theme('screens.sm')) {
 		--content-margin: 10px
 	}
 
@@ -37,28 +34,23 @@ body {
 	margin: 0 var(--content-margin);
 }
 
-.content-page {
-	display: flex;
-}
-
-.page-wrapper {
-	flex-grow: 1;
-	padding: 20px;
-}
-
 a {
 	color: rgba(var(--color-text), .5);
 	text-decoration: none;
-	transition: color .1s ease;
+
+	// opacity: .5;
+	transition: opacity .1s ease;
 
 	&:hover {
+		// opacity: 1;
+
 		color: rgba(var(--color-text), 1)
 	}
 }
 
 .noselect {
-	user-select: none;
 	pointer-events: none;
+	user-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -74,18 +66,18 @@ a {
 	border-radius: 100px;
 
 	&:hover {
-		background: rgba(255, 255, 255, 1);
+		background: rgba(255, 255, 255, 100%);
 	}
 }
 
-.RippleRoot {
+.rippleRoot {
 	position: absolute;
-	width: 100%;
-	height: 100%;
 	top: 0;
 	left: 0;
-	border-radius: inherit;
+	width: 100%;
+	height: 100%;
 	overflow: hidden;
-	user-select: none;
 	pointer-events: none;
+	user-select: none;
+	border-radius: inherit;
 }

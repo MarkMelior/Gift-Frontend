@@ -1,5 +1,3 @@
-@import "@/app/styles/variables/var";
-
 :root {
 	--color-background: #03020D;
 	--color-background-dots: #2e3135;
@@ -7,12 +5,6 @@
 	--color-main-rgb: 3, 2, 13;
 	--color-main-inverted: #FFF;
 	--color-main-inverted-rgb: 255, 255, 255;
-	--color-default: #3a3641;
-	--color-primary: #B336FF;
-	--color-secondary: #006FEE;
-	--color-success: #17c964;
-	--color-warning: #f5a524;
-	--color-danger: #f31260;
 	--color-border: rgba(255, 255, 255, 10%);
 	--color-border-select: rgb(255, 255, 255, 15%);
 	--color-border-active: rgb(255, 255, 255, 20%);
