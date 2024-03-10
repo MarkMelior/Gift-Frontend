@@ -14,7 +14,7 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 	const t = useTranslations('BestProduct');
 
 	return (
-		<div className={cn(className, 'content')}>
+		<section className={cn(className, 'content')}>
 			<Image
 				src='/images/pages/glow-best.png'
 				width={1624}
@@ -82,6 +82,6 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 					reviewCount={10}
 				/>
 			</div>
-		</div>
+		</section>
 	);
 };

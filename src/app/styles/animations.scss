@@ -1,17 +1,14 @@
-.animation {
-	&-click {
-		transition: transform 0.1s ease-out;
-		transform: scale(1);
+.click {
+	transition: all .2s ease;
 
-		&:active {
-			transform: scale(0.97);
-		}
+	&:active {
+		transform: scale(0.95);
 	}
+}
 
-	&__glowText {
-		text-shadow: 0 0 0 rgba(255, 255, 255, 0%);
-		animation: pulseTextGlow 3s ease-in-out infinite;
-	}
+.glowText {
+	text-shadow: 0 0 0 rgba(255, 255, 255, 0%);
+	animation: pulseTextGlow 3s ease-in-out infinite;
 }
 
 @keyframes fadeTop {

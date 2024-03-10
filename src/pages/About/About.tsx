@@ -13,7 +13,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 	const t = useTranslations('About');
 
 	return (
-		<div className={cn(cls.content, className, 'content')}>
+		<section className={cn(cls.content, className, 'content')}>
 			<Image
 				src='/images/pages/glow-about.png'
 				width={1612}
@@ -98,6 +98,6 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 					className={`${cls.backgroundImage} noselect`}
 				/>
 			</div>
-		</div>
+		</section>
 	);
 };

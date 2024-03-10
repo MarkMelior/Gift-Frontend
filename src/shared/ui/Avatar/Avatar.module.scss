@@ -1,24 +1,3 @@
-.avatar {
-	$size: 42px;
-
-	width: $size;
-	height: $size;
-	cursor: pointer;
-	background-color: #3a3641;
-	border-radius: 9999px;
-	transition: all .2s ease;
-
-	&:active {
-		transform: scale(0.95);
-	}
-
-	img {
-		width: $size;
-		height: $size;
-		border-radius: inherit;
-	}
-}
-
 .border {
 	box-shadow: 0 0 0 2px rgb(var(--color-main-rgb), 1), 0 0 0 4px #3a3641;
 

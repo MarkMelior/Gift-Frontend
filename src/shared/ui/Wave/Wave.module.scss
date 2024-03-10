@@ -24,12 +24,12 @@
 	height: 198px;
 	background: url("/images/wavebar.svg") repeat-x;
 	transform: translate3d(0, 0, 0);
-	animation: 10s cubic-bezier(.36, .45, .63, .53) 0s infinite normal none running wavebar-svg-object;
+	animation: 10s cubic-bezier(.36, .45, .63, .53) 0s infinite normal none running wavebarSvgObject;
 
 	&:nth-of-type(2) {
 		top: -174px;
 		opacity: 1;
-		animation: 5s cubic-bezier(.36, .45, .63, .53) 0s infinite normal none running wavebar-svg-object;
+		animation: 5s cubic-bezier(.36, .45, .63, .53) 0s infinite normal none running wavebarSvgObject;
 	}
 }
 

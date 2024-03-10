@@ -124,7 +124,6 @@ export const Navbar = memo(({ className = '', blackhole }: NavbarProps) => {
 							<DropdownTrigger>
 								<Avatar
 									isBordered
-									color='success'
 									src='/images/temp/ava.jpg'
 									alt={t('user-logo')}
 								/>

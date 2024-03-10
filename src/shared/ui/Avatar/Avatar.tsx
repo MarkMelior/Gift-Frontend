@@ -65,10 +65,17 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
 		);
 	}, [showFallback, src, fallbackComponent, name, classNames]);
 
+	// TODO: сделать чтобы можно было менять цвет при наведении, а не константа
 	return (
-		// TODO: getAvatarProps заменяет className и наоборот
-		// TODO: сделать чтобы можно было менять цвет при наведении, а не константа
-		<div {...getAvatarProps()} className={cn(cls.avatar, cls.border)}>
+		<div
+			{...getAvatarProps()}
+			className={cn(
+				getAvatarProps().className,
+				cls.border,
+				'click',
+				'cursor-pointer',
+			)}
+		>
 			{src && <img {...getImageProps()} alt={alt} />}
 			{fallback}
 		</div>

@@ -1,13 +1,4 @@
-.backgroundImage {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: var(--z-index-bg-images);
-	width: 1320px;
-	height: auto;
-}
-
-.backgroundWrapper {
+.content {
 	position: relative;
 	padding: 200px 158px 0;
 
@@ -21,6 +12,15 @@
 	// 	content: "";
 	// 	background-image: linear-gradient(to top, transparent, var(--color-main));
 	// }
+}
+
+.backgroundImage {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: var(--z-index-bg-images);
+	width: 1320px;
+	height: auto;
 }
 
 .icon {
