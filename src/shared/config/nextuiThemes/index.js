@@ -14,14 +14,14 @@ const themeColorsLight = {
 		DEFAULT: zinc[300],
 	},
 	primary: {
-		...purple,
-		foreground: readableColor(purple[400]),
-		DEFAULT: purple[400],
+		...blue,
+		foreground: readableColor(blue[400]),
+		DEFAULT: blue[400],
 	},
 	secondary: {
-		...blue,
-		foreground: readableColor(blue[500]),
-		DEFAULT: blue[500],
+		...purple,
+		foreground: readableColor(purple[500]),
+		DEFAULT: purple[500],
 	},
 	success: {
 		...green,
@@ -47,9 +47,9 @@ const themeColorsDark = {
 		DEFAULT: zinc[700],
 	},
 	primary: {
-		...swapColorValues(purple),
-		foreground: readableColor(purple[500]),
-		DEFAULT: purple[500],
+		...swapColorValues(blue),
+		foreground: readableColor(blue[500]),
+		DEFAULT: blue[500],
 	},
 	secondary: {
 		...swapColorValues(purple),

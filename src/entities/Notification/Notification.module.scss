@@ -67,4 +67,20 @@
 	left: 0;
 	width: 100%;
 	height: 1px;
+
+	/* stylelint-disable-next-line selector-class-pattern */
+	&>div>div {
+		animation: progress var(--animation-duration-notification) linear forwards;
+	}
+}
+
+@keyframes progress {
+	0% {
+		transform: translateX(0%);
+	}
+
+	100% {
+		background-color: theme('colors.danger');
+		transform: translateX(-100%);
+	}
 }

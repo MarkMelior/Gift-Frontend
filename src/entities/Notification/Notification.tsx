@@ -22,31 +22,12 @@ export const Notification: FC<NotificationProps> = memo(
 		const t = useTranslations('Notification');
 		const [visible, setVisible] = useState(true);
 		const [closing, setClosing] = useState(false);
-		const [progressValue, setProgressValue] = useState(100);
 
 		useEffect(() => {
-			const interval = setInterval(() => {
-				setProgressValue((prevValue) => {
-					const newValue = prevValue - 10;
-					if (newValue <= 0) {
-						clearInterval(interval);
-						setTimeout(() => {
-							setClosing(true);
-							setTimeout(() => {
-								setVisible(false);
-								setClosing(false);
-								if (onClose) onClose();
-							}, 300); // Animation duration
-						}, 500); // Delay before closing
-						return 0;
-					}
-					return newValue;
-				});
-			}, duration / 10);
-
-			return () => {
-				clearInterval(interval);
-			};
+			const timer = setTimeout(() => {
+				handleClose();
+			}, duration);
+			return () => clearTimeout(timer);
 		}, []);
 
 		const handleClose = () => {
@@ -76,19 +57,21 @@ export const Notification: FC<NotificationProps> = memo(
 				className={cn(cls.notification, {
 					[cls.closing]: closing,
 				})}
+				style={{ '--animation-duration-notification': `${duration}ms` }}
 			>
 				<Progress
 					className={cls.progress}
 					size='sm'
 					aria-label='Loading...'
-					value={progressValue}
+					color='success'
+					// value={progressValue}
 				/>
 				<div className={cls.content}>
 					{icon && (
 						<Image
 							width={20}
 							height={20}
-							src={icon}
+							src='/images/icons/bookmark-fill.svg'
 							alt={t('icon')}
 							className={`${cls.icon} noselect`}
 						/>

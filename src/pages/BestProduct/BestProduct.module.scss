@@ -1,3 +1,8 @@
+.wrapper {
+	position: relative;
+	margin: 80px 0 0; // . -100px .
+}
+
 .image {
 	position: relative;
 	left: 50%;
@@ -9,8 +14,64 @@
 	transform: translateX(-50%);
 }
 
+.icon {
+	position: absolute;
+	top: 0;
+	display: flex;
+	align-items: center;
+	width: 60px; // 100px
+	height: 100%;
+
+	i {
+		width: 55px;
+		height: 55px;
+		text-align: center;
+		cursor: pointer;
+		background: red;
+
+
+		@apply rounded-full;
+	}
+
+	&:first-child,
+	&:last-child {
+		z-index: 10;
+
+		// background: linear-gradient(90deg, var(--color-background) 22.555%, rgba(3, 2, 13, 0%) 100%);
+	}
+
+	&:first-child {
+		left: 0;
+	}
+
+	&:last-child {
+		right: 0;
+		transform: rotate(180deg);
+	}
+}
+
 .slider {
+	position: relative;
 	display: flex;
 	gap: 30px;
-	padding-top: 80px;
+	overflow-x: scroll;
+	cursor: grab;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+
+	&>* {
+		user-select: none;
+	}
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	&:active {
+		cursor: grabbing;
+	}
+
+	&>*:active {
+		cursor: grabbing;
+	}
 }

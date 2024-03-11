@@ -31,15 +31,27 @@
 .center {
 	display: flex;
 	flex: 0 0 auto;
-	gap: 50px;
+	gap: 20px;
 	align-items: center;
 	justify-content: center;
+	height: 100%;
+
+	li {
+		height: 100%;
+	}
+
+	a {
+		display: flex;
+		align-items: center;
+		height: 100%;
+		padding: 0 15px;
+	}
 }
 
 .right {
 	display: flex;
 	flex: 1;
-	gap: 20px;
+	gap: 25px;
 	align-items: center;
 	justify-content: right;
 }
@@ -65,11 +77,13 @@
 	display: flex;
 
 	button {
-		width: 44px;
-		height: 44px;
+		width: 40px;
+		height: 40px;
 		padding: 0;
 		color: rgba(var(--color-text), .2);
 		border: 1px solid transparent;
+
+		@apply rounded-large;
 
 		&:hover {
 			border: 1px solid var(--color-border);
@@ -141,4 +155,9 @@
 	i {
 		border-bottom-color: var(--color-main-inverted);
 	}
+}
+
+.tooltip {
+	background: var(--bg-noise), var(--color-background);
+	border: 1px solid var(--color-border);
 }

@@ -49,8 +49,8 @@ export const Card: FC<CardProps> = ({
 								<Image
 									src='/images/icons/star.svg'
 									alt={t('icon-star')}
-									width={16}
-									height={16}
+									width={14}
+									height={14}
 									className='noselect'
 								/>
 								{rating}
@@ -59,8 +59,8 @@ export const Card: FC<CardProps> = ({
 								<Image
 									src='/images/icons/comment.svg'
 									alt={t('icon-comment')}
-									width={16}
-									height={16}
+									width={14}
+									height={14}
 									className='noselect'
 								/>
 								{reviewCount}
@@ -73,8 +73,8 @@ export const Card: FC<CardProps> = ({
 							<Image
 								src='/images/icons/hot.svg'
 								alt={t('icon-hot')}
-								width={16}
-								height={16}
+								width={14}
+								height={14}
 								className='noselect'
 							/>
 						</div>

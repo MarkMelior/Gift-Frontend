@@ -1,3 +1,6 @@
+'use client';
+
+import { useSlider } from '@/shared/lib/hooks/deprecated/useSlider';
 import { Card } from '@/widgets/Card';
 import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
@@ -12,6 +15,37 @@ interface BestProductProps {
 
 export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 	const t = useTranslations('BestProduct');
+	const {
+		sliderRef,
+		handleMouseDown,
+		handleMouseMove,
+		handleMouseUp,
+		scrollToNextCard,
+		scrollToPrevCard,
+		goToPage,
+	} = useSlider({ autoSlideDuration: 5000 });
+
+	const cards = [];
+	const pagination = [];
+	for (let i = 0; i < 7; i++) {
+		cards.push(
+			<Card
+				key={i}
+				oldPrice={58600}
+				price={29245}
+				title={`${i + 1}. Xiaomi Mi Power Bank 3 20000 mAh`}
+				defaultMarket={'ozon'}
+				images={['/images/temp/cat.png']}
+				rating={4.5}
+				reviewCount={10}
+			/>,
+		);
+		pagination.push(
+			<button key={i} onClick={() => goToPage(i)}>
+				{i + 1}
+			</button>,
+		);
+	}
 
 	return (
 		<section className={cn(className, 'content')}>
@@ -30,58 +64,25 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 				center
 				customSize={3}
 			></Heading>
-			<div className={cls.slider}>
-				<Card
-					hot
-					oldPrice={58600}
-					price={29245}
-					title={'Xiaomi Mi Power Bank 3 20000 mAh'}
-					defaultMarket={'ozon'}
-					images={['/images/temp/cat.png']}
-					rating={4.5}
-					reviewCount={10}
-				/>
-				<Card
-					hot
-					oldPrice={58600}
-					price={29245}
-					title={'Xiaomi Mi Power Bank 3 20000 mAh'}
-					defaultMarket={'ozon'}
-					images={['/images/temp/cat.png']}
-					rating={4.5}
-					reviewCount={10}
-				/>
-				<Card
-					hot
-					oldPrice={58600}
-					price={29245}
-					title={'Xiaomi Mi Power Bank 3 20000 mAh'}
-					defaultMarket={'ozon'}
-					images={['/images/temp/cat.png']}
-					rating={4.5}
-					reviewCount={10}
-				/>
-				<Card
-					hot
-					oldPrice={58600}
-					price={29245}
-					title={'Xiaomi Mi Power Bank 3 20000 mAh'}
-					defaultMarket={'ozon'}
-					images={['/images/temp/cat.png']}
-					rating={4.5}
-					reviewCount={10}
-				/>
-				<Card
-					hot
-					oldPrice={58600}
-					price={29245}
-					title={'Xiaomi Mi Power Bank 3 20000 mAh'}
-					defaultMarket={'ozon'}
-					images={['/images/temp/cat.png']}
-					rating={4.5}
-					reviewCount={10}
-				/>
+			<div className={cls.wrapper}>
+				<div className={cls.icon}>
+					<i onClick={scrollToPrevCard} />
+				</div>
+				<div
+					className={cls.slider}
+					ref={sliderRef}
+					onMouseDown={handleMouseDown}
+					onMouseMove={handleMouseMove}
+					onMouseUp={handleMouseUp}
+					onMouseLeave={handleMouseUp}
+				>
+					{cards}
+				</div>
+				<div className={cls.icon}>
+					<i onClick={scrollToNextCard} />
+				</div>
 			</div>
+			<div className='pagination'>{pagination}</div>
 		</section>
 	);
 };
