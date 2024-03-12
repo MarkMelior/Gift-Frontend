@@ -1,12 +1,17 @@
 'use client';
 
-import { useSlider } from '@/shared/lib/hooks/deprecated/useSlider';
+import { Button } from '@/shared/ui/Button';
 import { Card } from '@/widgets/Card';
 import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, useRef } from 'react';
+import 'swiper/css/autoplay';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from './BestProduct.module.scss';
 
 interface BestProductProps {
@@ -15,35 +20,24 @@ interface BestProductProps {
 
 export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 	const t = useTranslations('BestProduct');
-	const {
-		sliderRef,
-		handleMouseDown,
-		handleMouseMove,
-		handleMouseUp,
-		scrollToNextCard,
-		scrollToPrevCard,
-		goToPage,
-	} = useSlider({ autoSlideDuration: 5000 });
+	const prevRef = useRef(null);
+	const nextRef = useRef(null);
 
 	const cards = [];
-	const pagination = [];
 	for (let i = 0; i < 7; i++) {
 		cards.push(
-			<Card
-				key={i}
-				oldPrice={58600}
-				price={29245}
-				title={`${i + 1}. Xiaomi Mi Power Bank 3 20000 mAh`}
-				defaultMarket={'ozon'}
-				images={['/images/temp/cat.png']}
-				rating={4.5}
-				reviewCount={10}
-			/>,
-		);
-		pagination.push(
-			<button key={i} onClick={() => goToPage(i)}>
-				{i + 1}
-			</button>,
+			<SwiperSlide>
+				<Card
+					key={i}
+					oldPrice={58600}
+					price={29245}
+					title={`${i + 1}. Xiaomi Mi Power Bank 3 20000 mAh`}
+					defaultMarket={'ozon'}
+					images={['/images/temp/cat.png']}
+					rating={4.5}
+					reviewCount={10}
+				/>
+			</SwiperSlide>,
 		);
 	}
 
@@ -65,24 +59,51 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 				customSize={3}
 			></Heading>
 			<div className={cls.wrapper}>
-				<div className={cls.icon}>
-					<i onClick={scrollToPrevCard} />
-				</div>
-				<div
-					className={cls.slider}
-					ref={sliderRef}
-					onMouseDown={handleMouseDown}
-					onMouseMove={handleMouseMove}
-					onMouseUp={handleMouseUp}
-					onMouseLeave={handleMouseUp}
+				<Swiper
+					modules={[Autoplay, Pagination, Navigation]}
+					spaceBetween={30}
+					slidesPerView={4}
+					loop
+					autoplay={{
+						delay: 2500,
+						disableOnInteraction: false,
+					}}
+					centeredSlides
+					pagination={{
+						clickable: true,
+						el: '[data-slider-dots]',
+						type: 'bullets',
+						bulletClass: cls.bullet,
+						bulletActiveClass: cls.bulletActive,
+						renderBullet: function (index, className) {
+							return '<div class="' + className + '"></div>';
+						},
+					}}
+					navigation={{
+						prevEl: cls.buttonPrev,
+						nextEl: cls.buttonNext,
+					}}
+					onInit={(swiper) => {
+						// @ts-ignore
+						swiper.params.navigation.prevEl = prevRef.current;
+						// @ts-ignore
+						swiper.params.navigation.nextEl = nextRef.current;
+						swiper.navigation.init();
+						swiper.navigation.update();
+					}}
 				>
 					{cards}
-				</div>
-				<div className={cls.icon}>
-					<i onClick={scrollToNextCard} />
+					<div className={cls.buttonPrev}>
+						<Button ref={prevRef} />
+					</div>
+					<div className={cls.buttonNext}>
+						<Button ref={nextRef} />
+					</div>
+				</Swiper>
+				<div className={cls.bulletContent}>
+					<span className={cls.bulletWrapper} data-slider-dots></span>
 				</div>
 			</div>
-			<div className='pagination'>{pagination}</div>
 		</section>
 	);
 };

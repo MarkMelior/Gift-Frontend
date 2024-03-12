@@ -19,7 +19,7 @@
 	top: 0;
 	display: flex;
 	align-items: center;
-	width: 60px; // 100px
+	width: 100px;
 	height: 100%;
 
 	i {
@@ -36,8 +36,7 @@
 	&:first-child,
 	&:last-child {
 		z-index: 10;
-
-		// background: linear-gradient(90deg, var(--color-background) 22.555%, rgba(3, 2, 13, 0%) 100%);
+		background: linear-gradient(90deg, var(--color-background) 22.555%, rgba(3, 2, 13, 0%) 100%);
 	}
 
 	&:first-child {
@@ -50,28 +49,111 @@
 	}
 }
 
-.slider {
-	position: relative;
+.bulletContent {
 	display: flex;
-	gap: 30px;
-	overflow-x: scroll;
-	cursor: grab;
-	-webkit-overflow-scrolling: touch;
-	scrollbar-width: none;
+	justify-content: center;
+	width: 100%;
+	margin-top: 50px;
+}
+
+.bulletWrapper {
+	display: flex;
+	width: fit-content !important;
+	padding: 0 10px;
+	background: var(--bg-noise), var(--color-main);
+	border: 1px solid var(--color-border);
+
+	@apply rounded-full;
+}
+
+.bullet {
+	position: relative;
+	width: 18px;
+	height: 22px;
+	cursor: pointer;
+
+	&::after {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		display: inline-block;
+		width: 6px;
+		height: 6px;
+		content: '';
+		background: var(--color-main-inverted);
+		opacity: .1;
+		transform: translate(-50%, -50%);
+
+		@apply rounded-full;
+	}
+}
+
+.bulletActive {
+	&::after {
+		opacity: 1;
+	}
+}
+
+.buttonPrev {
+	left: 0;
+	background: linear-gradient(90deg, rgb(3, 2, 13) 22.555%, rgba(3, 2, 13, 0%) 100%);
 
 	&>* {
-		user-select: none;
+		left: 10px;
+	}
+}
+
+.buttonNext {
+	right: 0;
+	background: linear-gradient(-90deg, rgb(3, 2, 13) 22.555%, rgba(3, 2, 13, 0%) 100%);
+
+	&>* {
+		right: 10px;
+
+		&::before {
+			transform: rotate(180deg);
+		}
+	}
+}
+
+.buttonPrev,
+.buttonNext {
+	position: absolute;
+	top: 0;
+	z-index: 7;
+	width: 100px;
+	height: 100%;
+	pointer-events: none;
+
+	&>* {
+		position: absolute;
+		top: 50%;
+		z-index: 10;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 48px;
+		pointer-events: all;
+		cursor: pointer;
+		background: rgba(var(--color-main-rgb), .6);
+		backdrop-filter: var(--blur-md);
+		border: 1px solid var(--color-border);
+		transition: all .2s ease;
+		transform: translateY(-50%);
+
+		@apply rounded-full;
+
+		&:active {
+			transform: translateY(-50%) scale(0.925);
+		}
+
+		&::before {
+			width: 22px;
+			height: 22px;
+			content: '';
+			background: url('/images/icons/arrow-left.svg');
+		}
 	}
 
-	&::-webkit-scrollbar {
-		display: none;
-	}
 
-	&:active {
-		cursor: grabbing;
-	}
-
-	&>*:active {
-		cursor: grabbing;
-	}
 }
