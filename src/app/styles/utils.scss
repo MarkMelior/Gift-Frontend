@@ -1,0 +1,9 @@
+@mixin background($opacity: 1, $noise: true, $rgb: var(--color-main-rgb)) {
+	$background: rgba($rgb, $opacity);
+
+	@if $noise {
+		$background: var(--bg-noise), $background;
+	}
+
+	background: $background;
+}

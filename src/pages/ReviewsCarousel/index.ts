@@ -1,0 +1,1 @@
+export { ReviewsCarousel } from './ReviewsCarousel';

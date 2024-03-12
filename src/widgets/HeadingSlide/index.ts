@@ -1,0 +1,1 @@
+export { SlideHeading } from './SlideHeading';

@@ -1,0 +1,35 @@
+.wrapper {
+	position: relative;
+	overflow: hidden;
+	opacity: 1;
+}
+
+.header {
+	position: relative;
+}
+
+.left {
+	position: relative;
+	right: 600px;
+	color: var(--color-background);
+	text-shadow: -1px 0 rgb(var(--color-text)),
+		0 1px rgb(var(--color-text)),
+		1px 0 rgb(var(--color-text)),
+		0 -1px rgb(var(--color-text));
+}
+
+.right {
+	position: relative;
+	right: -600px;
+	display: flex;
+	justify-content: flex-end;
+	color: rgb(var(--color-text));
+}
+
+.left,
+.right {
+	// font-family: Montserrat;
+	font-size: 96px;
+	font-weight: 700;
+	text-transform: uppercase;
+}

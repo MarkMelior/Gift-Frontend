@@ -22,6 +22,14 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 	const t = useTranslations('BestProduct');
 	const prevRef = useRef(null);
 	const nextRef = useRef(null);
+	// const bulletWrapperRef = useRef(null);
+	// const onAutoplayTimeLeft = (s, time, progress: number) => {
+	// 	// @ts-ignore
+	// 	bulletWrapperRef.current.style.setProperty(
+	// 		'--autoplay-progress',
+	// 		`${progress * -100}%`,
+	// 	);
+	// };
 
 	const cards = [];
 	for (let i = 0; i < 7; i++) {
@@ -69,6 +77,7 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 						disableOnInteraction: false,
 					}}
 					centeredSlides
+					// onAutoplayTimeLeft={onAutoplayTimeLeft}
 					pagination={{
 						clickable: true,
 						el: '[data-slider-dots]',
@@ -101,7 +110,11 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 					</div>
 				</Swiper>
 				<div className={cls.bulletContent}>
-					<span className={cls.bulletWrapper} data-slider-dots></span>
+					<span
+						// ref={bulletWrapperRef}
+						className={cls.bulletWrapper}
+						data-slider-dots
+					></span>
 				</div>
 			</div>
 		</section>

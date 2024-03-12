@@ -1,0 +1,102 @@
+@import '/src/app/styles/utils';
+
+.wrapper {
+	position: relative;
+	margin-top: 70px;
+}
+
+.video {
+	position: absolute;
+	top: 500px;
+	z-index: -10;
+	width: 100%;
+	height: 880px;
+	margin: auto;
+	object-fit: cover;
+	mix-blend-mode: lighten;
+	transform: translateY(-50%);
+
+	// @media (max-width: theme('screens.md')) {
+	// 	width: 100%;
+	// }
+
+	// @media (max-width: theme('screens.sm')) {
+	// 	display: none;
+	// }
+}
+
+.reviews {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-top: 20px;
+	overflow: hidden;
+
+	&::before,
+	&::after {
+		position: absolute;
+		left: 0;
+		z-index: 10;
+		width: 100px;
+		height: 100%;
+		pointer-events: none;
+		content: '';
+		background: linear-gradient(90deg, var(--color-background) 22.555%, rgba(3, 2, 13, 0%) 100%);
+	}
+
+	&::after {
+		right: 0;
+		left: auto;
+		transform: rotate(180deg);
+	}
+}
+
+.review {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding: 30px;
+	cursor: default;
+	backdrop-filter: var(--blur-md);
+	border: 1px solid var(--color-border);
+	transition: all .3s ease;
+
+	&:hover {
+		border: 1px solid var(--color-border-select);
+		transform: scale(1.025)
+	}
+
+	@apply rounded-lg;
+	@include background(.4);
+}
+
+.reviewRow1,
+.reviewRow2 {
+	display: flex;
+	gap: 30px;
+	width: 100%;
+	padding: 15px;
+}
+
+.reviewRow1 {
+	& .review {
+		left: -30px;
+	}
+}
+
+.reviewRow2 {
+	& .review {
+		left: 30px;
+	}
+}
+
+.reviewHead {
+	display: flex;
+	justify-content: space-between;
+}
+
+.text {
+	opacity: .8;
+}

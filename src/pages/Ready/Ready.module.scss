@@ -1,0 +1,44 @@
+.wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 80px;
+	align-items: center;
+	width: 100%;
+	margin-top: 145px;
+	margin-bottom: 60px;
+}
+
+.icon {
+	width: 84px;
+	height: 84px;
+	margin-bottom: -20px;
+}
+
+.heading {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	text-align: center;
+
+	h3 {
+		@apply text-5xl;
+
+		font-weight: 700;
+	}
+
+	p {
+		color: rgba(var(--color-text), .5);
+	}
+}
+
+.image {
+	position: absolute;
+	top: -10px;
+	z-index: -1;
+	width: 820px;
+	max-height: 700px;
+	object-fit: cover;
+	object-position: top;
+	mix-blend-mode: lighten;
+}

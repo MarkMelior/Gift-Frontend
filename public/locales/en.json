@@ -97,5 +97,13 @@
 		"icon": "Notification icon",
 		"icon-cross": "Closing icon",
 		"close": "Close"
+	},
+	"Ready": {
+		"title": "Are you ready to choose a gift?",
+		"description": "A delightfully smart gift selection platform - for free",
+		"button": "Find a gift",
+		"background-image-alt": "Background image",
+		"logo-image-alt": "Website logo",
+		"button-image-alt": "Gift Icon"
 	}
 }

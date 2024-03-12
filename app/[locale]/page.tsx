@@ -1,6 +1,8 @@
 import { About } from '@/pages/About';
 import { Advantages } from '@/pages/Advantages';
 import { BestProduct } from '@/pages/BestProduct';
+import { Ready } from '@/pages/Ready';
+import { ReviewsCarousel } from '@/pages/ReviewsCarousel';
 import { TopPage } from '@/pages/TopPage';
 import { NavigationPanel } from '@/widgets/NavigationPanel';
 import { useTranslations } from 'next-intl';
@@ -23,6 +25,8 @@ const HomePage: FC<HomePageProps> = () => {
 			<Advantages />
 			<About />
 			<BestProduct />
+			<ReviewsCarousel />
+			<Ready />
 		</>
 	);
 };
