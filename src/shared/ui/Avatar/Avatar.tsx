@@ -63,19 +63,34 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
 				{icon}
 			</span>
 		);
-	}, [showFallback, src, fallbackComponent, name, classNames]);
+	}, [
+		showFallback,
+		src,
+		alt,
+		name,
+		fallbackComponent,
+		slots,
+		classNames?.name,
+		classNames?.icon,
+		classNames?.fallback,
+		getInitials,
+		icon,
+	]);
+
+	const { originalProps, ...avatarProps } = getAvatarProps(); // this line for fix error with originalProps
 
 	// TODO: сделать чтобы можно было менять цвет при наведении, а не константа
 	return (
 		<div
-			{...getAvatarProps()}
+			{...avatarProps}
 			className={cn(
-				getAvatarProps().className,
+				avatarProps.className,
 				cls.border,
 				'click',
 				'cursor-pointer',
 			)}
 		>
+			{/* eslint-disable-next-line @next/next/no-img-element */}
 			{src && <img {...getImageProps()} alt={alt} />}
 			{fallback}
 		</div>

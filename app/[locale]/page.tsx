@@ -1,34 +1,15 @@
-import { About } from '@/pages/About';
-import { Advantages } from '@/pages/Advantages';
-import { BestProduct } from '@/pages/BestProduct';
-import { Ready } from '@/pages/Ready';
-import { ReviewsCarousel } from '@/pages/ReviewsCarousel';
-import { TopPage } from '@/pages/TopPage';
-import { NavigationPanel } from '@/widgets/NavigationPanel';
-import { useTranslations } from 'next-intl';
+import MainPage from '@/views/MainPage';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import { FC } from 'react';
 
-interface HomePageProps {}
-
-const HomePage: FC<HomePageProps> = () => {
-	const t = useTranslations('MainPage');
-
-	return (
-		<>
-			<TopPage
-				title={t('title')}
-				description={t('description')}
-				note={t('note')}
-				// compact
-			/>
-			<NavigationPanel />
-			<Advantages />
-			<About />
-			<BestProduct />
-			<ReviewsCarousel />
-			<Ready />
-		</>
-	);
+type IndexPageProps = {
+	params: { locale: string };
 };
 
-export default HomePage;
+const IndexPage: FC<IndexPageProps> = ({ params: { locale } }) => {
+	unstable_setRequestLocale(locale);
+
+	return <MainPage />;
+};
+
+export default IndexPage;

@@ -126,7 +126,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			[cls.disabled]: disabled,
 			[cls.slice]: slice,
 			[cls.default]: !clear,
-			['py-2 px-4 rounded-lg']: !clear,
+			'py-2 px-4 rounded-lg': !clear,
 			[cls.glowing]: customVariant === 'glowing',
 		};
 

@@ -35,10 +35,11 @@ export const Card: FC<CardProps> = ({
 	const t = useTranslations('Card');
 
 	const formattedPrice = numberToCurrency(price);
-	const formattedOldPrice = numberToCurrency(oldPrice);
+	const formattedOldPrice = oldPrice ? numberToCurrency(oldPrice) : undefined;
 
 	return (
 		<div className={cn(cls.card, className)}>
+			{/* eslint-disable-next-line @next/next/no-img-element */}
 			<img src={images[0]} alt={title} />
 			<div className={cls.title}>{title}</div>
 			<div className={cls.wrapper}>
@@ -81,7 +82,7 @@ export const Card: FC<CardProps> = ({
 					)}
 				</div>
 				<div className={cls.price}>
-					{oldPrice && (
+					{formattedOldPrice && (
 						<span className={cls.oldPrice}>{formattedOldPrice}</span>
 					)}
 					{formattedPrice}

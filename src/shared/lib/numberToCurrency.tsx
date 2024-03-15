@@ -13,7 +13,7 @@ export const numberToCurrency = (number: number, currency = 'RUB'): string => {
 
 	return new Intl.NumberFormat('ru-RU', {
 		style: 'currency',
-		currency: currency,
+		currency,
 		minimumFractionDigits: 0, // Определяет количество десятичных знаков после запятой
 	}).format(targetPrice);
 };

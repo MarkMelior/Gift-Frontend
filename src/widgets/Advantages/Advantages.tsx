@@ -14,7 +14,7 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 	const t = useTranslations('Advantages');
 
 	return (
-		<section className={cn(cls.content, className, 'content')}>
+		<section className={cn(cls.wrapper, className, 'content')}>
 			<div className={cls.lines}>
 				<div className={cls.line}>
 					<div className={cls.lineMask}>

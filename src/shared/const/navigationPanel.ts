@@ -21,14 +21,14 @@ export const NavigationPanelData: NavigationPanelLinks = {
 		description: 'Очень крутой текст',
 	},
 	game: {
-		to: '/game',
+		to: '/', // game
 		image: '/images/icons/play.svg',
 		alt: 'Иконка главной страницы',
 		title: 'Играть',
 		description: 'Зарабатывай виртуальную валюту на скидки',
 	},
 	shop: {
-		to: '/shop',
+		to: '/', // shop
 		image: '/images/icons/cart.svg',
 		alt: 'Иконка главной страницы',
 		title: 'Магазин',

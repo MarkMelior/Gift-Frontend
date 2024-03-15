@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/shared/ui/Button';
-import { Card } from '@/widgets/Card';
+import { Card } from '@/shared/ui/Card';
 import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
@@ -34,13 +34,12 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 	const cards = [];
 	for (let i = 0; i < 7; i++) {
 		cards.push(
-			<SwiperSlide>
+			<SwiperSlide key={i}>
 				<Card
-					key={i}
 					oldPrice={58600}
 					price={29245}
 					title={`${i + 1}. Xiaomi Mi Power Bank 3 20000 mAh`}
-					defaultMarket={'ozon'}
+					defaultMarket='ozon'
 					images={['/images/temp/cat.png']}
 					rating={4.5}
 					reviewCount={10}
@@ -65,7 +64,7 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 				doubleTitle={false}
 				center
 				customSize={3}
-			></Heading>
+			/>
 			<div className={cls.wrapper}>
 				<Swiper
 					modules={[Autoplay, Pagination, Navigation]}
@@ -84,8 +83,8 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 						type: 'bullets',
 						bulletClass: cls.bullet,
 						bulletActiveClass: cls.bulletActive,
-						renderBullet: function (index, className) {
-							return '<div class="' + className + '"></div>';
+						renderBullet(index, className) {
+							return `<div class="${className}"></div>`;
 						},
 					}}
 					navigation={{
@@ -114,7 +113,7 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 						// ref={bulletWrapperRef}
 						className={cls.bulletWrapper}
 						data-slider-dots
-					></span>
+					/>
 				</div>
 			</div>
 		</section>

@@ -105,5 +105,8 @@
 		"background-image-alt": "Фоновое изображение",
 		"logo-image-alt": "Логотип сайта",
 		"button-image-alt": "Иконка подарка"
+	},
+	"AboutPage": {
+		"title": "О нас"
 	}
 }

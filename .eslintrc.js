@@ -21,8 +21,8 @@ module.exports = {
 	},
 	plugins: ['react', '@typescript-eslint', 'react-hooks', 'i18next'],
 	rules: {
-		'react/jsx-indent': [2, 'tab', { SwitchCase: 1 }],
-		'react/jsx-indent-props': [2, 'tab', { SwitchCase: 1 }],
+		'react/jsx-indent': [2, 'tab'],
+		'react/jsx-indent-props': [2, 'tab'],
 		indent: [2, 'tab', { SwitchCase: 1 }],
 		'no-tabs': 0,
 		'react/jsx-wrap-multilines': 'off',
@@ -63,6 +63,7 @@ module.exports = {
 		'linebreak-style': 'off',
 		'import/order': 'off',
 		camelcase: 'off',
+		'no-plusplus': 'off',
 	},
 	globals: {
 		IS_DEV: true,

@@ -18,7 +18,7 @@
 
 	&>div {
 		height: 200px;
-		background: linear-gradient(180deg, rgb(183 164 251 / 0%) 0, #b5a4ff 100%, #8562ff 100%, rgb(133 98 255 / 0%) 0%);
+		background: linear-gradient(180deg, rgb(183, 164, 251, 0%) 0, #b5a4ff 100%, #8562ff 100%, rgb(133, 98, 255, 0%) 0%);
 		animation: topAnimation 6s infinite cubic-bezier(.62, .62, .28, .67);
 	}
 }
@@ -34,7 +34,7 @@
 	}
 }
 
-.main {
+.wrapper {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	align-items: center;

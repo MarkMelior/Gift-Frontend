@@ -9,13 +9,13 @@ import { Navbar } from '@/widgets/Navbar';
 import { PageLoader } from '@/widgets/PageLoader';
 import { ScrollUp } from '@/widgets/ScrollUp';
 import { Metadata } from 'next';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { Inter } from 'next/font/google';
 import { ReactNode, Suspense } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
-type RootLayoutProps = {
+type LocaleLayoutProps = {
 	children: ReactNode;
 	params: { locale: string };
 };
@@ -26,7 +26,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
 	params: { locale },
-}: Omit<RootLayoutProps, 'children'>) {
+}: Omit<LocaleLayoutProps, 'children'>) {
 	const t = await getTranslations({ locale });
 
 	const metadata: Metadata = {
@@ -37,10 +37,12 @@ export async function generateMetadata({
 	return metadata;
 }
 
-export default function RootLayout({
+export default function LocaleLayout({
 	children,
 	params: { locale },
-}: RootLayoutProps) {
+}: LocaleLayoutProps) {
+	unstable_setRequestLocale(locale);
+
 	return (
 		<html lang={locale}>
 			<body className={inter.className}>

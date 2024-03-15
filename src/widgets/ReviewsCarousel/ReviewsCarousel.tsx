@@ -1,7 +1,7 @@
 'use client';
 
+import { SlideHeading } from '@/shared/ui/HeadingSlide';
 import { StarRating } from '@/shared/ui/StarRating';
-import { SlideHeading } from '@/widgets/HeadingSlide';
 import { User } from '@nextui-org/react';
 import cn from 'clsx';
 import Link from 'next/link';
@@ -22,12 +22,13 @@ export const ReviewsCarousel: FC<ReviewsCarouselProps> = ({
 	const cards = [];
 	for (let i = 0; i < 5; i++) {
 		cards.push(
-			<SwiperSlide>
+			<SwiperSlide key={i}>
 				<div className={cls.review}>
 					<div className={cls.reviewHead}>
 						<User
 							name='Junior Garcia'
 							description={
+								// eslint-disable-next-line i18next/no-literal-string
 								<Link target='_blank' href='https://twitter.com/jrgarciadev'>
 									@jrgarciadev
 								</Link>
@@ -38,6 +39,7 @@ export const ReviewsCarousel: FC<ReviewsCarouselProps> = ({
 						/>
 						<StarRating rating={i + 1} />
 					</div>
+					{/* eslint-disable-next-line i18next/no-literal-string */}
 					<p className={cls.text}>
 						Очень рад сотрудничеству! Заказал у него создание личного
 						сайта-портфолио, и результат превзошел все мои ожидания!

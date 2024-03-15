@@ -1,4 +1,5 @@
 /* eslint-disable i18next/no-literal-string */
+
 'use client';
 
 import { Button } from '@/shared/ui/Button';
@@ -38,7 +39,7 @@ export const TopPage: FC<TopPageProps> = memo(
 						<div />
 					</div>
 				</div>
-				<div className={cls.main}>
+				<div className={cls.wrapper}>
 					<div className={cls.information}>
 						<Heading title={title} description={description} note={note} />
 						{!compact && (

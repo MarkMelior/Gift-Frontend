@@ -1,12 +1,16 @@
 import { useTranslations } from 'next-intl';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import { FC } from 'react';
 
-interface AboutPageProps {}
+interface AboutPageProps {
+	params: { locale: string };
+}
 
-const AboutPage: FC<AboutPageProps> = () => {
-	const t = useTranslations();
+const AboutPage: FC<AboutPageProps> = ({ params: { locale } }) => {
+	unstable_setRequestLocale(locale);
+	const t = useTranslations('AboutPage');
 
-	return <div>{t('О нас')}</div>;
+	return <div>{t('title')}</div>;
 };
 
 export default AboutPage;

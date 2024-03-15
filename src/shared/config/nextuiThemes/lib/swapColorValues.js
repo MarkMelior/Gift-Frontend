@@ -1,7 +1,7 @@
 export function swapColorValues(colors) {
 	const swappedColors = {};
 	const keys = Object.keys(colors);
-	const length = keys.length;
+	const { length } = keys;
 
 	for (let i = 0; i < length / 2; i++) {
 		const key1 = keys[i];

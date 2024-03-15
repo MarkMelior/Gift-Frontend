@@ -16,8 +16,8 @@ export const StarRating: FC<StarRatingProps> = ({
 			<span
 				className={cls.fill}
 				style={{ width: `calc(16px * ${rating})` }}
-			></span>
-			<span className={cls.empty}></span>
+			/>
+			<span className={cls.empty} />
 		</div>
 	);
 };

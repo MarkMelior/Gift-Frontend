@@ -2,39 +2,34 @@
 
 import { InputProps as NextInputProps, useInput } from '@nextui-org/react';
 import { CloseFilledIcon } from '@nextui-org/shared-icons';
-import { forwardRef } from '@nextui-org/system';
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 
-export interface InputProps extends Omit<NextInputProps, 'isMultiline'> {}
+export interface InputProps extends NextInputProps {}
 
-export const Input = forwardRef<'input', InputProps>((props, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 	const {
 		Component,
 		label,
+		domRef,
 		description,
 		isClearable,
 		startContent,
 		endContent,
-		labelPlacement,
-		hasHelper,
-		isOutsideLeft,
 		shouldLabelBeOutside,
+		shouldLabelBeInside,
 		errorMessage,
 		getBaseProps,
 		getLabelProps,
 		getInputProps,
 		getInnerWrapperProps,
 		getInputWrapperProps,
-		getMainWrapperProps,
-		getHelperWrapperProps,
 		getDescriptionProps,
 		getErrorMessageProps,
 		getClearButtonProps,
 	} = useInput({ ...props, ref });
 
-	const labelContent = label ? (
-		<label {...getLabelProps()}>{label}</label>
-	) : null;
+	// eslint-disable-next-line jsx-a11y/label-has-associated-control
+	const labelContent = <label {...getLabelProps()}>{label}</label>;
 
 	const end = useMemo(() => {
 		if (isClearable) {
@@ -46,28 +41,7 @@ export const Input = forwardRef<'input', InputProps>((props, ref) => {
 		}
 
 		return endContent;
-	}, [isClearable, getClearButtonProps]);
-
-	const helperWrapper = useMemo(() => {
-		if (!hasHelper) return null;
-
-		return (
-			<div {...getHelperWrapperProps()}>
-				{errorMessage ? (
-					<div {...getErrorMessageProps()}>{errorMessage}</div>
-				) : description ? (
-					<div {...getDescriptionProps()}>{description}</div>
-				) : null}
-			</div>
-		);
-	}, [
-		hasHelper,
-		errorMessage,
-		description,
-		getHelperWrapperProps,
-		getErrorMessageProps,
-		getDescriptionProps,
-	]);
+	}, [isClearable, endContent, getClearButtonProps]);
 
 	const innerWrapper = useMemo(() => {
 		if (startContent || end) {
@@ -80,53 +54,25 @@ export const Input = forwardRef<'input', InputProps>((props, ref) => {
 			);
 		}
 
-		return (
-			<div {...getInnerWrapperProps()}>
-				<input {...getInputProps()} />
-			</div>
-		);
+		return <input {...getInputProps()} />;
 	}, [startContent, end, getInputProps, getInnerWrapperProps]);
-
-	const mainWrapper = useMemo(() => {
-		if (shouldLabelBeOutside) {
-			return (
-				<div {...getMainWrapperProps()}>
-					<div {...getInputWrapperProps()}>
-						{!isOutsideLeft ? labelContent : null}
-						{innerWrapper}
-					</div>
-					{helperWrapper}
-				</div>
-			);
-		}
-
-		return (
-			<>
-				<div {...getInputWrapperProps()}>
-					{labelContent}
-					{innerWrapper}
-				</div>
-				{helperWrapper}
-			</>
-		);
-	}, [
-		labelPlacement,
-		helperWrapper,
-		shouldLabelBeOutside,
-		labelContent,
-		innerWrapper,
-		errorMessage,
-		description,
-		getMainWrapperProps,
-		getInputWrapperProps,
-		getErrorMessageProps,
-		getDescriptionProps,
-	]);
 
 	return (
 		<Component {...getBaseProps()}>
-			{isOutsideLeft ? labelContent : null}
-			{mainWrapper}
+			{shouldLabelBeOutside ? labelContent : null}
+			<div
+				{...getInputWrapperProps()}
+				role='button'
+				tabIndex={0}
+				onClick={() => {
+					domRef.current?.focus();
+				}}
+			>
+				{shouldLabelBeInside ? labelContent : null}
+				{innerWrapper}
+			</div>
+			{description && <div {...getDescriptionProps()}>{description}</div>}
+			{errorMessage && <div {...getErrorMessageProps()}>{errorMessage}</div>}
 		</Component>
 	);
 });

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Button } from './deprecated/Button';
+import { Button } from './Button';
 
 describe('Button', () => {
 	test('Test render', () => {
@@ -8,7 +8,7 @@ describe('Button', () => {
 	});
 
 	test('Test slice theme', () => {
-		render(<Button variant='slice'>TEST</Button>);
+		render(<Button slice>TEST</Button>);
 		expect(screen.getByText('TEST')).toHaveClass('slice');
 		screen.debug();
 	});

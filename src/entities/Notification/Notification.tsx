@@ -5,7 +5,14 @@ import { Progress } from '@nextui-org/react';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { FC, memo, useEffect, useState } from 'react';
+import {
+	CSSProperties,
+	FC,
+	memo,
+	useCallback,
+	useEffect,
+	useState,
+} from 'react';
 import cls from './Notification.module.scss';
 
 interface NotificationProps {
@@ -23,21 +30,21 @@ export const Notification: FC<NotificationProps> = memo(
 		const [visible, setVisible] = useState(true);
 		const [closing, setClosing] = useState(false);
 
-		useEffect(() => {
-			const timer = setTimeout(() => {
-				handleClose();
-			}, duration);
-			return () => clearTimeout(timer);
-		}, []);
-
-		const handleClose = () => {
+		const handleClose = useCallback(() => {
 			setClosing(true);
 			setTimeout(() => {
 				setVisible(false);
 				setClosing(false);
 				if (onClose) onClose();
 			}, 300); // Animation duration
-		};
+		}, [onClose]);
+
+		useEffect(() => {
+			const timer = setTimeout(() => {
+				handleClose();
+			}, duration);
+			return () => clearTimeout(timer);
+		}, [duration, handleClose]);
 
 		const handleCancel = () => {
 			setClosing(true);
@@ -57,7 +64,11 @@ export const Notification: FC<NotificationProps> = memo(
 				className={cn(cls.notification, {
 					[cls.closing]: closing,
 				})}
-				style={{ '--animation-duration-notification': `${duration}ms` }}
+				style={
+					{
+						'--animation-duration-notification': `${duration}ms`,
+					} as CSSProperties
+				}
 			>
 				<Progress
 					className={cls.progress}

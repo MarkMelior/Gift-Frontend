@@ -1,12 +1,11 @@
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import cls from './About.module.scss';
 
 interface AboutProps {
 	className?: string;
-	children?: ReactNode;
 }
 
 export const About: FC<AboutProps> = ({ className = '' }) => {
@@ -25,7 +24,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 				<Image
 					width={24}
 					height={24}
-					src={'/images/icons/infinity.svg'}
+					src='/images/icons/infinity.svg'
 					alt={t('heading-image-alt')}
 					className='noselect'
 				/>
@@ -38,7 +37,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 						<Image
 							width={40}
 							height={40}
-							src={'/images/icons/microphone.svg'}
+							src='/images/icons/microphone.svg'
 							alt={t('swipe-image-alt-1')}
 							className='noselect'
 						/>
@@ -49,7 +48,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 						<Image
 							width={40}
 							height={40}
-							src={'/images/icons/list.svg'}
+							src='/images/icons/list.svg'
 							alt={t('swipe-image-alt-2')}
 							className='noselect'
 						/>
@@ -60,7 +59,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 						<Image
 							width={40}
 							height={40}
-							src={'/images/icons/list-success.svg'}
+							src='/images/icons/list-success.svg'
 							alt={t('swipe-image-alt-3')}
 							className='noselect'
 						/>
@@ -71,7 +70,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 						<Image
 							width={40}
 							height={40}
-							src={'/images/icons/search-symbol.svg'}
+							src='/images/icons/search-symbol.svg'
 							alt={t('swipe-image-alt-4')}
 							className='noselect'
 						/>
@@ -82,7 +81,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 						<Image
 							width={40}
 							height={40}
-							src={'/images/icons/save.svg'}
+							src='/images/icons/save.svg'
 							alt={t('swipe-image-alt-5')}
 							className='noselect'
 						/>

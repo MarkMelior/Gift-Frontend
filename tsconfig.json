@@ -35,7 +35,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		"**/*.scss",
-		".next/types/**/*.ts"
+		".next/types/**/*.ts",
+		"src/shared/ui/.deprecated/Button.tsx"
 	],
 	"exclude": ["node_modules"]
 }

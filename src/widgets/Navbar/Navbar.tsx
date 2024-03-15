@@ -1,5 +1,6 @@
 'use client';
 
+/* eslint-disable i18next/no-literal-string */
 import { LangSwitcher } from '@/features/LangSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
 import { Link, usePathname } from '@/shared/config/i18n/navigation';

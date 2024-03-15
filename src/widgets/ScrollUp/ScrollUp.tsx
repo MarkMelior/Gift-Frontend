@@ -40,7 +40,7 @@ export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
 
 	return (
 		<Button
-			variant='default'
+			customVariant='default'
 			onClick={scrollToTop}
 			className={cn(
 				cls.scrollUp,
