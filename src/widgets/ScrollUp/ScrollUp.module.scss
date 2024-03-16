@@ -1,9 +1,18 @@
+@import '@/app/styles/utils';
+
 .scrollUp {
 	position: fixed !important;
 	right: 30px;
 	bottom: var(--position-bottom);
 	z-index: var(--z-index-scroll-up);
 	opacity: 0;
+
+
+	@media (max-width: theme('screens.sm')) {
+		top: var(--position-top);
+		right: 10px;
+		bottom: auto;
+	}
 
 	&::before {
 		width: 20px;
@@ -13,10 +22,18 @@
 	}
 
 	&.visible {
-		background: rgba(var(--color-main-rgb), .6);
 		opacity: .7;
 		transition: all .3s ease;
 		animation: slideInFromRight 0.5s forwards;
+
+		@include background(.6);
+
+		@media (max-width: theme('screens.sm')) {
+			opacity: .9;
+
+			@apply text-sm;
+			@include background(1);
+		}
 
 		&:hover {
 			opacity: 1;

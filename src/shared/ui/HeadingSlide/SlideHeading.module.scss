@@ -28,8 +28,11 @@
 
 .left,
 .right {
-	// font-family: Montserrat;
 	font-size: 96px;
 	font-weight: 700;
 	text-transform: uppercase;
+
+	@media (max-width: theme('screens.sm')) {
+		font-size: 72px;
+	}
 }

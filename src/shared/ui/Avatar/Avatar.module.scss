@@ -1,7 +1,9 @@
-.border {
+.avatar {
+	min-width: fit-content;
 	box-shadow: 0 0 0 2px rgb(var(--color-main-rgb), 1), 0 0 0 4px #3a3641;
 
-	&:hover {
+	&:hover,
+	&[aria-expanded="true"] {
 		box-shadow: 0 0 0 2px rgb(var(--color-main-rgb), 1), 0 0 0 4px theme('colors.primary');
 	}
 }

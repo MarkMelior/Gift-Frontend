@@ -5,11 +5,11 @@ import cls from './Logo.module.scss';
 
 interface LogoProps {
 	className?: string;
-	size?: number;
+	scale?: number;
 	opacity?: number;
 }
 
-export const Logo: FC<LogoProps> = ({ className = '', size = 48, opacity }) => {
+export const Logo: FC<LogoProps> = ({ className = '', scale = 1, opacity }) => {
 	return (
 		// <Image
 		// 	className={cl(cls.Logo, {}, [className])}
@@ -21,9 +21,12 @@ export const Logo: FC<LogoProps> = ({ className = '', size = 48, opacity }) => {
 		// />
 		<div
 			className={cn(cls.logo, className)}
-			style={{ width: size, height: size, opacity }}
+			style={{
+				opacity,
+				transform: `scale(${scale})`,
+			}}
 		>
-			<IconLogo width={size} height={size} />
+			<IconLogo />
 		</div>
 	);
 };

@@ -22,7 +22,7 @@ export const Blackhole: FC<BlackholeProps> = ({ className = '', flip }) => {
 
 	return (
 		<div
-			className={cn(cls.blackhole, { [cls.flip]: flip }, className, 'noselect')}
+			className={cn(cls.wrapper, { [cls.flip]: flip }, className, 'noselect')}
 		>
 			<div className={cls.circles}>
 				<div />

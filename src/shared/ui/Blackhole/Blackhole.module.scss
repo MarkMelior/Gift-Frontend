@@ -1,4 +1,4 @@
-.blackhole {
+.wrapper {
 	position: relative;
 	height: 220px;
 }
@@ -15,8 +15,8 @@
 	transition: all .5s ease;
 	animation: fadeInBlackhole 1s ease-out forwards;
 
-	@media (width <=--display-notebook) {
-		display: none;
+	@media (max-width: theme('screens.md')) {
+		height: 600px;
 	}
 }
 
@@ -40,6 +40,10 @@
 	width: 808px;
 	height: 808px;
 	transform: translateZ(0) translate(-50%, -50%);
+
+	@media (max-width: theme('screens.md')) {
+		display: none;
+	}
 
 	&>div {
 		position: absolute;

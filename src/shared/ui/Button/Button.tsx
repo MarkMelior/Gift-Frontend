@@ -1,5 +1,6 @@
 'use client';
 
+import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { cn } from '@/shared/lib/tailwindMerge';
 import { clsxMods } from '@/shared/types';
 import {
@@ -9,6 +10,7 @@ import {
 	useButton,
 } from '@nextui-org/react';
 import { forwardRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import cls from './Button.module.scss';
 
 export type ButtonVariant =
@@ -59,6 +61,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			ref,
 			...props,
 		});
+
+		const isMobile = useMediaQuery({ minWidth: MediaSize.SM });
 
 		const renderStarlight = () => (
 			<>
@@ -145,7 +149,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			>
 				{lines && renderLinesItem()}
 				{renderButtonContent()}
-				{!disableRipple && (
+				{!disableRipple && isMobile && (
 					<div className='rippleRoot'>
 						<Ripple {...getRippleProps()} />
 					</div>

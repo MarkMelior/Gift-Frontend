@@ -1,9 +1,13 @@
+'use client';
+
+import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Button } from '@/shared/ui/Button';
 import { CardRotate } from '@/shared/ui/CardRotate';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
+import MediaQuery from 'react-responsive';
 import cls from './Advantages.module.scss';
 
 interface AdvantagesProps {
@@ -27,13 +31,15 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 					</div>
 				</div>
 			</div>
-			<Image
-				src='/images/pages/design-advantages.png'
-				width={2640}
-				height={1010}
-				alt={t('background-image-alt')}
-				className={`${cls.backgroundImage} noselect`}
-			/>
+			<MediaQuery minWidth={MediaSize.SM}>
+				<Image
+					src='/images/pages/design-advantages.png'
+					width={2640}
+					height={1010}
+					alt={t('background-image-alt')}
+					className={`${cls.backgroundImage} noselect`}
+				/>
+			</MediaQuery>
 			<Button
 				customVariant='gradient'
 				lines

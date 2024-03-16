@@ -1,15 +1,33 @@
 .wrapper {
 	position: relative;
-	margin: 50px 0 0; // . -100px .
+	margin-top: 210px;
+
+	@media (max-width: theme('screens.sm')) {
+		margin-top: 80px;
+
+		h1 {
+			font-size: theme('fontSize.3xl') !important;
+		}
+	}
+}
+
+.wrapperSwiper {
+	position: relative;
+	margin-top: 50px;
+
+	@media (max-width: theme('screens.sm')) {
+		margin-top: 30px;
+	}
 }
 
 .image {
-	position: relative;
+	position: absolute;
+	top: -170px;
 	left: 50%;
-	width: 1006px;
-	height: auto;
-	margin-top: -100px;
-	margin-bottom: -250px;
+	width: 1000px;
+	height: 300px;
+	overflow: visible;
+	object-fit: cover;
 	mix-blend-mode: lighten;
 	transform: translateX(-50%);
 }
@@ -43,6 +61,10 @@
 	justify-content: center;
 	width: 100%;
 	margin-top: 50px;
+
+	@media (max-width: theme('screens.sm')) {
+		margin-top: 30px;
+	}
 }
 
 .bulletWrapper {
@@ -96,8 +118,12 @@
 }
 
 .buttonPrev {
-	left: 0;
+	left: -1px;
 	background: linear-gradient(90deg, var(--color-background) 20%, rgba(var(--color-main-rgb), 0%) 100%);
+
+	@media (max-width: theme('screens.md')) {
+		background: none;
+	}
 
 	&>* {
 		left: 10px;
@@ -105,8 +131,12 @@
 }
 
 .buttonNext {
-	right: 0;
+	right: -1px;
 	background: linear-gradient(-90deg, var(--color-background) 20%, rgba(var(--color-main-rgb), 0%) 100%);
+
+	@media (max-width: theme('screens.md')) {
+		background: none;
+	}
 
 	&>* {
 		right: 10px;
@@ -143,6 +173,11 @@
 		transform: translateY(-50%);
 
 		@apply rounded-full;
+
+		@media (max-width: theme('screens.sm')) {
+			height: 38px;
+			padding: 0 8px;
+		}
 
 		&:active {
 			transform: translateY(-50%) scale(0.925);

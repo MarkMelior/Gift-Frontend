@@ -49,7 +49,7 @@ export default function LocaleLayout({
 				<ServerProviders>
 					<ClientProviders>
 						<Suspense fallback={<PageLoader />}>
-							<Navbar blackhole />
+							<Navbar />
 							{/* <Light /> */}
 							{children}
 							<Notification

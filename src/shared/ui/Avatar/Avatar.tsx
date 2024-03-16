@@ -85,7 +85,7 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
 			{...avatarProps}
 			className={cn(
 				avatarProps.className,
-				cls.border,
+				cls.avatar,
 				'click',
 				'cursor-pointer',
 			)}

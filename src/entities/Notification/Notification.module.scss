@@ -1,4 +1,6 @@
-.notification {
+@import '@/app/styles/utils';
+
+.wrapper {
 	position: fixed;
 	bottom: var(--position-bottom);
 	left: 50%;
@@ -6,19 +8,28 @@
 	display: flex;
 	gap: 20px;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
+	width: max-content;
+	max-width: 1320px;
 	padding: 15px 30px;
 	overflow: hidden;
-	background: var(--bg-noise), rgb(var(--color-main-rgb), 0.3);
 	backdrop-filter: var(--blur-md);
 	border: solid 1px var(--color-border);
 	transform: translateX(-50%);
 	animation: fadeIn .3s ease-out forwards;
 
+	@include background(.3);
 	@apply rounded-xl;
 
+	@media (max-width: theme('screens.sm')) {
+		width: calc(100% - 10px * 2);
+
+		@apply text-sm;
+		@include background(1);
+	}
+
 	button {
-		width: 37px;
+		min-width: 37px;
 		height: 37px;
 	}
 }

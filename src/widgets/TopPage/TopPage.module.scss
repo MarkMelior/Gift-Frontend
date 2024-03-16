@@ -40,6 +40,12 @@
 	align-items: center;
 	width: 100%;
 	padding-top: 100px;
+
+	@media (max-width: theme('screens.sm')) {
+		grid-template-columns: 1fr;
+		height: calc(100vh - var(--navbar-height-mobile) - var(--navbar-height-search-mobile) - 130px);
+		padding: 0;
+	}
 }
 
 .information {
@@ -47,6 +53,10 @@
 	display: flex;
 	flex-direction: column;
 	gap: 80px;
+
+	@media (max-width: theme('screens.sm')) {
+		align-items: center;
+	}
 }
 
 .image {

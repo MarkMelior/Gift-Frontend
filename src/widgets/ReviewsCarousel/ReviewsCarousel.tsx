@@ -18,7 +18,6 @@ export const ReviewsCarousel: FC<ReviewsCarouselProps> = ({
 	className = '',
 }) => {
 	// const t = useTranslations('ReviewsCarousel');
-
 	const cards = [];
 	for (let i = 0; i < 5; i++) {
 		cards.push(
@@ -56,7 +55,8 @@ export const ReviewsCarousel: FC<ReviewsCarouselProps> = ({
 				<Swiper
 					modules={[Autoplay]}
 					spaceBetween={30}
-					slidesPerView={3}
+					slidesPerView='auto'
+					// slidesPerView={3}
 					loop
 					speed={5000}
 					autoplay={{
@@ -69,7 +69,8 @@ export const ReviewsCarousel: FC<ReviewsCarouselProps> = ({
 				<Swiper
 					modules={[Autoplay]}
 					spaceBetween={30}
-					slidesPerView={3}
+					slidesPerView='auto'
+					// slidesPerView={3}
 					loop
 					speed={6000}
 					autoplay={{

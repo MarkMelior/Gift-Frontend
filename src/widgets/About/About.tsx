@@ -12,7 +12,7 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 	const t = useTranslations('About');
 
 	return (
-		<section className={cn(cls.content, className, 'content')}>
+		<section className={cn(cls.wrapper, className, 'content')}>
 			<Image
 				src='/images/pages/glow-about.png'
 				width={1612}

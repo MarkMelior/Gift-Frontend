@@ -2,7 +2,12 @@
 
 .wrapper {
 	position: relative;
+	max-width: 100%;
 	margin-top: 70px;
+
+	@media (max-width: theme('screens.sm')) {
+		margin: 70px 0 0;
+	}
 }
 
 .video {
@@ -15,6 +20,10 @@
 	object-fit: cover;
 	mix-blend-mode: lighten;
 	transform: translateY(-50%);
+
+	@media (max-width: theme('screens.sm')) {
+		display: none;
+	}
 
 	// @media (max-width: theme('screens.md')) {
 	// 	width: 100%;
@@ -43,6 +52,10 @@
 		pointer-events: none;
 		content: '';
 		background: linear-gradient(90deg, var(--color-background) 22.555%, rgba(3, 2, 13, 0%) 100%);
+
+		@media (max-width: theme('screens.sm')) {
+			content: none;
+		}
 	}
 
 	&::after {
@@ -63,13 +76,17 @@
 	border: 1px solid var(--color-border);
 	transition: all .3s ease;
 
+	@apply rounded-lg;
+	@include background(.4);
+
+	@media (max-width: theme('screens.sm')) {
+		@include background(1);
+	}
+
 	&:hover {
 		border: 1px solid var(--color-border-select);
 		transform: scale(1.025)
 	}
-
-	@apply rounded-lg;
-	@include background(.4);
 }
 
 .reviewRow1,
@@ -83,12 +100,20 @@
 .reviewRow1 {
 	& .review {
 		left: -30px;
+
+		@media (max-width: theme('screens.sm')) {
+			left: auto;
+		}
 	}
 }
 
 .reviewRow2 {
 	& .review {
 		left: 30px;
+
+		@media (max-width: theme('screens.sm')) {
+			left: auto;
+		}
 	}
 }
 

@@ -1,5 +1,7 @@
 'use client';
 
+/* eslint-disable indent */
+import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Heading } from '@/widgets/Heading';
@@ -7,6 +9,7 @@ import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC, useRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -14,22 +17,11 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from './BestProduct.module.scss';
 
-interface BestProductProps {
-	className?: string;
-}
-
-export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
+export const BestProduct: FC = () => {
 	const t = useTranslations('BestProduct');
 	const prevRef = useRef(null);
 	const nextRef = useRef(null);
-	// const bulletWrapperRef = useRef(null);
-	// const onAutoplayTimeLeft = (s, time, progress: number) => {
-	// 	// @ts-ignore
-	// 	bulletWrapperRef.current.style.setProperty(
-	// 		'--autoplay-progress',
-	// 		`${progress * -100}%`,
-	// 	);
-	// };
+	const isMobile = useMediaQuery({ maxWidth: MediaSize.SM });
 
 	const cards = [];
 	for (let i = 0; i < 7; i++) {
@@ -49,7 +41,7 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 	}
 
 	return (
-		<section className={cn(className, 'content')}>
+		<section className={cn(cls.wrapper, 'content')}>
 			<Image
 				src='/images/pages/glow-best.png'
 				width={1624}
@@ -65,18 +57,22 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 				center
 				customSize={3}
 			/>
-			<div className={cls.wrapper}>
+			<div className={cls.wrapperSwiper}>
 				<Swiper
 					modules={[Autoplay, Pagination, Navigation]}
 					spaceBetween={30}
-					slidesPerView={4}
+					slidesPerView={isMobile ? 1 : 4}
 					loop
-					autoplay={{
-						delay: 2500,
-						disableOnInteraction: false,
-					}}
+					autoplay={
+						isMobile
+							? false
+							: {
+									delay: 2500,
+									disableOnInteraction: false,
+									// eslint-disable-next-line no-mixed-spaces-and-tabs
+							  }
+					}
 					centeredSlides
-					// onAutoplayTimeLeft={onAutoplayTimeLeft}
 					pagination={{
 						clickable: true,
 						el: '[data-slider-dots]',
@@ -109,11 +105,7 @@ export const BestProduct: FC<BestProductProps> = ({ className = '' }) => {
 					</div>
 				</Swiper>
 				<div className={cls.bulletContent}>
-					<span
-						// ref={bulletWrapperRef}
-						className={cls.bulletWrapper}
-						data-slider-dots
-					/>
+					<span className={cls.bulletWrapper} data-slider-dots />
 				</div>
 			</div>
 		</section>

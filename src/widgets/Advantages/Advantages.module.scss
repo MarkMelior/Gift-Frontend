@@ -2,16 +2,9 @@
 	position: relative;
 	padding: 200px 158px 0;
 
-	// &::before {
-	// 	position: absolute;
-	// 	top: 0;
-	// 	right: 546px;
-	// 	z-index: calc(var(--z-index-blackhole) - 1);
-	// 	width: 1px;
-	// 	height: 148px;
-	// 	content: "";
-	// 	background-image: linear-gradient(to top, transparent, var(--color-main));
-	// }
+	@media (max-width: theme('screens.sm')) {
+		padding: 100px 30px 0;
+	}
 }
 
 .backgroundImage {
@@ -35,6 +28,12 @@
 .heading {
 	margin-top: 40px;
 
+	@media (max-width: theme('screens.sm')) {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
 	h2 {
 		font-weight: 700;
 
@@ -52,6 +51,12 @@
 	align-items: center;
 	justify-content: center;
 	padding-top: 95px;
+
+	@media (max-width: theme('screens.sm')) {
+		flex-direction: column;
+		gap: 25px;
+		padding-top: 40px;
+	}
 
 	&>*:nth-child(1),
 	&>*:nth-child(3) {
@@ -76,12 +81,24 @@
 		left: 246px;
 		width: 300px;
 		height: 228px;
+
+		@media (max-width: theme('screens.sm')) {
+			left: 116px;
+			width: 33%;
+			height: 135px;
+		}
 	}
 
 	&:nth-child(2) {
-		left: 554px;
+		left: 550px;
 		width: 220px;
-		height: 164px;
+		height: 165px;
+
+		@media (max-width: theme('screens.sm')) {
+			left: 230px;
+			width: 27%;
+			height: 225px;
+		}
 	}
 
 	&::before {
@@ -116,6 +133,7 @@
 	width: calc(100% + 1px);
 	height: calc(100% + 1px);
 	padding: 0 1px 1px 0;
+	overflow: hidden;
 	border-radius: inherit;
 	mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
 	mask-composite: exclude;
@@ -128,6 +146,10 @@
 		height: 500px;
 		background: conic-gradient(rgb(109, 46, 255, 0%), rgb(158, 122, 255, 30%) 6%, rgb(144, 124, 255, 70%) 10%, #B336FF 14.9%, rgb(109, 46, 255, 0%) 15%);
 		animation: buildLineRotate 15s linear infinite;
+
+		@media (max-width: theme('screens.sm')) {
+			left: -260px;
+		}
 	}
 }
 

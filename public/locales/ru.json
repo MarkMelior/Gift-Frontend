@@ -86,7 +86,8 @@
 		"home": "Главная",
 		"search": "Поиск",
 		"search-icon": "Иконка поиска",
-		"about": "О нас",
+		"shop": "Магазин",
+		"favorites": "Избранное",
 		"user-logo": "Иконка пользователя"
 	},
 	"LangSwitcher": {
@@ -106,7 +107,7 @@
 		"logo-image-alt": "Логотип сайта",
 		"button-image-alt": "Иконка подарка"
 	},
-	"AboutPage": {
+	"ShopPage": {
 		"title": "О нас"
 	}
 }

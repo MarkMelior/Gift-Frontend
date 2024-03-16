@@ -61,7 +61,7 @@ export const Notification: FC<NotificationProps> = memo(
 
 		return (
 			<article
-				className={cn(cls.notification, {
+				className={cn(cls.wrapper, {
 					[cls.closing]: closing,
 				})}
 				style={

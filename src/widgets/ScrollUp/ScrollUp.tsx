@@ -13,15 +13,13 @@ interface ScrollUpProps {
 export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
 	const t = useTranslations('ScrollUp');
 	const [isVisible, setIsVisible] = useState(false);
+	const [prevScrollY, setPrevScrollY] = useState(0);
 
 	useEffect(() => {
 		const handleScroll = () => {
 			const currentScrollY = window.scrollY;
-			if (currentScrollY > 200) {
-				setIsVisible(true);
-			} else {
-				setIsVisible(false);
-			}
+			setIsVisible(currentScrollY < prevScrollY && currentScrollY > 1500);
+			setPrevScrollY(currentScrollY);
 		};
 
 		window.addEventListener('scroll', handleScroll);
@@ -29,7 +27,7 @@ export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
 		};
-	}, []);
+	}, [prevScrollY]);
 
 	const scrollToTop = () => {
 		window.scrollTo({

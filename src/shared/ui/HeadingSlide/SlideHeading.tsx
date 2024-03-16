@@ -24,7 +24,7 @@ export const SlideHeading = ({ text }: SlideHeadingProps) => {
 				<motion.h1
 					className={cls.left}
 					style={{
-						translateX: useTransform(scrollYProgress, [0, 1], [0, 1300]),
+						translateX: useTransform(scrollYProgress, [0, 1], [0, 1000]),
 					}}
 				>
 					{text}
@@ -32,7 +32,7 @@ export const SlideHeading = ({ text }: SlideHeadingProps) => {
 				<motion.h1
 					className={cls.right}
 					style={{
-						translateX: useTransform(scrollYProgress, [0, 1], [0, -1300]),
+						translateX: useTransform(scrollYProgress, [0, 1], [0, -1000]),
 					}}
 				>
 					{text}

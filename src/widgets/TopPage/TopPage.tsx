@@ -2,11 +2,13 @@
 
 'use client';
 
+import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Button } from '@/shared/ui/Button';
 import { Heading } from '@/widgets/Heading';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC, memo } from 'react';
+import MediaQuery from 'react-responsive';
 import cls from './TopPage.module.scss';
 
 interface TopPageProps {
@@ -34,11 +36,13 @@ export const TopPage: FC<TopPageProps> = memo(
 
 		return (
 			<section className='content'>
-				<div className={cls.backgroundTop}>
-					<div className={cls.background}>
-						<div />
+				<MediaQuery minWidth={MediaSize.SM}>
+					<div className={cls.backgroundTop}>
+						<div className={cls.background}>
+							<div />
+						</div>
 					</div>
-				</div>
+				</MediaQuery>
 				<div className={cls.wrapper}>
 					<div className={cls.information}>
 						<Heading title={title} description={description} note={note} />
@@ -64,15 +68,16 @@ export const TopPage: FC<TopPageProps> = memo(
 							</>
 						)}
 					</div>
-					<div className={cls.image}>
-						<Image
-							src='/images/pages/gift.png'
-							alt={t('image')}
-							width={371}
-							height={419}
-							className='noselect'
-						/>
-						{/* <script
+					<MediaQuery minWidth={MediaSize.MD}>
+						<div className={cls.image}>
+							<Image
+								src='/images/pages/gift.png'
+								alt={t('image')}
+								width={371}
+								height={419}
+								className='noselect'
+							/>
+							{/* <script
 							type='module'
 							src='https://unpkg.com/@splinetool/viewer@1.0.55/build/spline-viewer.js'
 							width='100%'
@@ -82,7 +87,8 @@ export const TopPage: FC<TopPageProps> = memo(
 							url='https://prod.spline.design/mxF2EyMzspLO0Kxj/scene.splinecode'
 							ref={splineRef}
 						/> */}
-					</div>
+						</div>
+					</MediaQuery>
 				</div>
 			</section>
 		);

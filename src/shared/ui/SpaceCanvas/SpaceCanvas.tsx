@@ -1,5 +1,6 @@
 'use client';
 
+import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Theme } from '@/shared/types';
 import { PointMaterial, Points } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -8,9 +9,12 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 // @ts-ignore
 import * as random from 'maath/random/dist/maath-random.esm';
 import { useTheme } from 'next-themes';
+import { useMediaQuery } from 'react-responsive';
 import cls from './SpaceCanvas.module.scss';
 
 const StarBackground = (props: any) => {
+	const isPhone = useMediaQuery({ query: `(max-width: ${MediaSize.MD}px)` });
+
 	const ref: any = useRef();
 	const [sphere] = useState(
 		() =>
@@ -23,6 +27,10 @@ const StarBackground = (props: any) => {
 		ref.current.rotation.x -= delta / 10;
 		ref.current.rotation.y -= delta / 15;
 	});
+
+	if (isPhone) {
+		return null;
+	}
 
 	return (
 		// eslint-disable-next-line react/no-unknown-property

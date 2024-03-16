@@ -7,7 +7,14 @@ export const localePrefix = 'never'; // Use the default: `always`
 
 export const pathnames = {
 	'/': '/',
-	'/about': '/about',
+	'/shop': {
+		ru: '/магазин',
+		en: '/shop',
+	},
+	'/favorites': {
+		ru: '/избранное',
+		en: '/favorites',
+	},
 	// '/pathnames': {
 	// 	en: '/pathnames',
 	// 	de: '/pfadnamen',
