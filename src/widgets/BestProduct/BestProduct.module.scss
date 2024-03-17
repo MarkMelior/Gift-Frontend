@@ -3,7 +3,7 @@
 	margin-top: 210px;
 
 	@media (max-width: theme('screens.sm')) {
-		margin-top: 80px;
+		margin-top: 130px;
 
 		h1 {
 			font-size: theme('fontSize.3xl') !important;
@@ -14,22 +14,21 @@
 .wrapperSwiper {
 	position: relative;
 	margin-top: 50px;
-
-	@media (max-width: theme('screens.sm')) {
-		margin-top: 30px;
-	}
 }
 
 .image {
-	position: absolute;
-	top: -170px;
-	left: 50%;
-	width: 1000px;
-	height: 300px;
-	overflow: visible;
-	object-fit: cover;
 	mix-blend-mode: lighten;
-	transform: translateX(-50%);
+
+	img {
+		position: absolute;
+		top: -170px;
+		left: 50%;
+		width: 1000px;
+		height: 300px;
+		overflow: visible;
+		object-fit: cover;
+		transform: translateX(-50%);
+	}
 }
 
 .icon {
@@ -61,10 +60,6 @@
 	justify-content: center;
 	width: 100%;
 	margin-top: 50px;
-
-	@media (max-width: theme('screens.sm')) {
-		margin-top: 30px;
-	}
 }
 
 .bulletWrapper {

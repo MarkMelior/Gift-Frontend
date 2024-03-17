@@ -65,7 +65,8 @@
 		background: none;
 	}
 
-	img {
+	img,
+	svg {
 		opacity: .5;
 		transition: opacity .3s ease;
 	}
@@ -73,7 +74,8 @@
 	[data-focus="true"] {
 		background: rgb(var(--color-main-inverted-rgb), .1) !important;
 
-		img {
+		img,
+		svg {
 			opacity: 1;
 		}
 	}
@@ -192,6 +194,11 @@
 
 		&:hover {
 			border: 1px solid var(--color-border);
+
+			img,
+			svg {
+				opacity: 1 !important;
+			}
 		}
 	}
 
@@ -200,19 +207,13 @@
 	svg {
 		min-width: 24px;
 		height: 24px;
-		opacity: $opacity-buttons;
+		opacity: $opacity-buttons !important;
 		transition: all .3s ease;
 	}
 
 	svg *[stroke] {
 		stroke: var(--color-main-inverted);
 	}
-}
-
-.dropdown {
-	width: 240px;
-	background: var(--bg-noise), var(--color-background);
-	border: 1px solid var(--color-border);
 }
 
 .tooltip {
@@ -232,9 +233,7 @@
 	@apply rounded-b-2xl;
 	@include background(.5);
 
-	@media (max-width: theme('screens.sm')) {
-		backdrop-filter: none;
-
+	@media (max-width: theme('screens.md')) {
 		@include background(1);
 	}
 }

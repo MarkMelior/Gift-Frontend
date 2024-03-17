@@ -14,7 +14,41 @@
 	z-index: var(--z-index-bg-images);
 	width: 1320px;
 	height: auto;
+
+	@media (max-width: theme('screens.lg')) {
+		display: none;
+	}
 }
+
+.image {
+	position: absolute;
+	top: 310px;
+	left: 50%;
+	z-index: calc(var(--z-index-bg-images) - 1);
+	object-fit: cover;
+	mix-blend-mode: lighten;
+	transform: translateX(-50%);
+
+	@media (max-width: theme('screens.sm')) {
+		top: 460px;
+	}
+
+	img {
+		height: 900px;
+		overflow: visible;
+		object-fit: cover;
+	}
+}
+
+// @keyframes appear {
+// 	from {
+// 		opacity: 0;
+// 	}
+
+// 	to {
+// 		opacity: 1;
+// 	}
+// }
 
 .icon {
 	width: 64px;
@@ -52,7 +86,7 @@
 	justify-content: center;
 	padding-top: 95px;
 
-	@media (max-width: theme('screens.sm')) {
+	@media (max-width: theme('screens.md')) {
 		flex-direction: column;
 		gap: 25px;
 		padding-top: 40px;
@@ -82,7 +116,7 @@
 		width: 300px;
 		height: 228px;
 
-		@media (max-width: theme('screens.sm')) {
+		@media (max-width: theme('screens.md')) {
 			left: 116px;
 			width: 33%;
 			height: 135px;
@@ -94,7 +128,7 @@
 		width: 220px;
 		height: 165px;
 
-		@media (max-width: theme('screens.sm')) {
+		@media (max-width: theme('screens.md')) {
 			left: 230px;
 			width: 27%;
 			height: 225px;

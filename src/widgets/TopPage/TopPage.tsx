@@ -2,6 +2,8 @@
 
 'use client';
 
+import { Gift } from '@/shared/assets/icon/Gift';
+import { Link } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Button } from '@/shared/ui/Button';
 import { Heading } from '@/widgets/Heading';
@@ -49,22 +51,16 @@ export const TopPage: FC<TopPageProps> = memo(
 						{!compact && (
 							<>
 								<div className={`${cls.dots} noselect`} />
-								<Button
-									starlight
-									className='py-5 px-12 rounded-xl'
-									customVariant='layer'
-									startContent={
-										<Image
-											src='/images/icons/gift.svg'
-											width={24}
-											height={24}
-											alt='Иконка подарка'
-											className='noselect'
-										/>
-									}
-								>
-									{t('button')}
-								</Button>
+								<Link href='/shop'>
+									<Button
+										starlight
+										className='py-5 px-12 rounded-xl'
+										customVariant='layer'
+										startContent={<Gift />}
+									>
+										{t('button')}
+									</Button>
+								</Link>
 							</>
 						)}
 					</div>

@@ -1,5 +1,10 @@
+'use client';
+
+import { Gift } from '@/shared/assets/icon/Gift';
+import { Link } from '@/shared/config/i18n/navigation';
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
+import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
@@ -32,29 +37,30 @@ export const Ready: FC<ReadyProps> = ({ className = '' }) => {
 				<h3>{t('title')}</h3>
 				<p>{t('description')}</p>
 			</div>
-			<Button
-				starlight
-				className='py-5 px-12 rounded-xl'
-				customVariant='layer'
-				startContent={
-					<Image
-						src='/images/icons/gift.svg'
-						width={24}
-						height={24}
-						alt={t('button-image-alt')}
-						className='noselect'
-					/>
-				}
+			<Link href='/shop'>
+				<Button
+					starlight
+					className='py-5 px-12 rounded-xl'
+					customVariant='layer'
+					startContent={<Gift />}
+				>
+					{t('button')}
+				</Button>
+			</Link>
+			<motion.div
+				initial={{ opacity: 0 }}
+				whileInView={{ opacity: 1 }}
+				viewport={{ once: true }}
+				transition={{ duration: 3, ease: 'easeIn' }}
+				className={`${cls.image} noselect`}
 			>
-				{t('button')}
-			</Button>
-			<Image
-				src='/images/pages/glow-ready.png'
-				alt={t('background-image-alt')}
-				className={cn(cls.image, 'noselect')}
-				width={1488}
-				height={1674}
-			/>
+				<Image
+					src='/images/pages/glow-ready.png'
+					alt={t('background-image-alt')}
+					width={1488}
+					height={1674}
+				/>
+			</motion.div>
 		</div>
 	);
 };

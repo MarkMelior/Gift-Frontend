@@ -1,3 +1,4 @@
+import { InfinityIcon } from '@/shared/assets/icon/InfinityIcon';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -13,21 +14,15 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 
 	return (
 		<section className={cn(cls.wrapper, className, 'content')}>
-			<Image
-				src='/images/pages/glow-about.png'
-				width={1612}
-				height={1698}
-				alt={t('background-glow-image-alt')}
-				className={`${cls.image} noselect`}
-			/>
 			<div className={cls.heading}>
-				<Image
+				{/* <Image
 					width={24}
 					height={24}
 					src='/images/icons/infinity.svg'
 					alt={t('heading-image-alt')}
 					className='noselect'
-				/>
+				/> */}
+				<InfinityIcon width={24} height={24} />
 				<h3>{t('title')}</h3>
 				<p>{t('description')}</p>
 			</div>

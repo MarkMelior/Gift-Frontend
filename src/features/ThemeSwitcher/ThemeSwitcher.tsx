@@ -23,4 +23,9 @@ export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
 			<Moon />
 		</Button>
 	);
+	// return (
+	// 	<div onClick={toggleTheme} className={className}>
+	// 		{children}
+	// 	</div>
+	// );
 });

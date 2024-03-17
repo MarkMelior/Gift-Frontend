@@ -8,17 +8,13 @@ export const localePrefix = 'never'; // Use the default: `always`
 export const pathnames = {
 	'/': '/',
 	'/shop': {
-		ru: '/магазин',
-		en: '/shop',
+		ru: '/ru/shop',
+		en: '/en/shop',
 	},
 	'/favorites': {
-		ru: '/избранное',
-		en: '/favorites',
+		ru: '/ru/favorites',
+		en: '/en/favorites',
 	},
-	// '/pathnames': {
-	// 	en: '/pathnames',
-	// 	de: '/pfadnamen',
-	// },
 } satisfies Pathnames<typeof locales>;
 
 export type PathnamesType = typeof pathnames;

@@ -1,13 +1,9 @@
-@import '/src/app/styles/utils';
+@import '@/app/styles/utils';
 
 .wrapper {
 	position: relative;
 	max-width: 100%;
 	margin-top: 70px;
-
-	@media (max-width: theme('screens.sm')) {
-		margin: 70px 0 0;
-	}
 }
 
 .video {
@@ -20,10 +16,6 @@
 	object-fit: cover;
 	mix-blend-mode: lighten;
 	transform: translateY(-50%);
-
-	@media (max-width: theme('screens.sm')) {
-		display: none;
-	}
 
 	// @media (max-width: theme('screens.md')) {
 	// 	width: 100%;
@@ -80,7 +72,9 @@
 	@include background(.4);
 
 	@media (max-width: theme('screens.sm')) {
-		@include background(1);
+		backdrop-filter: blur(32px);
+
+		// @include background(1);
 	}
 
 	&:hover {

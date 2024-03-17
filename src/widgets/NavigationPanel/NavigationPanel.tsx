@@ -27,7 +27,7 @@ export const NavigationPanel: FC<NavigationPanelProps> = ({
 	return (
 		<section className={cn(cls.wrapper, className, 'content')}>
 			<Blackhole />
-			<MediaQuery minWidth={MediaSize.SM}>
+			<MediaQuery minWidth={MediaSize.MD}>
 				<nav className={cls.panel}>
 					{Object.keys(NavigationPanelData).map((key) => {
 						const { to, image, alt, title, description } =

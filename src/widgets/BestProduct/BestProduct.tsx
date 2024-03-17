@@ -6,6 +6,7 @@ import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
+import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC, useRef } from 'react';
@@ -42,13 +43,21 @@ export const BestProduct: FC = () => {
 
 	return (
 		<section className={cn(cls.wrapper, 'content')}>
-			<Image
-				src='/images/pages/glow-best.png'
-				width={1624}
-				height={862}
-				alt={t('background-glow-image-alt')}
+			<motion.div
+				initial={{ opacity: 0 }}
+				whileInView={{ opacity: 1 }}
+				viewport={{ once: true }}
+				transition={{ duration: 1, ease: 'easeIn' }}
 				className={`${cls.image} noselect`}
-			/>
+			>
+				<Image
+					src='/images/pages/glow-best.png'
+					width={1624}
+					height={862}
+					alt={t('background-glow-image-alt')}
+				/>
+			</motion.div>
+
 			<Heading
 				title={t('title')}
 				description={t('description')}

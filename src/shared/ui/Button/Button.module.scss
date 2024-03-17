@@ -28,7 +28,8 @@
 	transition: all .2s ease;
 
 	&::before,
-	img {
+	img,
+	svg {
 		opacity: .5;
 		transition: opacity 0.2s ease;
 	}
@@ -38,7 +39,8 @@
 		border: 1px solid var(--color-border-select);
 
 		&::before,
-		img {
+		img,
+		svg {
 			opacity: 1;
 		}
 	}
@@ -305,7 +307,8 @@
 		0 2px 32px 0 rgb(176, 74, 255, 30%);
 
 	/* stylelint-disable-next-line no-descending-specificity */
-	img {
+	img,
+	svg {
 		opacity: 1;
 		transition: all 0.2s ease;
 	}

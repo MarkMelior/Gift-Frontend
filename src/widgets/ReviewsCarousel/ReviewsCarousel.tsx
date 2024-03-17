@@ -1,23 +1,22 @@
 'use client';
 
+import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { SlideHeading } from '@/shared/ui/HeadingSlide';
 import { StarRating } from '@/shared/ui/StarRating';
 import { User } from '@nextui-org/react';
 import cn from 'clsx';
+import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from './ReviewsCarousel.module.scss';
 
-interface ReviewsCarouselProps {
-	className?: string;
-}
-
-export const ReviewsCarousel: FC<ReviewsCarouselProps> = ({
-	className = '',
-}) => {
+export const ReviewsCarousel: FC = () => {
 	// const t = useTranslations('ReviewsCarousel');
+	const isMobile = useMediaQuery({ maxWidth: MediaSize.SM });
+
 	const cards = [];
 	for (let i = 0; i < 5; i++) {
 		cards.push(
@@ -49,7 +48,7 @@ export const ReviewsCarousel: FC<ReviewsCarouselProps> = ({
 	}
 
 	return (
-		<div className={cn(cls.wrapper, 'content', className)}>
+		<div className={cn(cls.wrapper, 'content')}>
 			<SlideHeading text='Отзывы' />
 			<div className={cls.reviews}>
 				<Swiper
@@ -82,15 +81,25 @@ export const ReviewsCarousel: FC<ReviewsCarouselProps> = ({
 					{cards}
 				</Swiper>
 			</div>
-			<video
-				autoPlay
-				loop
-				muted
-				playsInline
-				className={cn(cls.video, 'noselect')}
-			>
-				<source src='/videos/encryption.webm' />
-			</video>
+			{isMobile ? (
+				<Image
+					src='/images/pages/encryption.png'
+					alt='Blackhole'
+					width={1920}
+					height={1080}
+					className={`${cls.video} noselect`}
+				/>
+			) : (
+				<video
+					autoPlay
+					loop
+					muted
+					playsInline
+					className={cn(cls.video, 'noselect')}
+				>
+					<source src='/videos/encryption.webm' />
+				</video>
+			)}
 		</div>
 	);
 };

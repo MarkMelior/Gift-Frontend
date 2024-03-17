@@ -28,7 +28,7 @@
 	--blur-xl: blur(128px);
 	--bg-noise: url('/images/noise.png') repeat;
 
-	@media (max-width: theme('screens.sm')) {
+	@media (max-width: theme('screens.md')) {
 		--blur-xs: none;
 		--blur-sm: none;
 		--blur-md: none;

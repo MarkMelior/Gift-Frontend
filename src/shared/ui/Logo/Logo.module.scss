@@ -5,12 +5,4 @@
 	&:hover {
 		opacity: 1 !important;
 	}
-
-	svg *[fill] {
-		fill: var(--color-main-inverted);
-	}
-
-	svg *[stroke] {
-		stroke: var(--color-main-inverted);
-	}
 }

@@ -6,10 +6,6 @@
 	align-items: center;
 	margin-top: 145px;
 	margin-bottom: 60px;
-
-	@media (max-width: theme('screens.sm')) {
-		margin-top: 90px;
-	}
 }
 
 .icon {
@@ -52,15 +48,21 @@
 	position: absolute;
 	top: -10px;
 	z-index: -1;
-	width: 820px;
-	max-height: 700px;
-	object-fit: cover;
-	object-position: top;
 	mix-blend-mode: lighten;
 
 	@media (max-width: theme('screens.sm')) {
 		top: -50px;
-		height: 550px;
-		overflow: visible;
+	}
+
+	img {
+		width: 820px;
+		max-height: 700px;
+		object-fit: cover;
+		object-position: top;
+
+		@media (max-width: theme('screens.sm')) {
+			height: 550px;
+			overflow: visible;
+		}
 	}
 }

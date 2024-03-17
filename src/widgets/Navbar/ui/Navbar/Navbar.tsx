@@ -1,27 +1,20 @@
 'use client';
 
 /* eslint-disable i18next/no-literal-string */
-import { LangSwitcher } from '@/features/LangSwitcher';
 import { ThemeSwitcher } from '@/features/ThemeSwitcher';
+import { Search } from '@/shared/assets/icon/Search';
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Input } from '@/shared/ui/Input';
 import { Logo } from '@/shared/ui/Logo';
-import {
-	Dropdown,
-	DropdownItem,
-	DropdownMenu,
-	DropdownSection,
-	DropdownTrigger,
-	Spinner,
-	Tooltip,
-} from '@nextui-org/react';
+import { Spinner, Tooltip } from '@nextui-org/react';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
+import { DropdownProfile } from '../DropdownProfile/DropdownProfile';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -47,7 +40,7 @@ export const Navbar = memo(
 
 		const t = useTranslations('Navbar');
 		const pathname = usePathname();
-		const isMobile = useMediaQuery({ maxWidth: MediaSize.SM });
+		const isPhone = useMediaQuery({ maxWidth: MediaSize.SM });
 		const [isScrollingDown, setIsScrollingDown] = useState(true);
 		const [prevScrollY, setPrevScrollY] = useState(0);
 
@@ -83,13 +76,14 @@ export const Navbar = memo(
 					placeholder={t('search')}
 					className={cls.input}
 					startContent={
-						<Image
-							src='/images/icons/search.svg'
-							alt={t('search-icon')}
-							width={18}
-							height={18}
-							className='noselect'
-						/>
+						// <Image
+						// 	src='/images/icons/search.svg'
+						// 	alt={t('search-icon')}
+						// 	width={18}
+						// 	height={18}
+						// 	className='noselect'
+						// />
+						<Search width={18} height={18} />
 					}
 				/>
 			),
@@ -98,49 +92,9 @@ export const Navbar = memo(
 
 		const renderProfile = useMemo(
 			() => (
-				<Dropdown
-					backdrop='opaque'
-					placement='bottom-end'
-					offset={30}
-					className={cls.dropdown}
-				>
-					<DropdownTrigger>
-						<Avatar
-							isBordered
-							src='/images/temp/ava.jpg'
-							alt={t('user-logo')}
-						/>
-					</DropdownTrigger>
-					<DropdownMenu
-						variant='faded'
-						aria-label='Dropdown menu with description'
-					>
-						<DropdownSection title='Actions' showDivider>
-							<DropdownItem key='new' description='Create a new file'>
-								New file
-							</DropdownItem>
-							<DropdownItem key='copy' description='Copy the file link'>
-								Copy link
-							</DropdownItem>
-							<DropdownItem
-								key='edit'
-								description='Allows you to edit the file'
-							>
-								Edit file
-							</DropdownItem>
-						</DropdownSection>
-						<DropdownSection title='Danger zone'>
-							<DropdownItem
-								key='delete'
-								className='text-danger'
-								color='danger'
-								description='Permanently delete the file'
-							>
-								Delete file
-							</DropdownItem>
-						</DropdownSection>
-					</DropdownMenu>
-				</Dropdown>
+				<DropdownProfile>
+					<Avatar isBordered src='/images/temp/ava.jpg' alt={t('user-logo')} />
+				</DropdownProfile>
 			),
 			[t],
 		);
@@ -150,7 +104,7 @@ export const Navbar = memo(
 				<>
 					<li className={cn(cls.link, isActive('/'))}>
 						<Link href='/'>
-							{isMobile && (
+							{isPhone && (
 								<Image
 									src='/images/icons/home.svg'
 									alt=''
@@ -163,7 +117,7 @@ export const Navbar = memo(
 					</li>
 					<li className={cn(cls.link, isActive('/shop/'))}>
 						<Link href='/shop'>
-							{isMobile && (
+							{isPhone && (
 								<Image
 									src='/images/icons/cart.svg'
 									alt=''
@@ -177,7 +131,7 @@ export const Navbar = memo(
 					<MediaQuery maxWidth={MediaSize.SM}>
 						<li className={cn(cls.link, isActive('/favorites/'))}>
 							<Link href='/favorites'>
-								{isMobile && (
+								{isPhone && (
 									<Image
 										src='/images/icons/heart.svg'
 										alt=''
@@ -191,7 +145,7 @@ export const Navbar = memo(
 					</MediaQuery>
 				</>
 			);
-		}, [isActive, isMobile, t]);
+		}, [isActive, isPhone, t]);
 
 		const renderMobile = () => (
 			<ul className={cls.mobile}>
@@ -222,7 +176,7 @@ export const Navbar = memo(
 				<ul className={cls.right}>
 					<MediaQuery minWidth={MediaSize.MD}>
 						<li className={cls.controlButtons}>
-							<LangSwitcher />
+							{/* <LangSwitcher /> */}
 							<ThemeSwitcher />
 						</li>
 					</MediaQuery>
@@ -253,10 +207,10 @@ export const Navbar = memo(
 			<>
 				<header className={cn(cls.wrapper, className)}>
 					<nav className={cn(cls.content, 'content')}>
-						{isMobile ? renderMobile() : renderDesktop()}
+						{isPhone ? renderMobile() : renderDesktop()}
 					</nav>
 				</header>
-				{isMobile && renderSearch()}
+				{isPhone && renderSearch()}
 				<div className={cls.spacer} />
 			</>
 		);

@@ -4,6 +4,7 @@ import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Button } from '@/shared/ui/Button';
 import { CardRotate } from '@/shared/ui/CardRotate';
 import cn from 'clsx';
+import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
@@ -77,6 +78,20 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 					text={t('card-3-description')}
 				/>
 			</div>
+			<motion.div
+				initial={{ opacity: 0 }}
+				whileInView={{ opacity: 1 }}
+				viewport={{ once: true }}
+				transition={{ duration: 1, ease: 'easeIn' }}
+				className={`${cls.image} noselect`}
+			>
+				<Image
+					src='/images/pages/glow-about.png'
+					width={1612}
+					height={1698}
+					alt='test'
+				/>
+			</motion.div>
 		</section>
 	);
 };

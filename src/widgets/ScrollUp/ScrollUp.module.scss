@@ -26,9 +26,9 @@
 		transition: all .3s ease;
 		animation: slideInFromRight 0.5s forwards;
 
-		@include background(.6);
+		@include background(.75);
 
-		@media (max-width: theme('screens.sm')) {
+		@media (max-width: theme('screens.lg')) {
 			opacity: .9;
 
 			@apply text-sm;

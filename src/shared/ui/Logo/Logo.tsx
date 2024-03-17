@@ -1,5 +1,5 @@
+import { Logo as SvgLogo } from '@/shared/assets/icon/Logo';
 import cn from 'clsx';
-import IconLogo from 'public/images/icons/logo-melior-white.svg';
 import { FC } from 'react';
 import cls from './Logo.module.scss';
 
@@ -11,14 +11,6 @@ interface LogoProps {
 
 export const Logo: FC<LogoProps> = ({ className = '', scale = 1, opacity }) => {
 	return (
-		// <Image
-		// 	className={cl(cls.Logo, {}, [className])}
-		// 	src='/images/icons/logo-melior-white.svg'
-		// 	alt='Easy Gift Logo'
-		// 	width={size}
-		// 	height={size}
-		// 	{...otherProps}
-		// />
 		<div
 			className={cn(cls.logo, className)}
 			style={{
@@ -26,7 +18,7 @@ export const Logo: FC<LogoProps> = ({ className = '', scale = 1, opacity }) => {
 				transform: `scale(${scale})`,
 			}}
 		>
-			<IconLogo />
+			<SvgLogo />
 		</div>
 	);
 };
