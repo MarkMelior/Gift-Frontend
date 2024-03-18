@@ -5,6 +5,7 @@
 	background: none;
 	border: none;
 	outline: none;
+	transition: all .2s ease;
 
 	&:active {
 		transform: scale(0.98);

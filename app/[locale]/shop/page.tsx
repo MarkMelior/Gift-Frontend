@@ -1,16 +1,15 @@
-import { useTranslations } from 'next-intl';
+import { ShopPage } from '@/views/ShopPage';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { FC } from 'react';
 
-interface ShopPageProps {
+interface ShopProps {
 	params: { locale: string };
 }
 
-const ShopPage: FC<ShopPageProps> = ({ params: { locale } }) => {
+const Shop: FC<ShopProps> = ({ params: { locale } }) => {
 	unstable_setRequestLocale(locale);
-	const t = useTranslations('ShopPage');
 
-	return <div>{t('title')}</div>;
+	return <ShopPage />;
 };
 
-export default ShopPage;
+export default Shop;

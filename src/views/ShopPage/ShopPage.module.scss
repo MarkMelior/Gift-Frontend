@@ -1,0 +1,73 @@
+@import '@/app/styles/utils';
+
+.navigationPanel {
+	margin-top: -200px !important;
+}
+
+.wrapper {
+	display: grid;
+	grid-template-columns: 300px 1fr;
+	gap: 30px;
+	margin-top: 80px;
+}
+
+.sort {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	width: 300px;
+
+	&>* {
+		@include background(.2);
+		@apply rounded-lg;
+
+		padding: 15px 20px;
+		backdrop-filter: var(--blur-xs);
+		border: 1px solid var(--color-border);
+	}
+}
+
+.block {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+	gap: 20px;
+}
+
+.ai {
+	display: flex;
+	gap: 10px;
+
+	&Input {
+		width: 100%;
+		transition: all .3s ease;
+
+		input {
+			color: rgb(255, 255, 255, 50%);
+			background: none;
+		}
+
+		[data-focus="true"] {
+			background: rgba(var(--color-main-inverted-rgb), .05) !important;
+		}
+
+		[data-slot="input-wrapper"] {
+			@include background(.05, false);
+			@apply rounded-lg;
+
+			height: 100%;
+			backdrop-filter: var(--blur-xs);
+			border: 1px solid var(--color-border);
+			transition: all .6s ease;
+
+			&:hover {
+				background: rgba(var(--color-main-inverted-rgb), .05);
+			}
+		}
+	}
+}

@@ -1,4 +1,4 @@
-export const Gift = ({
+export const GiftIcon = ({
 	color = 'var(--color-main-inverted)',
 	size = 24,
 	...props

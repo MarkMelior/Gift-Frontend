@@ -2,14 +2,14 @@
 
 'use client';
 
-import { Gift } from '@/shared/assets/icon/Gift';
+import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { Link } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Button } from '@/shared/ui/Button';
 import { Heading } from '@/widgets/Heading';
+import cn from 'clsx';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
-import { FC, memo } from 'react';
+import { FC, ReactNode, memo } from 'react';
 import MediaQuery from 'react-responsive';
 import cls from './TopPage.module.scss';
 
@@ -18,10 +18,11 @@ interface TopPageProps {
 	description: string;
 	note?: string;
 	compact?: boolean;
+	imageContent?: ReactNode;
 }
 
 export const TopPage: FC<TopPageProps> = memo(
-	({ title, description, note, compact }) => {
+	({ title, description, note, compact, imageContent }) => {
 		const t = useTranslations('TopPage');
 		// const splineRef = useRef(null);
 
@@ -38,14 +39,16 @@ export const TopPage: FC<TopPageProps> = memo(
 
 		return (
 			<section className='content'>
-				<MediaQuery minWidth={MediaSize.SM}>
-					<div className={cls.backgroundTop}>
-						<div className={cls.background}>
-							<div />
+				{!compact && (
+					<MediaQuery minWidth={MediaSize.SM}>
+						<div className={cls.backgroundTop}>
+							<div className={cls.background}>
+								<div />
+							</div>
 						</div>
-					</div>
-				</MediaQuery>
-				<div className={cls.wrapper}>
+					</MediaQuery>
+				)}
+				<div className={cn(cls.wrapper, { [cls.compact]: compact })}>
 					<div className={cls.information}>
 						<Heading title={title} description={description} note={note} />
 						{!compact && (
@@ -56,7 +59,7 @@ export const TopPage: FC<TopPageProps> = memo(
 										starlight
 										className='py-5 px-12 rounded-xl'
 										customVariant='layer'
-										startContent={<Gift />}
+										startContent={<GiftIcon />}
 									>
 										{t('button')}
 									</Button>
@@ -65,14 +68,8 @@ export const TopPage: FC<TopPageProps> = memo(
 						)}
 					</div>
 					<MediaQuery minWidth={MediaSize.MD}>
-						<div className={cls.image}>
-							<Image
-								src='/images/pages/gift.png'
-								alt={t('image')}
-								width={371}
-								height={419}
-								className='noselect'
-							/>
+						<div className={cn(cls.image, { [cls.compact]: compact })}>
+							{imageContent}
 							{/* <script
 							type='module'
 							src='https://unpkg.com/@splinetool/viewer@1.0.55/build/spline-viewer.js'

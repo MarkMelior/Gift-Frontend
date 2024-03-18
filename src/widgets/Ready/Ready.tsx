@@ -1,6 +1,6 @@
 'use client';
 
-import { Gift } from '@/shared/assets/icon/Gift';
+import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { Link } from '@/shared/config/i18n/navigation';
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
@@ -42,7 +42,7 @@ export const Ready: FC<ReadyProps> = ({ className = '' }) => {
 					starlight
 					className='py-5 px-12 rounded-xl'
 					customVariant='layer'
-					startContent={<Gift />}
+					startContent={<GiftIcon />}
 				>
 					{t('button')}
 				</Button>

@@ -1,4 +1,7 @@
-export const Search = ({ color = 'var(--color-main-inverted)', ...props }) => (
+export const SearchIcon = ({
+	color = 'var(--color-main-inverted)',
+	...props
+}) => (
 	<svg
 		width='18'
 		height='18'

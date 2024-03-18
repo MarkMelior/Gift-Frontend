@@ -1,4 +1,4 @@
-import { InfinityIcon } from '@/shared/assets/icon/InfinityIcon';
+import { InfinityIcon } from '@/shared/assets/icon/Infinity';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';

@@ -1,8 +1,7 @@
 'use client';
 
 /* eslint-disable i18next/no-literal-string */
-import { ThemeSwitcher } from '@/features/ThemeSwitcher';
-import { Search } from '@/shared/assets/icon/Search';
+import { SearchIcon } from '@/shared/assets/icon/Search';
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Avatar } from '@/shared/ui/Avatar';
@@ -83,7 +82,7 @@ export const Navbar = memo(
 						// 	height={18}
 						// 	className='noselect'
 						// />
-						<Search width={18} height={18} />
+						<SearchIcon width={18} height={18} />
 					}
 				/>
 			),
@@ -128,21 +127,21 @@ export const Navbar = memo(
 							{t('shop')}
 						</Link>
 					</li>
-					<MediaQuery maxWidth={MediaSize.SM}>
-						<li className={cn(cls.link, isActive('/favorites/'))}>
-							<Link href='/favorites'>
-								{isPhone && (
-									<Image
-										src='/images/icons/heart.svg'
-										alt=''
-										width={28}
-										height={28}
-									/>
-								)}
-								{t('favorites')}
-							</Link>
-						</li>
-					</MediaQuery>
+					{/* <MediaQuery maxWidth={MediaSize.SM}> */}
+					<li className={cn(cls.link, isActive('/favorites/'))}>
+						<Link href='/favorites'>
+							{isPhone && (
+								<Image
+									src='/images/icons/heart.svg'
+									alt=''
+									width={28}
+									height={28}
+								/>
+							)}
+							{t('favorites')}
+						</Link>
+					</li>
+					{/* </MediaQuery> */}
 				</>
 			);
 		}, [isActive, isPhone, t]);
@@ -177,7 +176,18 @@ export const Navbar = memo(
 					<MediaQuery minWidth={MediaSize.MD}>
 						<li className={cls.controlButtons}>
 							{/* <LangSwitcher /> */}
-							<ThemeSwitcher />
+							{/* <ThemeSwitcher /> */}
+							{/* <Link href='/favorites'>
+								<Button
+									slice
+									isIconOnly
+									startContent={
+										<Badge content={2} size='sm' shape='circle' color='danger'>
+											<Heart />
+										</Badge>
+									}
+								/>
+							</Link> */}
 						</li>
 					</MediaQuery>
 					{renderProfile}
