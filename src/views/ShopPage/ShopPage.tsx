@@ -1,14 +1,22 @@
+'use client';
+
 import { Button } from '@/shared/ui/Button';
+import { Card } from '@/shared/ui/Card';
 import { Input } from '@/shared/ui/Input';
 import { NavigationPanel } from '@/widgets/NavigationPanel';
 import { TopPage } from '@/widgets/TopPage';
-import { Image } from '@nextui-org/react';
+import { Image, Slider, Textarea } from '@nextui-org/react';
 import cn from 'clsx';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import cls from './ShopPage.module.scss';
 
 export const ShopPage: FC = () => {
 	// const t = useTranslations('ShopPage');
+	const minPrice = 0;
+	const maxPrice = 1000;
+
+	const [startPrice, setStartPrice] = useState<number>(minPrice);
+	const [endPrice, setEndPrice] = useState<number>(maxPrice);
 
 	return (
 		<>
@@ -29,30 +37,102 @@ export const ShopPage: FC = () => {
 			/>
 			<NavigationPanel className={cls.navigationPanel} />
 			<div className={cn(cls.wrapper, 'content')}>
-				<div className={cls.sort}>
-					<div>
-						<h6>Бюджет</h6>
+				<div className={cls.sortWrapper}>
+					<div className={cls.sort}>
+						<header>
+							<h6>Бюджет</h6>
+						</header>
+						<div className={cls.priceInput}>
+							<Input
+								type='number'
+								placeholder={`от ${minPrice}`}
+								value={startPrice}
+								onValueChange={setStartPrice}
+								endContent={
+									<div className='pointer-events-none flex items-center'>
+										<span className='text-default-400 text-small'>₽</span>
+									</div>
+								}
+							/>
+							<Input
+								type='number'
+								placeholder={`до ${maxPrice}`}
+								value={endPrice}
+								onValueChange={setEndPrice}
+								endContent={
+									<div className='pointer-events-none flex items-center'>
+										<span className='text-default-400 text-small'>₽</span>
+									</div>
+								}
+							/>
+						</div>
+						<Slider
+							size='sm'
+							minValue={minPrice}
+							maxValue={maxPrice}
+							value={[startPrice, endPrice]}
+							onChange={([start, end]) => {
+								setStartPrice(start);
+								setEndPrice(end);
+							}}
+							className='max-w-md'
+						/>
 					</div>
-					<div>
-						<h6>Кому?</h6>
+					<div className={cls.sort}>
+						<header>
+							<h6>Категория</h6>
+						</header>
+						<div className={cls.sortColumn}>
+							<Button hoverColor='255, 202, 66'>🎉 День рождение</Button>
+							<Button hoverColor='255, 66, 157'>💗️️️ Влюблённым</Button>
+							<Button hoverColor='66, 255, 153'>🎄 Новый год</Button>
+							<Button hoverColor='255, 202, 66'>😁 Приколы</Button>
+						</div>
 					</div>
-					<div>
-						<h6>Возраст</h6>
+					<div className={cls.sort}>
+						<header>
+							<h6>Кому?</h6>
+						</header>
+						<div className={cls.sortRow}>
+							<Button hoverColor='66, 153, 255'>👦 М</Button>
+							<Button hoverColor='255, 66, 157'>👩 Ж</Button>
+						</div>
 					</div>
-					<div>
-						<h6>Сортировка</h6>
+					<div className={cls.sort}>
+						<header>
+							<h6>Возраст</h6>
+						</header>
+						<div className={cls.sortRow}>
+							<Button hoverColor='66, 153, 255'>Старик</Button>
+							<Button hoverColor='66, 153, 255'>Дитя</Button>
+						</div>
+					</div>
+					<div className={cls.sort}>
+						<header>
+							<h6>Сортировка</h6>
+						</header>
+						<div className={cls.sortColumn}>
+							<Button>Популярные</Button>
+							<Button>Высокий рейтинг</Button>
+							<Button>Креативные</Button>
+							<Button>Дешёвые</Button>
+							<Button>Дорогие</Button>
+						</div>
 					</div>
 				</div>
 				<div className={cls.block}>
 					<div className={cls.ai}>
-						<Input
-							className={cls.aiInput}
+						<Textarea
+							maxRows={2}
+							maxLength={250}
+							className={cls.textarea}
 							placeholder='Введите текстовый запрос и нейросеть поможет вам подобрать подарок'
 						/>
 						<Button
 							customVariant='layer'
+							hoverColor='149, 66, 255'
 							starlight
-							className='py-5 px-12 rounded-lg'
+							className='py-3 px-8 rounded-lg text-sm'
 							startContent={
 								<Image
 									src='/images/icons/stars-heading-colored.svg'
@@ -67,7 +147,16 @@ export const ShopPage: FC = () => {
 							Найти подарок
 						</Button>
 					</div>
-					<div className={cls.cards}></div>
+					<div className={cls.cards}>
+						<Card />
+						<Card />
+						<Card />
+						<Card />
+						<Card />
+						<Card />
+						<Card />
+						<Card />
+					</div>
 				</div>
 			</div>
 		</>

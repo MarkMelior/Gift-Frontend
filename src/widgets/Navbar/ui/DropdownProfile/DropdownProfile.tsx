@@ -19,7 +19,7 @@ import {
 import cn from 'clsx';
 import { useLocale } from 'next-intl';
 import { useTheme } from 'next-themes';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import cls from './DropdownProfile.module.scss';
 
@@ -34,15 +34,12 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	const otherLocale = locale === 'en' ? 'ru' : 'en';
 	const pathname = usePathname();
 	const {
-		isOpen: isOpenLogin,
-		onOpen: onOpenLogin,
-		onOpenChange: onOpenChangeLogin,
+		isOpen: isOpenModal,
+		onOpen: onOpenModal,
+		onOpenChange: onOpenChangeModal,
 	} = useDisclosure();
-	const {
-		isOpen: isOpenRegister,
-		onOpen: onOpenRegister,
-		onOpenChange: onOpenChangeRegister,
-	} = useDisclosure();
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [isRegister, setIsRegister] = useState<boolean>(false);
 
 	const renderOptimizationSettings = () => {
 		return (
@@ -86,7 +83,9 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 				placement='bottom-end'
 				offset={30}
 				className={cls.dropdown}
-				// closeOnSelect={false}
+				isOpen={isOpen}
+				onOpenChange={() => setIsOpen(!isOpen)}
+				closeOnSelect={false}
 			>
 				<DropdownTrigger>{children}</DropdownTrigger>
 				<DropdownMenu
@@ -155,20 +154,35 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
     >
         Выйти с аккаунта
     </DropdownItem> */}
-						<DropdownItem key='login' closeOnSelect onClick={onOpenLogin}>
+						<DropdownItem
+							key='login'
+							closeOnSelect
+							onClick={() => {
+								setIsOpen(false);
+								setIsRegister(false);
+								onOpenModal();
+							}}
+						>
 							Войти в аккаунт
 						</DropdownItem>
-						<DropdownItem key='login' closeOnSelect onClick={onOpenRegister}>
+						<DropdownItem
+							key='register'
+							closeOnSelect
+							onClick={() => {
+								setIsOpen(false);
+								setIsRegister(true);
+								onOpenModal();
+							}}
+						>
 							Создать аккаунт
 						</DropdownItem>
 					</DropdownSection>
 				</DropdownMenu>
 			</Dropdown>
-			<ModalLogin isOpen={isOpenLogin} onOpenChange={onOpenChangeLogin} />
 			<ModalLogin
-				register
-				isOpen={isOpenRegister}
-				onOpenChange={onOpenChangeRegister}
+				register={isRegister}
+				isOpen={isOpenModal}
+				onOpenChange={onOpenChangeModal}
 			/>
 		</>
 	);

@@ -56,6 +56,11 @@
 		"icon-reload": "Reboot icon",
 		"image": "The picture of the card"
 	},
+	"CardWide": {
+		"icon-star": "Star Icon",
+		"icon-comment": "Comment icon",
+		"icon-hot": "The icon of the light"
+	},
 	"Card": {
 		"icon-star": "Star Icon",
 		"icon-comment": "Comment icon",

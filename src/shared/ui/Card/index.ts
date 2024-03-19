@@ -1,1 +1,2 @@
-export { Card } from './Card';
+export { Card } from './Card/Card';
+export { CardWide } from './CardWide/CardWide';

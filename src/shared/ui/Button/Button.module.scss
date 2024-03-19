@@ -1,3 +1,4 @@
+/* stylelint-disable rule-empty-line-before */
 .button {
 	position: relative;
 	color: rgb(var(--color-text), .5);
@@ -100,9 +101,11 @@
 }
 
 .layer {
+	height: fit-content;
 	padding: 5px !important;
 	font-weight: 400;
 	background: rgb(var(--color-main-inverted-rgb), .025);
+	transition: none;
 
 	.layerInner {
 		position: relative;
@@ -112,6 +115,7 @@
 		background: var(--bg-noise), rgb(var(--color-main-rgb), .25);
 		border: 1px solid var(--color-border);
 		border-radius: inherit;
+		transition: all .2s ease;
 	}
 
 	&:hover {
@@ -407,4 +411,47 @@
 	// &:active {
 	// 	transform: none;
 	// }
+}
+
+.hoverColor {
+	&.default:not(.layer) {
+
+		&:hover,
+		&.selected {
+			color: rgba(var(--hover-color-rgb), 1);
+			background: rgba(var(--hover-color-rgb), .1);
+			border: 1px solid rgba(var(--hover-color-rgb), 1);
+		}
+	}
+
+	&.button:not(.layer) {
+
+		&:hover,
+		&.selected,
+		&[data-selected="true"] {
+			color: rgba(var(--hover-color-rgb), 1);
+
+			svg *[fill] {
+				fill: rgba(var(--hover-color-rgb), 1);
+			}
+
+			svg *[stroke] {
+				stroke: rgba(var(--hover-color-rgb), 1);
+			}
+		}
+	}
+
+	&.layer {
+
+		&:hover,
+		&.selected {
+			color: rgba(var(--hover-color-rgb), 1);
+			background: rgb(var(--hover-color-rgb), .1);
+			border: 1px solid rgba(var(--hover-color-rgb), .25);
+
+			.layerInner {
+				border: 1px solid rgba(var(--hover-color-rgb), 1);
+			}
+		}
+	}
 }

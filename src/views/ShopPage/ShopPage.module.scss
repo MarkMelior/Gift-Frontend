@@ -11,19 +11,56 @@
 	margin-top: 80px;
 }
 
-.sort {
+.sortWrapper {
+	// position: sticky;
+	// top: calc(var(--navbar-height) + 20px);
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
 	width: 300px;
+	height: fit-content;
+}
 
-	&>* {
-		@include background(.2);
-		@apply rounded-lg;
+.sort {
+	@include background(.2);
+	@apply rounded-lg;
+	@apply text-sm;
 
-		padding: 15px 20px;
-		backdrop-filter: var(--blur-xs);
-		border: 1px solid var(--color-border);
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding: 15px 20px;
+	font-weight: 600;
+	backdrop-filter: var(--blur-xs);
+	border: 1px solid var(--color-border);
+
+	header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&Column {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		&>* {
+			width: 100%;
+			font-weight: 300;
+		}
+	}
+
+	&Row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+		justify-content: center;
+
+		&>* {
+			width: calc(50% - 5px);
+			font-weight: 300;
+		}
 	}
 }
 
@@ -42,32 +79,45 @@
 .ai {
 	display: flex;
 	gap: 10px;
+}
 
-	&Input {
-		width: 100%;
-		transition: all .3s ease;
+.priceInput {
+	display: flex;
+	gap: 20%;
+	justify-content: space-between;
 
-		input {
-			color: rgb(255, 255, 255, 50%);
-			background: none;
-		}
+	[data-slot="input-wrapper"] {
+		background: none;
+		border: 1px solid var(--color-border);
 
-		[data-focus="true"] {
-			background: rgba(var(--color-main-inverted-rgb), .05) !important;
-		}
+		@apply rounded-lg;
+	}
+}
 
-		[data-slot="input-wrapper"] {
-			@include background(.05, false);
-			@apply rounded-lg;
+.textarea {
+	width: 100%;
+	transition: all .3s ease;
 
-			height: 100%;
-			backdrop-filter: var(--blur-xs);
-			border: 1px solid var(--color-border);
-			transition: all .6s ease;
+	input {
+		color: rgb(255, 255, 255, 50%);
+		background: none;
+	}
 
-			&:hover {
-				background: rgba(var(--color-main-inverted-rgb), .05);
-			}
+	[data-focus="true"] {
+		background: rgba(var(--color-main-inverted-rgb), .05) !important;
+	}
+
+	[data-slot="input-wrapper"] {
+		@include background(.05, false);
+		@apply rounded-lg;
+
+		height: 100% !important;
+		backdrop-filter: var(--blur-xs);
+		border: 1px solid var(--color-border);
+		transition: all .6s ease;
+
+		&:hover {
+			background: rgba(var(--color-main-inverted-rgb), .05);
 		}
 	}
 }

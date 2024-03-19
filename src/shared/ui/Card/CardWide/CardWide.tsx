@@ -3,11 +3,11 @@ import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
-import cls from './Card.module.scss';
+import cls from './CardWide.module.scss';
 
 type Market = 'ozon' | 'yandex' | 'aliexpress' | 'wildberries' | 'sber';
 
-interface CardProps {
+interface CardWideProps {
 	price: number;
 	title: string;
 	defaultMarket: Market;
@@ -20,7 +20,7 @@ interface CardProps {
 	hot?: boolean;
 }
 
-export const Card: FC<CardProps> = ({
+export const CardWide: FC<CardWideProps> = ({
 	price,
 	title,
 	defaultMarket,
@@ -32,8 +32,7 @@ export const Card: FC<CardProps> = ({
 	oldPrice,
 	hot,
 }) => {
-	const t = useTranslations('Card');
-
+	const t = useTranslations('CardWide');
 	const formattedPrice = numberToCurrency(price);
 	const formattedOldPrice = oldPrice ? numberToCurrency(oldPrice) : undefined;
 

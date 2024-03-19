@@ -3,7 +3,7 @@
 /* eslint-disable indent */
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Button } from '@/shared/ui/Button';
-import { Card } from '@/shared/ui/Card';
+import { CardWide } from '@/shared/ui/Card';
 import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
@@ -28,7 +28,7 @@ export const BestProduct: FC = () => {
 	for (let i = 0; i < 7; i++) {
 		cards.push(
 			<SwiperSlide key={i}>
-				<Card
+				<CardWide
 					oldPrice={58600}
 					price={29245}
 					title={`${i + 1}. Xiaomi Mi Power Bank 3 20000 mAh`}

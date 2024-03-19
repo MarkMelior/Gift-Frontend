@@ -29,6 +29,7 @@ export interface ButtonProps extends BaseButtonProps {
 	lines?: boolean;
 	starlight?: boolean;
 	clear?: boolean;
+	hoverColor?: string;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -41,6 +42,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			lines,
 			starlight,
 			clear,
+			hoverColor,
 		} = props;
 
 		const {
@@ -132,6 +134,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			[cls.default]: !clear,
 			'py-2 px-4 rounded-lg': !clear,
 			[cls.glowing]: customVariant === 'glowing',
+			[cls.hoverColor]: hoverColor,
 		};
 
 		return (
@@ -145,6 +148,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 				)}
 				disabled={disabled}
 				ref={domRef}
+				style={{ '--hover-color-rgb': hoverColor }}
 				{...getButtonProps()}
 			>
 				{lines && renderLinesItem()}
