@@ -39,7 +39,6 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 		onOpenChange: onOpenChangeModal,
 	} = useDisclosure();
 	const [isOpen, setIsOpen] = useState<boolean>(false);
-	const [isRegister, setIsRegister] = useState<boolean>(false);
 
 	const renderOptimizationSettings = () => {
 		return (
@@ -159,31 +158,15 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 							closeOnSelect
 							onClick={() => {
 								setIsOpen(false);
-								setIsRegister(false);
 								onOpenModal();
 							}}
 						>
 							Войти в аккаунт
 						</DropdownItem>
-						<DropdownItem
-							key='register'
-							closeOnSelect
-							onClick={() => {
-								setIsOpen(false);
-								setIsRegister(true);
-								onOpenModal();
-							}}
-						>
-							Создать аккаунт
-						</DropdownItem>
 					</DropdownSection>
 				</DropdownMenu>
 			</Dropdown>
-			<ModalLogin
-				register={isRegister}
-				isOpen={isOpenModal}
-				onOpenChange={onOpenChangeModal}
-			/>
+			<ModalLogin isOpen={isOpenModal} onOpenChange={onOpenChangeModal} />
 		</>
 	);
 };

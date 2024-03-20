@@ -12,6 +12,8 @@ import {
 	ModalContent,
 	ModalFooter,
 	ModalHeader,
+	Tab,
+	Tabs,
 } from '@nextui-org/react';
 import Image from 'next/image';
 import { FC, useMemo, useState } from 'react';
@@ -29,86 +31,88 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 	register = false,
 }) => {
 	// const t = useTranslations('ModalLogin');
-	const [registration, setRegistration] = useState<boolean>(register);
+	const [registration, setRegistration] = useState<string | number>(
+		register ? 'sign-up' : 'login',
+	);
 
 	const renderLogin = useMemo(() => {
 		return (
-			<>
-				<Input
-					autoFocus
-					endContent={
-						<MailIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
-					}
-					label='Email'
-					placeholder='Введите вашу почту' // Enter your email
-					variant='bordered'
-				/>
-				<Input
-					endContent={
-						<LockIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
-					}
-					label='Пароль' // Password
-					placeholder='Введите пароль' // Enter your password
-					type='password'
-					variant='bordered'
-				/>
-				<div className='flex py-2 px-1 justify-between'>
-					<Checkbox
-						classNames={{
-							label: 'text-small',
-						}}
-					>
-						Запомните меня
-						{/* Remember me */}
-					</Checkbox>
-					<Button clear disableRipple className={cls.button}>
-						Забыли пароль?
-					</Button>
-				</div>
-			</>
+			<Tab key='login' title='Вход'>
+				<form>
+					<Input
+						autoFocus
+						endContent={
+							<MailIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
+						}
+						label='Email'
+						placeholder='Введите вашу почту' // Enter your email
+						variant='bordered'
+					/>
+					<Input
+						endContent={
+							<LockIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
+						}
+						label='Пароль' // Password
+						placeholder='Введите пароль' // Enter your password
+						type='password'
+						variant='bordered'
+					/>
+					<div className='flex py-2 px-1 justify-between'>
+						<Checkbox
+							classNames={{
+								label: 'text-small',
+							}}
+						>
+							Запомните меня
+							{/* Remember me */}
+						</Checkbox>
+						<Button clear disableRipple className={cls.button}>
+							Забыли пароль?
+						</Button>
+					</div>
+				</form>
+			</Tab>
 		);
 	}, []);
 
 	const renderRegister = useMemo(() => {
 		return (
-			<>
-				<Input
-					autoFocus
-					label='Логин'
-					placeholder='Придумайте имя'
-					variant='bordered'
-				/>
-				<Input
-					autoFocus
-					endContent={
-						<MailIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
-					}
-					label='Email'
-					placeholder='Введите вашу почту'
-					variant='bordered'
-				/>
-				<Input
-					endContent={
-						<LockIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
-					}
-					label='Пароль'
-					placeholder='Придумайте пароль'
-					type='password'
-					variant='bordered'
-				/>
-				<Input
-					label='Подтверждение пароля'
-					placeholder='Повторите пароль'
-					type='password'
-					variant='bordered'
-				/>
-			</>
+			<Tab key='sign-up' title='Регистрация'>
+				<form>
+					<Input
+						autoFocus
+						label='Логин'
+						placeholder='Придумайте имя'
+						variant='bordered'
+					/>
+					<Input
+						autoFocus
+						endContent={
+							<MailIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
+						}
+						label='Email'
+						placeholder='Введите вашу почту'
+						variant='bordered'
+					/>
+					<Input
+						endContent={
+							<LockIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
+						}
+						label='Пароль'
+						placeholder='Придумайте пароль'
+						type='password'
+						variant='bordered'
+					/>
+					<Input
+						label='Подтверждение пароля'
+						placeholder='Повторите пароль'
+						type='password'
+						variant='bordered'
+					/>
+				</form>
+			</Tab>
 		);
 	}, []);
-
-	const toggleRegistration = () => {
-		setRegistration(!registration);
-	};
 
 	return (
 		<Modal
@@ -121,17 +125,20 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 				{(onClose) => (
 					<div className={cls.modal}>
 						<ModalHeader className={cls.header}>
-							{registration ? 'Регистрация' : 'Войти в Easy Gift'}
-							<Button
-								clear
-								disableRipple
-								className={cls.button}
-								onClick={toggleRegistration}
-							>
-								{registration ? 'Войти' : 'Создать аккаунт'}
-							</Button>
+							{registration === 'sign-up' ? 'Регистрация' : 'Войти в Easy Gift'}
 						</ModalHeader>
-						<ModalBody>{registration ? renderRegister : renderLogin}</ModalBody>
+						<ModalBody>
+							<Tabs
+								fullWidth
+								size='md'
+								aria-label='Tabs form'
+								selectedKey={registration}
+								onSelectionChange={setRegistration}
+							>
+								{renderRegister}
+								{renderLogin}
+							</Tabs>
+						</ModalBody>
 						<ModalFooter>
 							<Button
 								customVariant='layer'
@@ -147,7 +154,7 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 									/>
 								}
 							>
-								{registration ? 'Создать аккаунт' : 'Войти'}
+								{registration === 'sign-up' ? 'Создать аккаунт' : 'Войти'}
 							</Button>
 						</ModalFooter>
 					</div>

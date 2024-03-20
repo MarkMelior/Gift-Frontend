@@ -3,3 +3,8 @@
 		background: none;
 	}
 }
+
+[role="tooltip"] {
+	pointer-events: none;
+	user-select: none;
+}

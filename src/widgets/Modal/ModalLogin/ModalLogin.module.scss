@@ -1,14 +1,14 @@
 @import '@/app/styles/utils';
 
 .wrapper {
-	$color: theme('colors.secondary');
+	$color: #93c5fd; // theme('colors.secondary')
 	$border-size: 1px;
 
 	position: relative;
 	z-index: var(--z-index-modal);
 	padding: $border-size;
 	overflow: hidden;
-	box-shadow: 1px 1px 70px #a411ff34;
+	box-shadow: 1px 1px 70px #93c5fd4d; // #a411ff34
 
 	@apply rounded-xl;
 
@@ -24,6 +24,13 @@
 		background-repeat: no-repeat;
 		background-position: 0 0, 100% 0, 100% 100%, 0 100%;
 		animation: rotate 4s linear infinite;
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+
+		@apply gap-4;
 	}
 }
 

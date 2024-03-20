@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname } from '@/shared/config/i18n/navigation';
+import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { NavigationPanelData } from '@/shared/const/navigationPanel';
 import { Blackhole } from '@/shared/ui/Blackhole';
@@ -33,26 +33,21 @@ export const NavigationPanel: FC<NavigationPanelProps> = ({
 						const { to, image, alt, title, description } =
 							NavigationPanelData[key];
 						return (
-							// <Link key={key} href={to} className={isActive(to)}>
-							<Button
-								key={key}
-								disabled
-								variant='flat'
-								className={cn(cls.button, '!w-full')}
-							>
-								<div className={cls.item}>
-									<Image
-										src={image}
-										width={24}
-										height={24}
-										alt={alt}
-										className='noselect'
-									/>
-									<p>{title}</p>
-								</div>
-								<p>{description}</p>
-							</Button>
-							// </Link>
+							<Link key={key} href={to} className={isActive(to)}>
+								<Button key={key} variant='flat' className={cls.button}>
+									<div className={cls.item}>
+										<Image
+											src={image}
+											width={24}
+											height={24}
+											alt={alt}
+											className='noselect'
+										/>
+										<p>{title}</p>
+									</div>
+									<p>{description}</p>
+								</Button>
+							</Link>
 						);
 					})}
 				</nav>

@@ -13,10 +13,7 @@ export const StarRating: FC<StarRatingProps> = ({
 }) => {
 	return (
 		<div className={cn(cls.wrapper, className)}>
-			<span
-				className={cls.fill}
-				style={{ width: `calc(16px * ${rating})` }}
-			/>
+			<span className={cls.fill} style={{ width: `calc(16px * ${rating})` }} />
 			<span className={cls.empty} />
 		</div>
 	);

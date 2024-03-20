@@ -40,6 +40,26 @@ export const ShopPage: FC = () => {
 				<div className={cls.sortWrapper}>
 					<div className={cls.sort}>
 						<header>
+							<h6>Категория</h6>
+						</header>
+						<div className={cls.sortColumn}>
+							<Button hoverColor='255, 202, 66'>🎉 День рождение</Button>
+							<Button hoverColor='255, 66, 157'>💗️️️ Влюблённым</Button>
+							<Button hoverColor='66, 255, 153'>🎄 Новый год</Button>
+							<Button hoverColor='255, 202, 66'>😁 Приколы</Button>
+						</div>
+					</div>
+					<div className={cls.sort}>
+						<header>
+							<h6>Кому?</h6>
+						</header>
+						<div className={cls.sortRow}>
+							<Button hoverColor='66, 153, 255'>👦 М</Button>
+							<Button hoverColor='255, 66, 157'>👩 Ж</Button>
+						</div>
+					</div>
+					<div className={cls.sort}>
+						<header>
 							<h6>Бюджет</h6>
 						</header>
 						<div className={cls.priceInput}>
@@ -77,26 +97,6 @@ export const ShopPage: FC = () => {
 							}}
 							className='max-w-md'
 						/>
-					</div>
-					<div className={cls.sort}>
-						<header>
-							<h6>Категория</h6>
-						</header>
-						<div className={cls.sortColumn}>
-							<Button hoverColor='255, 202, 66'>🎉 День рождение</Button>
-							<Button hoverColor='255, 66, 157'>💗️️️ Влюблённым</Button>
-							<Button hoverColor='66, 255, 153'>🎄 Новый год</Button>
-							<Button hoverColor='255, 202, 66'>😁 Приколы</Button>
-						</div>
-					</div>
-					<div className={cls.sort}>
-						<header>
-							<h6>Кому?</h6>
-						</header>
-						<div className={cls.sortRow}>
-							<Button hoverColor='66, 153, 255'>👦 М</Button>
-							<Button hoverColor='255, 66, 157'>👩 Ж</Button>
-						</div>
 					</div>
 					<div className={cls.sort}>
 						<header>
@@ -148,14 +148,49 @@ export const ShopPage: FC = () => {
 						</Button>
 					</div>
 					<div className={cls.cards}>
+						<Card
+							src='/'
+							links={{
+								src: 'https://megamarket.ru/catalog/details/nike-zoom-hyperspeed-court-krossovki-voleybolnye-belyy-chernyy-41-100061411115_98494/',
+								market: 'yandex',
+							}}
+							images={['cat.png', 'cat.png']}
+							title='Сквиши антистресс игрушки подарочный набор 2 кота Xiaomi Mi Power Bank 3 20000 mAh'
+							rating={5}
+							reviewCount={456}
+							price={28546}
+						/>
+						<Card
+							src='/'
+							links={{
+								src: 'https://megamarket.ru/catalog/details/nike-zoom-hyperspeed-court-krossovki-voleybolnye-belyy-chernyy-41-100061411115_98494/',
+								market: 'yandex',
+							}}
+							images={['cat.png', 'cat.png']}
+							title='Сквиши антистресс игрушки подарочный набор 2 кота Xiaomi Mi Power Bank 3 20000 mAh'
+							rating={5}
+							reviewCount={456}
+							price={28546}
+						/>
+						<Card
+							src='/'
+							links={{
+								src: 'https://megamarket.ru/catalog/details/nike-zoom-hyperspeed-court-krossovki-voleybolnye-belyy-chernyy-41-100061411115_98494/',
+								market: 'yandex',
+							}}
+							images={['cat.png', 'cat.png']}
+							title='Сквиши антистресс игрушки подарочный набор 2 кота Xiaomi Mi Power Bank 3 20000 mAh'
+							rating={5}
+							reviewCount={456}
+							price={28546}
+						/>
+						{/* <Card />
 						<Card />
 						<Card />
 						<Card />
 						<Card />
 						<Card />
-						<Card />
-						<Card />
-						<Card />
+						<Card /> */}
 					</div>
 				</div>
 			</div>

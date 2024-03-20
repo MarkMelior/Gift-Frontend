@@ -9,15 +9,21 @@
 	grid-template-columns: 300px 1fr;
 	gap: 30px;
 	margin-top: 80px;
+
+	@media (max-width: theme('screens.lg')) {
+		grid-template-columns: 250px 1fr;
+	}
+
+	@media (max-width: theme('screens.md')) {
+		grid-template-columns: 1fr;
+	}
 }
 
 .sortWrapper {
-	// position: sticky;
-	// top: calc(var(--navbar-height) + 20px);
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
-	width: 300px;
+	width: 100%;
 	height: fit-content;
 }
 
@@ -49,6 +55,11 @@
 			width: 100%;
 			font-weight: 300;
 		}
+
+		@media (max-width: theme('screens.md')) {
+			flex-flow: row wrap;
+			justify-content: center;
+		}
 	}
 
 	&Row {
@@ -58,8 +69,25 @@
 		justify-content: center;
 
 		&>* {
+			flex-grow: 1;
 			width: calc(50% - 5px);
 			font-weight: 300;
+		}
+	}
+
+	&Column,
+	&Row {
+		@media (max-width: theme('screens.md')) {
+			&>* {
+				flex-grow: 1;
+				width: calc(33% - 5px * 1.5);
+			}
+		}
+
+		@media (max-width: theme('screens.sm')) {
+			&>* {
+				width: calc(50% - 5px);
+			}
 		}
 	}
 }
@@ -74,11 +102,28 @@
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
 	gap: 20px;
+
+	@media (max-width: theme('screens.lg')) {
+		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	}
+
+	@media (max-width: theme('screens.sm')) {
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	}
 }
 
 .ai {
 	display: flex;
 	gap: 10px;
+
+	@media (max-width: theme('screens.sm')) {
+		flex-direction: column;
+
+		button>*,
+		button {
+			width: 100%;
+		}
+	}
 }
 
 .priceInput {

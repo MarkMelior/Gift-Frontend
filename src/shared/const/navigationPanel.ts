@@ -18,20 +18,20 @@ export const NavigationPanelData: NavigationPanelLinks = {
 		image: '/images/icons/home.svg',
 		alt: 'Иконка главной страницы',
 		title: 'Главная',
-		description: 'Очень крутой текст',
-	},
-	game: {
-		to: '/', // game
-		image: '/images/icons/play.svg',
-		alt: 'Иконка главной страницы',
-		title: 'Играть',
-		description: 'Зарабатывай виртуальную валюту на скидки',
+		description: 'Коротко про нас',
 	},
 	shop: {
-		to: '/', // shop
+		to: '/shop/',
 		image: '/images/icons/cart.svg',
 		alt: 'Иконка главной страницы',
 		title: 'Магазин',
-		description: 'Перейти на страницу магазина',
+		description: 'Найди свой подарок!',
+	},
+	favorites: {
+		to: '/favorites/',
+		image: '/images/icons/heart.svg',
+		alt: 'Иконка главной страницы',
+		title: 'Избранное',
+		description: 'Ваши сохранённые товары',
 	},
 };
