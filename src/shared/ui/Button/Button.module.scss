@@ -312,17 +312,28 @@
 	box-shadow: inset -3px -4px 8px 0 rgb(255, 255, 255, 10%),
 		0 2px 32px 0 rgb(176, 74, 255, 30%);
 
+	&:hover {
+		color: #caa9ff;
+		border: solid 1px #9442ffaf;
+		box-shadow: inset 0 0 6px #bf97ff70;
+	}
+
+	[class="light"] & {
+		border: solid 1px #caa2ffaf;
+		box-shadow: none;
+
+		&:hover {
+			color: #a369ff;
+			border: solid 1px#af72ffaf;
+			box-shadow: none;
+		}
+	}
+
 	/* stylelint-disable-next-line no-descending-specificity */
 	img,
 	svg {
 		opacity: 1;
 		transition: all 0.2s ease;
-	}
-
-	&:hover {
-		color: #caa9ff;
-		border: solid 1px #9442ffaf;
-		box-shadow: inset 0 0 6px #bf97ff70;
 	}
 }
 

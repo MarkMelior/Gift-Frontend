@@ -120,6 +120,10 @@
 
 	svg {
 		width: 18px;
+
+		@media (max-width: theme('screens.sm')) {
+			width: 14px;
+		}
 	}
 }
 

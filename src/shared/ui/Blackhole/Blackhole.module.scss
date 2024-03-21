@@ -15,6 +15,10 @@
 	transition: all .5s ease;
 	animation: fadeInBlackhole 1s ease-out forwards;
 
+	[class="light"] & {
+		display: none;
+	}
+
 	@media (max-width: theme('screens.md')) {
 		height: 600px;
 	}

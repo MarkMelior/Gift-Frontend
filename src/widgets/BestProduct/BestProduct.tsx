@@ -8,6 +8,7 @@ import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { FC, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
@@ -23,6 +24,7 @@ export const BestProduct: FC = () => {
 	const prevRef = useRef(null);
 	const nextRef = useRef(null);
 	const isMobile = useMediaQuery({ maxWidth: MediaSize.SM });
+	const { theme } = useTheme();
 
 	const cards = [];
 	for (let i = 0; i < 7; i++) {
@@ -43,21 +45,22 @@ export const BestProduct: FC = () => {
 
 	return (
 		<section className={cn(cls.wrapper, 'content')}>
-			<motion.div
-				initial={{ opacity: 0 }}
-				whileInView={{ opacity: 1 }}
-				viewport={{ once: true }}
-				transition={{ duration: 1, ease: 'easeIn' }}
-				className={`${cls.image} noselect`}
-			>
-				<Image
-					src='/images/pages/glow-best.png'
-					width={1624}
-					height={862}
-					alt={t('background-glow-image-alt')}
-				/>
-			</motion.div>
-
+			{theme === 'dark' && (
+				<motion.div
+					initial={{ opacity: 0 }}
+					whileInView={{ opacity: 1 }}
+					viewport={{ once: true }}
+					transition={{ duration: 1, ease: 'easeIn' }}
+					className={`${cls.image} noselect`}
+				>
+					<Image
+						src='/images/pages/glow-best.png'
+						width={1624}
+						height={862}
+						alt={t('background-glow-image-alt')}
+					/>
+				</motion.div>
+			)}
 			<Heading
 				title={t('title')}
 				description={t('description')}
@@ -107,10 +110,10 @@ export const BestProduct: FC = () => {
 				>
 					{cards}
 					<div className={cls.buttonPrev}>
-						<Button ref={prevRef} />
+						<Button disableRipple ref={prevRef} />
 					</div>
 					<div className={cls.buttonNext}>
-						<Button ref={nextRef} />
+						<Button disableRipple ref={nextRef} />
 					</div>
 				</Swiper>
 				<div className={cls.bulletContent}>

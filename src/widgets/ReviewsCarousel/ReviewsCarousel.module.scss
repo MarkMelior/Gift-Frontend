@@ -17,6 +17,10 @@
 	mix-blend-mode: lighten;
 	transform: translateY(-50%);
 
+	[class="light"] & {
+		display: none;
+	}
+
 	// @media (max-width: theme('screens.md')) {
 	// 	width: 100%;
 	// }

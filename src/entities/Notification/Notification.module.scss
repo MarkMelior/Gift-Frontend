@@ -21,6 +21,12 @@
 	@include background(.3);
 	@apply rounded-xl;
 
+	[class="light"] & {
+		@include background(1);
+
+		backdrop-filter: none;
+	}
+
 	@media (max-width: theme('screens.sm')) {
 		width: calc(100% - 10px * 2);
 
@@ -47,7 +53,7 @@
 }
 
 .closing {
-	animation: fadeOut .3s ease-out forwards;
+	animation: fadeOut var(--animation-close-duration-notification) ease-out forwards;
 }
 
 @keyframes fadeOut {
@@ -62,8 +68,44 @@
 	}
 }
 
+.swipeLeft {
+	animation: swipeLeft var(--animation-close-duration-notification) ease-out forwards;
+}
+
+.swipeRight {
+	animation: swipeRight var(--animation-close-duration-notification) ease-out forwards;
+}
+
+@keyframes swipeLeft {
+	0% {
+		opacity: 1;
+		transform: translate(-50%, 0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translate(-100%, 0);
+	}
+}
+
+@keyframes swipeRight {
+	0% {
+		opacity: 1;
+		transform: translate(-50%, 0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translate(100%, 0);
+	}
+}
+
 .icon {
 	opacity: .5;
+
+	&svg *[fill] {
+		fill: var(--color-main-inverted);
+	}
 }
 
 .content {

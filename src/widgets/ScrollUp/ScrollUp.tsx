@@ -1,5 +1,6 @@
 'use client';
 
+import { ArrowUpIcon } from '@/shared/assets/icon/ArrowUp';
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
@@ -48,6 +49,7 @@ export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
 				'rounded-full',
 			)}
 		>
+			<ArrowUpIcon />
 			{t('top')}
 		</Button>
 	);

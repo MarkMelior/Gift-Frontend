@@ -14,13 +14,6 @@
 		bottom: auto;
 	}
 
-	&::before {
-		width: 20px;
-		height: 20px;
-		content: '';
-		background-image: url("/images/icons/arrow-up.svg");
-	}
-
 	&.visible {
 		opacity: .7;
 		transition: all .3s ease;

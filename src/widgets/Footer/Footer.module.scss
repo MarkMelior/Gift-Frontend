@@ -31,13 +31,16 @@
 	display: flex;
 	gap: 10px;
 
-	img {
+	img,
+	svg {
 		opacity: .3;
 		transition: all .1s ease;
 	}
 
 	a:hover {
-		img {
+
+		img,
+		svg {
 			opacity: 1;
 		}
 	}

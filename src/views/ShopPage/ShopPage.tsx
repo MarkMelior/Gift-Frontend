@@ -1,5 +1,8 @@
 'use client';
 
+/* eslint-disable react/jsx-curly-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable i18next/no-literal-string */
 import { Button } from '@/shared/ui/Button';
 import { Card } from '@/shared/ui/Card';
 import { Input } from '@/shared/ui/Input';
@@ -13,7 +16,7 @@ import cls from './ShopPage.module.scss';
 export const ShopPage: FC = () => {
 	// const t = useTranslations('ShopPage');
 	const minPrice = 0;
-	const maxPrice = 1000;
+	const maxPrice = 5000;
 
 	const [startPrice, setStartPrice] = useState<number>(minPrice);
 	const [endPrice, setEndPrice] = useState<number>(maxPrice);
@@ -66,8 +69,10 @@ export const ShopPage: FC = () => {
 							<Input
 								type='number'
 								placeholder={`от ${minPrice}`}
-								value={startPrice}
-								onValueChange={setStartPrice}
+								value={String(startPrice)}
+								onValueChange={(value: string) =>
+									setStartPrice(parseInt(value, 10))
+								}
 								endContent={
 									<div className='pointer-events-none flex items-center'>
 										<span className='text-default-400 text-small'>₽</span>
@@ -77,8 +82,10 @@ export const ShopPage: FC = () => {
 							<Input
 								type='number'
 								placeholder={`до ${maxPrice}`}
-								value={endPrice}
-								onValueChange={setEndPrice}
+								value={String(endPrice)}
+								onValueChange={(value: string) =>
+									setEndPrice(parseInt(value, 10))
+								}
 								endContent={
 									<div className='pointer-events-none flex items-center'>
 										<span className='text-default-400 text-small'>₽</span>
@@ -90,13 +97,45 @@ export const ShopPage: FC = () => {
 							size='sm'
 							minValue={minPrice}
 							maxValue={maxPrice}
+							step={100}
 							value={[startPrice, endPrice]}
-							onChange={([start, end]) => {
-								setStartPrice(start);
-								setEndPrice(end);
+							onChange={(value: number | number[]) => {
+								if (typeof value === 'number') {
+									setStartPrice(value);
+								} else if (Array.isArray(value)) {
+									const [start, end] = value;
+									setStartPrice(start);
+									setEndPrice(end);
+								}
 							}}
 							className='max-w-md'
 						/>
+						<div className={cls.sortColumn}>
+							<Button
+								onClick={() => {
+									setStartPrice(0);
+									setEndPrice(500);
+								}}
+							>
+								Малый (0 - 500)
+							</Button>
+							<Button
+								onClick={() => {
+									setStartPrice(500);
+									setEndPrice(3000);
+								}}
+							>
+								Средний (500 - 3000)
+							</Button>
+							<Button
+								onClick={() => {
+									setStartPrice(minPrice);
+									setEndPrice(maxPrice);
+								}}
+							>
+								Любой
+							</Button>
+						</div>
 					</div>
 					<div className={cls.sort}>
 						<header>
@@ -164,7 +203,7 @@ export const ShopPage: FC = () => {
 							src='/'
 							links={{
 								src: 'https://megamarket.ru/catalog/details/nike-zoom-hyperspeed-court-krossovki-voleybolnye-belyy-chernyy-41-100061411115_98494/',
-								market: 'yandex',
+								market: 'ozon',
 							}}
 							images={['cat.png', 'cat.png']}
 							title='Сквиши антистресс игрушки подарочный набор 2 кота Xiaomi Mi Power Bank 3 20000 mAh'
@@ -184,13 +223,6 @@ export const ShopPage: FC = () => {
 							reviewCount={456}
 							price={28546}
 						/>
-						{/* <Card />
-						<Card />
-						<Card />
-						<Card />
-						<Card />
-						<Card />
-						<Card /> */}
 					</div>
 				</div>
 			</div>

@@ -40,6 +40,10 @@
 	backdrop-filter: var(--blur-xs);
 	border: 1px solid var(--color-border);
 
+	@media (max-width: theme('screens.md')) {
+		@include background(1);
+	}
+
 	header {
 		display: flex;
 		align-items: center;
@@ -77,6 +81,12 @@
 
 	&Column,
 	&Row {
+		[class="light"] & {
+			button {
+				color: rgb(var(--color-text), .8);
+			}
+		}
+
 		@media (max-width: theme('screens.md')) {
 			&>* {
 				flex-grow: 1;
@@ -142,6 +152,10 @@
 .textarea {
 	width: 100%;
 	transition: all .3s ease;
+
+	@media (max-width: theme('screens.md')) {
+		@include background(1);
+	}
 
 	input {
 		color: rgb(255, 255, 255, 50%);

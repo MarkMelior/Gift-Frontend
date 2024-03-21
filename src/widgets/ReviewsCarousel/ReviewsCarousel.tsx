@@ -5,6 +5,7 @@ import { SlideHeading } from '@/shared/ui/HeadingSlide';
 import { StarRating } from '@/shared/ui/StarRating';
 import { User } from '@nextui-org/react';
 import cn from 'clsx';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -16,6 +17,7 @@ import cls from './ReviewsCarousel.module.scss';
 export const ReviewsCarousel: FC = () => {
 	// const t = useTranslations('ReviewsCarousel');
 	const isMobile = useMediaQuery({ maxWidth: MediaSize.SM });
+	const { theme } = useTheme();
 
 	const cards = [];
 	for (let i = 0; i < 5; i++) {

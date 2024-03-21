@@ -107,8 +107,8 @@
 	position: absolute;
 	top: 0;
 	z-index: calc(var(--z-index-blackhole) - 2);
-	border-right: 1px solid rgb(226, 232, 255, 10%);
-	border-bottom: 1px solid rgb(226, 232, 255, 10%);
+	border-right: 1px solid rgb(var(--color-main-inverted-rgb), 10%);
+	border-bottom: 1px solid rgb(var(--color-main-inverted-rgb), 10%);
 	border-bottom-right-radius: 12px;
 
 	&:nth-child(1) {
@@ -139,7 +139,7 @@
 		bottom: -4px;
 		width: 12px;
 		height: 12px;
-		background: var(--color-main);
+		background: var(--color-background);
 	}
 
 	&::after {
@@ -147,7 +147,7 @@
 		z-index: 2;
 		width: 4px;
 		height: 4px;
-		background: #202039;
+		background: rgba(var(--color-main-inverted-rgb), .1);
 	}
 
 	&::before,

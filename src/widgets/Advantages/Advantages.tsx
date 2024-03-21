@@ -6,6 +6,7 @@ import { CardRotate } from '@/shared/ui/CardRotate';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { FC } from 'react';
 import MediaQuery from 'react-responsive';
@@ -17,6 +18,7 @@ interface AdvantagesProps {
 
 export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 	const t = useTranslations('Advantages');
+	const { theme } = useTheme();
 
 	return (
 		<section className={cn(cls.wrapper, className, 'content')}>
@@ -78,20 +80,22 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 					text={t('card-3-description')}
 				/>
 			</div>
-			<motion.div
-				initial={{ opacity: 0 }}
-				whileInView={{ opacity: 1 }}
-				viewport={{ once: true }}
-				transition={{ duration: 1, ease: 'easeIn' }}
-				className={`${cls.image} noselect`}
-			>
-				<Image
-					src='/images/pages/glow-about.png'
-					width={1612}
-					height={1698}
-					alt='test'
-				/>
-			</motion.div>
+			{theme === 'dark' && (
+				<motion.div
+					initial={{ opacity: 0 }}
+					whileInView={{ opacity: 1 }}
+					viewport={{ once: true }}
+					transition={{ duration: 1, ease: 'easeIn' }}
+					className={`${cls.image} noselect`}
+				>
+					<Image
+						src='/images/pages/glow-about.png'
+						width={1612}
+						height={1698}
+						alt='test'
+					/>
+				</motion.div>
+			)}
 		</section>
 	);
 };

@@ -5,6 +5,10 @@
 	overflow: hidden;
 	opacity: .4;
 
+	[class="light"] {
+		display: none;
+	}
+
 	@media (width <=--display-notebook) {
 		display: none;
 	}

@@ -6,12 +6,14 @@ import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
 import { PathnamesKeys } from '@/shared/config/i18n/config';
 import { Link } from '@/shared/config/i18n/navigation';
+import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { numberToCurrency } from '@/shared/lib/numberToCurrency';
 import { Market, MarketType } from '@/shared/types';
 import { Button } from '@/shared/ui/Button';
 import { Tooltip } from '@nextui-org/react';
 import Image from 'next/image';
 import { FC, MouseEvent, useRef, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
@@ -46,8 +48,8 @@ export const Card: FC<CardProps> = ({
 	const formattedPrice = numberToCurrency(price);
 	const formattedOldPrice = numberToCurrency(oldPrice || price);
 	const [isLiked, setIsLiked] = useState<boolean>(false);
-
 	const swiperRef = useRef<SwiperRef>(null);
+	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
 
 	const handleMouseMove = (e: MouseEvent) => {
 		const sliderLength = swiperRef.current?.swiper.slides.length;
@@ -73,7 +75,7 @@ export const Card: FC<CardProps> = ({
 			el: '[data-slider-dots]',
 			bulletClass: cls.bullet,
 			bulletActiveClass: cls.bulletActive,
-			renderBullet(index, className) {
+			renderBullet(index: number, className: string) {
 				return `<div class="${className}"></div>`;
 			},
 		};
@@ -88,6 +90,7 @@ export const Card: FC<CardProps> = ({
 						pagination={pagination}
 						className='h-full'
 						ref={swiperRef}
+						loop={isPhone}
 					>
 						{images.map((image, index) => (
 							<SwiperSlide key={image}>
@@ -140,9 +143,15 @@ export const Card: FC<CardProps> = ({
 						}
 						className={cls.tooltip}
 					>
-						<div
+						{/* <div
 							className={cls.indicator}
 							style={{ '--indicator-color-rgb': Market[links.market].color }}
+						/> */}
+						<Image
+							src={`/images/icons/market/${Market[links.market].image}`}
+							width={16}
+							height={16}
+							alt='test'
 						/>
 					</Tooltip>
 				</div>

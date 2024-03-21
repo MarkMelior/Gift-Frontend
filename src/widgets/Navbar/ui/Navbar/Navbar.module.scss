@@ -10,6 +10,12 @@
 
 	@include background(.5);
 
+	[class="light"] & {
+		@include background(1);
+
+		backdrop-filter: none;
+	}
+
 	@media (max-width: theme('screens.sm')) {
 		bottom: 0;
 		height: var(--navbar-height-mobile);

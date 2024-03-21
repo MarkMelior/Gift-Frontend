@@ -6,6 +6,7 @@ import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { FC } from 'react';
 import cls from './Ready.module.scss';
@@ -16,6 +17,7 @@ interface ReadyProps {
 
 export const Ready: FC<ReadyProps> = ({ className = '' }) => {
 	const t = useTranslations('Ready');
+	const { theme } = useTheme();
 
 	return (
 		<div className={cn(cls.wrapper, 'content', className)}>
@@ -47,20 +49,22 @@ export const Ready: FC<ReadyProps> = ({ className = '' }) => {
 					{t('button')}
 				</Button>
 			</Link>
-			<motion.div
-				initial={{ opacity: 0 }}
-				whileInView={{ opacity: 1 }}
-				viewport={{ once: true }}
-				transition={{ duration: 3, ease: 'easeIn' }}
-				className={`${cls.image} noselect`}
-			>
-				<Image
-					src='/images/pages/glow-ready.png'
-					alt={t('background-image-alt')}
-					width={1488}
-					height={1674}
-				/>
-			</motion.div>
+			{theme === 'dark' && (
+				<motion.div
+					initial={{ opacity: 0 }}
+					whileInView={{ opacity: 1 }}
+					viewport={{ once: true }}
+					transition={{ duration: 3, ease: 'easeIn' }}
+					className={`${cls.image} noselect`}
+				>
+					<Image
+						src='/images/pages/glow-ready.png'
+						alt={t('background-image-alt')}
+						width={1488}
+						height={1674}
+					/>
+				</motion.div>
+			)}
 		</div>
 	);
 };
