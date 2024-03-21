@@ -4,7 +4,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable i18next/no-literal-string */
 import { Button } from '@/shared/ui/Button';
-import { Card } from '@/shared/ui/Card';
+import { Cards, DataCardProps } from '@/shared/ui/Card';
 import { Input } from '@/shared/ui/Input';
 import { NavigationPanel } from '@/widgets/NavigationPanel';
 import { TopPage } from '@/widgets/TopPage';
@@ -12,6 +12,29 @@ import { Image, Slider, Textarea } from '@nextui-org/react';
 import cn from 'clsx';
 import { FC, useState } from 'react';
 import cls from './ShopPage.module.scss';
+
+const cardData: DataCardProps[] = [
+	{
+		id: 1,
+		src: '/',
+		links: [
+			{
+				src: 'exampleLink1',
+				market: 'ozon',
+			},
+			{
+				src: 'exampleLink2',
+				market: 'yandex',
+			},
+		],
+		images: ['cat.png', 'cat.png', 'cat.png'],
+		title: 'Example Title 1',
+		rating: 4.5,
+		reviewCount: 100,
+		price: 50,
+		oldPrice: 60,
+	},
+];
 
 export const ShopPage: FC = () => {
 	// const t = useTranslations('ShopPage');
@@ -186,44 +209,7 @@ export const ShopPage: FC = () => {
 							Найти подарок
 						</Button>
 					</div>
-					<div className={cls.cards}>
-						<Card
-							src='/'
-							links={{
-								src: 'https://megamarket.ru/catalog/details/nike-zoom-hyperspeed-court-krossovki-voleybolnye-belyy-chernyy-41-100061411115_98494/',
-								market: 'yandex',
-							}}
-							images={['cat.png', 'cat.png']}
-							title='Сквиши антистресс игрушки подарочный набор 2 кота Xiaomi Mi Power Bank 3 20000 mAh'
-							rating={5}
-							reviewCount={456}
-							price={28546}
-						/>
-						<Card
-							src='/'
-							links={{
-								src: 'https://megamarket.ru/catalog/details/nike-zoom-hyperspeed-court-krossovki-voleybolnye-belyy-chernyy-41-100061411115_98494/',
-								market: 'ozon',
-							}}
-							images={['cat.png', 'cat.png']}
-							title='Сквиши антистресс игрушки подарочный набор 2 кота Xiaomi Mi Power Bank 3 20000 mAh'
-							rating={5}
-							reviewCount={456}
-							price={28546}
-						/>
-						<Card
-							src='/'
-							links={{
-								src: 'https://megamarket.ru/catalog/details/nike-zoom-hyperspeed-court-krossovki-voleybolnye-belyy-chernyy-41-100061411115_98494/',
-								market: 'yandex',
-							}}
-							images={['cat.png', 'cat.png']}
-							title='Сквиши антистресс игрушки подарочный набор 2 кота Xiaomi Mi Power Bank 3 20000 mAh'
-							rating={5}
-							reviewCount={456}
-							price={28546}
-						/>
-					</div>
+					<Cards data={cardData} />
 				</div>
 			</div>
 		</>

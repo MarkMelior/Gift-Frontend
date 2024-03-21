@@ -1,0 +1,13 @@
+.wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+	gap: 20px;
+
+	@media (max-width: theme('screens.lg')) {
+		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	}
+
+	@media (max-width: theme('screens.sm')) {
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	}
+}

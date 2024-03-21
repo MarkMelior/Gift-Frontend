@@ -1,0 +1,31 @@
+{
+	"products": [
+		{
+			"id": 1,
+			"src": "/",
+			"links": [
+				{
+					"src": "exampleLink1",
+					"market": "ozon"
+				},
+				{
+					"src": "exampleLink2",
+					"market": "yandex"
+				}
+			],
+			"images": ["cat.png", "cat.png", "cat.png"],
+			"title": "Example Title 1",
+			"rating": 4.5,
+			"reviewCount": 100,
+			"price": 50,
+			"oldPrice": 60
+		}
+	],
+	"users": [
+		{
+			"id": 1,
+			"username": "admin",
+			"password": "123"
+		}
+	]
+}

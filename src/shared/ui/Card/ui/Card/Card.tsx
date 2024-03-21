@@ -24,9 +24,10 @@ export interface CardLinksProps {
 	market: MarketType;
 }
 
-export interface CardProps {
+export interface DataCardProps {
+	id: number;
 	src: PathnamesKeys;
-	links: CardLinksProps;
+	links: CardLinksProps[];
 	images: string[];
 	title: string;
 	rating: number;
@@ -35,18 +36,11 @@ export interface CardProps {
 	oldPrice?: number;
 }
 
-export const Card: FC<CardProps> = ({
-	src,
-	links,
-	images,
-	title,
-	rating = 0,
-	reviewCount = 0,
-	price,
-	oldPrice,
-}) => {
-	const formattedPrice = numberToCurrency(price);
-	const formattedOldPrice = numberToCurrency(oldPrice || price);
+export interface CardProps {
+	data: DataCardProps;
+}
+
+export const Card: FC<CardProps> = ({ data }) => {
 	const [isLiked, setIsLiked] = useState<boolean>(false);
 	const swiperRef = useRef<SwiperRef>(null);
 	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
@@ -59,36 +53,36 @@ export const Card: FC<CardProps> = ({
 			// @ts-ignore
 			const sliderPath = Math.round(sliderWidth / sliderLength);
 			const sliderMousePos =
+				e.clientX -
 				// @ts-ignore
 				// eslint-disable-next-line no-unsafe-optional-chaining
-				e.clientX - swiperRef.current?.getBoundingClientRect().left;
+				swiperRef.current?.getBoundingClientRect().left;
 			const sliderSlide = Math.floor(sliderMousePos / sliderPath);
 			swiperRef.current?.swiper.slideTo(sliderSlide);
 		}
 	};
 
-	let pagination: boolean | object = false;
+	const pagination = {
+		clickable: true,
+		el: `[data-slider-dots="${data.id}"]`,
+		bulletClass: cls.bullet,
+		bulletActiveClass: cls.bulletActive,
+		renderBullet(index: number, className: string) {
+			return `<div class="${className}"></div>`;
+		},
+	};
 
-	if (images.length > 1) {
-		pagination = {
-			clickable: true,
-			el: '[data-slider-dots]',
-			bulletClass: cls.bullet,
-			bulletActiveClass: cls.bulletActive,
-			renderBullet(index: number, className: string) {
-				return `<div class="${className}"></div>`;
-			},
-		};
-	}
+	const images = data.images.slice(0, 5);
 
 	return (
-		<Link href={src} className={cls.wrapper}>
+		<Link href={data.src} className={cls.wrapper}>
 			<div className={cls.top}>
 				<div className={cls.image} onMouseMove={handleMouseMove}>
 					<Swiper
 						modules={[Pagination]}
-						pagination={pagination}
+						pagination={data.images.length > 1 ? pagination : false}
 						className='h-full'
+						key={data.title}
 						ref={swiperRef}
 						loop={isPhone}
 					>
@@ -109,7 +103,7 @@ export const Card: FC<CardProps> = ({
 				<Button
 					onClick={(e) => {
 						e.preventDefault();
-						window.open(links.src, '_blank');
+						window.open(data.links[0].src, '_blank');
 					}}
 				>
 					Купить
@@ -119,11 +113,11 @@ export const Card: FC<CardProps> = ({
 				<div className={cls.info}>
 					<div className={cls.stats}>
 						<StarIcon />
-						<span>{rating}</span>
+						<span>{data.rating}</span>
 					</div>
 					<div className={cls.stats}>
 						<ReviewIcon />
-						<span>{reviewCount}</span>
+						<span>{data.reviewCount}</span>
 					</div>
 					<Tooltip
 						offset={5}
@@ -132,13 +126,17 @@ export const Card: FC<CardProps> = ({
 						content={
 							<div className='flex items-center gap-2'>
 								<Image
-									src={`/images/icons/market/${Market[links.market].image}`}
+									src={`/images/icons/market/${
+										Market[data.links[0].market].image
+									}`}
 									width={24}
 									height={24}
 									alt='test'
 								/>
-								{/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-								<span>Статистика с {Market[links.market].name}</span>
+								<span>
+									{/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+									Статистика с {Market[data.links[0].market].name}
+								</span>
 							</div>
 						}
 						className={cls.tooltip}
@@ -148,21 +146,25 @@ export const Card: FC<CardProps> = ({
 							style={{ '--indicator-color-rgb': Market[links.market].color }}
 						/> */}
 						<Image
-							src={`/images/icons/market/${Market[links.market].image}`}
+							src={`/images/icons/market/${Market[data.links[0].market].image}`}
 							width={16}
 							height={16}
 							alt='test'
 						/>
 					</Tooltip>
 				</div>
-				{pagination && <span className={cls.bulletWrapper} data-slider-dots />}
+				{pagination && (
+					<span className={cls.bulletWrapper} data-slider-dots={data.id} />
+				)}
 			</div>
-			<span className={cls.heading}>{title}</span>
+			<span className={cls.heading}>{data.title}</span>
 			<div className={cls.bottom}>
 				<div className={cls.price}>
-					{formattedPrice}
-					{oldPrice && (
-						<span className={cls.oldPrice}>{formattedOldPrice}</span>
+					{numberToCurrency(data.price)}
+					{data.oldPrice && (
+						<span className={cls.oldPrice}>
+							{numberToCurrency(data.oldPrice)}
+						</span>
 					)}
 				</div>
 				<Button

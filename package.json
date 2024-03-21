@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
+		"server": "node ./json-server/index.js",
 		"analyze": "set ANALYZE=true&&next dev",
 		"start": "next start",
 		"lint": "next lint",
@@ -70,6 +71,7 @@
 		"identity-obj-proxy": "^3.0.0",
 		"jest": "^29.7.0",
 		"jest-environment-jsdom": "^29.7.0",
+		"json-server": "^0.17.3",
 		"loki": "^0.34.0",
 		"maath": "^0.10.7",
 		"postcss": "^8.4.35",
