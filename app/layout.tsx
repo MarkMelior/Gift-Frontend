@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 type Props = {
-	children: ReactNode;
+	children: ReactNode,
 };
 
 // Since we have a `not-found.tsx` page on the root, a layout file

@@ -7,12 +7,13 @@ import { StarIcon } from '@/shared/assets/icon/Star';
 import { PathnamesKeys } from '@/shared/config/i18n/config';
 import { Link } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
+import { addStorageData } from '@/shared/lib/addStorageData';
 import { numberToCurrency } from '@/shared/lib/numberToCurrency';
 import { Market, MarketType } from '@/shared/types';
 import { Button } from '@/shared/ui/Button';
 import { Tooltip } from '@nextui-org/react';
 import Image from 'next/image';
-import { FC, MouseEvent, useRef, useState } from 'react';
+import { FC, MouseEvent, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
@@ -41,7 +42,6 @@ export interface CardProps {
 }
 
 export const Card: FC<CardProps> = ({ data }) => {
-	const [isLiked, setIsLiked] = useState<boolean>(false);
 	const swiperRef = useRef<SwiperRef>(null);
 	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
 
@@ -53,10 +53,8 @@ export const Card: FC<CardProps> = ({ data }) => {
 			// @ts-ignore
 			const sliderPath = Math.round(sliderWidth / sliderLength);
 			const sliderMousePos =
-				e.clientX -
 				// @ts-ignore
-				// eslint-disable-next-line no-unsafe-optional-chaining
-				swiperRef.current?.getBoundingClientRect().left;
+				e.clientX - swiperRef.current?.getBoundingClientRect().left;
 			const sliderSlide = Math.floor(sliderMousePos / sliderPath);
 			swiperRef.current?.swiper.slideTo(sliderSlide);
 		}
@@ -73,6 +71,12 @@ export const Card: FC<CardProps> = ({ data }) => {
 	};
 
 	const images = data.images.slice(0, 5);
+
+	const { isLiked, toggleLike } = addStorageData(data.id, 'likedProducts');
+	const { toggleLike: toggleHistory } = addStorageData(
+		data.id,
+		'historyProducts',
+	);
 
 	return (
 		<Link href={data.src} className={cls.wrapper}>
@@ -104,6 +108,7 @@ export const Card: FC<CardProps> = ({ data }) => {
 					onClick={(e) => {
 						e.preventDefault();
 						window.open(data.links[0].src, '_blank');
+						toggleHistory(e);
 					}}
 				>
 					Купить
@@ -133,10 +138,7 @@ export const Card: FC<CardProps> = ({ data }) => {
 									height={24}
 									alt='test'
 								/>
-								<span>
-									{/* eslint-disable-next-line react/jsx-one-expression-per-line */}
-									Статистика с {Market[data.links[0].market].name}
-								</span>
+								<span>Статистика с {Market[data.links[0].market].name}</span>
 							</div>
 						}
 						className={cls.tooltip}
@@ -158,6 +160,9 @@ export const Card: FC<CardProps> = ({ data }) => {
 				)}
 			</div>
 			<span className={cls.heading}>{data.title}</span>
+			<span className={cls.cashback}>
+				кэшбэк ~{numberToCurrency((data.price / 100) * 5)}
+			</span>
 			<div className={cls.bottom}>
 				<div className={cls.price}>
 					{numberToCurrency(data.price)}
@@ -167,6 +172,7 @@ export const Card: FC<CardProps> = ({ data }) => {
 						</span>
 					)}
 				</div>
+				{/* <CardLike id={data.id} /> */}
 				<Button
 					className='p-2 rounded-full'
 					hoverColor={
@@ -175,10 +181,7 @@ export const Card: FC<CardProps> = ({ data }) => {
 					data-selected={isLiked}
 					clear
 					slice
-					onClick={(e) => {
-						setIsLiked(!isLiked);
-						e.preventDefault();
-					}}
+					onClick={toggleLike}
 					isIconOnly
 					startContent={<HeartIcon />}
 				/>

@@ -81,8 +81,7 @@ export const BestProduct: FC = () => {
 							: {
 									delay: 2500,
 									disableOnInteraction: false,
-									// eslint-disable-next-line no-mixed-spaces-and-tabs
-							  }
+								}
 					}
 					centeredSlides
 					pagination={{

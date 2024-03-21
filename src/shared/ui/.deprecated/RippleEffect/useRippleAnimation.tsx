@@ -23,7 +23,6 @@ export const useRippleAnimation = (
 
 	if (disabled) return;
 
-	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect(() => {
 		const onClick = (e: MouseEvent) => {
 			const button = element.current;

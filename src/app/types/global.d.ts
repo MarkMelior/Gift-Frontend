@@ -1,4 +1,5 @@
 declare module '*.scss' {
+	// eslint-disable-next-line prettier/prettier
 	interface IClassNames {
 		[className: string]: string;
 	}
@@ -16,11 +17,9 @@ declare module '*.svg' {
 	export default SVG;
 }
 
-// eslint-disable-next-line no-unused-vars
 declare const IS_DEV: boolean;
 
 type Messages = typeof import('public/locales/ru.json');
 type EnMessages = typeof import('public/locales/en.json');
 
-// eslint-disable-next-line no-unused-vars
 declare interface IntlMessages extends Messages, EnMessages {}

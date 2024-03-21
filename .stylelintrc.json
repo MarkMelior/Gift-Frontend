@@ -6,7 +6,8 @@
 	"rules": {
 		"selector-class-pattern": "^([a-z][a-zA-Z0-9]*)$",
 		"keyframes-name-pattern": "^([a-z][a-zA-Z0-9]*)$",
-		"color-function-notation": "legacy",
+		"color-function-notation": null,
+		"rule-empty-line-before": null,
 		"scss/at-rule-no-unknown": [
 			true,
 			{

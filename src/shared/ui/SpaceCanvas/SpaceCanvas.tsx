@@ -16,11 +16,8 @@ const StarBackground = (props: any) => {
 	const isPhone = useMediaQuery({ query: `(max-width: ${MediaSize.MD}px)` });
 
 	const ref: any = useRef();
-	const [sphere] = useState(
-		() =>
-			// eslint-disable-next-line implicit-arrow-linebreak
-			random.inSphere(new Float32Array(5000), { radius: 1.2 }),
-		// eslint-disable-next-line function-paren-newline
+	const [sphere] = useState(() =>
+		random.inSphere(new Float32Array(5000), { radius: 1.2 }),
 	);
 
 	useFrame((_, delta) => {

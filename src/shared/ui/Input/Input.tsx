@@ -30,7 +30,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 		getClearButtonProps,
 	} = useInput({ ...props, ref });
 
-	// eslint-disable-next-line jsx-a11y/label-has-associated-control
 	const labelContent = <label {...getLabelProps()}>{label}</label>;
 
 	const end = useMemo(() => {

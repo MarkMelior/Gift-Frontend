@@ -1,11 +1,11 @@
 import { FC, ReactNode } from 'react';
-import styled from 'styled-components';
+import styledComponents from 'styled-components';
 
 interface CenteredDecoratorProps {
 	children: ReactNode;
 }
 
-const Wrapper = styled.div`
+const Wrapper = styledComponents.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;

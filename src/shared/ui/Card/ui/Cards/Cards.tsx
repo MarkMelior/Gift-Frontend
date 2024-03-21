@@ -1,3 +1,5 @@
+'use client';
+
 import { FC } from 'react';
 import 'swiper/css/pagination';
 import { Card, DataCardProps } from '../Card/Card';
@@ -8,6 +10,8 @@ export interface CardsProps {
 }
 
 export const Cards: FC<CardsProps> = ({ data }) => {
+	if (!data.length) return null;
+
 	return (
 		<div className={cls.wrapper}>
 			{data.map((cardData) => (

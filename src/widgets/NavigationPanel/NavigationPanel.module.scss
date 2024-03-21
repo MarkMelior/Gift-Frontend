@@ -2,6 +2,21 @@
 	margin-top: -100px;
 }
 
+.button {
+	flex-direction: column;
+
+	&>p {
+		opacity: .5;
+
+		@apply text-sm;
+	}
+
+	img {
+		opacity: 1;
+		transition: all 0.2s ease;
+	}
+}
+
 .panel {
 	display: flex;
 	gap: 15px;
@@ -34,21 +49,6 @@
 .item {
 	display: flex;
 	gap: 5px;
-}
-
-.button {
-	flex-direction: column;
-
-	&>p {
-		opacity: .5;
-
-		@apply text-sm;
-	}
-
-	img {
-		opacity: 1;
-		transition: all 0.2s ease;
-	}
 }
 
 .selected {

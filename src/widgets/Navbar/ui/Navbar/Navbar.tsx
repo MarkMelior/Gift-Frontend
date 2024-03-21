@@ -6,8 +6,9 @@ import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Input } from '@/shared/ui/Input';
+import { Loader } from '@/shared/ui/Loader';
 import { Logo } from '@/shared/ui/Logo';
-import { Spinner, Tooltip } from '@nextui-org/react';
+import { Tooltip } from '@nextui-org/react';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -167,7 +168,7 @@ export const Navbar = memo(
 							content='Что-то загружается...'
 							className={cls.tooltip}
 						>
-							<Spinner size='sm' className={cls.spinner} />
+							<Loader size='sm' className={cls.spinner} />
 						</Tooltip>
 					</MediaQuery>
 				</div>

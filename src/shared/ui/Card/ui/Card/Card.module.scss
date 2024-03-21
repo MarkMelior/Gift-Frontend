@@ -68,6 +68,7 @@
 
 .heading {
 	display: -webkit-box;
+	height: calc(1.25rem * 2);
 	overflow: hidden;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
@@ -194,4 +195,15 @@
 	&::after {
 		opacity: 1;
 	}
+}
+
+.cashback {
+	width: fit-content;
+	padding: 0 5px;
+	background: theme('colors.danger');
+	border: 1px solid theme('colors.danger-600');
+
+	@apply rounded-full;
+	@apply text-xs;
+	@apply font-semibold;
 }

@@ -1,0 +1,30 @@
+.wrapper {
+	position: static;
+}
+
+.notFound {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	width: 100%;
+
+	@media (max-width: theme('screens.md')) {
+		align-items: center;
+	}
+
+	a {
+		width: min-content;
+	}
+}
+
+.recommended {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	margin-top: 150px;
+
+	h3 {
+		@apply text-xl;
+		@apply font-semibold;
+	}
+}

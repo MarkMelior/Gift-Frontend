@@ -1,7 +1,6 @@
-/* eslint-disable i18next/no-literal-string */
-
 'use client';
 
+/* eslint-disable i18next/no-literal-string */
 import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { Link } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
