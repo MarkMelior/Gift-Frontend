@@ -42,7 +42,7 @@
 
 	// Others
 	--position-bottom: 45px;
-	--position-top: 45px;
+	--position-top: calc(var(--navbar-height) + 10px);
 
 	@media (max-width: theme('screens.sm')) {
 		--position-bottom: calc(var(--navbar-height-mobile) + 10px);

@@ -1,4 +1,4 @@
-import { PathnamesKeys } from '../config/i18n/config';
+import { PathnamesKeys } from '@/shared/config/i18n/config';
 
 interface NavigationPanelItem {
 	to: PathnamesKeys;

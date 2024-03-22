@@ -1,4 +1,3 @@
-import { numberToCurrency } from '@/shared/lib/numberToCurrency';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -33,8 +32,6 @@ export const CardWide: FC<CardWideProps> = ({
 	hot,
 }) => {
 	const t = useTranslations('CardWide');
-	const formattedPrice = numberToCurrency(price);
-	const formattedOldPrice = oldPrice ? numberToCurrency(oldPrice) : undefined;
 
 	return (
 		<div className={cn(cls.card, className)}>
@@ -81,10 +78,8 @@ export const CardWide: FC<CardWideProps> = ({
 					)}
 				</div>
 				<div className={cls.price}>
-					{formattedOldPrice && (
-						<span className={cls.oldPrice}>{formattedOldPrice}</span>
-					)}
-					{formattedPrice}
+					{oldPrice && <span className={cls.oldPrice}>{oldPrice}</span>}
+					{price}
 				</div>
 			</div>
 		</div>

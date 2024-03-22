@@ -2,7 +2,6 @@
 
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
-import { NavigationPanelData } from '@/shared/const/navigationPanel';
 import { Blackhole } from '@/shared/ui/Blackhole';
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
@@ -10,6 +9,7 @@ import Image from 'next/image';
 import { FC } from 'react';
 import MediaQuery from 'react-responsive';
 import cls from './NavigationPanel.module.scss';
+import { NavigationPanelData } from './data';
 
 interface NavigationPanelProps {
 	className?: string;

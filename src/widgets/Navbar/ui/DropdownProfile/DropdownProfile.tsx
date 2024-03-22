@@ -5,7 +5,7 @@ import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
-import { Theme } from '@/shared/types';
+import { Theme } from '@/shared/const/theme';
 import { ModalLogin } from '@/widgets/Modal';
 import {
 	Dropdown,

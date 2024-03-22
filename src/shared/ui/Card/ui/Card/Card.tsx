@@ -7,13 +7,14 @@ import { StarIcon } from '@/shared/assets/icon/Star';
 import { PathnamesKeys } from '@/shared/config/i18n/config';
 import { Link } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
-import { addStorageData } from '@/shared/lib/addStorageData';
-import { numberToCurrency } from '@/shared/lib/numberToCurrency';
-import { Market, MarketType } from '@/shared/types';
+import { LocalstorageKeys } from '@/shared/const/localstorage';
+import { Market, MarketType } from '@/shared/const/market';
+import { Currency, useStorageData } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/Button';
 import { Tooltip } from '@nextui-org/react';
+import crypto from 'crypto';
 import Image from 'next/image';
-import { FC, MouseEvent, useRef } from 'react';
+import { FC, MouseEvent, memo, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
@@ -33,6 +34,7 @@ export interface DataCardProps {
 	title: string;
 	rating: number;
 	reviewCount: number;
+	currency: Currency;
 	price: number;
 	oldPrice?: number;
 }
@@ -41,9 +43,10 @@ export interface CardProps {
 	data: DataCardProps;
 }
 
-export const Card: FC<CardProps> = ({ data }) => {
+export const Card: FC<CardProps> = memo(({ data }) => {
 	const swiperRef = useRef<SwiperRef>(null);
 	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
+	const saltPagination = crypto.randomBytes(2).toString('hex');
 
 	const handleMouseMove = (e: MouseEvent) => {
 		const sliderLength = swiperRef.current?.swiper.slides.length;
@@ -62,7 +65,7 @@ export const Card: FC<CardProps> = ({ data }) => {
 
 	const pagination = {
 		clickable: true,
-		el: `[data-slider-dots="${data.id}"]`,
+		el: `[data-slider-dots="${data.id}-${saltPagination}"]`,
 		bulletClass: cls.bullet,
 		bulletActiveClass: cls.bulletActive,
 		renderBullet(index: number, className: string) {
@@ -72,11 +75,8 @@ export const Card: FC<CardProps> = ({ data }) => {
 
 	const images = data.images.slice(0, 5);
 
-	const { isLiked, toggleLike } = addStorageData(data.id, 'likedProducts');
-	const { toggleLike: toggleHistory } = addStorageData(
-		data.id,
-		'historyProducts',
-	);
+	const { isAdded, toggle } = useStorageData(data, LocalstorageKeys.LIKED);
+	const { add: addHistory } = useStorageData(data, LocalstorageKeys.HISTORY);
 
 	return (
 		<Link href={data.src} className={cls.wrapper}>
@@ -108,7 +108,7 @@ export const Card: FC<CardProps> = ({ data }) => {
 					onClick={(e) => {
 						e.preventDefault();
 						window.open(data.links[0].src, '_blank');
-						toggleHistory(e);
+						addHistory(e);
 					}}
 				>
 					Купить
@@ -156,36 +156,36 @@ export const Card: FC<CardProps> = ({ data }) => {
 					</Tooltip>
 				</div>
 				{pagination && (
-					<span className={cls.bulletWrapper} data-slider-dots={data.id} />
+					<span
+						className={cls.bulletWrapper}
+						// data-slider-dots={data.id}
+						data-slider-dots={`${data.id}-${saltPagination}`}
+					/>
 				)}
 			</div>
 			<span className={cls.heading}>{data.title}</span>
-			<span className={cls.cashback}>
-				кэшбэк ~{numberToCurrency((data.price / 100) * 5)}
-			</span>
+			<span className={cls.cashback}>кэшбэк ~{(data.price / 100) * 5}</span>
 			<div className={cls.bottom}>
 				<div className={cls.price}>
-					{numberToCurrency(data.price)}
+					{data.price}
 					{data.oldPrice && (
-						<span className={cls.oldPrice}>
-							{numberToCurrency(data.oldPrice)}
-						</span>
+						<span className={cls.oldPrice}>{data.oldPrice}</span>
 					)}
 				</div>
 				{/* <CardLike id={data.id} /> */}
 				<Button
 					className='p-2 rounded-full'
 					hoverColor={
-						isLiked ? '255, 66, 66' : 'var(--color-main-inverted-rgb)'
+						isAdded ? '255, 66, 66' : 'var(--color-main-inverted-rgb)'
 					}
-					data-selected={isLiked}
+					data-selected={isAdded}
 					clear
 					slice
-					onClick={toggleLike}
+					onClick={toggle}
 					isIconOnly
 					startContent={<HeartIcon />}
 				/>
 			</div>
 		</Link>
 	);
-};
+});

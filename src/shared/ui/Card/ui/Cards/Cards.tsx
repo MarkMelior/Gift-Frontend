@@ -6,11 +6,11 @@ import { Card, DataCardProps } from '../Card/Card';
 import cls from './Cards.module.scss';
 
 export interface CardsProps {
-	data: DataCardProps[];
+	data: DataCardProps[] | false;
 }
 
 export const Cards: FC<CardsProps> = ({ data }) => {
-	if (!data.length) return null;
+	if (!data) return null;
 
 	return (
 		<div className={cls.wrapper}>

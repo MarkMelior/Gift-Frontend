@@ -8,7 +8,7 @@
 	z-index: var(--z-index-modal);
 	padding: $border-size;
 	overflow: hidden;
-	box-shadow: 1px 1px 70px #93c5fd4d; // #a411ff34
+	box-shadow: 1px 1px 70px #93c4fd27; // #a411ff34
 
 	@apply rounded-xl;
 
@@ -41,16 +41,21 @@
 }
 
 .modal {
-	padding: 15px 5px;
+	padding: 20px 5px;
 
 	@apply rounded-xl;
-	@include background(1);
+	@include background(.98);
+
+	footer {
+		justify-content: center;
+	}
 }
 
 .header {
 	display: flex;
+	gap: 10px;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 }
 
 .button {
@@ -61,4 +66,21 @@
 	&:hover {
 		color: rgb(var(--color-text), 1);
 	}
+}
+
+.tabs {
+	[data-slot="tabList"] {
+		background: rgba(var(--color-main-inverted-rgb), .03);
+		border: 1px solid var(--color-border);
+	}
+
+	[data-selected="true"] {
+		span {
+			background: rgba(var(--color-main-inverted-rgb), .08);
+		}
+	}
+}
+
+.tab {
+	padding: 10px 0;
 }

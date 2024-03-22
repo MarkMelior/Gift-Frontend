@@ -6,9 +6,16 @@
 @import "swiper";
 @import "nextui";
 
+html {
+	font-size: 16px;
+
+	@media (max-width: theme('screens.sm')) {
+		font-size: 14px;
+	}
+}
+
 body {
 	font-family: var(--font-family-main);
-	font-size: 16px;
 	font-weight: 300;
 	line-height: 1.5;
 	isolation: isolate;

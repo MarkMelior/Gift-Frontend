@@ -1,6 +1,5 @@
 import { GmailIcon } from '@/shared/assets/icon/Gmail';
 import { TelegramIcon } from '@/shared/assets/icon/Telegram';
-import { Links } from '@/shared/const/links';
 import { Logo } from '@/shared/ui/Logo';
 import { Wave } from '@/shared/ui/Wave';
 import cn from 'clsx';
@@ -8,6 +7,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { FC } from 'react';
 import cls from './Footer.module.scss';
+import { Links } from './data';
 
 interface FooterProps {
 	className?: string;
@@ -22,7 +22,7 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 			<footer className={cn(cls.footer, className)}>
 				<nav className={cn(cls.wrapper, 'content')}>
 					<Link href='/' className={cn(cls.logo)}>
-						<Logo opacity={0.3} />
+						<Logo opacity={0.3} width='3rem' height='3rem' />
 					</Link>
 					<p>{t('copyright')}</p>
 					<div className={cls.linksContent}>
@@ -34,7 +34,7 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 								height={24}
 								className='noselect'
 							/> */}
-							<TelegramIcon />
+							<TelegramIcon width='1.5rem' height='1.5rem' />
 						</Link>
 						<span className={cls.spaces} />
 						<Link target='blank' href={Links.gmail.link}>
@@ -45,7 +45,7 @@ export const Footer: FC<FooterProps> = ({ className = '' }) => {
 								height={24}
 								className='noselect'
 							/> */}
-							<GmailIcon />
+							<GmailIcon width='1.5rem' height='1.5rem' />
 						</Link>
 					</div>
 				</nav>

@@ -28,11 +28,12 @@
 
 .left,
 .right {
-	font-size: 96px;
-	font-weight: 700;
 	text-transform: uppercase;
 
+	@apply text-8xl;
+	@apply font-bold;
+
 	@media (max-width: theme('screens.sm')) {
-		font-size: 72px;
+		@apply text-6xl;
 	}
 }

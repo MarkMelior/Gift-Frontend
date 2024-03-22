@@ -102,7 +102,7 @@
 
 .layer {
 	height: fit-content;
-	padding: 5px !important;
+	padding: 0.313rem !important;
 	font-weight: 400;
 	background: rgb(var(--color-main-inverted-rgb), .025);
 	transition: none;
@@ -338,7 +338,7 @@
 }
 
 .squareItem {
-	$border-radius: 12px;
+	$border-radius: 0.75rem;
 
 	position: absolute;
 	padding: 1px;
@@ -363,7 +363,7 @@
 		z-index: 2;
 		width: calc(100% + 8px);
 		height: calc(100% + 8px);
-		border-radius: calc($border-radius + 4px);
+		border-radius: calc($border-radius + 0.25rem);
 
 		&::before {
 			opacity: .3;
@@ -374,7 +374,7 @@
 		z-index: 1;
 		width: calc(100% + 16px);
 		height: calc(100% + 16px);
-		border-radius: calc($border-radius + 8px);
+		border-radius: calc($border-radius + 0.5rem);
 
 		&::before {
 			opacity: .2;
@@ -384,7 +384,7 @@
 	&:nth-child(3) {
 		width: calc(100% + 24px);
 		height: calc(100% + 24px);
-		border-radius: calc($border-radius + 12px);
+		border-radius: calc($border-radius + 0.75rem);
 
 		&::before {
 			opacity: .1;

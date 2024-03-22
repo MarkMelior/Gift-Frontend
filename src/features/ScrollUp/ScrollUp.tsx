@@ -49,7 +49,7 @@ export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
 				'rounded-full',
 			)}
 		>
-			<ArrowUpIcon />
+			<ArrowUpIcon width='1.5rem' height='1.5rem' />
 			{t('top')}
 		</Button>
 	);

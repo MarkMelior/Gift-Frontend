@@ -1,7 +1,7 @@
 'use client';
 
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
-import { Theme } from '@/shared/types';
+import { Theme } from '@/shared/const/theme';
 import { PointMaterial, Points } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import cn from 'clsx';

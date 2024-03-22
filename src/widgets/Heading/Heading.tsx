@@ -28,18 +28,18 @@ export const Heading: FC<HeadingProps> = memo(
 		const t = useTranslations('Heading');
 
 		return (
-			<div className={cn(cls.heading, { [cls.center]: center }, className)}>
+			<div className={cn(cls.wrapper, { [cls.center]: center }, className)}>
 				{note && (
 					<Button
 						customVariant='hero'
-						className='text-sm py-0.5 px-2.5 rounded-full'
+						// className='text-sm py-0.5 px-2.5 rounded-full'
+						className={cls.note}
 						startContent={
 							<Image
 								src='/images/icons/stars-heading-colored.svg'
 								alt={t('icon-star')}
 								width={16}
 								height={16}
-								style={{ width: '16px', height: '16px' }}
 								className='noselect'
 							/>
 						}

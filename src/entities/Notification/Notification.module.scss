@@ -27,11 +27,12 @@
 		backdrop-filter: none;
 	}
 
+	@media (max-width: theme('screens.md')) {
+		@include background(1);
+	}
+
 	@media (max-width: theme('screens.sm')) {
 		width: calc(100% - 10px * 2);
-
-		@apply text-sm;
-		@include background(1);
 	}
 
 	button {

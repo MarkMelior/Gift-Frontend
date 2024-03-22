@@ -9,14 +9,9 @@
 }
 
 .icon {
-	width: 84px;
-	height: 84px;
+	width: 5rem;
+	height: 5rem;
 	margin-bottom: -20px;
-
-	@media (max-width: theme('screens.sm')) {
-		width: 64px;
-		height: 64px;
-	}
 }
 
 .heading {
@@ -27,8 +22,7 @@
 
 	h3 {
 		@apply text-5xl;
-
-		font-weight: 700;
+		@apply font-bold;
 
 		@media (max-width: theme('screens.sm')) {
 			@apply text-2xl;
@@ -37,10 +31,6 @@
 
 	p {
 		color: rgba(var(--color-text), .5);
-
-		@media (max-width: theme('screens.sm')) {
-			@apply text-sm;
-		}
 	}
 }
 

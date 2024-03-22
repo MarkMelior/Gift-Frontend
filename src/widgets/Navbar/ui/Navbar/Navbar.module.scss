@@ -16,14 +16,17 @@
 		backdrop-filter: none;
 	}
 
+	@media (max-width: theme('screens.md')) {
+		backdrop-filter: none;
+
+		@include background(1);
+	}
+
 	@media (max-width: theme('screens.sm')) {
 		bottom: 0;
 		height: var(--navbar-height-mobile);
-		backdrop-filter: none;
 		border-top: 1px solid var(--color-border);
 		border-bottom: none;
-
-		@include background(1);
 	}
 }
 
@@ -158,7 +161,7 @@
 		color: var(--color-main-inverted);
 
 		@media (max-width: theme('screens.sm')) {
-			font-size: .65rem;
+			@apply text-xs;
 		}
 	}
 }

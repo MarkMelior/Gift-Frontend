@@ -1,8 +1,9 @@
 'use client';
 
 /* eslint-disable i18next/no-literal-string */
-import { LockIcon } from '@/shared/assets/icon/Lock';
 import { MailIcon } from '@/shared/assets/icon/Mail';
+import { PasswordIcon } from '@/shared/assets/icon/Password';
+import { UserIcon } from '@/shared/assets/icon/User';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import {
@@ -37,23 +38,17 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 
 	const renderLogin = useMemo(() => {
 		return (
-			<Tab key='login' title='Вход'>
+			<Tab key='login' title='Вход' className={cls.tab}>
 				<form>
 					<Input
 						autoFocus
-						endContent={
-							<MailIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
-						}
-						label='Email'
-						placeholder='Введите вашу почту' // Enter your email
+						startContent={<MailIcon />}
+						placeholder='Введите Email'
 						variant='bordered'
 					/>
 					<Input
-						endContent={
-							<LockIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
-						}
-						label='Пароль' // Password
-						placeholder='Введите пароль' // Enter your password
+						startContent={<PasswordIcon />}
+						placeholder='Введите пароль'
 						type='password'
 						variant='bordered'
 					/>
@@ -77,34 +72,27 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 
 	const renderRegister = useMemo(() => {
 		return (
-			<Tab key='sign-up' title='Регистрация'>
+			<Tab key='sign-up' title='Регистрация' className={cls.tab}>
 				<form>
 					<Input
 						autoFocus
-						label='Логин'
+						startContent={<UserIcon />}
 						placeholder='Придумайте имя'
 						variant='bordered'
 					/>
 					<Input
-						autoFocus
-						endContent={
-							<MailIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
-						}
-						label='Email'
-						placeholder='Введите вашу почту'
+						startContent={<MailIcon />}
+						placeholder='Введите Email'
 						variant='bordered'
 					/>
 					<Input
-						endContent={
-							<LockIcon className='text-2xl text-default-400 pointer-events-none flex-shrink-0' />
-						}
-						label='Пароль'
-						placeholder='Придумайте пароль'
+						startContent={<PasswordIcon />}
+						placeholder='Введите пароль'
 						type='password'
 						variant='bordered'
 					/>
 					<Input
-						label='Подтверждение пароля'
+						startContent={<PasswordIcon />}
 						placeholder='Повторите пароль'
 						type='password'
 						variant='bordered'
@@ -125,15 +113,22 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 				{(onClose) => (
 					<div className={cls.modal}>
 						<ModalHeader className={cls.header}>
-							{registration === 'sign-up' ? 'Регистрация' : 'Войти в Easy Gift'}
+							<Image
+								src='/images/icons/logo-melior-white.svg'
+								width={24}
+								height={24}
+								alt='test'
+							/>
+							{registration === 'sign-up' ? 'Регистрация' : 'Вход'}
 						</ModalHeader>
-						<ModalBody>
+						<ModalBody className={cls.body}>
 							<Tabs
 								fullWidth
 								size='md'
 								aria-label='Tabs form'
 								selectedKey={registration}
 								onSelectionChange={setRegistration}
+								className={cls.tabs}
 							>
 								{renderRegister}
 								{renderLogin}
@@ -142,17 +137,18 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 						<ModalFooter>
 							<Button
 								customVariant='layer'
-								className='py-4 px-8 rounded-xl'
-								color='primary'
+								className='py-3 px-8 rounded-xl'
+								hoverColor='147, 197, 253'
+								starlight
 								onPress={onClose}
-								startContent={
-									<Image
-										src='/images/icons/logo-melior-white.svg'
-										width={24}
-										height={24}
-										alt='test'
-									/>
-								}
+								// startContent={
+								// 	<Image
+								// 		src='/images/icons/logo-melior-white.svg'
+								// 		width={24}
+								// 		height={24}
+								// 		alt='test'
+								// 	/>
+								// }
 							>
 								{registration === 'sign-up' ? 'Создать аккаунт' : 'Войти'}
 							</Button>

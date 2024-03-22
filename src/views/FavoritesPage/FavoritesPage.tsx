@@ -1,22 +1,24 @@
 'use client';
 
 /* eslint-disable i18next/no-literal-string */
+import { cardData } from '@/db';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { Link } from '@/shared/config/i18n/navigation';
-import { getStorageData } from '@/shared/lib/getStorageData';
+import { LocalstorageKeys } from '@/shared/const/localstorage';
+import { getStorageData } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/Button';
 import { Cards } from '@/shared/ui/Card';
 import { TopPage } from '@/widgets/TopPage';
 import { Image } from '@nextui-org/react';
 import cn from 'clsx';
 import { FC } from 'react';
-import { cardData } from '../ShopPage/ShopPage';
 import cls from './FavoritesPage.module.scss';
 
 export const FavoritesPage: FC = () => {
 	// const t = useTranslations('Favorites');
 
-	const filteredData = getStorageData(cardData, 'likedProducts');
+	const filteredData = getStorageData(cardData, LocalstorageKeys.LIKED);
+	const historyData = getStorageData(cardData, LocalstorageKeys.HISTORY);
 
 	return (
 		<div className={cn(cls.wrapper, 'content')}>
@@ -40,7 +42,7 @@ export const FavoritesPage: FC = () => {
 				}
 			/>
 			<Cards data={filteredData} />
-			{!filteredData && (
+			{!filteredData ? (
 				<>
 					<div className={cls.notFound}>
 						<Link href='/shop' style={{ display: 'inline-block' }}>
@@ -59,6 +61,11 @@ export const FavoritesPage: FC = () => {
 						<Cards data={cardData} />
 					</div>
 				</>
+			) : (
+				<div className={cls.recommended}>
+					<h3>Вы недавно смотрели</h3>
+					<Cards data={historyData} />
+				</div>
 			)}
 		</div>
 	);

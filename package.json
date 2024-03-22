@@ -61,6 +61,7 @@
 		"autoprefixer": "^10.4.18",
 		"clsx": "^2.1.0",
 		"color2k": "^2.0.3",
+		"crypto": "^1.0.1",
 		"eslint": "^8.56.0",
 		"eslint-config-next": "14.1.0",
 		"eslint-config-prettier": "^9.1.0",

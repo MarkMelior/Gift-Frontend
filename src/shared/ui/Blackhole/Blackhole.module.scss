@@ -5,10 +5,10 @@
 
 .video {
 	position: absolute;
-	top: -153px;
+	top: -81px; // -153px
 	z-index: var(--z-index-blackhole);
 	width: 100%;
-	height: 745px;
+	height: 600px; // 745px
 	overflow: visible;
 	object-fit: cover;
 	mix-blend-mode: lighten;
@@ -17,10 +17,6 @@
 
 	[class="light"] & {
 		display: none;
-	}
-
-	@media (max-width: theme('screens.md')) {
-		height: 600px;
 	}
 }
 

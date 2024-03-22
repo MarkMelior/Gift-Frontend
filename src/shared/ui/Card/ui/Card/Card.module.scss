@@ -128,28 +128,28 @@
 	}
 }
 
-.indicator {
-	position: relative;
-	width: 18px;
-	height: 18px;
-	background: rgba(var(--indicator-color-rgb), .2);
+// .indicator {
+// 	position: relative;
+// 	width: 18px;
+// 	height: 18px;
+// 	background: rgba(var(--indicator-color-rgb), .2);
 
-	@apply rounded-full;
+// 	@apply rounded-full;
 
-	&::after {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		display: block;
-		width: 6px;
-		height: 6px;
-		content: "";
-		background: rgba(var(--indicator-color-rgb), 1);
-		transform: translate(-50%, -50%);
+// 	&::after {
+// 		position: absolute;
+// 		top: 50%;
+// 		left: 50%;
+// 		display: block;
+// 		width: 6px;
+// 		height: 6px;
+// 		content: "";
+// 		background: rgba(var(--indicator-color-rgb), 1);
+// 		transform: translate(-50%, -50%);
 
-		@apply rounded-full;
-	}
-}
+// 		@apply rounded-full;
+// 	}
+// }
 
 .tooltip {
 	background: var(--bg-noise), var(--color-background);
@@ -206,4 +206,8 @@
 	@apply rounded-full;
 	@apply text-xs;
 	@apply font-semibold;
+
+	@media (max-width: theme('screens.sm')) {
+		font-size: .6rem;
+	}
 }

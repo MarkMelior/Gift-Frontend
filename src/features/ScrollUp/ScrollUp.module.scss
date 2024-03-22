@@ -8,7 +8,7 @@
 	opacity: 0;
 
 
-	@media (max-width: theme('screens.sm')) {
+	@media (max-width: theme('screens.md')) {
 		top: var(--position-top);
 		right: 10px;
 		bottom: auto;

@@ -8,7 +8,7 @@ import { Button } from '@/shared/ui/Button';
 import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
-import { FC, ReactNode, memo } from 'react';
+import { FC, ReactNode, memo, useMemo } from 'react';
 import MediaQuery from 'react-responsive';
 import cls from './TopPage.module.scss';
 
@@ -36,6 +36,10 @@ export const TopPage: FC<TopPageProps> = memo(
 		// 	shadowRoot.appendChild(style);
 		// }, []);
 
+		const renderHeading = useMemo(() => {
+			return <Heading title={title} description={description} note={note} />;
+		}, [description, note, title]);
+
 		return (
 			<section className='content'>
 				{!compact && (
@@ -48,24 +52,24 @@ export const TopPage: FC<TopPageProps> = memo(
 					</MediaQuery>
 				)}
 				<div className={cn(cls.wrapper, { [cls.compact]: compact })}>
-					<div className={cls.information}>
-						<Heading title={title} description={description} note={note} />
-						{!compact && (
-							<>
-								<div className={`${cls.dots} noselect`} />
-								<Link href='/shop'>
-									<Button
-										starlight
-										className='py-5 px-12 rounded-xl'
-										customVariant='layer'
-										startContent={<GiftIcon />}
-									>
-										{t('button')}
-									</Button>
-								</Link>
-							</>
-						)}
-					</div>
+					{!compact ? (
+						<div className={cls.information}>
+							{renderHeading}
+							<div className={`${cls.dots} noselect`} />
+							<Link href='/shop'>
+								<Button
+									starlight
+									className='py-5 px-12 rounded-xl'
+									customVariant='layer'
+									startContent={<GiftIcon width='1.5rem' height='1.5rem' />}
+								>
+									{t('button')}
+								</Button>
+							</Link>
+						</div>
+					) : (
+						renderHeading
+					)}
 					<MediaQuery minWidth={MediaSize.MD}>
 						<div className={cn(cls.image, { [cls.compact]: compact })}>
 							{imageContent}
