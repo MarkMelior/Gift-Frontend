@@ -13,6 +13,7 @@ import MediaQuery from 'react-responsive';
 import cls from './TopPage.module.scss';
 
 interface TopPageProps {
+	className?: string;
 	title: string;
 	description: string;
 	note?: string;
@@ -21,7 +22,7 @@ interface TopPageProps {
 }
 
 export const TopPage: FC<TopPageProps> = memo(
-	({ title, description, note, compact, imageContent }) => {
+	({ title, className, description, note, compact, imageContent }) => {
 		const t = useTranslations('TopPage');
 		// const splineRef = useRef(null);
 
@@ -41,7 +42,11 @@ export const TopPage: FC<TopPageProps> = memo(
 		}, [description, note, title]);
 
 		return (
-			<section className='content'>
+			<section
+				className={cn(cls.wrapper, className, 'content', {
+					[cls.compact]: compact,
+				})}
+			>
 				{!compact && (
 					<MediaQuery minWidth={MediaSize.SM}>
 						<div className={cls.backgroundTop}>
@@ -51,29 +56,28 @@ export const TopPage: FC<TopPageProps> = memo(
 						</div>
 					</MediaQuery>
 				)}
-				<div className={cn(cls.wrapper, { [cls.compact]: compact })}>
-					{!compact ? (
-						<div className={cls.information}>
-							{renderHeading}
-							<div className={`${cls.dots} noselect`} />
-							<Link href='/shop'>
-								<Button
-									starlight
-									className='py-5 px-12 rounded-xl'
-									customVariant='layer'
-									startContent={<GiftIcon width='1.5rem' height='1.5rem' />}
-								>
-									{t('button')}
-								</Button>
-							</Link>
-						</div>
-					) : (
-						renderHeading
-					)}
-					<MediaQuery minWidth={MediaSize.MD}>
-						<div className={cn(cls.image, { [cls.compact]: compact })}>
-							{imageContent}
-							{/* <script
+				{!compact ? (
+					<div className={cls.information}>
+						{renderHeading}
+						<div className={`${cls.dots} noselect`} />
+						<Link href='/shop'>
+							<Button
+								starlight
+								className='py-5 px-12 rounded-xl'
+								customVariant='layer'
+								startContent={<GiftIcon width='1.5rem' height='1.5rem' />}
+							>
+								{t('button')}
+							</Button>
+						</Link>
+					</div>
+				) : (
+					renderHeading
+				)}
+				<MediaQuery minWidth={MediaSize.MD}>
+					<div className={cn(cls.image, { [cls.compact]: compact })}>
+						{imageContent}
+						{/* <script
 							type='module'
 							src='https://unpkg.com/@splinetool/viewer@1.0.55/build/spline-viewer.js'
 							width='100%'
@@ -83,9 +87,8 @@ export const TopPage: FC<TopPageProps> = memo(
 							url='https://prod.spline.design/mxF2EyMzspLO0Kxj/scene.splinecode'
 							ref={splineRef}
 						/> */}
-						</div>
-					</MediaQuery>
-				</div>
+					</div>
+				</MediaQuery>
 			</section>
 		);
 	},

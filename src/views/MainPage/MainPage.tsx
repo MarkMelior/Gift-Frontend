@@ -1,3 +1,4 @@
+import { Blackhole } from '@/shared/ui/Blackhole';
 import { About } from '@/widgets/About';
 import { Advantages } from '@/widgets/Advantages';
 import { BestProduct } from '@/widgets/BestProduct';
@@ -31,6 +32,7 @@ const MainPage: FC<MainPageProps> = () => {
 				}
 				// compact
 			/>
+			<Blackhole disabledOnMobile />
 			<NavigationPanel />
 			<Advantages />
 			<About />

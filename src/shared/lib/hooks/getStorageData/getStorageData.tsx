@@ -1,4 +1,4 @@
-import { LocalstorageKeys } from '@/shared/types';
+import { LocalstorageKeys } from '@/shared/const/localstorage';
 import { DataCardProps } from '@/shared/ui/Card';
 
 export const getStorageData = (

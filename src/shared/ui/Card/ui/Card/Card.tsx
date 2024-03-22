@@ -9,7 +9,7 @@ import { Link } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { LocalstorageKeys } from '@/shared/const/localstorage';
 import { Market, MarketType } from '@/shared/const/market';
-import { Currency, useStorageData } from '@/shared/lib/hooks';
+import { Currency, useLocalstorageArray } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/Button';
 import { Tooltip } from '@nextui-org/react';
 import crypto from 'crypto';
@@ -75,8 +75,14 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 
 	const images = data.images.slice(0, 5);
 
-	const { isAdded, toggle } = useStorageData(data, LocalstorageKeys.LIKED);
-	const { add: addHistory } = useStorageData(data, LocalstorageKeys.HISTORY);
+	const { isAdded, toggle } = useLocalstorageArray<DataCardProps['id']>(
+		LocalstorageKeys.LIKED,
+		data.id,
+	);
+	const { add: addHistory } = useLocalstorageArray(
+		LocalstorageKeys.HISTORY,
+		data.id,
+	);
 
 	return (
 		<Link href={data.src} className={cls.wrapper}>

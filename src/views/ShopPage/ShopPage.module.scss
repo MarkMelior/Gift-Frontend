@@ -1,9 +1,5 @@
 @import '@/app/styles/utils';
 
-.navigationPanel {
-	margin-top: -200px !important;
-}
-
 .wrapper {
 	display: grid;
 	grid-template-columns: 300px 1fr;
@@ -15,6 +11,16 @@
 
 	@media (max-width: theme('screens.md')) {
 		grid-template-columns: 1fr;
+	}
+}
+
+.navigation {
+	margin-top: -200px;
+	margin-bottom: 80px;
+
+	@media (max-width: theme('screens.md')) {
+		margin-top: -140px;
+		margin-bottom: 0;
 	}
 }
 

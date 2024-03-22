@@ -5,7 +5,9 @@ import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
+import { LocalstorageKeys } from '@/shared/const/localstorage';
 import { Theme } from '@/shared/const/theme';
+import { useLocalstorage } from '@/shared/lib/hooks';
 import { ModalLogin } from '@/widgets/Modal';
 import {
 	Dropdown,
@@ -40,17 +42,25 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	} = useDisclosure();
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
+	const [isSpaceCanvas, setIsSpaceCanvas] = useLocalstorage<boolean>(
+		LocalstorageKeys.SPACE,
+		false,
+	);
+
 	const renderOptimizationSettings = () => {
 		return (
 			<DropdownSection title='Оптимизация' showDivider>
 				<DropdownItem
 					key='space'
-					// description='Добавляет анимацию космоса'
+					description='Добавляет анимацию космоса'
+					onClick={() => {
+						setIsSpaceCanvas(!isSpaceCanvas);
+					}}
 					startContent={
 						<Switch
 							size='sm'
 							aria-label='Automatic updates'
-							// isSelected={isSpaceCanvas}
+							isSelected={isSpaceCanvas}
 							className={cn(cls.switch, 'noselect')}
 						/>
 					}

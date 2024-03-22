@@ -10,23 +10,34 @@ import cls from './Blackhole.module.scss';
 interface BlackholeProps {
 	className?: string;
 	flip?: boolean;
+	disabledOnMobile?: boolean;
 }
 
-export const Blackhole: FC<BlackholeProps> = ({ className = '', flip }) => {
+export const Blackhole: FC<BlackholeProps> = ({
+	className = '',
+	flip,
+	disabledOnMobile,
+}) => {
 	const [mounted, setMounted] = useState(false);
-	const isMobile = useMediaQuery({ maxWidth: MediaSize.LG });
+	const isMobile = useMediaQuery({ maxWidth: MediaSize.MD });
 
 	useEffect(() => {
 		setMounted(true);
 	}, []);
 
-	if (!mounted) {
+	if ((isMobile && disabledOnMobile) || !mounted) {
 		return null;
 	}
 
 	return (
 		<div
-			className={cn(cls.wrapper, { [cls.flip]: flip }, className, 'noselect')}
+			className={cn(
+				cls.wrapper,
+				'content',
+				{ [cls.flip]: flip },
+				className,
+				'noselect',
+			)}
 		>
 			<div className={cls.circles}>
 				<div />

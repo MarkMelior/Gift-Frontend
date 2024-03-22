@@ -21,13 +21,9 @@
 		display: none;
 	}
 
-	// @media (max-width: theme('screens.md')) {
-	// 	width: 100%;
-	// }
-
-	// @media (max-width: theme('screens.sm')) {
-	// 	display: none;
-	// }
+	@media (max-width: theme('screens.md')) {
+		display: none;
+	}
 }
 
 .reviews {

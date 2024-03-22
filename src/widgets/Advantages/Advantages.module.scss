@@ -118,25 +118,26 @@
 
 		@media (max-width: theme('screens.md')) {
 			left: 116px;
-			width: 33%;
-			height: 135px;
+			width: 23%;
+			height: 130px;
 		}
 	}
 
 	&:nth-child(2) {
 		left: 550px;
 		width: 220px;
-		height: 165px;
+		height: 160px;
 
 		@media (max-width: theme('screens.md')) {
-			left: 230px;
-			width: 27%;
-			height: 225px;
+			left: 200px;
+			width: 17%;
+			height: 215px;
 		}
 	}
 
 	&::before {
-		bottom: -4px;
+		bottom: -7px;
+		z-index: 1;
 		width: 12px;
 		height: 12px;
 		background: var(--color-background);
@@ -182,7 +183,7 @@
 		animation: buildLineRotate 15s linear infinite;
 
 		@media (max-width: theme('screens.sm')) {
-			left: -260px;
+			left: -290px;
 		}
 	}
 }

@@ -2,6 +2,7 @@
 
 /* eslint-disable i18next/no-literal-string */
 import { cardData } from '@/db';
+import { Blackhole } from '@/shared/ui/Blackhole';
 import { Button } from '@/shared/ui/Button';
 import { Cards } from '@/shared/ui/Card';
 import { Input } from '@/shared/ui/Input';
@@ -37,7 +38,10 @@ export const ShopPage: FC = () => {
 					/>
 				}
 			/>
-			<NavigationPanel className={cls.navigationPanel} />
+			<div className={cls.navigation}>
+				<Blackhole />
+				<NavigationPanel />
+			</div>
 			<div className={cn(cls.wrapper, 'content')}>
 				<div className={cls.sortWrapper}>
 					<div className={cls.sort}>

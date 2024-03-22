@@ -41,7 +41,7 @@
 	mix-blend-mode: lighten;
 
 	@media (max-width: theme('screens.sm')) {
-		top: -50px;
+		top: 20px;
 	}
 
 	img {
@@ -51,7 +51,7 @@
 		object-position: top;
 
 		@media (max-width: theme('screens.sm')) {
-			height: 550px;
+			// height: 550px;
 			overflow: visible;
 		}
 	}
