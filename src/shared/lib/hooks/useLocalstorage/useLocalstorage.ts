@@ -2,7 +2,7 @@
 
 /* eslint-disable react-hooks/rules-of-hooks */
 import { LocalstorageKeys } from '@/shared/const/localstorage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useLocalstorage = <T>(
 	key: LocalstorageKeys,
@@ -13,18 +13,14 @@ export const useLocalstorage = <T>(
 		return [initialValue, () => {}];
 	}
 
-	// Попытка получить сохраненное значение из localStorage
-	const storedValue = localStorage.getItem(key);
-	const initial = storedValue ? JSON.parse(storedValue) : initialValue;
+	const [value, setValue] = useState<T>(() => {
+		const storedValue = localStorage.getItem(key);
+		return storedValue ? JSON.parse(storedValue) : initialValue;
+	});
 
-	// Создание состояния для значения и функции для его обновления
-	const [value, updateValue] = useState<T>(initial);
-
-	// Функция для обновления значения в состоянии и сохранения его в localStorage
-	const setValue = (newValue: T) => {
-		updateValue(newValue);
-		localStorage.setItem(key, JSON.stringify(newValue));
-	};
+	useEffect(() => {
+		localStorage.setItem(key, JSON.stringify(value));
+	}, [key, value, setValue]);
 
 	return [value, setValue];
 };

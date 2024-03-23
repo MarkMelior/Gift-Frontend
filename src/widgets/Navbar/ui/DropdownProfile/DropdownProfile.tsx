@@ -5,9 +5,8 @@ import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
-import { LocalstorageKeys } from '@/shared/const/localstorage';
 import { Theme } from '@/shared/const/theme';
-import { useLocalstorage } from '@/shared/lib/hooks';
+import { getSpaceCanvasValue, spaceSlice } from '@/shared/ui/SpaceCanvas';
 import { ModalLogin } from '@/widgets/Modal';
 import {
 	Dropdown,
@@ -22,6 +21,7 @@ import cn from 'clsx';
 import { useLocale } from 'next-intl';
 import { useTheme } from 'next-themes';
 import { FC, ReactNode, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './DropdownProfile.module.scss';
 
@@ -42,10 +42,8 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	} = useDisclosure();
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
-	const [isSpaceCanvas, setIsSpaceCanvas] = useLocalstorage<boolean>(
-		LocalstorageKeys.SPACE,
-		false,
-	);
+	const isSpaceCanvas = useSelector(getSpaceCanvasValue);
+	const dispatch = useDispatch();
 
 	const renderOptimizationSettings = () => {
 		return (
@@ -54,7 +52,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 					key='space'
 					description='Добавляет анимацию космоса'
 					onClick={() => {
-						setIsSpaceCanvas(!isSpaceCanvas);
+						dispatch(spaceSlice.actions.toggle());
 					}}
 					startContent={
 						<Switch

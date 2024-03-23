@@ -1,6 +1,6 @@
 'use client';
 
-/* eslint-disable react-hooks/rules-of-hooks */
+import { LocalstorageKeys } from '@/shared/const/localstorage';
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface SpaceState {
@@ -23,6 +23,7 @@ export const spaceSlice = createSlice({
 		},
 		toggle: (state) => {
 			state.value = !state.value;
+			localStorage.setItem(LocalstorageKeys.SPACE, JSON.stringify(state.value));
 		},
 	},
 });

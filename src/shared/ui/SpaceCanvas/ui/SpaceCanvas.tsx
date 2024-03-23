@@ -2,6 +2,7 @@
 
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Theme } from '@/shared/const/theme';
+import { getSpaceCanvasValue } from '@/shared/ui/SpaceCanvas';
 import { PointMaterial, Points } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import cn from 'clsx';
@@ -9,12 +10,11 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 // @ts-ignore
 import * as random from 'maath/random/dist/maath-random.esm';
 import { useTheme } from 'next-themes';
+import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './SpaceCanvas.module.scss';
 
 const StarBackground = (props: any) => {
-	const isPhone = useMediaQuery({ query: `(max-width: ${MediaSize.MD}px)` });
-
 	const ref: any = useRef();
 	const [sphere] = useState(() =>
 		random.inSphere(new Float32Array(5000), { radius: 1.2 }),
@@ -24,10 +24,6 @@ const StarBackground = (props: any) => {
 		ref.current.rotation.x -= delta / 10;
 		ref.current.rotation.y -= delta / 15;
 	});
-
-	if (isPhone) {
-		return null;
-	}
 
 	return (
 		// eslint-disable-next-line react/no-unknown-property
@@ -47,6 +43,8 @@ const StarBackground = (props: any) => {
 export const SpaceCanvas = () => {
 	const [isVisible, setIsVisible] = useState(true);
 	const { theme } = useTheme();
+	const isPhone = useMediaQuery({ query: `(max-width: ${MediaSize.MD}px)` });
+	const isSpaceCanvas = useSelector(getSpaceCanvasValue);
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -63,7 +61,7 @@ export const SpaceCanvas = () => {
 		};
 	}, []);
 
-	if (!isVisible || theme === Theme.LIGHT) {
+	if (!isVisible || theme === Theme.LIGHT || isPhone || !isSpaceCanvas) {
 		return null;
 	}
 
