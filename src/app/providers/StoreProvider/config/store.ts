@@ -1,14 +1,17 @@
-import { spaceSlice } from '@/shared/ui/SpaceCanvas';
 import { configureStore } from '@reduxjs/toolkit';
-import { StateSchema } from './StateSchema';
+import { SettingsState, settingsSlice } from './slice/settingsSlice';
 
-export const createReduxStore = (initialState?: StateSchema) => {
-	return configureStore<StateSchema>({
+export interface RootState {
+	settings: SettingsState;
+}
+
+export const createReduxStore = (initialState?: RootState) => {
+	return configureStore<RootState>({
 		reducer: {
-			spaceCanvas: spaceSlice.reducer,
+			settings: settingsSlice.reducer,
 		},
-		// devTools: IS_DEV,
 		preloadedState: initialState,
+		devTools: process.env.NODE_ENV === 'development', // FIX: ReferenceError: IS_DEV is not defined
 	});
 };
 

@@ -15,10 +15,10 @@ import { ReactNode, Suspense } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
-type LocaleLayoutProps = {
+interface LocaleLayoutProps {
 	children: ReactNode;
 	params: { locale: string };
-};
+}
 
 export function generateStaticParams() {
 	return locales.map((locale) => ({ locale }));

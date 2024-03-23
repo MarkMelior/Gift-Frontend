@@ -79,7 +79,7 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 		LocalstorageKeys.LIKED,
 		data.id,
 	);
-	const { add: addHistory } = useLocalstorageArray(
+	const { add: addHistory } = useLocalstorageArray<DataCardProps['id']>(
 		LocalstorageKeys.HISTORY,
 		data.id,
 	);

@@ -9,7 +9,7 @@ import {
 	Spinner,
 	useButton,
 } from '@nextui-org/react';
-import { forwardRef } from 'react';
+import { CSSProperties, forwardRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import cls from './Button.module.scss';
 
@@ -148,7 +148,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 				)}
 				disabled={disabled}
 				ref={domRef}
-				style={{ '--hover-color-rgb': hoverColor }}
+				style={{ '--hover-color-rgb': hoverColor } as CSSProperties}
 				{...getButtonProps()}
 			>
 				{lines && renderLinesItem()}

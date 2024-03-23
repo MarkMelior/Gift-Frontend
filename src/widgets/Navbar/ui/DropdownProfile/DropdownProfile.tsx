@@ -1,12 +1,12 @@
 'use client';
 
 /* eslint-disable i18next/no-literal-string */
+import { getSettings, settingsSlice } from '@/app/providers/StoreProvider';
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Theme } from '@/shared/const/theme';
-import { getSpaceCanvasValue, spaceSlice } from '@/shared/ui/SpaceCanvas';
 import { ModalLogin } from '@/widgets/Modal';
 import {
 	Dropdown,
@@ -42,7 +42,9 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	} = useDisclosure();
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
-	const isSpaceCanvas = useSelector(getSpaceCanvasValue);
+	const isEffects = useSelector(getSettings('effects'));
+	const isAnimations = useSelector(getSettings('animations'));
+	const isSpace = useSelector(getSettings('space'));
 	const dispatch = useDispatch();
 
 	const renderOptimizationSettings = () => {
@@ -52,13 +54,13 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 					key='space'
 					description='Добавляет анимацию космоса'
 					onClick={() => {
-						dispatch(spaceSlice.actions.toggle());
+						dispatch(settingsSlice.actions.toggle('space'));
 					}}
 					startContent={
 						<Switch
 							size='sm'
 							aria-label='Automatic updates'
-							isSelected={isSpaceCanvas}
+							isSelected={isSpace}
 							className={cn(cls.switch, 'noselect')}
 						/>
 					}
@@ -67,17 +69,37 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 				</DropdownItem>
 				<DropdownItem
 					key='edit'
-					// description='Например эффект нажатия'
+					description='Например эффект нажатия'
+					onClick={() => {
+						dispatch(settingsSlice.actions.toggle('effects'));
+					}}
 					startContent={
 						<Switch
 							size='sm'
 							aria-label='Automatic updates'
 							className={cn(cls.switch, 'noselect')}
-							// isSelected={isEffects}
+							isSelected={isEffects}
 						/>
 					}
 				>
 					Эффекты
+				</DropdownItem>
+				<DropdownItem
+					key='edit'
+					description='Например видео'
+					onClick={() => {
+						dispatch(settingsSlice.actions.toggle('animations'));
+					}}
+					startContent={
+						<Switch
+							size='sm'
+							aria-label='Automatic updates'
+							className={cn(cls.switch, 'noselect')}
+							isSelected={isAnimations}
+						/>
+					}
+				>
+					Анимации
 				</DropdownItem>
 			</DropdownSection>
 		);

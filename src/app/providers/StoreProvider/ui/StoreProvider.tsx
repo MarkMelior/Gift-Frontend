@@ -1,24 +1,16 @@
-import { getSpaceCanvasValue } from '@/shared/ui/SpaceCanvas';
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { StateSchema } from '../config/StateSchema';
-import { createReduxStore } from '../config/store';
+import { RootState, createReduxStore } from '../config/store';
 
 interface StoreProviderProps {
 	children?: ReactNode;
-	initialState?: StateSchema;
+	initialState?: RootState;
 }
 
 export const StoreProvider = (props: StoreProviderProps) => {
-	const { children } = props;
+	const { children, initialState } = props;
 
-	const initialState = {
-		spaceCanvas: {
-			value: getSpaceCanvasValue(),
-		},
-	};
-
-	const store = createReduxStore(initialState as StateSchema);
+	const store = createReduxStore(initialState as RootState);
 
 	return <Provider store={store}>{children}</Provider>;
 };

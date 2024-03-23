@@ -1,13 +1,14 @@
 'use client';
 
+/* eslint-disable react-hooks/rules-of-hooks */
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import { Theme } from '@/shared/const/theme';
-import { getSpaceCanvasValue } from '@/shared/ui/SpaceCanvas';
 import { PointMaterial, Points } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import cn from 'clsx';
 import { Suspense, useEffect, useRef, useState } from 'react';
 // @ts-ignore
+import { getSettings } from '@/app/providers/StoreProvider';
 import * as random from 'maath/random/dist/maath-random.esm';
 import { useTheme } from 'next-themes';
 import { useSelector } from 'react-redux';
@@ -44,7 +45,7 @@ export const SpaceCanvas = () => {
 	const [isVisible, setIsVisible] = useState(true);
 	const { theme } = useTheme();
 	const isPhone = useMediaQuery({ query: `(max-width: ${MediaSize.MD}px)` });
-	const isSpaceCanvas = useSelector(getSpaceCanvasValue);
+	const isSpace = useSelector(getSettings('space'));
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -61,12 +62,12 @@ export const SpaceCanvas = () => {
 		};
 	}, []);
 
-	if (!isVisible || theme === Theme.LIGHT || isPhone || !isSpaceCanvas) {
+	if (!isVisible || theme === Theme.LIGHT || isPhone || !isSpace) {
 		return null;
 	}
 
 	return (
-		<div className={cn(cls.content, 'noselect')}>
+		<div className={cn(cls.wrapper, 'noselect')}>
 			<Canvas camera={{ position: [0, 0, 1] }}>
 				<Suspense fallback={null}>
 					<StarBackground />

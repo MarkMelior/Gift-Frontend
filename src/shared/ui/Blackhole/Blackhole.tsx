@@ -1,9 +1,11 @@
 'use client';
 
+import { getSettings } from '@/app/providers/StoreProvider';
 import { MediaSize } from '@/shared/config/mediaQuery/sizes';
 import cn from 'clsx';
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './Blackhole.module.scss';
 
@@ -20,6 +22,7 @@ export const Blackhole: FC<BlackholeProps> = ({
 }) => {
 	const [mounted, setMounted] = useState(false);
 	const isMobile = useMediaQuery({ maxWidth: MediaSize.MD });
+	const isAnimations = useSelector(getSettings('animations'));
 
 	useEffect(() => {
 		setMounted(true);
@@ -44,7 +47,7 @@ export const Blackhole: FC<BlackholeProps> = ({
 				<div />
 				<div />
 			</div>
-			{isMobile ? (
+			{isMobile || !isAnimations ? (
 				<Image
 					src='/images/pages/blackhole.png'
 					alt='Blackhole'
