@@ -1,6 +1,6 @@
 'use client';
 
-import { Theme } from '@/shared/const/theme';
+import { Theme } from '@/shared/types/theme';
 import { NextUIProvider } from '@nextui-org/react';
 import { ThemeProvider } from 'next-themes';
 import { ReactNode } from 'react';

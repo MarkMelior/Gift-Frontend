@@ -1,19 +1,14 @@
-import { getSettings } from './config/selector/getSettings';
+import { createReduxStore } from './config/store';
+import { getSettings } from './model/selector/getSettings';
+import { settingsSlice } from './model/slice/settingsSlice';
 import {
+	AppDispatch,
+	RootState,
 	SettingsState,
 	SettingsStateKey,
-	settingsSlice,
-} from './config/slice/settingsSlice';
-import type { AppDispatch, RootState } from './config/store';
-import { createReduxStore } from './config/store';
+} from './model/types/storeSchema';
 import { StoreProvider } from './ui/StoreProvider';
 
-export {
-	RootState,
-	StoreProvider,
-	createReduxStore,
-	getSettings,
-	settingsSlice,
-};
+export { StoreProvider, createReduxStore, getSettings, settingsSlice };
 
-export type { AppDispatch, SettingsState, SettingsStateKey };
+export type { AppDispatch, RootState, SettingsState, SettingsStateKey };

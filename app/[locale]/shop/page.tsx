@@ -1,4 +1,4 @@
-import { ShopPage } from '@/views/ShopPage';
+import { ShopPage } from '@/views';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { FC } from 'react';
 

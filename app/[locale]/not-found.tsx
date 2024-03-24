@@ -1,4 +1,4 @@
-import NotFoundPage from '@/views/NotFoundPage';
+import { NotFoundPage } from '@/views';
 import { FC } from 'react';
 
 // Note that `app/[locale]/[...rest]/page.tsx`

@@ -1,8 +1,8 @@
 'use client';
 
 /* eslint-disable react-hooks/rules-of-hooks */
-import { MediaSize } from '@/shared/config/mediaQuery/sizes';
-import { Theme } from '@/shared/const/theme';
+import { MediaSize } from '@/shared/const/mediaSize';
+import { Theme } from '@/shared/types/theme';
 import { PointMaterial, Points } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import cn from 'clsx';

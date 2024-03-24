@@ -1,6 +1,4 @@
-export type MarketType = 'ozon' | 'yandex';
-
-export const Market = {
+export const Markets = {
 	ozon: {
 		name: 'Ozon',
 		color: 'var(--color-ozon-rgb)',

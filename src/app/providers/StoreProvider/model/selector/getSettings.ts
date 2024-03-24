@@ -4,7 +4,7 @@ import {
 	SettingsState,
 	SettingsStateKey,
 } from '@/app/providers/StoreProvider';
-import { LocalstorageKeys } from '@/shared/const/localstorage';
+import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { initialState } from '../slice/settingsSlice';
 
 export const getSettings =

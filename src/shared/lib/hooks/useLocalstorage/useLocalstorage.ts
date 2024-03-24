@@ -1,7 +1,7 @@
 'use client';
 
 /* eslint-disable react-hooks/rules-of-hooks */
-import { LocalstorageKeys } from '@/shared/const/localstorage';
+import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { useEffect, useState } from 'react';
 
 export const useLocalstorage = <T>(

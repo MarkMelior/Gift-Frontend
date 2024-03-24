@@ -1,7 +1,7 @@
 'use client';
 
 import { getSettings } from '@/app/providers/StoreProvider';
-import { MediaSize } from '@/shared/config/mediaQuery/sizes';
+import { MediaSize } from '@/shared/const/mediaSize';
 import cn from 'clsx';
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';

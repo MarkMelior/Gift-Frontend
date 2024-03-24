@@ -3,12 +3,12 @@
 /* eslint-disable i18next/no-literal-string */
 import { SearchIcon } from '@/shared/assets/icon/Search';
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
-import { MediaSize } from '@/shared/config/mediaQuery/sizes';
+import { MediaSize } from '@/shared/const/mediaSize';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Input } from '@/shared/ui/Input';
 import { Loader } from '@/shared/ui/Loader';
 import { Logo } from '@/shared/ui/Logo';
-import { Tooltip } from '@nextui-org/react';
+import { Tooltip, useDisclosure } from '@nextui-org/react';
 import cn from 'clsx';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -67,27 +67,70 @@ export const Navbar = memo(
 			[pathname],
 		);
 
+		const [isSearch, setIsSearch] = useState(false);
+		const { onOpenChange } = useDisclosure();
+
 		const renderInput = useMemo(
 			() => (
-				<Input
-					isClearable
-					size='sm'
-					radius='sm'
-					placeholder={t('search')}
-					className={cls.input}
-					startContent={
-						// <Image
-						// 	src='/images/icons/search.svg'
-						// 	alt={t('search-icon')}
-						// 	width={18}
-						// 	height={18}
-						// 	className='noselect'
-						// />
-						<SearchIcon width={18} height={18} />
-					}
-				/>
+				<>
+					<Input
+						isClearable
+						size='sm'
+						radius='sm'
+						placeholder={t('search')}
+						className={cls.input}
+						onFocus={() => {
+							setIsSearch(true);
+						}}
+						startContent={<SearchIcon width={18} height={18} />}
+					/>
+					{/* <Modal
+						isOpen={isSearch}
+						onClose={() => setIsSearch(false)}
+						onOpenChange={onOpenChange}
+					>
+						<ModalContent>
+							{(onClose) => (
+								<>
+									<ModalHeader className='flex flex-col gap-1'>
+										Modal Title
+									</ModalHeader>
+									<ModalBody>
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+											Nullam pulvinar risus non risus hendrerit venenatis.
+											Pellentesque sit amet hendrerit risus, sed porttitor quam.
+										</p>
+										<p>
+											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+											Nullam pulvinar risus non risus hendrerit venenatis.
+											Pellentesque sit amet hendrerit risus, sed porttitor quam.
+										</p>
+										<p>
+											Magna exercitation reprehenderit magna aute tempor
+											cupidatat consequat elit dolor adipisicing. Mollit dolor
+											eiusmod sunt ex incididunt cillum quis. Velit duis sit
+											officia eiusmod Lorem aliqua enim laboris do dolor
+											eiusmod. Et mollit incididunt nisi consectetur esse
+											laborum eiusmod pariatur proident Lorem eiusmod et. Culpa
+											deserunt nostrud ad veniam.
+										</p>
+									</ModalBody>
+									<ModalFooter>
+										<Button color='danger' variant='light' onPress={onClose}>
+											Close
+										</Button>
+										<Button color='primary' onPress={onClose}>
+											Action
+										</Button>
+									</ModalFooter>
+								</>
+							)}
+						</ModalContent>
+					</Modal> */}
+				</>
 			),
-			[t],
+			[isSearch, t],
 		);
 
 		const renderProfile = useMemo(

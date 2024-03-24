@@ -128,29 +128,6 @@
 	}
 }
 
-// .indicator {
-// 	position: relative;
-// 	width: 18px;
-// 	height: 18px;
-// 	background: rgba(var(--indicator-color-rgb), .2);
-
-// 	@apply rounded-full;
-
-// 	&::after {
-// 		position: absolute;
-// 		top: 50%;
-// 		left: 50%;
-// 		display: block;
-// 		width: 6px;
-// 		height: 6px;
-// 		content: "";
-// 		background: rgba(var(--indicator-color-rgb), 1);
-// 		transform: translate(-50%, -50%);
-
-// 		@apply rounded-full;
-// 	}
-// }
-
 .tooltip {
 	background: var(--bg-noise), var(--color-background);
 	border: 1px solid var(--color-border);
@@ -200,6 +177,7 @@
 .cashback {
 	width: fit-content;
 	padding: 0 5px;
+	color: white;
 	background: theme('colors.danger');
 	border: 1px solid theme('colors.danger-600');
 

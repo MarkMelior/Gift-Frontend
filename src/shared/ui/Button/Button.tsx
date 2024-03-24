@@ -1,8 +1,8 @@
 'use client';
 
-import { MediaSize } from '@/shared/config/mediaQuery/sizes';
-import { cn } from '@/shared/lib/tailwindMerge';
-import { clsxMods } from '@/shared/types';
+import { MediaSize } from '@/shared/const/mediaSize';
+import { cn } from '@/shared/lib/features';
+import { clsxMods } from '@/shared/types/types';
 import {
 	ButtonProps as BaseButtonProps,
 	Ripple,

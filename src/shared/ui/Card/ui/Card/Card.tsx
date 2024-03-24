@@ -1,46 +1,32 @@
 'use client';
 
 /* eslint-disable i18next/no-literal-string */
+import { getFavorites } from '@/app/providers/StoreProvider/model/selector/getFavorites';
+import { favoritesSlice } from '@/app/providers/StoreProvider/model/slice/favoritesSlice';
 import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
-import { PathnamesKeys } from '@/shared/config/i18n/config';
 import { Link } from '@/shared/config/i18n/navigation';
-import { MediaSize } from '@/shared/config/mediaQuery/sizes';
-import { LocalstorageKeys } from '@/shared/const/localstorage';
-import { Market, MarketType } from '@/shared/const/market';
-import { Currency, useLocalstorageArray } from '@/shared/lib/hooks';
+import { Markets } from '@/shared/const/markets';
+import { MediaSize } from '@/shared/const/mediaSize';
+import { convertCurrency, productLink } from '@/shared/lib/features';
+import { useLocalstorageArray } from '@/shared/lib/hooks';
+import { LocalstorageKeys } from '@/shared/types/localstorage';
+import { ProductDataProps } from '@/shared/types/product';
 import { Button } from '@/shared/ui/Button';
 import { Tooltip } from '@nextui-org/react';
 import crypto from 'crypto';
 import Image from 'next/image';
 import { FC, MouseEvent, memo, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import cls from './Card.module.scss';
 
-export interface CardLinksProps {
-	src: string;
-	market: MarketType;
-}
-
-export interface DataCardProps {
-	id: number;
-	src: PathnamesKeys;
-	links: CardLinksProps[];
-	images: string[];
-	title: string;
-	rating: number;
-	reviewCount: number;
-	currency: Currency;
-	price: number;
-	oldPrice?: number;
-}
-
 export interface CardProps {
-	data: DataCardProps;
+	data: ProductDataProps;
 }
 
 export const Card: FC<CardProps> = memo(({ data }) => {
@@ -68,24 +54,26 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 		el: `[data-slider-dots="${data.id}-${saltPagination}"]`,
 		bulletClass: cls.bullet,
 		bulletActiveClass: cls.bulletActive,
-		renderBullet(index: number, className: string) {
+		renderBullet(_: number, className: string) {
 			return `<div class="${className}"></div>`;
 		},
 	};
 
 	const images = data.images.slice(0, 5);
 
-	const { isAdded, toggle } = useLocalstorageArray<DataCardProps['id']>(
-		LocalstorageKeys.LIKED,
-		data.id,
-	);
-	const { add: addHistory } = useLocalstorageArray<DataCardProps['id']>(
+	const dispatch = useDispatch();
+
+	const { add: addHistory } = useLocalstorageArray<ProductDataProps['id']>(
 		LocalstorageKeys.HISTORY,
 		data.id,
 	);
 
+	const isFavorites = useSelector(getFavorites(data.id));
+	const convertedPrice = convertCurrency(data.markets[0].price);
+	const convertedOldPrice = convertCurrency(data.markets[0].oldPrice);
+
 	return (
-		<Link href={data.src} className={cls.wrapper}>
+		<Link href={productLink(false, data.id)} className={cls.wrapper}>
 			<div className={cls.top}>
 				<div className={cls.image} onMouseMove={handleMouseMove}>
 					<Swiper
@@ -102,7 +90,7 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 									width={512}
 									height={512}
 									src={`/images/products/${image}`}
-									alt='Card'
+									alt={`Card ${index}`}
 									className='noselect'
 									loading='lazy'
 								/>
@@ -113,7 +101,7 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 				<Button
 					onClick={(e) => {
 						e.preventDefault();
-						window.open(data.links[0].src, '_blank');
+						window.open(data.markets[0].link, '_blank');
 						addHistory(e);
 					}}
 				>
@@ -124,11 +112,11 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 				<div className={cls.info}>
 					<div className={cls.stats}>
 						<StarIcon />
-						<span>{data.rating}</span>
+						<span>{data.markets[0].rating}</span>
 					</div>
 					<div className={cls.stats}>
 						<ReviewIcon />
-						<span>{data.reviewCount}</span>
+						<span>{data.markets[0].reviewCount}</span>
 					</div>
 					<Tooltip
 						offset={5}
@@ -138,23 +126,19 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 							<div className='flex items-center gap-2'>
 								<Image
 									src={`/images/icons/market/${
-										Market[data.links[0].market].image
+										Markets[data.markets[0].market].image
 									}`}
 									width={24}
 									height={24}
 									alt='test'
 								/>
-								<span>Статистика с {Market[data.links[0].market].name}</span>
+								<span>Статистика с {Markets[data.markets[0].market].name}</span>
 							</div>
 						}
 						className={cls.tooltip}
 					>
-						{/* <div
-							className={cls.indicator}
-							style={{ '--indicator-color-rgb': Market[links.market].color }}
-						/> */}
 						<Image
-							src={`/images/icons/market/${Market[data.links[0].market].image}`}
+							src={`/images/icons/market/${Markets[data.markets[0].market].image}`}
 							width={16}
 							height={16}
 							alt='test'
@@ -170,24 +154,28 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 				)}
 			</div>
 			<span className={cls.heading}>{data.title}</span>
-			<span className={cls.cashback}>кэшбэк ~{(data.price / 100) * 5}</span>
+			<span className={cls.cashback}>
+				кэшбэк ~{convertCurrency((data.markets[0].price / 100) * 5)}
+			</span>
 			<div className={cls.bottom}>
 				<div className={cls.price}>
-					{data.price}
-					{data.oldPrice && (
-						<span className={cls.oldPrice}>{data.oldPrice}</span>
+					{convertedPrice}
+					{convertedOldPrice && (
+						<span className={cls.oldPrice}>{convertedOldPrice}</span>
 					)}
 				</div>
-				{/* <CardLike id={data.id} /> */}
 				<Button
 					className='p-2 rounded-full'
 					hoverColor={
-						isAdded ? '255, 66, 66' : 'var(--color-main-inverted-rgb)'
+						isFavorites ? '255, 66, 66' : 'var(--color-main-inverted-rgb)'
 					}
-					data-selected={isAdded}
+					data-selected={isFavorites}
 					clear
 					slice
-					onClick={toggle}
+					onClick={(e: MouseEvent) => {
+						e.preventDefault();
+						dispatch(favoritesSlice.actions.toggle(data.id));
+					}}
 					isIconOnly
 					startContent={<HeartIcon />}
 				/>

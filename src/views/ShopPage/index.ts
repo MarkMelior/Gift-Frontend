@@ -1,1 +1,0 @@
-export { ShopPage } from './ShopPage';

@@ -3,7 +3,7 @@
 /* eslint-disable i18next/no-literal-string */
 import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { Link } from '@/shared/config/i18n/navigation';
-import { MediaSize } from '@/shared/config/mediaQuery/sizes';
+import { MediaSize } from '@/shared/const/mediaSize';
 import { Button } from '@/shared/ui/Button';
 import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';

@@ -1,7 +1,7 @@
 'use client';
 
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
-import { MediaSize } from '@/shared/config/mediaQuery/sizes';
+import { MediaSize } from '@/shared/const/mediaSize';
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
 import Image from 'next/image';

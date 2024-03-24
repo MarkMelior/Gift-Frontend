@@ -1,4 +1,4 @@
-import { FavoritesPage } from '@/views/FavoritesPage';
+import { FavoritesPage } from '@/views';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { FC } from 'react';
 

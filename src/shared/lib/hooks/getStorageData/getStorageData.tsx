@@ -1,18 +1,18 @@
-import { LocalstorageKeys } from '@/shared/const/localstorage';
-import { DataCardProps } from '@/shared/ui/Card';
+import { LocalstorageKeys } from '@/shared/types/localstorage';
+import { ProductDataProps } from '@/shared/types/product';
 
 export const getStorageData = (
-	data: DataCardProps[],
+	data: ProductDataProps[],
 	item: LocalstorageKeys,
 	max?: number,
 ) => {
-	const isAdded = (id: number) => {
+	const isAdded = (id: ProductDataProps['id']) => {
 		const favorites: number[] = JSON.parse(localStorage.getItem(item) || '[]');
 		return favorites.includes(id);
 	};
 
-	const filteredData: DataCardProps[] = data
-		.filter((el: { id: number }) => isAdded(el.id))
+	const filteredData: ProductDataProps[] = data
+		.filter((el) => isAdded(el.id))
 		.reverse()
 		.slice(0, max);
 

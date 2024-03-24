@@ -1,11 +1,11 @@
 'use client';
 
 /* eslint-disable i18next/no-literal-string */
-import { cardData } from '@/db';
+import { productData } from '@/db';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { Link } from '@/shared/config/i18n/navigation';
-import { LocalstorageKeys } from '@/shared/const/localstorage';
 import { getStorageData } from '@/shared/lib/hooks';
+import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { Button } from '@/shared/ui/Button';
 import { Cards } from '@/shared/ui/Card';
 import { TopPage } from '@/widgets/TopPage';
@@ -17,8 +17,12 @@ import cls from './FavoritesPage.module.scss';
 export const FavoritesPage: FC = () => {
 	// const t = useTranslations('Favorites');
 
-	const filteredData = getStorageData(cardData, LocalstorageKeys.LIKED);
-	const historyData = getStorageData(cardData, LocalstorageKeys.HISTORY);
+	const filteredData = getStorageData(productData, LocalstorageKeys.LIKED);
+	// const favoritesArray = useSelector(getFavorites('all'));
+	// const filteredData: DataCardProps[] = cardData
+	// 	.filter((el: { id: number }) => favoritesArray.includes(el.id))
+	// 	.reverse();
+	const historyData = getStorageData(productData, LocalstorageKeys.HISTORY);
 
 	return (
 		<div className={cn(cls.wrapper, 'content')}>
@@ -58,7 +62,7 @@ export const FavoritesPage: FC = () => {
 					</div>
 					<div className={cls.recommended}>
 						<h3>Рекомендуемые товары</h3>
-						<Cards data={cardData} />
+						<Cards data={productData} />
 					</div>
 				</>
 			) : (

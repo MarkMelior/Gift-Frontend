@@ -5,8 +5,8 @@ import { getSettings, settingsSlice } from '@/app/providers/StoreProvider';
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
 import { Link, usePathname } from '@/shared/config/i18n/navigation';
-import { MediaSize } from '@/shared/config/mediaQuery/sizes';
-import { Theme } from '@/shared/const/theme';
+import { MediaSize } from '@/shared/const/mediaSize';
+import { Theme } from '@/shared/types/theme';
 import { ModalLogin } from '@/widgets/Modal';
 import {
 	Dropdown,
@@ -45,6 +45,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	const isEffects = useSelector(getSettings('effects'));
 	const isAnimations = useSelector(getSettings('animations'));
 	const isSpace = useSelector(getSettings('space'));
+	const isUSD = useSelector(getSettings('currency'));
 	const dispatch = useDispatch();
 
 	const renderOptimizationSettings = () => {
@@ -124,6 +125,26 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 				>
 					<DropdownSection title='Настройки' showDivider>
 						<DropdownItem
+							onClick={() => {
+								setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK);
+							}}
+							key='theme'
+							description='Делает тему светлой'
+							startContent={
+								<Switch
+									size='sm'
+									aria-label='Automatic updates'
+									isSelected={theme === Theme.LIGHT}
+									// className='noselect'
+									className={cn(cls.switch, 'noselect')}
+									startContent={<MoonIcon />}
+									endContent={<SunIcon />}
+								/>
+							}
+						>
+							Светлая тема
+						</DropdownItem>
+						<DropdownItem
 							className={cls.dropdownItem}
 							key='new'
 							description='Английский язык'
@@ -144,24 +165,25 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 							English
 						</DropdownItem>
 						<DropdownItem
+							key='usd'
+							description='Отображать цены в USD'
 							onClick={() => {
-								setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK);
+								if (isUSD === 'USD') {
+									dispatch(settingsSlice.actions.changeCurrency('RUB'));
+								} else {
+									dispatch(settingsSlice.actions.changeCurrency('USD'));
+								}
 							}}
-							key='theme'
-							description='Делает тему светлой'
 							startContent={
 								<Switch
 									size='sm'
 									aria-label='Automatic updates'
-									isSelected={theme === Theme.LIGHT}
-									// className='noselect'
+									isSelected={isUSD === 'USD'}
 									className={cn(cls.switch, 'noselect')}
-									startContent={<MoonIcon />}
-									endContent={<SunIcon />}
 								/>
 							}
 						>
-							Светлая тема
+							Доллары
 						</DropdownItem>
 					</DropdownSection>
 					{!isPhone && renderOptimizationSettings()}

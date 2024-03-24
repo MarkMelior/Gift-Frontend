@@ -1,7 +1,7 @@
 'use client';
 
 /* eslint-disable i18next/no-literal-string */
-import { cardData } from '@/db';
+import { productData } from '@/db';
 import { Blackhole } from '@/shared/ui/Blackhole';
 import { Button } from '@/shared/ui/Button';
 import { Cards } from '@/shared/ui/Card';
@@ -168,9 +168,12 @@ export const ShopPage: FC = () => {
 							maxRows={2}
 							maxLength={250}
 							className={cls.textarea}
+							id='textarea'
+							aria-label='Текстовое поле ввода для поиска подарка нейросетью'
 							placeholder='Введите текстовый запрос и нейросеть поможет вам подобрать подарок'
 						/>
 						<Button
+							aria-labelledby='textarea'
 							customVariant='layer'
 							hoverColor='149, 66, 255'
 							starlight
@@ -189,7 +192,7 @@ export const ShopPage: FC = () => {
 							Найти подарок
 						</Button>
 					</div>
-					<Cards data={cardData} />
+					<Cards data={productData} />
 				</div>
 			</div>
 		</>
