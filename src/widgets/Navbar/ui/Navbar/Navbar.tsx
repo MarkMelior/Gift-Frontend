@@ -2,7 +2,7 @@
 
 import { DropdownProfile } from '@/features/DropdownProfile';
 import { SearchIcon } from '@/shared/assets/icon/Search';
-import { MediaSize } from '@/shared/const/mediaSize';
+import { MediaSize } from '@/shared/const';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Input } from '@/shared/ui/Input';
 import { Loader } from '@/shared/ui/Loader';

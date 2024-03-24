@@ -1,7 +1,7 @@
 'use client';
 
 import { GiftIcon } from '@/shared/assets/icon/Gift';
-import { MediaSize } from '@/shared/const/mediaSize';
+import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/Button';
 import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';

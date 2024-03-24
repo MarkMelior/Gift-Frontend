@@ -1,6 +1,6 @@
 'use client';
 
-import { MediaSize } from '@/shared/const/mediaSize';
+import { MediaSize } from '@/shared/const';
 import { SlideHeading } from '@/shared/ui/HeadingSlide';
 import { StarRating } from '@/shared/ui/StarRating';
 import { User } from '@nextui-org/react';

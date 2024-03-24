@@ -3,7 +3,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable prettier/prettier */
 import { getSettings } from '@/app/providers/StoreProvider';
-import { Rates, exchangeRates } from '@/shared/const/rates';
+import { Rates, exchangeRates } from '@/shared/const';
 import { Currency } from '@/shared/types/localization';
 import { useSelector } from 'react-redux';
 

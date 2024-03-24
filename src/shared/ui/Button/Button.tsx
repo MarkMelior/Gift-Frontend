@@ -1,6 +1,6 @@
 'use client';
 
-import { MediaSize } from '@/shared/const/mediaSize';
+import { MediaSize } from '@/shared/const';
 import { cn } from '@/shared/lib/features';
 import { clsxMods } from '@/shared/types/types';
 import {
@@ -30,6 +30,7 @@ export interface ButtonProps extends BaseButtonProps {
 	starlight?: boolean;
 	clear?: boolean;
 	hoverColor?: string;
+	isSelected?: boolean;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -43,6 +44,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			starlight,
 			clear,
 			hoverColor,
+			isSelected,
 		} = props;
 
 		const {
@@ -135,6 +137,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			'py-2 px-4 rounded-lg': !clear,
 			[cls.glowing]: customVariant === 'glowing',
 			[cls.hoverColor]: hoverColor,
+			[cls.selected]: isSelected,
 		};
 
 		return (

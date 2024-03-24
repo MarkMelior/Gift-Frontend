@@ -1,10 +1,12 @@
 import { Currency } from '@/shared/types/localization';
+import { SortState } from '@/widgets/Sorts';
 import { ReactNode } from 'react';
 import { createReduxStore } from '../../config/store';
 
 export interface RootState {
 	settings: SettingsState;
 	favorites: number[];
+	sort: SortState;
 }
 
 export interface SettingsState {

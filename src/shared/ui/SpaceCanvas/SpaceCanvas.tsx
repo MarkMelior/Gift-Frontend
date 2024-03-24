@@ -1,7 +1,7 @@
 'use client';
 
 import { getSettings } from '@/app/providers/StoreProvider';
-import { MediaSize } from '@/shared/const/mediaSize';
+import { MediaSize } from '@/shared/const';
 import { Theme } from '@/shared/types/theme';
 import { PointMaterial, Points } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';

@@ -1,6 +1,6 @@
 'use client';
 
-import { MediaSize } from '@/shared/const/mediaSize';
+import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
 import Image from 'next/image';

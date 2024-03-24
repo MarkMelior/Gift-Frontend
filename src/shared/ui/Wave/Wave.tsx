@@ -1,6 +1,6 @@
 'use client';
 
-import { MediaSize } from '@/shared/const/mediaSize';
+import { MediaSize } from '@/shared/const';
 import cn from 'clsx';
 import { CSSProperties, FC } from 'react';
 import { useMediaQuery } from 'react-responsive';

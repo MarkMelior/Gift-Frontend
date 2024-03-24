@@ -3,19 +3,29 @@
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Slider } from '@nextui-org/react';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMaxPrice } from '../model/selector/getMaxPrice';
+import { getMinPrice } from '../model/selector/getMinPrice';
+import { initialState, sortSlice } from '../model/slice/sortSlice';
+import { SortButtons } from './SortButtons';
 import cls from './Sorts.module.scss';
 
 export const Sorts: FC = () => {
-	const minPrice = 0;
-	const maxPrice = 5000;
+	const minPrice = initialState.minPrice;
+	const maxPrice = initialState.maxPrice;
 
-	const [startPrice, setStartPrice] = useState<number>(minPrice);
-	const [endPrice, setEndPrice] = useState<number>(maxPrice);
+	const startPrice = useSelector(getMinPrice);
+	const endPrice = useSelector(getMaxPrice);
 
-	const searchParams = useSearchParams(); // todo
+	const dispatch = useDispatch();
+
+	const setStartPrice = (value: number) => {
+		dispatch(sortSlice.actions.setMinPrice(value));
+	};
+	const setEndPrice = (value: number) => {
+		dispatch(sortSlice.actions.setMaxPrice(value));
+	};
 
 	return (
 		<div className={cls.wrapper}>
@@ -24,12 +34,7 @@ export const Sorts: FC = () => {
 					<h6>Категория</h6>
 				</header>
 				<div className={cls.column}>
-					<Link href={'?category=birthday'}>
-						<Button hoverColor='255, 202, 66'>🎉 День рождение</Button>
-					</Link>
-					<Button hoverColor='255, 66, 157'>💗️️️ Влюблённым</Button>
-					<Button hoverColor='66, 255, 153'>🎄 Новый год</Button>
-					<Button hoverColor='255, 202, 66'>😁 Приколы</Button>
+					<SortButtons sort='category' />
 				</div>
 			</div>
 			<div className={cls.sort}>
@@ -37,8 +42,7 @@ export const Sorts: FC = () => {
 					<h6>Кому?</h6>
 				</header>
 				<div className={cls.row}>
-					<Button hoverColor='66, 153, 255'>👦 М</Button>
-					<Button hoverColor='255, 66, 157'>👩 Ж</Button>
+					<SortButtons sort='sex' />
 				</div>
 			</div>
 			<div className={cls.sort}>
@@ -120,8 +124,7 @@ export const Sorts: FC = () => {
 					<h6>Возраст</h6>
 				</header>
 				<div className={cls.row}>
-					<Button hoverColor='66, 153, 255'>Старик</Button>
-					<Button hoverColor='66, 153, 255'>Дитя</Button>
+					<SortButtons sort='age' />
 				</div>
 			</div>
 			<div className={cls.sort}>
@@ -129,11 +132,7 @@ export const Sorts: FC = () => {
 					<h6>Сортировка</h6>
 				</header>
 				<div className={cls.column}>
-					<Button>Популярные</Button>
-					<Button>Высокий рейтинг</Button>
-					<Button>Креативные</Button>
-					<Button>Дешёвые</Button>
-					<Button>Дорогие</Button>
+					<SortButtons sort='sorting' />
 				</div>
 			</div>
 		</div>

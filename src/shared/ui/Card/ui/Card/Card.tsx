@@ -5,8 +5,7 @@ import { favoritesSlice } from '@/app/providers/StoreProvider/model/slice/favori
 import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
-import { Markets } from '@/shared/const/markets';
-import { MediaSize } from '@/shared/const/mediaSize';
+import { Markets, MediaSize } from '@/shared/const';
 import { convertCurrency, productLink } from '@/shared/lib/features';
 import { useLocalstorageArray } from '@/shared/lib/hooks';
 import { LocalstorageKeys } from '@/shared/types/localstorage';

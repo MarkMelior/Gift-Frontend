@@ -3,7 +3,7 @@
 import { getSettings, settingsSlice } from '@/app/providers/StoreProvider';
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
-import { MediaSize } from '@/shared/const/mediaSize';
+import { MediaSize } from '@/shared/const';
 import { Theme } from '@/shared/types/theme';
 import { ModalLogin } from '@/widgets/Modal';
 import {

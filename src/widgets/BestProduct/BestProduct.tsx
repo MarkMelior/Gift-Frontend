@@ -1,7 +1,7 @@
 'use client';
 
 /* eslint-disable indent */
-import { MediaSize } from '@/shared/const/mediaSize';
+import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/Button';
 import { CardWide } from '@/shared/ui/Card';
 import { Heading } from '@/widgets/Heading';

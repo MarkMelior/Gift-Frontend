@@ -1,3 +1,6 @@
-import { Sorts } from './Sorts';
+import { sortSlice } from './model/slice/sortSlice';
+import { SortState } from './model/types/sortType';
+import { Sorts } from './ui/Sorts';
 
-export { Sorts };
+export { Sorts, sortSlice };
+export type { SortState };

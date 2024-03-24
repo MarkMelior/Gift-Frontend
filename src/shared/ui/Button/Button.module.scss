@@ -423,8 +423,12 @@
 .hoverColor {
 	&.default:not(.layer) {
 
-		&:hover,
 		&.selected {
+			background: rgba(var(--color-main-inverted-rgb), .05);
+			border: 1px solid rgba(var(--color-main-inverted-rgb), .3);
+		}
+
+		&:hover {
 			color: rgba(var(--hover-color-rgb), 1);
 			background: rgba(var(--hover-color-rgb), .1);
 			border: 1px solid rgba(var(--hover-color-rgb), 1);
@@ -433,8 +437,11 @@
 
 	&.button:not(.layer) {
 
+		&.selected {
+			color: rgba(var(--color-main-inverted-rgb), .9);
+		}
+
 		&:hover,
-		&.selected,
 		&[data-selected="true"] {
 			color: rgba(var(--hover-color-rgb), 1);
 

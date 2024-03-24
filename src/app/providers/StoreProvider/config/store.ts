@@ -1,3 +1,4 @@
+import { sortSlice } from '@/widgets/Sorts';
 import { configureStore } from '@reduxjs/toolkit';
 import { RootState } from '..';
 import { favoritesSlice } from '../model/slice/favoritesSlice';
@@ -8,6 +9,7 @@ export const createReduxStore = (initialState?: RootState) => {
 		reducer: {
 			settings: settingsSlice.reducer,
 			favorites: favoritesSlice.reducer,
+			sort: sortSlice.reducer,
 		},
 		preloadedState: initialState,
 		devTools: process.env.NODE_ENV === 'development', // FIX: ReferenceError: IS_DEV is not defined

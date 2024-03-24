@@ -1,6 +1,6 @@
 'use client';
 
-import { MediaSize } from '@/shared/const/mediaSize';
+import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/Button';
 import { CardRotate } from '@/shared/ui/CardRotate';
 import cn from 'clsx';
