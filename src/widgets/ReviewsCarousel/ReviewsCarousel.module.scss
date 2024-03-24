@@ -72,9 +72,7 @@
 	@include background(.4);
 
 	@media (max-width: theme('screens.sm')) {
-		backdrop-filter: blur(32px);
-
-		// @include background(1);
+		@include background(1);
 	}
 
 	&:hover {

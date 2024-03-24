@@ -1,9 +1,7 @@
 'use client';
 
-/* eslint-disable i18next/no-literal-string */
 import { productData } from '@/db';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
-import { Link } from '@/shared/config/i18n/navigation';
 import { getStorageData } from '@/shared/lib/hooks';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { Button } from '@/shared/ui/Button';
@@ -11,17 +9,12 @@ import { Cards } from '@/shared/ui/Card';
 import { TopPage } from '@/widgets/TopPage';
 import { Image } from '@nextui-org/react';
 import cn from 'clsx';
+import Link from 'next/link';
 import { FC } from 'react';
 import cls from './FavoritesPage.module.scss';
 
 export const FavoritesPage: FC = () => {
-	// const t = useTranslations('Favorites');
-
 	const filteredData = getStorageData(productData, LocalstorageKeys.LIKED);
-	// const favoritesArray = useSelector(getFavorites('all'));
-	// const filteredData: DataCardProps[] = cardData
-	// 	.filter((el: { id: number }) => favoritesArray.includes(el.id))
-	// 	.reverse();
 	const historyData = getStorageData(productData, LocalstorageKeys.HISTORY);
 
 	return (

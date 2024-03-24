@@ -6,7 +6,7 @@ interface LightProps {
 	className?: string;
 }
 
-export const Light: FC<LightProps> = ({ className = '' }) => {
+export const Light: FC<LightProps> = ({ className }) => {
 	return (
 		<div className={cn(cls.light, className, 'noselect')}>
 			<span className={cls.ellipse1} />

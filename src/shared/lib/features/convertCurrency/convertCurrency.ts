@@ -22,7 +22,7 @@ export const convertCurrency = (
 	number: number | undefined,
 	options: Options = {},
 ): string | number | false => {
-	const isUSD = useSelector(getSettings('currency'));
+	const isUSD = useSelector(getSettings('currency')) as Currency;
 
 	const {
 		from = 'RUB',

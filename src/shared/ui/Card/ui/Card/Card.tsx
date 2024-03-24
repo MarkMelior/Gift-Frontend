@@ -1,12 +1,10 @@
 'use client';
 
-/* eslint-disable i18next/no-literal-string */
 import { getFavorites } from '@/app/providers/StoreProvider/model/selector/getFavorites';
 import { favoritesSlice } from '@/app/providers/StoreProvider/model/slice/favoritesSlice';
 import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
-import { Link } from '@/shared/config/i18n/navigation';
 import { Markets } from '@/shared/const/markets';
 import { MediaSize } from '@/shared/const/mediaSize';
 import { convertCurrency, productLink } from '@/shared/lib/features';
@@ -17,6 +15,7 @@ import { Button } from '@/shared/ui/Button';
 import { Tooltip } from '@nextui-org/react';
 import crypto from 'crypto';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FC, MouseEvent, memo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
@@ -148,7 +147,6 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 				{pagination && (
 					<span
 						className={cls.bulletWrapper}
-						// data-slider-dots={data.id}
 						data-slider-dots={`${data.id}-${saltPagination}`}
 					/>
 				)}

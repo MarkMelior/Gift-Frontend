@@ -11,7 +11,7 @@ interface WaveProps {
 	style?: CSSProperties;
 }
 
-export const Wave: FC<WaveProps> = ({ className = '', style }) => {
+export const Wave: FC<WaveProps> = ({ className, style }) => {
 	const isPhone = useMediaQuery({ query: `(max-width: ${MediaSize.SM}px)` });
 
 	if (isPhone) {

@@ -16,7 +16,7 @@ interface BlackholeProps {
 }
 
 export const Blackhole: FC<BlackholeProps> = ({
-	className = '',
+	className,
 	flip,
 	disabledOnMobile,
 }) => {

@@ -1,18 +1,15 @@
-import { Link } from '@/shared/config/i18n/navigation';
 import { Button } from '@/shared/ui/Button';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FC } from 'react';
 import cls from './NotFoundPage.module.scss';
 
 const NotFoundPage: FC = () => {
-	const t = useTranslations('NotFoundPage');
-
 	return (
 		<div className={cls.wrapper}>
 			<div className={cls.information}>
-				<h1>{t('title')}</h1>
-				<p>{t('description')}</p>
+				<h1>Ошибка 404</h1>
+				<p>Страница не существует</p>
 			</div>
 			<Link href='/'>
 				<Button
@@ -24,14 +21,13 @@ const NotFoundPage: FC = () => {
 							src='/images/icons/logo-melior-white.svg'
 							width={24}
 							height={24}
-							alt={t('button-image')}
+							alt='Логотип'
 						/>
 					}
 				>
-					{t('back')}
+					Вернуться на главную
 				</Button>
 			</Link>
-			{/* <Wave style={{ position: 'absolute', bottom: 0 }} /> */}
 		</div>
 	);
 };

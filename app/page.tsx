@@ -1,6 +1,8 @@
-import { redirect } from 'next/navigation';
+import { MainPage } from '@/views';
+import { FC } from 'react';
 
-// This page only renders when the app is built statically (output: 'export')
-export default function RootPage() {
-	redirect('/ru');
-}
+const IndexPage: FC = () => {
+	return <MainPage />;
+};
+
+export default IndexPage;

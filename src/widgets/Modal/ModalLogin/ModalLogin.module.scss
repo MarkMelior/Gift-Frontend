@@ -1,14 +1,14 @@
 @import '@/app/styles/utils';
 
 .wrapper {
-	$color: #93c5fd; // theme('colors.secondary')
+	$color: #93c5fd;
 	$border-size: 1px;
 
 	position: relative;
 	z-index: var(--z-index-modal);
 	padding: $border-size;
 	overflow: hidden;
-	box-shadow: 1px 1px 70px #93c4fd27; // #a411ff34
+	box-shadow: 1px 1px 70px #93c4fd27;
 
 	@apply rounded-xl;
 

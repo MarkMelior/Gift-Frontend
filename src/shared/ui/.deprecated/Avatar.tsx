@@ -28,7 +28,7 @@
 // export const Avatar: FC<AvatarProps> = ({
 // 	src,
 // 	alt = 'Фото профиля пользователя',
-// 	className = '',
+// 	className,
 // 	disabled,
 // 	size = 40,
 // 	border,

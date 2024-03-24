@@ -1,5 +1,3 @@
-'use client';
-
 import { Currency } from '@/shared/types/localization';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import type { PayloadAction } from '@reduxjs/toolkit';

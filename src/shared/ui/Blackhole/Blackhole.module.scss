@@ -5,10 +5,10 @@
 
 .video {
 	position: absolute;
-	top: -81px; // -153px
+	top: -81px;
 	z-index: var(--z-index-blackhole);
 	width: 100%;
-	height: 600px; // 745px
+	height: 600px;
 	overflow: visible;
 	object-fit: cover;
 	mix-blend-mode: lighten;
@@ -67,10 +67,6 @@
 			border: 1px solid rgb(186, 156, 255, 30%);
 			border-radius: 50%;
 		}
-
-		// &:nth-child(1) {
-		// 	opacity: .3;
-		// }
 
 		&:nth-child(2) {
 			width: 608px;

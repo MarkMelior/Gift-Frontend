@@ -7,10 +7,7 @@ interface StarRatingProps {
 	className?: string;
 }
 
-export const StarRating: FC<StarRatingProps> = ({
-	rating = 0,
-	className = '',
-}) => {
+export const StarRating: FC<StarRatingProps> = ({ rating = 0, className }) => {
 	return (
 		<div className={cn(cls.wrapper, className)}>
 			<span className={cls.fill} style={{ width: `calc(16px * ${rating})` }} />

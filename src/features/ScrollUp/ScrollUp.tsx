@@ -3,7 +3,6 @@
 import { ArrowUpIcon } from '@/shared/assets/icon/ArrowUp';
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
-import { useTranslations } from 'next-intl';
 import { FC, useEffect, useState } from 'react';
 import cls from './ScrollUp.module.scss';
 
@@ -11,8 +10,7 @@ interface ScrollUpProps {
 	className?: string;
 }
 
-export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
-	const t = useTranslations('ScrollUp');
+export const ScrollUp: FC<ScrollUpProps> = ({ className }) => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [prevScrollY, setPrevScrollY] = useState(0);
 
@@ -50,7 +48,7 @@ export const ScrollUp: FC<ScrollUpProps> = ({ className = '' }) => {
 			)}
 		>
 			<ArrowUpIcon width='1.5rem' height='1.5rem' />
-			{t('top')}
+			Наверх
 		</Button>
 	);
 };

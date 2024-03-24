@@ -1,5 +1,4 @@
 import cn from 'clsx';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
 import cls from './CardWide.module.scss';
@@ -25,14 +24,12 @@ export const CardWide: FC<CardWideProps> = ({
 	defaultMarket,
 	images,
 
-	className = '',
+	className,
 	rating,
 	reviewCount,
 	oldPrice,
 	hot,
 }) => {
-	const t = useTranslations('CardWide');
-
 	return (
 		<div className={cn(cls.card, className)}>
 			{/* eslint-disable-next-line @next/next/no-img-element */}
@@ -45,7 +42,7 @@ export const CardWide: FC<CardWideProps> = ({
 							<div className={cls.rating}>
 								<Image
 									src='/images/icons/star.svg'
-									alt={t('icon-star')}
+									alt='Иконка звезды'
 									width={14}
 									height={14}
 									className='noselect'
@@ -55,7 +52,7 @@ export const CardWide: FC<CardWideProps> = ({
 							<div className={cls.review}>
 								<Image
 									src='/images/icons/comment.svg'
-									alt={t('icon-comment')}
+									alt='Иконка комментария'
 									width={14}
 									height={14}
 									className='noselect'
@@ -69,7 +66,7 @@ export const CardWide: FC<CardWideProps> = ({
 							{' '}
 							<Image
 								src='/images/icons/hot.svg'
-								alt={t('icon-hot')}
+								alt='Иконка огонька'
 								width={14}
 								height={14}
 								className='noselect'

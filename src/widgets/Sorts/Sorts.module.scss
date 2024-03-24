@@ -1,0 +1,97 @@
+@import '@/app/styles/utils';
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	width: 100%;
+	height: fit-content;
+}
+
+.sort {
+	@include background(.2);
+	@apply rounded-lg;
+	@apply text-sm;
+
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding: 15px 20px;
+	font-weight: 600;
+	backdrop-filter: var(--blur-xs);
+	border: 1px solid var(--color-border);
+
+	@media (max-width: theme('screens.md')) {
+		@include background(1);
+	}
+
+	header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	&>* {
+		width: 100%;
+		font-weight: 300;
+	}
+
+	@media (max-width: theme('screens.md')) {
+		flex-flow: row wrap;
+		justify-content: center;
+	}
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center;
+
+	&>* {
+		flex-grow: 1;
+		width: calc(50% - 5px);
+		font-weight: 300;
+	}
+}
+
+.column,
+.row {
+	[class="light"] & {
+		button {
+			color: rgb(var(--color-text), .8);
+		}
+	}
+
+	@media (max-width: theme('screens.md')) {
+		&>* {
+			flex-grow: 1;
+			width: calc(33% - 5px * 1.5);
+		}
+	}
+
+	@media (max-width: theme('screens.sm')) {
+		&>* {
+			width: calc(50% - 5px);
+		}
+	}
+}
+
+.priceInput {
+	display: flex;
+	gap: 20%;
+	justify-content: space-between;
+
+	[data-slot="input-wrapper"] {
+		background: none;
+		border: 1px solid var(--color-border);
+
+		@apply rounded-lg;
+	}
+}

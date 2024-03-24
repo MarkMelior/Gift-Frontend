@@ -1,6 +1,6 @@
 'use client';
 
-/* eslint-disable react-hooks/rules-of-hooks */
+import { getSettings } from '@/app/providers/StoreProvider';
 import { MediaSize } from '@/shared/const/mediaSize';
 import { Theme } from '@/shared/types/theme';
 import { PointMaterial, Points } from '@react-three/drei';
@@ -8,7 +8,6 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import cn from 'clsx';
 import { Suspense, useEffect, useRef, useState } from 'react';
 // @ts-ignore
-import { getSettings } from '@/app/providers/StoreProvider';
 import * as random from 'maath/random/dist/maath-random.esm';
 import { useTheme } from 'next-themes';
 import { useSelector } from 'react-redux';

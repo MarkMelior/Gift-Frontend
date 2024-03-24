@@ -59,10 +59,6 @@
 
 	@media (max-width: theme('screens.sm')) {
 		grid-template-columns: 1fr;
-
-		// &:not(.compact) {
-		// 	height: calc(100vh - var(--navbar-height-mobile) - var(--navbar-height-search-mobile) - 130px);
-		// }
 	}
 }
 

@@ -1,12 +1,13 @@
 'use client';
 
+import { ProductDataProps } from '@/shared/types/product';
 import { FC } from 'react';
 import 'swiper/css/pagination';
-import { Card, DataCardProps } from '../Card/Card';
+import { Card } from '../Card/Card';
 import cls from './Cards.module.scss';
 
 export interface CardsProps {
-	data: DataCardProps[] | false;
+	data: ProductDataProps[] | false;
 }
 
 export const Cards: FC<CardsProps> = ({ data }) => {

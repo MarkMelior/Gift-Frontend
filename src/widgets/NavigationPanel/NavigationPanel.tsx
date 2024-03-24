@@ -1,10 +1,11 @@
 'use client';
 
-import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/const/mediaSize';
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FC } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import cls from './NavigationPanel.module.scss';
@@ -14,9 +15,7 @@ interface NavigationPanelProps {
 	className?: string;
 }
 
-export const NavigationPanel: FC<NavigationPanelProps> = ({
-	className = '',
-}) => {
+export const NavigationPanel: FC<NavigationPanelProps> = ({ className }) => {
 	const pathname = usePathname();
 	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
 

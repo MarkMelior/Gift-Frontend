@@ -6,21 +6,16 @@ import { NavigationPanel } from '@/widgets/NavigationPanel';
 import { Ready } from '@/widgets/Ready';
 import { ReviewsCarousel } from '@/widgets/ReviewsCarousel';
 import { TopPage } from '@/widgets/TopPage';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
 
-interface MainPageProps {}
-
-const MainPage: FC<MainPageProps> = () => {
-	const t = useTranslations('MainPage');
-
+const MainPage: FC = () => {
 	return (
 		<>
 			<TopPage
-				title={t('title')}
-				description={t('description')}
-				note={t('note')}
+				title='Easy Gift'
+				description='Каждый подарок может быть искусством'
+				note='Лучший выбор в мире'
 				imageContent={
 					<Image
 						src='/images/pages/gift.png'
@@ -30,7 +25,6 @@ const MainPage: FC<MainPageProps> = () => {
 						className='noselect'
 					/>
 				}
-				// compact
 			/>
 			<Blackhole disabledOnMobile />
 			<NavigationPanel />

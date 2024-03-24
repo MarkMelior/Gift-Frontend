@@ -7,7 +7,6 @@ import { CardWide } from '@/shared/ui/Card';
 import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { FC, useRef } from 'react';
@@ -20,7 +19,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from './BestProduct.module.scss';
 
 export const BestProduct: FC = () => {
-	const t = useTranslations('BestProduct');
 	const prevRef = useRef(null);
 	const nextRef = useRef(null);
 	const isMobile = useMediaQuery({ maxWidth: MediaSize.SM });
@@ -57,14 +55,14 @@ export const BestProduct: FC = () => {
 						src='/images/pages/glow-best.png'
 						width={1624}
 						height={862}
-						alt={t('background-glow-image-alt')}
+						alt='Background glow image'
 					/>
 				</motion.div>
 			)}
 			<Heading
-				title={t('title')}
-				description={t('description')}
-				note={t('note')}
+				title='Лучшие подарки'
+				description='Это забота и внимание, которые приносят радость и оставляют незабываемые впечатления'
+				note='Топ из топов'
 				doubleTitle={false}
 				center
 				customSize={3}

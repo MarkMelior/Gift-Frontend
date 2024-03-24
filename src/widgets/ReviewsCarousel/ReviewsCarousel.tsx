@@ -5,7 +5,6 @@ import { SlideHeading } from '@/shared/ui/HeadingSlide';
 import { StarRating } from '@/shared/ui/StarRating';
 import { User } from '@nextui-org/react';
 import cn from 'clsx';
-import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -15,9 +14,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from './ReviewsCarousel.module.scss';
 
 export const ReviewsCarousel: FC = () => {
-	// const t = useTranslations('ReviewsCarousel');
 	const isMobile = useMediaQuery({ maxWidth: MediaSize.SM });
-	const { theme } = useTheme();
 
 	const cards = [];
 	for (let i = 0; i < 5; i++) {
@@ -28,9 +25,8 @@ export const ReviewsCarousel: FC = () => {
 						<User
 							name='Junior Garcia'
 							description={
-								// eslint-disable-next-line i18next/no-literal-string
 								<Link target='_blank' href='https://twitter.com/jrgarciadev'>
-									@jrgarciadev
+									@MarkMelior
 								</Link>
 							}
 							avatarProps={{
@@ -39,7 +35,6 @@ export const ReviewsCarousel: FC = () => {
 						/>
 						<StarRating rating={i + 1} />
 					</div>
-					{/* eslint-disable-next-line i18next/no-literal-string */}
 					<p className={cls.text}>
 						Очень рад сотрудничеству! Заказал у него создание личного
 						сайта-портфолио, и результат превзошел все мои ожидания!

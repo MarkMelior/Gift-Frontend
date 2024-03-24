@@ -5,7 +5,6 @@ import { CrossIcon } from '@/shared/assets/icon/Cross';
 import { Button } from '@/shared/ui/Button';
 import { Progress } from '@nextui-org/react';
 import cn from 'clsx';
-import { useTranslations } from 'next-intl';
 import {
 	CSSProperties,
 	FC,
@@ -37,7 +36,6 @@ export const Notification: FC<NotificationProps> = memo(
 		onCancel,
 		icon,
 	}) => {
-		const t = useTranslations('Notification');
 		const [visible, setVisible] = useState(true);
 		const [closing, setClosing] = useState(false);
 		const [touchStartX, setTouchStartX] = useState(0);
@@ -119,19 +117,9 @@ export const Notification: FC<NotificationProps> = memo(
 					size='sm'
 					aria-label='Loading...'
 					color='success'
-					// value={progressValue}
 				/>
 				<div className={cls.content}>
-					{icon && (
-						// <Image
-						// 	width={20}
-						// 	height={20}
-						// 	src='/images/icons/bookmark-fill.svg'
-						// 	alt={t('icon')}
-						// 	className={`${cls.icon} noselect`}
-						// />
-						<BookmarkIcon className={`${cls.icon} noselect`} />
-					)}
+					{icon && <BookmarkIcon className={cn(cls.icon, 'noselect')} />}
 					<p>{message}</p>
 				</div>
 				{closable && (
@@ -139,7 +127,7 @@ export const Notification: FC<NotificationProps> = memo(
 						<CrossIcon />
 					</Button>
 				)}
-				{onCancel && <Button onClick={handleCancel}>{t('close')}</Button>}
+				{onCancel && <Button onClick={handleCancel}>Закрыть</Button>}
 			</article>
 		);
 	},

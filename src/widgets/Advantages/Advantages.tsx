@@ -5,23 +5,17 @@ import { Button } from '@/shared/ui/Button';
 import { CardRotate } from '@/shared/ui/CardRotate';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { FC } from 'react';
 import MediaQuery from 'react-responsive';
 import cls from './Advantages.module.scss';
 
-interface AdvantagesProps {
-	className?: string;
-}
-
-export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
-	const t = useTranslations('Advantages');
+export const Advantages: FC = () => {
 	const { theme } = useTheme();
 
 	return (
-		<section className={cn(cls.wrapper, className, 'content')}>
+		<section className={cn(cls.wrapper, 'content')}>
 			<div className={cls.lines}>
 				<div className={cls.line}>
 					<div className={cls.lineMask}>
@@ -39,7 +33,7 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 					src='/images/pages/design-advantages.png'
 					width={2640}
 					height={1010}
-					alt={t('background-image-alt')}
+					alt='Изображение на фоне'
 					className={`${cls.backgroundImage} noselect`}
 				/>
 			</MediaQuery>
@@ -57,27 +51,27 @@ export const Advantages: FC<AdvantagesProps> = ({ className = '' }) => {
 				/>
 			</Button>
 			<div className={cls.heading}>
-				<h2>{t('title')}</h2>
-				<p>{t('description')}</p>
+				<h2>Easy Gift</h2>
+				<p>Каждый подарок может быть искусством</p>
 			</div>
 			<div className={cls.cardRotateWrapper}>
 				<CardRotate
-					name={t('card-1-title')}
+					name='Расширяемый'
 					color='#80eead'
 					icon='/images/pages/scale_more.png'
-					text={t('card-1-description')}
+					text='Проект построен на модульной структуре, обеспечивающей легкость добавления новых функций и компонентов'
 				/>
 				<CardRotate
-					name={t('card-2-title')}
+					name='Стильный'
 					color='#ff6464'
 					icon='/images/pages/design_palette.png'
-					text={t('card-2-description')}
+					text='Привлекательный дизайн, следующий современным визуальным трендам и лучшим практикам веб-дизайна'
 				/>
 				<CardRotate
-					name={t('card-3-title')}
+					name='Современный'
 					color='#8875ff'
 					icon='/images/pages/code.png'
-					text={t('card-3-description')}
+					text='Интеграция новейших технологий разработки, обеспечивающих высокую производительность'
 				/>
 			</div>
 			{theme === 'dark' && (

@@ -1,26 +1,20 @@
 'use client';
 
 import { GiftIcon } from '@/shared/assets/icon/Gift';
-import { Link } from '@/shared/config/i18n/navigation';
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FC } from 'react';
 import cls from './Ready.module.scss';
 
-interface ReadyProps {
-	className?: string;
-}
-
-export const Ready: FC<ReadyProps> = ({ className = '' }) => {
-	const t = useTranslations('Ready');
+export const Ready: FC = () => {
 	const { theme } = useTheme();
 
 	return (
-		<div className={cn(cls.wrapper, 'content', className)}>
+		<div className={cn(cls.wrapper, 'content')}>
 			<Button
 				customVariant='gradient'
 				lines
@@ -30,14 +24,14 @@ export const Ready: FC<ReadyProps> = ({ className = '' }) => {
 					src='/images/icons/logo-melior-white.svg'
 					width={52}
 					height={52}
-					alt={t('logo-image-alt')}
+					alt='Логотип сайта'
 					className='noselect'
 					style={{ opacity: 1 }}
 				/>
 			</Button>
 			<div className={cls.heading}>
-				<h3>{t('title')}</h3>
-				<p>{t('description')}</p>
+				<h3>Готовы выбрать подарок?</h3>
+				<p>Восхитительно умная платформа для выбора подарков - бесплатно</p>
 			</div>
 			<Link href='/shop'>
 				<Button
@@ -46,7 +40,7 @@ export const Ready: FC<ReadyProps> = ({ className = '' }) => {
 					customVariant='layer'
 					startContent={<GiftIcon />}
 				>
-					{t('button')}
+					Найти подарок
 				</Button>
 			</Link>
 			{theme === 'dark' && (
@@ -59,7 +53,7 @@ export const Ready: FC<ReadyProps> = ({ className = '' }) => {
 				>
 					<Image
 						src='/images/pages/glow-ready.png'
-						alt={t('background-image-alt')}
+						alt='Фоновое изображение'
 						width={1488}
 						height={1674}
 					/>

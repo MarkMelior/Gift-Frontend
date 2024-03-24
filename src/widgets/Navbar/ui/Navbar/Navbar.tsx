@@ -1,8 +1,7 @@
 'use client';
 
-/* eslint-disable i18next/no-literal-string */
+import { DropdownProfile } from '@/features/DropdownProfile';
 import { SearchIcon } from '@/shared/assets/icon/Search';
-import { Link, usePathname } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/const/mediaSize';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Input } from '@/shared/ui/Input';
@@ -10,11 +9,11 @@ import { Loader } from '@/shared/ui/Loader';
 import { Logo } from '@/shared/ui/Logo';
 import { Tooltip, useDisclosure } from '@nextui-org/react';
 import cn from 'clsx';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
-import { DropdownProfile } from '../DropdownProfile/DropdownProfile';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -24,7 +23,7 @@ interface NavbarProps {
 }
 
 export const Navbar = memo(
-	({ className = '', blackhole, shouldHideOnScroll }: NavbarProps) => {
+	({ className, blackhole, shouldHideOnScroll }: NavbarProps) => {
 		// const authData = useSelector(getUserAuthData);
 
 		// if (authData) {
@@ -38,7 +37,6 @@ export const Navbar = memo(
 		// 	);
 		// }
 
-		const t = useTranslations('Navbar');
 		const pathname = usePathname();
 		const isPhone = useMediaQuery({ maxWidth: MediaSize.SM });
 		const [isScrollingDown, setIsScrollingDown] = useState(true);
@@ -60,12 +58,9 @@ export const Navbar = memo(
 			};
 		}, [prevScrollY]);
 
-		const isActive = useCallback(
-			(href: string) => {
-				return pathname === href ? cls.selected : '';
-			},
-			[pathname],
-		);
+		const isActive = useCallback((href: string) => {
+			return pathname === href ? cls.selected : '';
+		}, []);
 
 		const [isSearch, setIsSearch] = useState(false);
 		const { onOpenChange } = useDisclosure();
@@ -77,7 +72,7 @@ export const Navbar = memo(
 						isClearable
 						size='sm'
 						radius='sm'
-						placeholder={t('search')}
+						placeholder='Поиск'
 						className={cls.input}
 						onFocus={() => {
 							setIsSearch(true);
@@ -130,16 +125,20 @@ export const Navbar = memo(
 					</Modal> */}
 				</>
 			),
-			[isSearch, t],
+			[],
 		);
 
 		const renderProfile = useMemo(
 			() => (
 				<DropdownProfile>
-					<Avatar isBordered src='/images/temp/ava.jpg' alt={t('user-logo')} />
+					<Avatar
+						isBordered
+						src='/images/temp/ava.jpg'
+						alt='Иконка пользователя'
+					/>
 				</DropdownProfile>
 			),
-			[t],
+			[],
 		);
 
 		const renderLink = useMemo(() => {
@@ -155,7 +154,7 @@ export const Navbar = memo(
 									height={28}
 								/>
 							)}
-							{t('home')}
+							Главная
 						</Link>
 					</li>
 					<li className={cn(cls.link, isActive('/shop/'))}>
@@ -168,7 +167,7 @@ export const Navbar = memo(
 									height={28}
 								/>
 							)}
-							{t('shop')}
+							Магазин
 						</Link>
 					</li>
 					{/* <MediaQuery maxWidth={MediaSize.SM}> */}
@@ -182,13 +181,13 @@ export const Navbar = memo(
 									height={28}
 								/>
 							)}
-							{t('favorites')}
+							Избранное
 						</Link>
 					</li>
 					{/* </MediaQuery> */}
 				</>
 			);
-		}, [isActive, isPhone, t]);
+		}, [isActive, isPhone]);
 
 		const renderMobile = () => (
 			<ul className={cls.mobile}>
@@ -216,26 +215,7 @@ export const Navbar = memo(
 					</MediaQuery>
 				</div>
 				<ul className={cls.center}>{renderLink}</ul>
-				<ul className={cls.right}>
-					<MediaQuery minWidth={MediaSize.MD}>
-						<li className={cls.controlButtons}>
-							{/* <LangSwitcher /> */}
-							{/* <ThemeSwitcher /> */}
-							{/* <Link href='/favorites'>
-								<Button
-									slice
-									isIconOnly
-									startContent={
-										<Badge content={2} size='sm' shape='circle' color='danger'>
-											<Heart />
-										</Badge>
-									}
-								/>
-							</Link> */}
-						</li>
-					</MediaQuery>
-					{renderProfile}
-				</ul>
+				<ul className={cls.right}>{renderProfile}</ul>
 			</>
 		);
 

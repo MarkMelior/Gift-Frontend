@@ -1,13 +1,11 @@
 'use client';
 
-/* eslint-disable i18next/no-literal-string */
 import { GiftIcon } from '@/shared/assets/icon/Gift';
-import { Link } from '@/shared/config/i18n/navigation';
 import { MediaSize } from '@/shared/const/mediaSize';
 import { Button } from '@/shared/ui/Button';
 import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
-import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 import { FC, ReactNode, memo, useMemo } from 'react';
 import MediaQuery from 'react-responsive';
 import cls from './TopPage.module.scss';
@@ -23,7 +21,6 @@ interface TopPageProps {
 
 export const TopPage: FC<TopPageProps> = memo(
 	({ title, className, description, note, compact, imageContent }) => {
-		const t = useTranslations('TopPage');
 		// const splineRef = useRef(null);
 
 		// Shadow DOM
@@ -67,7 +64,7 @@ export const TopPage: FC<TopPageProps> = memo(
 								customVariant='layer'
 								startContent={<GiftIcon width='1.5rem' height='1.5rem' />}
 							>
-								{t('button')}
+								Найти подарок
 							</Button>
 						</Link>
 					</div>

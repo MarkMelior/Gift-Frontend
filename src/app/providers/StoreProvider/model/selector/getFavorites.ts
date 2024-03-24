@@ -22,14 +22,4 @@ export const getFavorites =
 		}
 
 		return state?.favorites;
-
-		// if (typeof window !== 'undefined') {
-		// 	const data = localStorage.getItem(LocalstorageKeys.LIKED);
-
-		// 	if (!data) return null;
-
-		// 	return JSON.parse(data);
-		// }
-
-		// return state;
 	};

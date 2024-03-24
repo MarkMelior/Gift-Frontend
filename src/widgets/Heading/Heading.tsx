@@ -1,6 +1,5 @@
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC, memo } from 'react';
 import cls from './Heading.module.scss';
@@ -17,7 +16,7 @@ interface HeadingProps {
 
 export const Heading: FC<HeadingProps> = memo(
 	({
-		className = '',
+		className,
 		title,
 		doubleTitle = true,
 		description,
@@ -25,19 +24,16 @@ export const Heading: FC<HeadingProps> = memo(
 		center,
 		customSize,
 	}) => {
-		const t = useTranslations('Heading');
-
 		return (
 			<div className={cn(cls.wrapper, { [cls.center]: center }, className)}>
 				{note && (
 					<Button
 						customVariant='hero'
-						// className='text-sm py-0.5 px-2.5 rounded-full'
 						className={cls.note}
 						startContent={
 							<Image
 								src='/images/icons/stars-heading-colored.svg'
-								alt={t('icon-star')}
+								alt='Иконка звездочек'
 								width={16}
 								height={16}
 								className='noselect'

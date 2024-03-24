@@ -1,30 +1,19 @@
 import { InfinityIcon } from '@/shared/assets/icon/Infinity';
 import cn from 'clsx';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { FC } from 'react';
 import cls from './About.module.scss';
 
-interface AboutProps {
-	className?: string;
-}
-
-export const About: FC<AboutProps> = ({ className = '' }) => {
-	const t = useTranslations('About');
-
+export const About: FC = () => {
 	return (
-		<section className={cn(cls.wrapper, className, 'content')}>
+		<section className={cn(cls.wrapper, 'content')}>
 			<div className={cls.heading}>
-				{/* <Image
-					width={24}
-					height={24}
-					src='/images/icons/infinity.svg'
-					alt={t('heading-image-alt')}
-					className='noselect'
-				/> */}
 				<InfinityIcon width={24} height={24} />
-				<h3>{t('title')}</h3>
-				<p>{t('description')}</p>
+				<h3>Все, что вам нужно, на одной платформе</h3>
+				<p>
+					От прототипирования к производству - разрабатывайте, не переключая
+					вкладки
+				</p>
 			</div>
 			<div className={cls.backgroundWrapper}>
 				<div className={cls.swipeWrapper}>
@@ -33,62 +22,64 @@ export const About: FC<AboutProps> = ({ className = '' }) => {
 							width={40}
 							height={40}
 							src='/images/icons/microphone.svg'
-							alt={t('swipe-image-alt-1')}
+							alt='Иконка микрофона'
 							className='noselect'
 						/>
-						<p>{t('swipe-title-1')}</p>
-						<p className={cls.swipeDescription}>{t('swipe-description-1')}</p>
+						<p>Расшифровывайте голосовые заметки</p>
+						<p className={cls.swipeDescription}>
+							с точностью до человеческого уровня
+						</p>
 					</div>
 					<div className={cls.swipe}>
 						<Image
 							width={40}
 							height={40}
 							src='/images/icons/list.svg'
-							alt={t('swipe-image-alt-2')}
+							alt='Иконка списка'
 							className='noselect'
 						/>
-						<p>{t('swipe-title-2')}</p>
-						<p className={cls.swipeDescription}>{t('swipe-description-2')}</p>
+						<p>Создавайте наброски статей</p>
+						<p className={cls.swipeDescription}>из ваших рассеянных мыслей</p>
 					</div>
 					<div className={cls.swipe}>
 						<Image
 							width={40}
 							height={40}
 							src='/images/icons/list-success.svg'
-							alt={t('swipe-image-alt-3')}
+							alt='Иконка списка с галочкой'
 							className='noselect'
 						/>
-						<p>{t('swipe-title-3')}</p>
-						<p className={cls.swipeDescription}>{t('swipe-description-3')}</p>
+						<p>Перечислите основные выводы и действия</p>
+						<p className={cls.swipeDescription}>из ваших заметок о собраниях</p>
 					</div>
 					<div className={cls.swipe}>
 						<Image
 							width={40}
 							height={40}
 							src='/images/icons/search-symbol.svg'
-							alt={t('swipe-image-alt-4')}
+							alt='Иконка поиска по символам'
 							className='noselect'
 						/>
-						<p>{t('swipe-title-4')}</p>
-						<p className={cls.swipeDescription}>{t('swipe-description-4')}</p>
+						<p>Исправьте грамматику, орфографию</p>
+						<p className={cls.swipeDescription}>и улучшите свой почерк</p>
 					</div>
 					<div className={cls.swipe}>
 						<Image
 							width={40}
 							height={40}
 							src='/images/icons/save.svg'
-							alt={t('swipe-image-alt-5')}
+							alt='Иконка сохранения'
 							className='noselect'
 						/>
-						<p>{t('swipe-title-5')}</p>
-						<p className={cls.swipeDescription}>{t('swipe-description-5')}</p>
+						<p>Сохраните свои собственные</p>
+						<p className={cls.swipeDescription}>пользовательские подсказки</p>
 					</div>
 				</div>
 				<Image
 					src='/images/pages/design-about.png'
 					width={1320}
 					height={460}
-					alt={t('background-image-alt')}
+					alt='Фоновое изображение'
 					className={`${cls.backgroundImage} noselect`}
 				/>
 			</div>

@@ -33,7 +33,7 @@
 // }
 
 // export const Input: FC<InputProps> = ({
-// 	className = '',
+// 	className,
 // 	value,
 // 	onChange,
 // 	type = 'text',

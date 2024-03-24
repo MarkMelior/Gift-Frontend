@@ -1,4 +1,3 @@
-/* stylelint-disable rule-empty-line-before */
 .button {
 	position: relative;
 	color: rgb(var(--color-text), .5);
@@ -130,7 +129,7 @@
 
 .starlight {
 	position: absolute;
-	width: 75%; // 180px
+	width: 75%;
 	height: 8px;
 	overflow: hidden;
 	opacity: .5;
@@ -419,10 +418,6 @@
 	cursor: not-allowed;
 	border: 1px solid transparent;
 	opacity: .5;
-
-	// &:active {
-	// 	transform: none;
-	// }
 }
 
 .hoverColor {

@@ -7,10 +7,8 @@ module.exports = {
 	extends: [
 		'next/core-web-vitals',
 		'plugin:react/recommended',
-		'plugin:react-hooks/recommended',
 		'plugin:import/recommended',
 		'plugin:prettier/recommended',
-		'plugin:i18next/recommended',
 		'plugin:storybook/recommended',
 	],
 	parser: '@typescript-eslint/parser',
@@ -38,7 +36,6 @@ module.exports = {
 		'react/display-name': 'off',
 		'react/prop-types': 'off',
 		'react/react-in-jsx-scope': 'off',
-		'i18next/no-literal-string': 'warn',
 	},
 	globals: {
 		IS_DEV: true,

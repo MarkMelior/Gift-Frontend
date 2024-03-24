@@ -1,6 +1,5 @@
 'use client';
 
-/* eslint-disable i18next/no-literal-string */
 import { MailIcon } from '@/shared/assets/icon/Mail';
 import { PasswordIcon } from '@/shared/assets/icon/Password';
 import { UserIcon } from '@/shared/assets/icon/User';
@@ -31,7 +30,6 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 	onOpenChange,
 	register = false,
 }) => {
-	// const t = useTranslations('ModalLogin');
 	const [registration, setRegistration] = useState<string | number>(
 		register ? 'sign-up' : 'login',
 	);
@@ -141,14 +139,6 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 								hoverColor='147, 197, 253'
 								starlight
 								onPress={onClose}
-								// startContent={
-								// 	<Image
-								// 		src='/images/icons/logo-melior-white.svg'
-								// 		width={24}
-								// 		height={24}
-								// 		alt='test'
-								// 	/>
-								// }
 							>
 								{registration === 'sign-up' ? 'Создать аккаунт' : 'Войти'}
 							</Button>
