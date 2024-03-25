@@ -3,32 +3,59 @@
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Slider } from '@nextui-org/react';
-import { FC } from 'react';
+import { useRouter } from 'next/navigation';
+import { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMaxPrice } from '../model/selector/getMaxPrice';
-import { getMinPrice } from '../model/selector/getMinPrice';
-import { initialState, sortSlice } from '../model/slice/sortSlice';
+import { getSort } from '../model/selector/getSort';
+import { sortSlice } from '../model/slice/sortSlice';
 import { SortButtons } from './SortButtons';
 import cls from './Sorts.module.scss';
 
 export const Sorts: FC = () => {
-	const minPrice = initialState.minPrice;
-	const maxPrice = initialState.maxPrice;
+	const minPrice = 0;
+	const maxPrice = 15000;
 
-	const startPrice = useSelector(getMinPrice);
-	const endPrice = useSelector(getMaxPrice);
-
+	const router = useRouter();
+	const sort = useSelector(getSort);
 	const dispatch = useDispatch();
 
-	const setStartPrice = (value: number) => {
-		dispatch(sortSlice.actions.setMinPrice(value));
-	};
-	const setEndPrice = (value: number) => {
-		dispatch(sortSlice.actions.setMaxPrice(value));
-	};
+	const setMinPrice = useCallback(
+		(value: number) => {
+			dispatch(sortSlice.actions.setMinPrice(value));
+		},
+		[dispatch],
+	);
+	const setMaxPrice = useCallback(
+		(value: number) => {
+			dispatch(sortSlice.actions.setMaxPrice(value));
+		},
+		[dispatch],
+	);
+
+	const applyFilters = useCallback(() => {
+		const category = sort.category.join('-');
+		const sex = sort.sex.join('-');
+		const minPrice = sort.minPrice;
+		const maxPrice = sort.maxPrice;
+		const age = sort.age.join('-');
+		const sorting = sort.sorting;
+
+		router.replace(
+			`?category=${category}&sex=${sex}&min=${minPrice}&max=${maxPrice}&age=${age}&sorting=${sorting}`,
+			{ scroll: false },
+		);
+	}, [sort, router]);
 
 	return (
 		<div className={cls.wrapper}>
+			<Button
+				onClick={applyFilters}
+				starlight
+				customVariant='layer'
+				className='py-4 !w-full'
+			>
+				Применить фильтры
+			</Button>
 			<div className={cls.sort}>
 				<header>
 					<h6>Категория</h6>
@@ -53,10 +80,8 @@ export const Sorts: FC = () => {
 					<Input
 						type='number'
 						placeholder={`от ${minPrice}`}
-						value={String(startPrice)}
-						onValueChange={(value: string) =>
-							setStartPrice(parseInt(value, 10))
-						}
+						value={String(sort.minPrice)}
+						onValueChange={(value: string) => setMinPrice(parseInt(value, 10))}
 						endContent={
 							<div className='pointer-events-none flex items-center'>
 								<span className='text-default-400 text-small'>₽</span>
@@ -66,8 +91,8 @@ export const Sorts: FC = () => {
 					<Input
 						type='number'
 						placeholder={`до ${maxPrice}`}
-						value={String(endPrice)}
-						onValueChange={(value: string) => setEndPrice(parseInt(value, 10))}
+						value={String(sort.maxPrice)}
+						onValueChange={(value: string) => setMaxPrice(parseInt(value, 10))}
 						endContent={
 							<div className='pointer-events-none flex items-center'>
 								<span className='text-default-400 text-small'>₽</span>
@@ -80,14 +105,14 @@ export const Sorts: FC = () => {
 					minValue={minPrice}
 					maxValue={maxPrice}
 					step={100}
-					value={[startPrice, endPrice]}
+					value={[sort.minPrice, sort.maxPrice]}
 					onChange={(value: number | number[]) => {
 						if (typeof value === 'number') {
-							setStartPrice(value);
+							setMinPrice(value);
 						} else if (Array.isArray(value)) {
 							const [start, end] = value;
-							setStartPrice(start);
-							setEndPrice(end);
+							setMinPrice(start);
+							setMaxPrice(end);
 						}
 					}}
 					className='max-w-md'
@@ -95,24 +120,24 @@ export const Sorts: FC = () => {
 				<div className={cls.column}>
 					<Button
 						onClick={() => {
-							setStartPrice(0);
-							setEndPrice(500);
+							setMinPrice(0);
+							setMaxPrice(500);
 						}}
 					>
 						Малый (0 - 500)
 					</Button>
 					<Button
 						onClick={() => {
-							setStartPrice(500);
-							setEndPrice(3000);
+							setMinPrice(500);
+							setMaxPrice(3000);
 						}}
 					>
 						Средний (500 - 3000)
 					</Button>
 					<Button
 						onClick={() => {
-							setStartPrice(minPrice);
-							setEndPrice(maxPrice);
+							setMinPrice(minPrice);
+							setMaxPrice(maxPrice);
 						}}
 					>
 						Любой

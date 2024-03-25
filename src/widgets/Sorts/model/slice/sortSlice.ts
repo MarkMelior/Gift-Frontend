@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { getSortSearchparams } from '../features/getSortSearchparams';
 import {
 	SortAge,
 	SortCategory,
@@ -7,13 +8,26 @@ import {
 	SortState,
 } from '../types/sortType';
 
-export const initialState: SortState = {
+export const sortInitialState = {
 	category: ['joke'],
 	sex: ['male', 'female'],
 	age: ['adult'],
 	sorting: 'popular',
 	minPrice: 0,
 	maxPrice: 15000,
+};
+
+const initialState = (): SortState => {
+	const { age, category, sex, minPrice, maxPrice, sorting } =
+		getSortSearchparams();
+	return {
+		category: category ?? sortInitialState.category,
+		sex: sex ?? sortInitialState.sex,
+		age: age ?? sortInitialState.age,
+		sorting: sorting ?? sortInitialState.sorting,
+		minPrice: minPrice ?? sortInitialState.minPrice,
+		maxPrice: maxPrice ?? sortInitialState.maxPrice,
+	};
 };
 
 const toggleMultiple = (state: string[], action: string) => {

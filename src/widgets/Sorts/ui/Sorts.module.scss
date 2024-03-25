@@ -101,4 +101,11 @@
 	left: 10px;
 	width: 14px;
 	height: 14px;
+
+	@apply font-thin;
+}
+
+.changed {
+	position: absolute;
+	right: 10px;
 }

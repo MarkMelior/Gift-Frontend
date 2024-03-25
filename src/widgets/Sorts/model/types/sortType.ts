@@ -1,4 +1,4 @@
-export type SortCategory = 'birthday' | 'love' | 'new-year' | 'joke';
+export type SortCategory = 'birthday' | 'love' | 'year' | 'joke';
 
 export type SortSex = 'male' | 'female';
 

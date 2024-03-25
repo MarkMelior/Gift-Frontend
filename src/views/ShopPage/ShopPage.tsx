@@ -1,83 +1,75 @@
 'use client';
 
 import { productData } from '@/db';
-import { ProductDataProps } from '@/shared/types/product';
 import { Blackhole } from '@/shared/ui/Blackhole';
 import { Button } from '@/shared/ui/Button';
 import { Cards } from '@/shared/ui/Card';
 import { NavigationPanel } from '@/widgets/NavigationPanel';
 import { Sorts } from '@/widgets/Sorts';
-import { getMaxPrice } from '@/widgets/Sorts/model/selector/getMaxPrice';
-import { getMinPrice } from '@/widgets/Sorts/model/selector/getMinPrice';
-import { getSort } from '@/widgets/Sorts/model/selector/getSort';
+import { getSortSearchparams } from '@/widgets/Sorts/model/features/getSortSearchparams';
 import { TopPage } from '@/widgets/TopPage';
 import { Image, Textarea } from '@nextui-org/react';
 import cn from 'clsx';
-import { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { FC, useMemo } from 'react';
 import cls from './ShopPage.module.scss';
 
 export const ShopPage: FC = () => {
-	const startPrice = useSelector(getMinPrice);
-	const endPrice = useSelector(getMaxPrice);
-	const sort = useSelector(getSort);
+	const { age, category, maxPrice, sex, minPrice, sorting } =
+		getSortSearchparams();
 
-	const filteredProductData = productData.filter(
-		(product: ProductDataProps) => {
+	/**
+	 * Фильтрация продуктов по заданным критериям
+	 */
+	const filteredProducts = useMemo(() => {
+		return productData.filter(({ markets, filter }) => {
+			// Проверка соответствия цены критериям
 			const meetsPriceCriteria =
-				product.markets[0].price >= startPrice &&
-				product.markets[0].price <= endPrice;
-			const meetsCategoryCriteria = !sort.category.some((category) =>
-				product.filter.includes(category),
+				markets[0].price >= minPrice && markets[0].price <= maxPrice;
+			// Проверка соответствия категории критериям
+			const meetsCategoryCriteria = !category.some((cat) =>
+				filter.includes(cat),
 			);
-			const meetsSexCriteria = !sort.sex.some((category) =>
-				product.filter.includes(category),
-			);
-			const meetsAgeCriteria = !sort.age.some((category) =>
-				product.filter.includes(category),
-			);
-
+			// Проверка соответствия пола критериям
+			const meetsSexCriteria = !sex.some((s) => filter.includes(s));
+			// Проверка соответствия возраста критериям
+			const meetsAgeCriteria = !age.some((a) => filter.includes(a));
+			// Возвращаем true, если продукт соответствует всем критериям, иначе false
 			return (
 				meetsPriceCriteria &&
 				meetsCategoryCriteria &&
 				meetsSexCriteria &&
 				meetsAgeCriteria
 			);
-		},
-	);
+		});
+	}, [productData, minPrice, maxPrice, category, sex, age]);
 
-	const sortedProducts = filteredProductData.slice().sort((a, b) => {
-		if (sort.sorting === 'popular') {
-			// Сортировка по популярности (reviewCount)
-			if (a.markets[0].reviewCount !== b.markets[0].reviewCount) {
+	/**
+	 * Сортировка отфильтрованных продуктов
+	 */
+	const sortedProducts = useMemo(() => {
+		return filteredProducts.slice().sort((a, b) => {
+			if (sorting === 'popular') {
+				// Сортировка по популярности (количеству отзывов)
 				return b.markets[0].reviewCount - a.markets[0].reviewCount;
-			}
-		} else if (sort.sorting === 'rating') {
-			// Сортировка по рейтингу (rating)
-			if (a.markets[0].rating !== b.markets[0].rating) {
+			} else if (sorting === 'rating') {
+				// Сортировка по рейтингу
 				return b.markets[0].rating - a.markets[0].rating;
-			}
-		} else if (sort.sorting === 'creativity') {
-			// Сортировка по креативности (creativity)
-			if (a.creativity !== b.creativity) {
+			} else if (sorting === 'creativity') {
+				// Сортировка по креативности
 				return b.creativity - a.creativity;
+			} else if (sorting === 'expensive') {
+				// Сортировка по убыванию цены
+				return b.markets[0].price - a.markets[0].price;
+			} else if (sorting === 'cheap') {
+				// Сортировка по возрастанию цены
+				return a.markets[0].price - b.markets[0].price;
+			} else if (sorting === 'new') {
+				// Сортировка по новизне
+				return productData.indexOf(b) - productData.indexOf(a); // Последние в массиве идут первыми
 			}
-		} else if (sort.sorting === 'expensive') {
-			// Сортировка по цене (expensive)
-			if (a.markets[0].price !== b.markets[0].price) {
-				return b.markets[0].price - a.markets[0].price; // Сортировка по убыванию
-			}
-		} else if (sort.sorting === 'cheap') {
-			// Сортировка по цене (cheap)
-			if (a.markets[0].price !== b.markets[0].price) {
-				return a.markets[0].price - b.markets[0].price; // Сортировка по возрастанию
-			}
-		} else if (sort.sorting === 'new') {
-			// Сортировка по новизне
-			return filteredProductData.indexOf(b) - filteredProductData.indexOf(a); // Последние в массиве идут первыми
-		}
-		return 0;
-	});
+			return 0; // Возвращаем 0, если сортировка не требуется или неизвестен тип сортировки
+		});
+	}, [filteredProducts, sorting]);
 
 	return (
 		<>

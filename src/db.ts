@@ -74,7 +74,7 @@ export const productData: ProductDataProps[] = [
 		images: ['100025078688b2.webp'],
 		title: 'Ого! Это я недавно такие наушники купил',
 		creativity: 5,
-		filter: ['new-year'],
+		filter: ['year'],
 		characteristics: {
 			'Характеристика 1': 'Значение характеристики 1',
 		},

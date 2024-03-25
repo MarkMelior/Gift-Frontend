@@ -16,9 +16,9 @@ export const CheckIcon = ({
 			stroke={color}
 			stroke-dasharray='22'
 			strokeDashoffset={isSelected ? 44 : 66}
-			stroke-linecap='round'
-			stroke-linejoin='round'
-			stroke-width='1.5'
+			strokeLinecap='round'
+			strokeLinejoin='round'
+			strokeWidth='1.5'
 			style={{ transition: 'stroke-dashoffset 200ms ease 0s' }}
 		></polyline>
 	</svg>

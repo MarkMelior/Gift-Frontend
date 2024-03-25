@@ -18,7 +18,7 @@ export const categoryButton: ButtonCategoryProps[] = [
 	{
 		text: '🎄 Новый год',
 		color: '66, 255, 153',
-		key: 'new-year',
+		key: 'year',
 	},
 	{
 		text: '😁 Приколы',

@@ -11,7 +11,7 @@ function checkLocalstorage() {
 	return [];
 }
 
-export const initialState: number[] = checkLocalstorage();
+const initialState: number[] = checkLocalstorage();
 
 export const favoritesSlice = createSlice({
 	name: 'favorites',
