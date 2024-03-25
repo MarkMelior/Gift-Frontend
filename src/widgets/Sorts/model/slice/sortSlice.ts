@@ -13,7 +13,7 @@ export const initialState: SortState = {
 	age: ['adult'],
 	sorting: 'popular',
 	minPrice: 0,
-	maxPrice: 5000,
+	maxPrice: 15000,
 };
 
 const toggleMultiple = (state: string[], action: string) => {

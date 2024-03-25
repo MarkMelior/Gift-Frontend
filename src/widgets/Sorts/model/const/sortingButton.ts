@@ -1,6 +1,11 @@
-import { ButtonProps } from '../types/sortType';
+import { ButtonProps, SortSorting } from '../types/sortType';
 
-export const sortingButton: ButtonProps[] = [
+// @ts-ignore
+interface ButtonSortingProps extends ButtonProps {
+	key: SortSorting;
+}
+
+export const sortingButton: ButtonSortingProps[] = [
 	{
 		text: 'Популярные',
 		color: '66, 153, 255',

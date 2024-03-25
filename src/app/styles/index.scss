@@ -8,6 +8,7 @@
 
 html {
 	font-size: 16px;
+	color: rgb(var(--color-text));
 
 	@media (max-width: theme('screens.sm')) {
 		font-size: 14px;
@@ -18,14 +19,9 @@ body {
 	font-family: var(--font-family-main);
 	font-weight: 300;
 	line-height: 1.5;
-	isolation: isolate;
-}
-
-:root,
-[data-theme] {
-	color: rgb(var(--color-text));
 	background: linear-gradient(90deg, var(--color-background) 15px, transparent 1%) 50%, linear-gradient(var(--color-background) 15px, var(--color-background-dots) 1%) 0, hsla(0deg, 0%, 100%, 16%);
 	background-size: 16px 16px;
+	isolation: isolate;
 }
 
 .app {

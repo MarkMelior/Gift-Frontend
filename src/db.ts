@@ -1,5 +1,5 @@
 // ! IS TEMPORARY DATA FOR TESTING
-import { ProductDataProps } from '@/shared/types/product';
+import { ProductDataProps } from './shared/types/product';
 
 export const productData: ProductDataProps[] = [
 	{
@@ -11,7 +11,7 @@ export const productData: ProductDataProps[] = [
 		],
 		title: 'Ого! Это я недавно такие наушники купил',
 		creativity: 5,
-		filter: [],
+		filter: ['joke'],
 		characteristics: {
 			'Характеристика 1': 'Значение характеристики 1',
 		},
@@ -32,7 +32,7 @@ export const productData: ProductDataProps[] = [
 		images: ['6665452272.webp', '6665452284.webp'],
 		title: 'Невероятный накачанный Максим гигабайт',
 		creativity: 5,
-		filter: [],
+		filter: ['female', 'love'],
 		characteristics: {
 			'Характеристика 1': 'Значение характеристики 1',
 		},
@@ -53,7 +53,7 @@ export const productData: ProductDataProps[] = [
 		images: ['600014177060b0.webp'],
 		title: 'Шашлык лютейший без шампура понял?',
 		creativity: 5,
-		filter: [],
+		filter: ['kid'],
 		characteristics: {
 			'Характеристика 1': 'Значение характеристики 1',
 		},
@@ -66,6 +66,27 @@ export const productData: ProductDataProps[] = [
 				currency: 'RUB',
 				price: 14000,
 				oldPrice: 16948,
+			},
+		],
+	},
+	{
+		id: 4,
+		images: ['100025078688b2.webp'],
+		title: 'Ого! Это я недавно такие наушники купил',
+		creativity: 5,
+		filter: ['new-year'],
+		characteristics: {
+			'Характеристика 1': 'Значение характеристики 1',
+		},
+		markets: [
+			{
+				market: 'ozon',
+				link: 'https://www.ozon.ru/product/logitech-naushniki-provodnye-s-mikrofonom-3-5-mm-chernyy-1353218032/',
+				rating: 3.9,
+				reviewCount: 781,
+				currency: 'RUB',
+				price: 5543,
+				oldPrice: 7947,
 			},
 		],
 	},

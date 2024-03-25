@@ -1,6 +1,10 @@
-import { ButtonProps } from '../types/sortType';
+import { ButtonProps, SortCategory } from '../types/sortType';
 
-export const categoryButton: ButtonProps[] = [
+interface ButtonCategoryProps extends ButtonProps {
+	key: SortCategory;
+}
+
+export const categoryButton: ButtonCategoryProps[] = [
 	{
 		text: '🎉 День рождение',
 		color: '255, 202, 66',

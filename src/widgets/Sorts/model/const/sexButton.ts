@@ -1,6 +1,10 @@
-import { ButtonProps } from '../types/sortType';
+import { ButtonProps, SortSex } from '../types/sortType';
 
-export const sexButton: ButtonProps[] = [
+interface ButtonSexProps extends ButtonProps {
+	key: SortSex;
+}
+
+export const sexButton: ButtonSexProps[] = [
 	{
 		text: '👦 М',
 		color: '66, 153, 255',

@@ -1,6 +1,10 @@
-import { ButtonProps } from '../types/sortType';
+import { ButtonProps, SortAge } from '../types/sortType';
 
-export const ageButton: ButtonProps[] = [
+interface ButtonAgeProps extends ButtonProps {
+	key: SortAge;
+}
+
+export const ageButton: ButtonAgeProps[] = [
 	{
 		text: 'Дитя',
 		color: '66, 153, 255',

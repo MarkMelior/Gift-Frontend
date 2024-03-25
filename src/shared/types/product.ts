@@ -1,3 +1,4 @@
+import { FilterSortProps } from '@/widgets/Sorts/model/types/sortType';
 import { Currency } from './localization';
 
 export interface ProductDataProps {
@@ -5,12 +6,10 @@ export interface ProductDataProps {
 	images: string[];
 	title: string;
 	creativity: number;
-	filter: FilterProductData[];
+	filter: FilterSortProps[];
 	characteristics: Record<string, string>;
 	markets: MarketsProductData[];
 }
-
-export type FilterProductData = 'birthday' | 'love' | 'new-year' | 'joke';
 
 export interface MarketsProductData {
 	market: MarketType;

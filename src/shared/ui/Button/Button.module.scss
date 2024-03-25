@@ -445,9 +445,9 @@
 		&[data-selected="true"] {
 			color: rgba(var(--hover-color-rgb), 1);
 
-			svg *[fill] {
-				fill: rgba(var(--hover-color-rgb), 1);
-			}
+			// svg *[fill] {
+			// 	fill: rgba(var(--hover-color-rgb), 1);
+			// }
 
 			svg *[stroke] {
 				stroke: rgba(var(--hover-color-rgb), 1);
