@@ -1,5 +1,6 @@
 'use client';
 
+import { productData } from '@/db';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { Slider } from '@nextui-org/react';
@@ -11,10 +12,25 @@ import { sortSlice } from '../model/slice/sortSlice';
 import { SortButtons } from './SortButtons';
 import cls from './Sorts.module.scss';
 
-export const Sorts: FC = () => {
-	const minPrice = 0;
-	const maxPrice = 15000;
+// export const minPrice = productData
+// 	.map((item) => item.markets[0].price)
+// 	.reduce((a, b) => {
+// 		if (a < b) {
+// 			return a;
+// 		}
+// 		return b;
+// 	});
+export const minPrice = 0;
+export const maxPrice = productData
+	.map((item) => item.markets[0].price)
+	.reduce((a, b) => {
+		if (a > b) {
+			return a;
+		}
+		return b;
+	});
 
+export const Sorts: FC = () => {
 	const router = useRouter();
 	const sort = useSelector(getSort);
 	const dispatch = useDispatch();

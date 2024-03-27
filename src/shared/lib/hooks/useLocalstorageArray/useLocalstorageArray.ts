@@ -10,7 +10,12 @@ export const useLocalstorageArray = <T>(
 ) => {
 	const isBrowser = typeof window !== 'undefined';
 	if (!isBrowser) {
-		return [initialValue, () => {}];
+		return {
+			isAdded: false,
+			toggle: () => {},
+			add: () => {},
+			remove: () => {},
+		};
 	}
 
 	const [isAdded, setIsAdded] = useState<boolean>(() => {

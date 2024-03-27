@@ -1,5 +1,3 @@
-'use client';
-
 import { MailIcon } from '@/shared/assets/icon/Mail';
 import { PasswordIcon } from '@/shared/assets/icon/Password';
 import { UserIcon } from '@/shared/assets/icon/User';
@@ -16,7 +14,9 @@ import {
 	Tabs,
 } from '@nextui-org/react';
 import Image from 'next/image';
-import { FC, useMemo, useState } from 'react';
+import Link from 'next/link';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { FC, useMemo } from 'react';
 import cls from './ModalLogin.module.scss';
 
 interface ModalLoginProps {
@@ -25,18 +25,38 @@ interface ModalLoginProps {
 	register?: boolean;
 }
 
-export const ModalLogin: FC<ModalLoginProps> = ({
-	isOpen,
-	onOpenChange,
-	register = false,
-}) => {
-	const [registration, setRegistration] = useState<string | number>(
-		register ? 'sign-up' : 'login',
-	);
+export const ModalLogin: FC<ModalLoginProps> = ({ isOpen, onOpenChange }) => {
+	const searchParams = useSearchParams();
+	const isRegistration = searchParams.get('state') === 'sign-up';
+
+	// const hrefSearchParams = (state: 'login' | 'sign-up') => {
+	// 	const getSearchParams = new URLSearchParams(searchParams.toString());
+	// 	const stringSearchParams = getSearchParams.toString();
+
+	// 	console.log(stringSearchParams);
+
+	// 	if (
+	// 		stringSearchParams.length > 0 &&
+	// 		!stringSearchParams.includes('state')
+	// 	) {
+	// 		return `?${stringSearchParams}&state=${state}`;
+	// 	}
+
+	// 	return `?state=${state}`;
+	// };
 
 	const renderLogin = useMemo(() => {
 		return (
-			<Tab key='login' title='Вход' className={cls.tab}>
+			<Tab
+				as={Link}
+				// @ts-ignore
+				scroll={false}
+				// href={hrefSearchParams('login')}
+				href={'?state=login'}
+				key='login'
+				title='Вход'
+				className={cls.tab}
+			>
 				<form>
 					<Input
 						autoFocus
@@ -57,7 +77,6 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 							}}
 						>
 							Запомните меня
-							{/* Remember me */}
 						</Checkbox>
 						<Button clear disableRipple className={cls.button}>
 							Забыли пароль?
@@ -70,7 +89,16 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 
 	const renderRegister = useMemo(() => {
 		return (
-			<Tab key='sign-up' title='Регистрация' className={cls.tab}>
+			<Tab
+				as={Link}
+				// @ts-ignore
+				scroll={false}
+				href={'?state=sign-up'}
+				// href={hrefSearchParams('sign-up')}
+				key='sign-up'
+				title='Регистрация'
+				className={cls.tab}
+			>
 				<form>
 					<Input
 						autoFocus
@@ -100,12 +128,17 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 		);
 	}, []);
 
+	const pathname = usePathname();
+
 	return (
 		<Modal
 			isOpen={isOpen}
 			onOpenChange={onOpenChange}
 			placement='center'
 			className={cls.wrapper}
+			onClose={() => {
+				window.history.replaceState(null, '', pathname);
+			}}
 		>
 			<ModalContent>
 				{(onClose) => (
@@ -117,15 +150,14 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 								height={24}
 								alt='test'
 							/>
-							{registration === 'sign-up' ? 'Регистрация' : 'Вход'}
+							{isRegistration ? 'Регистрация' : 'Вход'}
 						</ModalHeader>
 						<ModalBody className={cls.body}>
 							<Tabs
 								fullWidth
 								size='md'
 								aria-label='Tabs form'
-								selectedKey={registration}
-								onSelectionChange={setRegistration}
+								selectedKey={searchParams.get('state') || 'login'}
 								className={cls.tabs}
 							>
 								{renderRegister}
@@ -140,7 +172,7 @@ export const ModalLogin: FC<ModalLoginProps> = ({
 								starlight
 								onPress={onClose}
 							>
-								{registration === 'sign-up' ? 'Создать аккаунт' : 'Войти'}
+								{isRegistration ? 'Создать аккаунт' : 'Войти'}
 							</Button>
 						</ModalFooter>
 					</div>

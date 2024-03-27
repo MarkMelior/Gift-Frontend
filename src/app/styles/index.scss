@@ -86,3 +86,7 @@ a {
 	user-select: none;
 	border-radius: inherit;
 }
+
+[data-optimization="true"] * {
+	animation: none !important;
+}

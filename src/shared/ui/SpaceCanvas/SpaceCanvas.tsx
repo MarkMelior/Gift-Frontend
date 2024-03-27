@@ -43,7 +43,7 @@ const StarBackground = (props: any) => {
 export const SpaceCanvas = () => {
 	const [isVisible, setIsVisible] = useState(true);
 	const { theme } = useTheme();
-	const isPhone = useMediaQuery({ query: `(max-width: ${MediaSize.MD}px)` });
+	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
 	const isSpace = useSelector(getSettings('space'));
 
 	useEffect(() => {
@@ -61,7 +61,7 @@ export const SpaceCanvas = () => {
 		};
 	}, []);
 
-	if (!isVisible || theme === Theme.LIGHT || isPhone || !isSpace) {
+	if (!isVisible || theme === Theme.LIGHT || isMD || !isSpace) {
 		return null;
 	}
 

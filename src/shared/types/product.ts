@@ -21,4 +21,9 @@ export interface MarketsProductData {
 	oldPrice?: number;
 }
 
-export type MarketType = 'ozon' | 'yandex';
+export type MarketType =
+	| 'ozon'
+	| 'yandex'
+	| 'aliexpress'
+	| 'wildberries'
+	| 'sber';

@@ -1,8 +1,10 @@
 'use client';
 
+import { getSettings } from '@/app/providers/StoreProvider';
 import { MediaSize } from '@/shared/const';
 import cn from 'clsx';
 import { CSSProperties, FC } from 'react';
+import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './Wave.module.scss';
 
@@ -12,14 +14,19 @@ interface WaveProps {
 }
 
 export const Wave: FC<WaveProps> = ({ className, style }) => {
-	const isPhone = useMediaQuery({ query: `(max-width: ${MediaSize.SM}px)` });
+	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
+	const isOptimization = useSelector(getSettings('optimization'));
 
 	if (isPhone) {
 		return null;
 	}
 
 	return (
-		<div className={cn(cls.container, className, 'noselect')} style={style}>
+		<div
+			data-optimization={isOptimization}
+			className={cn(cls.container, className, 'noselect')}
+			style={style}
+		>
 			<div className={cls.wrap}>
 				<div className={cls.object} />
 				<div className={cls.object} />

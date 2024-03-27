@@ -1,5 +1,6 @@
 'use client';
 
+import { getSettings } from '@/app/providers/StoreProvider';
 import { MediaSize } from '@/shared/const';
 import { SlideHeading } from '@/shared/ui/HeadingSlide';
 import { StarRating } from '@/shared/ui/StarRating';
@@ -8,16 +9,28 @@ import cn from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from './ReviewsCarousel.module.scss';
 
 export const ReviewsCarousel: FC = () => {
-	const isMobile = useMediaQuery({ maxWidth: MediaSize.SM });
+	const isSM = useMediaQuery({ maxWidth: MediaSize.SM });
+	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
+	const isXL = useMediaQuery({ maxWidth: MediaSize.XL });
+	const isOptimization = useSelector(getSettings('optimization'));
+
+	let slidesPerView: number = 3;
+	if (isXL) {
+		slidesPerView = 2;
+	}
+	if (isMD) {
+		slidesPerView = 1;
+	}
 
 	const cards = [];
-	for (let i = 0; i < 5; i++) {
+	for (let i = 0; i < 20; i++) {
 		cards.push(
 			<SwiperSlide key={i}>
 				<div className={cls.review}>
@@ -45,58 +58,59 @@ export const ReviewsCarousel: FC = () => {
 	}
 
 	return (
-		<div className={cn(cls.wrapper, 'content')}>
-			<SlideHeading text='Отзывы' />
-			<div className={cls.reviews}>
-				<Swiper
-					modules={[Autoplay]}
-					spaceBetween={30}
-					slidesPerView='auto'
-					// slidesPerView={3}
-					loop
-					speed={5000}
-					autoplay={{
-						delay: 500,
-					}}
-					className={cls.reviewRow1}
-				>
-					{cards}
-				</Swiper>
-				<Swiper
-					modules={[Autoplay]}
-					spaceBetween={30}
-					slidesPerView='auto'
-					// slidesPerView={3}
-					loop
-					speed={6000}
-					autoplay={{
-						delay: 500,
-						reverseDirection: true,
-					}}
-					className={cls.reviewRow2}
-				>
-					{cards}
-				</Swiper>
+		<>
+			<SlideHeading className='mt-20' text='Отзывы' />
+			<div className={cn(cls.wrapper, 'content')}>
+				<div className={cls.reviews}>
+					<Swiper
+						modules={[FreeMode, Autoplay]}
+						spaceBetween={30}
+						slidesPerView={slidesPerView}
+						loop
+						freeMode
+						speed={5000}
+						autoplay={{
+							delay: 500,
+						}}
+						className={cls.reviewRow1}
+					>
+						{cards}
+					</Swiper>
+					<Swiper
+						modules={[Autoplay]}
+						spaceBetween={30}
+						slidesPerView={slidesPerView}
+						loop
+						speed={6000}
+						autoplay={{
+							delay: 500,
+							reverseDirection: true,
+						}}
+						className={cls.reviewRow2}
+					>
+						{cards}
+					</Swiper>
+				</div>
+				{isSM || isOptimization ? (
+					<Image
+						src='/images/pages/encryption.png'
+						alt='Blackhole'
+						width={1920}
+						height={1080}
+						className={`${cls.video} noselect`}
+					/>
+				) : (
+					<video
+						autoPlay
+						loop
+						muted
+						playsInline
+						className={cn(cls.video, 'noselect')}
+					>
+						<source src='/videos/encryption.webm' />
+					</video>
+				)}
 			</div>
-			{isMobile ? (
-				<Image
-					src='/images/pages/encryption.png'
-					alt='Blackhole'
-					width={1920}
-					height={1080}
-					className={`${cls.video} noselect`}
-				/>
-			) : (
-				<video
-					autoPlay
-					loop
-					muted
-					playsInline
-					className={cn(cls.video, 'noselect')}
-				>
-					<source src='/videos/encryption.webm' />
-				</video>
-			)}
-		</div>
+		</>
 	);
 };

@@ -1,1 +1,30 @@
-.wrapper {}
+.wrapper {
+	margin-top: 50px;
+}
+
+.content {
+	display: flex;
+	gap: 50px;
+}
+
+.product {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.heading {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+
+	h1 {
+		@apply text-2xl;
+		@apply font-semibold;
+	}
+}
+
+.links {
+	width: 100%;
+	max-width: 330px;
+}

@@ -1,5 +1,6 @@
 'use client';
 
+import { getSettings } from '@/app/providers/StoreProvider';
 import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/Button';
 import { CardRotate } from '@/shared/ui/CardRotate';
@@ -8,15 +9,17 @@ import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import MediaQuery from 'react-responsive';
 import cls from './Advantages.module.scss';
 
 export const Advantages: FC = () => {
 	const { theme } = useTheme();
+	const isOptimization = useSelector(getSettings('optimization'));
 
 	return (
 		<section className={cn(cls.wrapper, 'content')}>
-			<div className={cls.lines}>
+			<div className={cls.lines} data-optimization={isOptimization}>
 				<div className={cls.line}>
 					<div className={cls.lineMask}>
 						<div />

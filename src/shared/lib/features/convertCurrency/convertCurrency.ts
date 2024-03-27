@@ -1,7 +1,6 @@
 'use client';
 
 /* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable prettier/prettier */
 import { getSettings } from '@/app/providers/StoreProvider';
 import { Rates, exchangeRates } from '@/shared/const';
 import { Currency } from '@/shared/types/localization';

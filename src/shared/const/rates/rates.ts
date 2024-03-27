@@ -1,7 +1,6 @@
 import { Currency } from '../../types/localization';
 
 export type Rates = {
-	// eslint-disable-next-line prettier/prettier
 	[key in Currency]: number;
 };
 

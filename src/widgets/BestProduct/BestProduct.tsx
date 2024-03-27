@@ -1,6 +1,7 @@
 'use client';
 
 /* eslint-disable indent */
+import { productData } from '@/db';
 import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/Button';
 import { CardWide } from '@/shared/ui/Card';
@@ -21,22 +22,32 @@ import cls from './BestProduct.module.scss';
 export const BestProduct: FC = () => {
 	const prevRef = useRef(null);
 	const nextRef = useRef(null);
-	const isMobile = useMediaQuery({ maxWidth: MediaSize.SM });
 	const { theme } = useTheme();
 
+	const isSM = useMediaQuery({ maxWidth: MediaSize.SM });
+	const isMD = useMediaQuery({ maxWidth: 820 });
+	const isLG = useMediaQuery({ maxWidth: 1120 });
+	const isXL = useMediaQuery({ maxWidth: MediaSize.XL });
+	let slidesPerView: number = 4;
+
+	if (isXL) {
+		slidesPerView = 3.5;
+	}
+	if (isLG) {
+		slidesPerView = 2.5;
+	}
+	if (isMD) {
+		slidesPerView = 1.5;
+	}
+	if (isSM) {
+		slidesPerView = 1;
+	}
+
 	const cards = [];
-	for (let i = 0; i < 7; i++) {
+	for (let i = 0; i < 4; i++) {
 		cards.push(
 			<SwiperSlide key={i}>
-				<CardWide
-					oldPrice={58600}
-					price={29245}
-					title={`${i + 1}. Xiaomi Mi Power Bank 3 20000 mAh`}
-					defaultMarket='ozon'
-					images={['/images/temp/cat.png']}
-					rating={4.5}
-					reviewCount={10}
-				/>
+				<CardWide data={productData[i]} />
 			</SwiperSlide>,
 		);
 	}
@@ -71,16 +82,12 @@ export const BestProduct: FC = () => {
 				<Swiper
 					modules={[Autoplay, Pagination, Navigation]}
 					spaceBetween={30}
-					slidesPerView={isMobile ? 1 : 4}
+					slidesPerView={slidesPerView}
 					loop
-					autoplay={
-						isMobile
-							? false
-							: {
-									delay: 2500,
-									disableOnInteraction: false,
-								}
-					}
+					autoplay={{
+						delay: 2500,
+						disableOnInteraction: false,
+					}}
 					centeredSlides
 					pagination={{
 						clickable: true,

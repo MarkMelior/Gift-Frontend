@@ -5,9 +5,8 @@ import { SearchIcon } from '@/shared/assets/icon/Search';
 import { MediaSize } from '@/shared/const';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Input } from '@/shared/ui/Input';
-import { Loader } from '@/shared/ui/Loader';
 import { Logo } from '@/shared/ui/Logo';
-import { Tooltip, useDisclosure } from '@nextui-org/react';
+import { Spinner, Tooltip, useDisclosure } from '@nextui-org/react';
 import cn from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -38,7 +37,8 @@ export const Navbar = memo(
 		// }
 
 		const pathname = usePathname();
-		const isPhone = useMediaQuery({ maxWidth: MediaSize.SM });
+		const isSM = useMediaQuery({ maxWidth: MediaSize.SM });
+		const isLG = useMediaQuery({ maxWidth: MediaSize.LG });
 		const [isScrollingDown, setIsScrollingDown] = useState(true);
 		const [prevScrollY, setPrevScrollY] = useState(0);
 
@@ -58,9 +58,12 @@ export const Navbar = memo(
 			};
 		}, [prevScrollY]);
 
-		const isActive = useCallback((href: string) => {
-			return pathname === href ? cls.selected : '';
-		}, []);
+		const isActive = useCallback(
+			(href: string) => {
+				return pathname === href ? cls.selected : '';
+			},
+			[pathname],
+		);
 
 		const [isSearch, setIsSearch] = useState(false);
 		const { onOpenChange } = useDisclosure();
@@ -146,7 +149,7 @@ export const Navbar = memo(
 				<>
 					<li className={cn(cls.link, isActive('/'))}>
 						<Link href='/'>
-							{isPhone && (
+							{isLG && (
 								<Image
 									src='/images/icons/home.svg'
 									alt=''
@@ -159,7 +162,7 @@ export const Navbar = memo(
 					</li>
 					<li className={cn(cls.link, isActive('/shop/'))}>
 						<Link href='/shop'>
-							{isPhone && (
+							{isLG && (
 								<Image
 									src='/images/icons/cart.svg'
 									alt=''
@@ -173,7 +176,7 @@ export const Navbar = memo(
 					{/* <MediaQuery maxWidth={MediaSize.SM}> */}
 					<li className={cn(cls.link, isActive('/favorites/'))}>
 						<Link href='/favorites'>
-							{isPhone && (
+							{isLG && (
 								<Image
 									src='/images/icons/heart.svg'
 									alt=''
@@ -187,7 +190,7 @@ export const Navbar = memo(
 					{/* </MediaQuery> */}
 				</>
 			);
-		}, [isActive, isPhone]);
+		}, [isActive, isLG]);
 
 		const renderMobile = () => (
 			<ul className={cls.mobile}>
@@ -210,7 +213,7 @@ export const Navbar = memo(
 							content='Что-то загружается...'
 							className={cls.tooltip}
 						>
-							<Loader size='sm' className={cls.spinner} />
+							<Spinner size='sm' className={cls.spinner} />
 						</Tooltip>
 					</MediaQuery>
 				</div>
@@ -241,10 +244,10 @@ export const Navbar = memo(
 			<>
 				<header className={cn(cls.wrapper, className)}>
 					<nav className={cn(cls.content, 'content')}>
-						{isPhone ? renderMobile() : renderDesktop()}
+						{isSM ? renderMobile() : renderDesktop()}
 					</nav>
 				</header>
-				{isPhone && renderSearch()}
+				{isSM && renderSearch()}
 				<div className={cls.spacer} />
 			</>
 		);

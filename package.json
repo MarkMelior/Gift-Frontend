@@ -63,7 +63,6 @@
 		"crypto": "^1.0.1",
 		"eslint": "^8.56.0",
 		"eslint-config-next": "14.1.0",
-		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-import": "^2.25.3",
 		"eslint-plugin-react": "^7.28.0",
 		"eslint-plugin-storybook": "^0.8.0",

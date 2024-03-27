@@ -5,14 +5,12 @@ import { createReduxStore } from '../../config/store';
 
 export interface RootState {
 	settings: SettingsState;
-	favorites: number[];
 	sort: SortState;
 }
 
 export interface SettingsState {
 	space: boolean;
-	animations: boolean;
-	effects: boolean;
+	optimization: boolean;
 	currency: Currency;
 }
 

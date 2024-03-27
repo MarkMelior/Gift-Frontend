@@ -7,10 +7,6 @@ export function filterInvalidURLCharacters(str: string) {
 	return str.replace(regex, '');
 }
 
-export const productLink = (
-	title: string | false,
-	id: ProductDataProps['id'],
-) => {
-	if (!title) return `/product/${id}`;
+export const productLink = (title: string, id: ProductDataProps['id']) => {
 	return `/product/${filterInvalidURLCharacters(toLatin(toKebabCase(title)))}-${id}`;
 };

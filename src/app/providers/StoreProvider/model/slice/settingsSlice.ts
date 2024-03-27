@@ -7,20 +7,19 @@ import { SettingsState, SettingsStateKey } from '../..';
 function checkLocalStorage<T = boolean>(
 	action: SettingsStateKey,
 	defaultValue: T,
-) {
+): T {
 	if (typeof window !== 'undefined') {
-		const data = localStorage.getItem(LocalstorageKeys.SETTINGS);
-		if (!data) return defaultValue;
-		const value: SettingsState = JSON.parse(data);
-		return value[action] as T;
+		const storedSettings = localStorage.getItem(LocalstorageKeys.SETTINGS);
+		if (!storedSettings) return defaultValue;
+		const parsedSettings: SettingsState = JSON.parse(storedSettings);
+		return parsedSettings[action] as T;
 	}
 	return defaultValue;
 }
 
 export const initialState: SettingsState = {
 	space: checkLocalStorage('space', false),
-	animations: checkLocalStorage('animations', true),
-	effects: checkLocalStorage('effects', true),
+	optimization: checkLocalStorage('optimization', false),
 	currency: checkLocalStorage<Currency>('currency', 'RUB'),
 };
 

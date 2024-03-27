@@ -169,6 +169,10 @@
 
 		@apply rounded-full;
 
+		[class="light"] & {
+			background: rgba(var(--color-main-rgb), 1);
+		}
+
 		@media (max-width: theme('screens.sm')) {
 			height: 38px;
 			padding: 0 8px;

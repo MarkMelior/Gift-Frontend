@@ -8,6 +8,9 @@
 
 	@media (max-width: theme('screens.md')) {
 		margin-top: 50px;
+	}
+
+	@media (max-width: theme('screens.sm')) {
 		margin-bottom: var(--navbar-height-mobile);
 	}
 

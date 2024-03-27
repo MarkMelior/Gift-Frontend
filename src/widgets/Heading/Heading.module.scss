@@ -4,7 +4,7 @@
 	gap: 15px;
 	justify-content: center;
 
-	@media (max-width: theme('screens.sm')) {
+	@media (max-width: theme('screens.md')) {
 		align-items: center;
 		text-align: center;
 	}
@@ -42,7 +42,7 @@
 		@apply text-8xl;
 		@apply font-black;
 
-		@media (max-width: theme('screens.sm')) {
+		@media (max-width: theme('screens.md')) {
 			display: none;
 		}
 	}
@@ -56,4 +56,5 @@
 .center {
 	gap: 15px;
 	align-items: center;
+	text-align: center;
 }

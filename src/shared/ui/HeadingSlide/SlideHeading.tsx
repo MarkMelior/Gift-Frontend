@@ -7,9 +7,10 @@ import cls from './SlideHeading.module.scss';
 
 interface SlideHeadingProps {
 	text: string;
+	className?: string;
 }
 
-export const SlideHeading = ({ text }: SlideHeadingProps) => {
+export const SlideHeading = ({ text, className }: SlideHeadingProps) => {
 	const ref = useRef(null);
 	const { scrollYProgress } = useScroll({
 		target: ref,
@@ -19,7 +20,7 @@ export const SlideHeading = ({ text }: SlideHeadingProps) => {
 	text = text.toUpperCase();
 
 	return (
-		<div className={cls.wrapper}>
+		<div className={cn(cls.wrapper, className)}>
 			<div ref={ref} className={cn(cls.header, 'content')}>
 				<motion.h1
 					className={cls.left}

@@ -7,4 +7,9 @@
 [role="tooltip"] {
 	pointer-events: none;
 	user-select: none;
+
+	[data-slot="content"] {
+		background: var(--bg-noise), var(--color-background);
+		border: 1px solid var(--color-border);
+	}
 }

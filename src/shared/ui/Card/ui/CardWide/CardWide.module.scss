@@ -18,18 +18,19 @@ $z-index-card: 1;
 
 	&>img {
 		position: absolute;
-		top: 50%;
+		top: -50%;
 		left: 0;
 		z-index: calc($z-index-card - 2);
 		width: 100%;
 		border-radius: inherit;
 		transition: all .3s ease;
-		transform: translateY(-50%);
 	}
 
 	&:hover {
 		&>img {
-			transform: scale(1.05) translateY(-50%);
+			transform: scale(1.05);
+
+			// transform: scale(1.05) translateY(-50%);
 		}
 	}
 

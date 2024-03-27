@@ -41,7 +41,7 @@ export const ShopPage: FC = () => {
 				meetsAgeCriteria
 			);
 		});
-	}, [productData, minPrice, maxPrice, category, sex, age]);
+	}, [minPrice, maxPrice, category, sex, age]);
 
 	/**
 	 * Сортировка отфильтрованных продуктов

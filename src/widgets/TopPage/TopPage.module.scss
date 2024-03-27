@@ -1,8 +1,9 @@
 .backgroundTop {
-	position: absolute;
-	top: calc(var(--navbar-height) + 10px);
+	position: relative;
+	top: -90px;
 	left: 0;
 	z-index: var(--z-index-hero-images);
+	grid-column: 1 / 3;
 	width: 100%;
 	height: 220px;
 	margin-bottom: -220px;
@@ -57,7 +58,7 @@
 		}
 	}
 
-	@media (max-width: theme('screens.sm')) {
+	@media (max-width: theme('screens.md')) {
 		grid-template-columns: 1fr;
 	}
 }
@@ -68,7 +69,7 @@
 	flex-direction: column;
 	gap: 80px;
 
-	@media (max-width: theme('screens.sm')) {
+	@media (max-width: theme('screens.md')) {
 		align-items: center;
 	}
 }

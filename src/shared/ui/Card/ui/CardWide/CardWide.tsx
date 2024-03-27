@@ -1,43 +1,20 @@
-import cn from 'clsx';
+import { convertCurrency } from '@/shared/lib/features';
 import Image from 'next/image';
 import { FC } from 'react';
+import { CardProps } from '../Card/Card';
 import cls from './CardWide.module.scss';
 
-type Market = 'ozon' | 'yandex' | 'aliexpress' | 'wildberries' | 'sber';
+export const CardWide: FC<CardProps> = ({ data }) => {
+	const convertedPrice = convertCurrency(data.markets[0].price);
+	const convertedOldPrice = convertCurrency(data.markets[0].oldPrice);
 
-interface CardWideProps {
-	price: number;
-	title: string;
-	defaultMarket: Market;
-	images: string[];
-
-	className?: string;
-	rating?: number;
-	reviewCount?: number;
-	oldPrice?: number;
-	hot?: boolean;
-}
-
-export const CardWide: FC<CardWideProps> = ({
-	price,
-	title,
-	defaultMarket,
-	images,
-
-	className,
-	rating,
-	reviewCount,
-	oldPrice,
-	hot,
-}) => {
 	return (
-		<div className={cn(cls.card, className)}>
-			{/* eslint-disable-next-line @next/next/no-img-element */}
-			<img src={images[0]} alt={title} />
-			<div className={cls.title}>{title}</div>
+		<div className={cls.card}>
+			<img src={`/images/products/${data.images[0]}`} alt={data.title} />
+			<div className={cls.title}>{data.title}</div>
 			<div className={cls.wrapper}>
 				<div className={cls.info}>
-					{rating && reviewCount && (
+					{data.markets[0].rating && data.markets[0].reviewCount && (
 						<>
 							<div className={cls.rating}>
 								<Image
@@ -47,7 +24,7 @@ export const CardWide: FC<CardWideProps> = ({
 									height={14}
 									className='noselect'
 								/>
-								{rating}
+								{data.markets[0].rating}
 							</div>
 							<div className={cls.review}>
 								<Image
@@ -57,26 +34,25 @@ export const CardWide: FC<CardWideProps> = ({
 									height={14}
 									className='noselect'
 								/>
-								{reviewCount}
+								{data.markets[0].reviewCount}
 							</div>
 						</>
 					)}
-					{hot && (
-						<div className={cls.hot}>
-							{' '}
-							<Image
-								src='/images/icons/hot.svg'
-								alt='Иконка огонька'
-								width={14}
-								height={14}
-								className='noselect'
-							/>
-						</div>
-					)}
+					<div className={cls.hot}>
+						<Image
+							src='/images/icons/hot.svg'
+							alt='Иконка огонька'
+							width={14}
+							height={14}
+							className='noselect'
+						/>
+					</div>
 				</div>
 				<div className={cls.price}>
-					{oldPrice && <span className={cls.oldPrice}>{oldPrice}</span>}
-					{price}
+					{convertedOldPrice && (
+						<span className={cls.oldPrice}>{convertedOldPrice}</span>
+					)}
+					{convertedPrice}
 				</div>
 			</div>
 		</div>

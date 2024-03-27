@@ -128,11 +128,6 @@
 	}
 }
 
-.tooltip {
-	background: var(--bg-noise), var(--color-background);
-	border: 1px solid var(--color-border);
-}
-
 .bulletWrapper {
 	position: relative;
 	bottom: 0 !important;
@@ -187,5 +182,11 @@
 
 	@media (max-width: theme('screens.sm')) {
 		font-size: .6rem;
+	}
+}
+
+.liked {
+	svg *[fill] {
+		fill: rgba(255, 66, 66, 100%);
 	}
 }

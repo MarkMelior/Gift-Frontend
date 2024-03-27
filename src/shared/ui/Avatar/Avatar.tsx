@@ -90,7 +90,6 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
 				'cursor-pointer',
 			)}
 		>
-			{/* eslint-disable-next-line @next/next/no-img-element */}
 			{src && <img {...getImageProps()} alt={alt} />}
 			{fallback}
 		</div>

@@ -1,7 +1,5 @@
-import { PathnamesKeys } from '@/shared/config/i18n/config';
-
 interface NavigationPanelItem {
-	to: PathnamesKeys;
+	to: string;
 	image: string;
 	alt: string;
 	title: string;

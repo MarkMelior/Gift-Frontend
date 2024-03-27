@@ -1,5 +1,4 @@
 declare module '*.scss' {
-	// eslint-disable-next-line prettier/prettier
 	interface IClassNames {
 		[className: string]: string;
 	}

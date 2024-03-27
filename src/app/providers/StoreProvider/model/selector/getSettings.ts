@@ -1,22 +1,18 @@
-import {
-	RootState,
-	SettingsState,
-	SettingsStateKey,
-} from '@/app/providers/StoreProvider';
+/* eslint-disable indent */
+import { RootState, SettingsStateKey } from '@/app/providers/StoreProvider';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { initialState } from '../slice/settingsSlice';
 
 export const getSettings =
-	(action: SettingsStateKey) => (state?: RootState) => {
+	<T = boolean>(action: SettingsStateKey) =>
+	(state: RootState): T => {
 		if (typeof window !== 'undefined') {
-			const data = localStorage.getItem(LocalstorageKeys.SETTINGS);
+			const storedSettings = localStorage.getItem(LocalstorageKeys.SETTINGS);
 
-			if (!data) return initialState[action];
-
-			const value: SettingsState = JSON.parse(data);
-
-			return value[action];
+			return storedSettings
+				? (JSON.parse(storedSettings)[action] as T)
+				: (initialState[action] as T);
 		}
 
-		return state?.settings[action];
+		return (state.settings[action] as T) || (initialState[action] as T);
 	};

@@ -4,6 +4,7 @@ import { getSettings, settingsSlice } from '@/app/providers/StoreProvider';
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
 import { MediaSize } from '@/shared/const';
+import { Currency } from '@/shared/types/localization';
 import { Theme } from '@/shared/types/theme';
 import { ModalLogin } from '@/widgets/Modal';
 import {
@@ -18,20 +19,17 @@ import {
 } from '@nextui-org/react';
 import cn from 'clsx';
 import { useTheme } from 'next-themes';
-import { usePathname } from 'next/navigation';
 import { FC, ReactNode, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './DropdownProfile.module.scss';
-
 interface DropdownProfileProps {
 	children?: ReactNode;
 }
 
 export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	const { theme, setTheme } = useTheme();
-	const isPhone = useMediaQuery({ maxWidth: MediaSize.SM });
-	const pathname = usePathname();
+	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
 	const {
 		isOpen: isOpenModal,
 		onOpen: onOpenModal,
@@ -39,74 +37,15 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	} = useDisclosure();
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
-	const isEffects = useSelector(getSettings('effects'));
-	const isAnimations = useSelector(getSettings('animations'));
+	const isOptimization = useSelector(getSettings('optimization'));
 	const isSpace = useSelector(getSettings('space'));
-	const isUSD = useSelector(getSettings('currency'));
+	const isUSD = useSelector(getSettings<Currency>('currency'));
 	const dispatch = useDispatch();
-
-	const renderOptimizationSettings = () => {
-		return (
-			<DropdownSection title='Оптимизация' showDivider>
-				<DropdownItem
-					key='space'
-					description='Добавляет анимацию космоса'
-					onClick={() => {
-						dispatch(settingsSlice.actions.toggle('space'));
-					}}
-					startContent={
-						<Switch
-							size='sm'
-							aria-label='Automatic updates'
-							isSelected={isSpace}
-							className={cn(cls.switch, 'noselect')}
-						/>
-					}
-				>
-					Космический фон
-				</DropdownItem>
-				<DropdownItem
-					key='edit'
-					description='Например эффект нажатия'
-					onClick={() => {
-						dispatch(settingsSlice.actions.toggle('effects'));
-					}}
-					startContent={
-						<Switch
-							size='sm'
-							aria-label='Automatic updates'
-							className={cn(cls.switch, 'noselect')}
-							isSelected={isEffects}
-						/>
-					}
-				>
-					Эффекты
-				</DropdownItem>
-				<DropdownItem
-					key='edit'
-					description='Например видео'
-					onClick={() => {
-						dispatch(settingsSlice.actions.toggle('animations'));
-					}}
-					startContent={
-						<Switch
-							size='sm'
-							aria-label='Automatic updates'
-							className={cn(cls.switch, 'noselect')}
-							isSelected={isAnimations}
-						/>
-					}
-				>
-					Анимации
-				</DropdownItem>
-			</DropdownSection>
-		);
-	};
 
 	return (
 		<>
 			<Dropdown
-				backdrop='opaque'
+				backdrop={'opaque'}
 				placement='bottom-end'
 				offset={30}
 				className={cls.dropdown}
@@ -122,6 +61,25 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 				>
 					<DropdownSection title='Настройки' showDivider>
 						<DropdownItem
+							key='space'
+							description={
+								isMD ? 'Не работает на мобильных' : 'Добавляет космос!'
+							}
+							onClick={() => {
+								dispatch(settingsSlice.actions.toggle('space'));
+							}}
+							startContent={
+								<Switch
+									size='sm'
+									aria-label='Automatic updates'
+									isSelected={isSpace}
+									className={cn(cls.switch, 'noselect')}
+								/>
+							}
+						>
+							Космический фон
+						</DropdownItem>
+						<DropdownItem
 							onClick={() => {
 								setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK);
 							}}
@@ -132,7 +90,6 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 									size='sm'
 									aria-label='Automatic updates'
 									isSelected={theme === Theme.LIGHT}
-									// className='noselect'
 									className={cn(cls.switch, 'noselect')}
 									startContent={<MoonIcon />}
 									endContent={<SunIcon />}
@@ -142,8 +99,25 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 							Светлая тема
 						</DropdownItem>
 						<DropdownItem
+							key='optimization'
+							description='Убирает все эффекты'
+							onClick={() => {
+								dispatch(settingsSlice.actions.toggle('optimization'));
+							}}
+							startContent={
+								<Switch
+									size='sm'
+									aria-label='Automatic updates'
+									className={cn(cls.switch, 'noselect')}
+									isSelected={isOptimization}
+								/>
+							}
+						>
+							Оптимизация
+						</DropdownItem>
+						<DropdownItem
 							key='usd'
-							description='Отображать цены в USD'
+							description='Отображает цены в $'
 							onClick={() => {
 								if (isUSD === 'USD') {
 									dispatch(settingsSlice.actions.changeCurrency('RUB'));
@@ -163,7 +137,6 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 							Доллары
 						</DropdownItem>
 					</DropdownSection>
-					{!isPhone && renderOptimizationSettings()}
 					<DropdownSection title='Аккаунт'>
 						<DropdownItem isReadOnly key='profile' className='opacity-100'>
 							<User

@@ -32,11 +32,10 @@
 	img,
 	svg {
 		opacity: .5;
-		transition: opacity 0.2s ease;
 	}
 
 	&:hover {
-		color: rgb(var(--color-text), 1);
+		color: rgba(var(--color-text), 1);
 		border: 1px solid var(--color-border-select);
 
 		&::before,

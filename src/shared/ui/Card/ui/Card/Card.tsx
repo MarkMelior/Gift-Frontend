@@ -1,7 +1,5 @@
 'use client';
 
-import { getFavorites } from '@/app/providers/StoreProvider/model/selector/getFavorites';
-import { favoritesSlice } from '@/app/providers/StoreProvider/model/slice/favoritesSlice';
 import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
@@ -12,11 +10,11 @@ import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { ProductDataProps } from '@/shared/types/product';
 import { Button } from '@/shared/ui/Button';
 import { Tooltip } from '@nextui-org/react';
+import cn from 'clsx';
 import crypto from 'crypto';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FC, MouseEvent, memo, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
@@ -59,19 +57,19 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 
 	const images = data.images.slice(0, 5);
 
-	const dispatch = useDispatch();
-
+	const { toggle: toggleFavorite, isAdded: isFavorites } = useLocalstorageArray<
+		ProductDataProps['id']
+	>(LocalstorageKeys.LIKED, data.id);
 	const { add: addHistory } = useLocalstorageArray<ProductDataProps['id']>(
 		LocalstorageKeys.HISTORY,
 		data.id,
 	);
 
-	const isFavorites = useSelector(getFavorites(data.id));
 	const convertedPrice = convertCurrency(data.markets[0].price);
 	const convertedOldPrice = convertCurrency(data.markets[0].oldPrice);
 
 	return (
-		<Link href={productLink(false, data.id)} className={cls.wrapper}>
+		<Link href={productLink(data.title, data.id)} className={cls.wrapper}>
 			<div className={cls.top}>
 				<div className={cls.image} onMouseMove={handleMouseMove}>
 					<Swiper
@@ -143,7 +141,7 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 						/>
 					</Tooltip>
 				</div>
-				{pagination && (
+				{data.images.length > 1 && (
 					<span
 						className={cls.bulletWrapper}
 						data-slider-dots={`${data.id}-${saltPagination}`}
@@ -162,7 +160,7 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 					)}
 				</div>
 				<Button
-					className='p-2 rounded-full'
+					className={cn({ [cls.liked]: isFavorites }, 'p-2 rounded-full')}
 					hoverColor={
 						isFavorites ? '255, 66, 66' : 'var(--color-main-inverted-rgb)'
 					}
@@ -171,7 +169,7 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 					slice
 					onClick={(e: MouseEvent) => {
 						e.preventDefault();
-						dispatch(favoritesSlice.actions.toggle(data.id));
+						toggleFavorite(e);
 					}}
 					isIconOnly
 					startContent={<HeartIcon />}

@@ -1,5 +1,6 @@
 'use client';
 
+import { getSettings } from '@/app/providers/StoreProvider';
 import { MediaSize } from '@/shared/const';
 import { cn } from '@/shared/lib/features';
 import { clsxMods } from '@/shared/types/types';
@@ -10,6 +11,7 @@ import {
 	useButton,
 } from '@nextui-org/react';
 import { CSSProperties, forwardRef } from 'react';
+import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './Button.module.scss';
 
@@ -67,6 +69,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 		});
 
 		const isMobile = useMediaQuery({ minWidth: MediaSize.SM });
+		const isOptimization = useSelector(getSettings('optimization'));
 
 		const renderStarlight = () => (
 			<>
@@ -143,6 +146,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 		return (
 			<button
 				type='button'
+				data-optimization={isOptimization}
 				className={cn(
 					cls.button,
 					buttonMods,
@@ -156,7 +160,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 			>
 				{lines && renderLinesItem()}
 				{renderButtonContent()}
-				{!disableRipple && isMobile && (
+				{!disableRipple && !isOptimization && isMobile && (
 					<div className='rippleRoot'>
 						<Ripple {...getRippleProps()} />
 					</div>

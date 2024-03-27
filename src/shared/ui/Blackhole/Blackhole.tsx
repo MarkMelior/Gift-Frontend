@@ -22,7 +22,7 @@ export const Blackhole: FC<BlackholeProps> = ({
 }) => {
 	const [mounted, setMounted] = useState(false);
 	const isMobile = useMediaQuery({ maxWidth: MediaSize.MD });
-	const isAnimations = useSelector(getSettings('animations'));
+	const isOptimization = useSelector(getSettings('optimization'));
 
 	useEffect(() => {
 		setMounted(true);
@@ -47,7 +47,7 @@ export const Blackhole: FC<BlackholeProps> = ({
 				<div />
 				<div />
 			</div>
-			{isMobile || !isAnimations ? (
+			{isMobile || isOptimization ? (
 				<Image
 					src='/images/pages/blackhole.png'
 					alt='Blackhole'

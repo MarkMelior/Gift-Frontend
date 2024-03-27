@@ -1,5 +1,6 @@
 'use client';
 
+import { getSettings } from '@/app/providers/StoreProvider';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/Button';
@@ -7,6 +8,7 @@ import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
 import Link from 'next/link';
 import { FC, ReactNode, memo, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import MediaQuery from 'react-responsive';
 import cls from './TopPage.module.scss';
 
@@ -34,6 +36,8 @@ export const TopPage: FC<TopPageProps> = memo(
 		// 	shadowRoot.appendChild(style);
 		// }, []);
 
+		const isOptimization = useSelector(getSettings('optimization'));
+
 		const renderHeading = useMemo(() => {
 			return <Heading title={title} description={description} note={note} />;
 		}, [description, note, title]);
@@ -46,7 +50,10 @@ export const TopPage: FC<TopPageProps> = memo(
 			>
 				{!compact && (
 					<MediaQuery minWidth={MediaSize.SM}>
-						<div className={cls.backgroundTop}>
+						<div
+							className={cls.backgroundTop}
+							data-optimization={isOptimization}
+						>
 							<div className={cls.background}>
 								<div />
 							</div>
