@@ -1,0 +1,85 @@
+@import '@/app/styles/utils';
+
+.wrapper {
+	position: sticky;
+	top: calc(var(--navbar-height) + 10px);
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	width: 100%;
+	height: min-content;
+
+	@media (max-width: theme('screens.xl')) {
+		position: relative;
+		top: auto;
+	}
+}
+
+.characteristic {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	h3 {
+		@apply font-medium;
+	}
+}
+
+.chipWrapper {
+	display: flex;
+	gap: 10px;
+}
+
+.chip {
+	padding: 7px 15px;
+	white-space: nowrap;
+	border: 1px solid var(--color-border);
+
+	@apply text-sm;
+	@apply rounded-lg;
+	@include background(.75);
+}
+
+.description {
+	display: flex;
+	gap: 10px;
+	width: 100%;
+	white-space: nowrap;
+
+	@apply text-sm;
+
+	p {
+		opacity: .5;
+	}
+
+	span {
+		left: 0;
+		display: block;
+		width: 100%;
+		height: 20px;
+		content: "";
+		border-bottom: 1px dashed #d3d4dd;
+		opacity: .25;
+		transform: translateY(-4px);
+	}
+}
+
+.panel {
+	display: flex;
+}
+
+.liked {
+	svg *[fill] {
+		fill: rgba(255, 66, 66, 100%);
+	}
+
+	img,
+	svg {
+		opacity: 1;
+	}
+}
+
+.button {
+	@apply rounded-xl;
+	@apply text-sm;
+}

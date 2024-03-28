@@ -1,0 +1,140 @@
+.wrapper {
+	position: sticky;
+	top: calc(var(--navbar-height) + 10px);
+	display: flex;
+	gap: 6px;
+	height: 100%;
+	user-select: none;
+}
+
+.thumbs {
+	display: flex;
+	flex-direction: column;
+	width: 86px;
+	padding: 4px !important;
+
+	&>* {
+		img {
+			height: 100%;
+			cursor: pointer;
+			object-fit: cover;
+			opacity: .75;
+			transition: all .3s ease;
+
+			@apply rounded-lg;
+
+			&:hover {
+				opacity: 1;
+			}
+
+			&:active {
+				transform: scale(.975);
+			}
+		}
+	}
+}
+
+.slideThumbActive {
+
+	/* stylelint-disable-next-line no-descending-specificity */
+	img {
+		box-shadow: 0 0 0 0.125rem var(--color-background),
+			0 0 0 4px hsl(var(--gift-primary-400));
+		opacity: 1;
+	}
+}
+
+.image {
+	width: 460px;
+	height: 660px;
+
+	@apply rounded-lg;
+
+	/* stylelint-disable-next-line no-descending-specificity */
+	img {
+		height: 100%;
+		object-fit: cover;
+
+		// object-fit: contain;
+		// background: white;
+	}
+}
+
+.buttonPrev {
+	left: -1px;
+	background: linear-gradient(90deg, var(--color-background) 20%, rgba(var(--color-main-rgb), 0%) 100%);
+
+	&>* {
+		left: -50px;
+	}
+}
+
+.buttonNext {
+	right: -1px;
+	background: linear-gradient(-90deg, var(--color-background) 20%, rgba(var(--color-main-rgb), 0%) 100%);
+
+	&>* {
+		right: -50px;
+
+		&::before {
+			transform: rotate(180deg);
+		}
+	}
+}
+
+.buttonPrev,
+.buttonNext {
+
+	&>* {
+		position: absolute;
+		top: 50%;
+		z-index: 10;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 58px;
+		padding: 0 8px;
+		pointer-events: all;
+		cursor: pointer;
+		background: rgba(var(--color-main-rgb), .6);
+		backdrop-filter: var(--blur-md);
+		border: 1px solid var(--color-border);
+		transform: translateY(-50%);
+
+		@apply rounded-full;
+
+		[class="light"] & {
+			background: rgba(var(--color-main-rgb), 1);
+		}
+
+		@media (max-width: theme('screens.md')) {
+			background: none;
+		}
+
+		&:active {
+			transform: translateY(-50%) scale(0.925);
+		}
+
+		&::before {
+			width: 22px;
+			height: 22px;
+			content: '';
+			background: url('/images/icons/arrow-left.svg');
+		}
+	}
+}
+
+.image:hover {
+	.buttonNext>* {
+		right: 10px;
+	}
+
+	.buttonPrev>* {
+		left: 10px;
+	}
+}
+
+.slideActive {
+	opacity: 1;
+	transform: translateX(var(--mouse-x)) translateY(var(--mouse-y)) !important;
+}

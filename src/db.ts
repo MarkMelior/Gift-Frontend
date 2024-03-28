@@ -13,7 +13,14 @@ export const productData: ProductDataProps[] = [
 		creativity: 5,
 		filter: ['joke'],
 		characteristics: {
-			'Характеристика 1': 'Значение характеристики 1',
+			Версия: ['global', 'Ростест (EAC)'],
+			Конфигурация: ['4/128 ГБ', '6/128 ГБ', '8/256 ГБ'],
+			'Коротко о товаре': {
+				Емкость: '20000 мА·ч (74 Вт·ч)',
+				Вес: '438 г',
+				Фото: '3 камеры, основная 50 МП',
+				Процессор: 'Qualcomm Snapdragon 685',
+			},
 		},
 		markets: [
 			{
@@ -25,6 +32,15 @@ export const productData: ProductDataProps[] = [
 				price: 13999,
 				oldPrice: 21947,
 			},
+			{
+				market: 'yandex',
+				link: 'https://www.ozon.ru/product/logitech-naushniki-provodnye-s-mikrofonom-3-5-mm-chernyy-1353218032/',
+				rating: 4.5,
+				reviewCount: 68,
+				currency: 'RUB',
+				price: 13578,
+				oldPrice: 19653,
+			},
 		],
 	},
 	{
@@ -34,7 +50,7 @@ export const productData: ProductDataProps[] = [
 		creativity: 5,
 		filter: ['female', 'love'],
 		characteristics: {
-			'Характеристика 1': 'Значение характеристики 1',
+			'Характеристика 1': ['Значение характеристики 1'],
 		},
 		markets: [
 			{
@@ -55,7 +71,7 @@ export const productData: ProductDataProps[] = [
 		creativity: 5,
 		filter: ['kid'],
 		characteristics: {
-			'Характеристика 1': 'Значение характеристики 1',
+			'Характеристика 1': ['Значение характеристики 1'],
 		},
 		markets: [
 			{
@@ -76,7 +92,7 @@ export const productData: ProductDataProps[] = [
 		creativity: 5,
 		filter: ['year'],
 		characteristics: {
-			'Характеристика 1': 'Значение характеристики 1',
+			'Характеристика 1': ['Значение характеристики 1'],
 		},
 		markets: [
 			{

@@ -2,13 +2,12 @@
 
 import { productData } from '@/db';
 import { Blackhole } from '@/shared/ui/Blackhole';
-import { Button } from '@/shared/ui/Button';
 import { Cards } from '@/shared/ui/Card';
 import { NavigationPanel } from '@/widgets/NavigationPanel';
 import { Sorts } from '@/widgets/Sorts';
 import { getSortSearchparams } from '@/widgets/Sorts/model/features/getSortSearchparams';
 import { TopPage } from '@/widgets/TopPage';
-import { Image, Textarea } from '@nextui-org/react';
+import { Image } from '@nextui-org/react';
 import cn from 'clsx';
 import { FC, useMemo } from 'react';
 import cls from './ShopPage.module.scss';
@@ -95,7 +94,7 @@ export const ShopPage: FC = () => {
 			<div className={cn(cls.wrapper, 'content')}>
 				<Sorts />
 				<div className={cls.block}>
-					<div className={cls.ai}>
+					{/* <div className={cls.ai}>
 						<Textarea
 							maxRows={2}
 							maxLength={250}
@@ -123,7 +122,7 @@ export const ShopPage: FC = () => {
 						>
 							Найти подарок
 						</Button>
-					</div>
+					</div> */}
 					<Cards data={sortedProducts} />
 				</div>
 			</div>

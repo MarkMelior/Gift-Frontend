@@ -1,6 +1,5 @@
 'use client';
 
-import { BookmarkIcon } from '@/shared/assets/icon/Bookmark';
 import { CrossIcon } from '@/shared/assets/icon/Cross';
 import { Button } from '@/shared/ui/Button';
 import { Progress } from '@nextui-org/react';
@@ -20,10 +19,11 @@ interface NotificationProps {
 	message: string;
 	duration?: number;
 	animationCloseDuration?: number;
-	closable?: boolean;
 	onClose?: () => void;
 	onCancel?: () => void;
-	icon?: string;
+	startContent?: JSX.Element;
+	placement?: 'top' | 'bottom';
+	closeOnClick?: boolean;
 }
 
 export const Notification: FC<NotificationProps> = memo(
@@ -31,10 +31,11 @@ export const Notification: FC<NotificationProps> = memo(
 		message,
 		duration = 7000,
 		animationCloseDuration = 300,
-		closable = true,
 		onClose,
 		onCancel,
-		icon,
+		startContent,
+		closeOnClick,
+		placement = 'bottom',
 	}) => {
 		const [visible, setVisible] = useState(true);
 		const [closing, setClosing] = useState(false);
@@ -101,6 +102,8 @@ export const Notification: FC<NotificationProps> = memo(
 					[cls.closing]: closing,
 					[cls.swipeLeft]: swipeClose && touchEndX < touchStartX && !closing,
 					[cls.swipeRight]: swipeClose && touchEndX > touchStartX && !closing,
+					[cls.top]: placement === 'top',
+					[cls.bottom]: placement === 'bottom',
 				})}
 				style={
 					{
@@ -111,6 +114,7 @@ export const Notification: FC<NotificationProps> = memo(
 				onTouchStart={handleTouchStart}
 				onTouchMove={handleTouchMove}
 				onTouchEnd={handleTouchEnd}
+				onClick={closeOnClick ? handleClose : undefined}
 			>
 				<Progress
 					className={cls.progress}
@@ -119,10 +123,10 @@ export const Notification: FC<NotificationProps> = memo(
 					color='success'
 				/>
 				<div className={cls.content}>
-					{icon && <BookmarkIcon className={cn(cls.icon, 'noselect')} />}
+					<div className={cls.startContent}>{startContent}</div>
 					<p>{message}</p>
 				</div>
-				{closable && (
+				{!closeOnClick && (
 					<Button slice className='rounded-lg py-0 px-0' onClick={handleClose}>
 						<CrossIcon />
 					</Button>

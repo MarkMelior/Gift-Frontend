@@ -7,7 +7,7 @@ export interface ProductDataProps {
 	title: string;
 	creativity: number;
 	filter: FilterSortProps[];
-	characteristics: Record<string, string>;
+	characteristics: Record<string, string[] | Record<string, string>>;
 	markets: MarketsProductData[];
 }
 
