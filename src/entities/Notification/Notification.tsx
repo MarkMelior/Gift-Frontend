@@ -104,6 +104,7 @@ export const Notification: FC<NotificationProps> = memo(
 					[cls.swipeRight]: swipeClose && touchEndX > touchStartX && !closing,
 					[cls.top]: placement === 'top',
 					[cls.bottom]: placement === 'bottom',
+					[cls.closeOnClick]: closeOnClick,
 				})}
 				style={
 					{

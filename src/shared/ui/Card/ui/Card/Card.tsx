@@ -115,6 +115,7 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 						<span>{data.markets[0].reviewCount}</span>
 					</div>
 					<Tooltip
+						closeDelay={0}
 						offset={5}
 						placement='bottom'
 						showArrow

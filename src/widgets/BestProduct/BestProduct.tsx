@@ -9,7 +9,6 @@ import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import Image from 'next/image';
 import { FC, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/autoplay';
@@ -62,10 +61,14 @@ export const BestProduct: FC = () => {
 					transition={{ duration: 1, ease: 'easeIn' }}
 					className={`${cls.image} noselect`}
 				>
-					<Image
+					{/* <Image
 						src='/images/pages/glow-best.png'
 						width={1624}
 						height={862}
+						alt='Background glow image'
+					/> */}
+					<img
+						src='/images/pages/deprecated/glow-best-default.png'
 						alt='Background glow image'
 					/>
 				</motion.div>

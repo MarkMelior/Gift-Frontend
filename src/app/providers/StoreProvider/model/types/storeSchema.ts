@@ -1,3 +1,5 @@
+import { UserState } from '@/entities/User';
+import { LoginState } from '@/features/Auth';
 import { Currency } from '@/shared/types/localization';
 import { SortState } from '@/widgets/Sorts';
 import { ReactNode } from 'react';
@@ -6,6 +8,8 @@ import { createReduxStore } from '../../config/store';
 export interface RootState {
 	settings: SettingsState;
 	sort: SortState;
+	user: UserState;
+	loginForm?: LoginState;
 }
 
 export interface SettingsState {

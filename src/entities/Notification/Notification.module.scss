@@ -81,6 +81,10 @@
 	animation: fadeOutFromTop var(--animation-close-duration-notification) ease-out forwards;
 }
 
+.closeOnClick {
+	cursor: pointer;
+}
+
 .swipeLeft {
 	animation: swipeLeft var(--animation-close-duration-notification) ease-out forwards !important;
 }

@@ -8,7 +8,7 @@ import { sexButton } from '../model/const/sexButton';
 import { sortingButton } from '../model/const/sortingButton';
 import { getSortSearchparams } from '../model/features/getSortSearchparams';
 import { getSort } from '../model/selector/getSort';
-import { sortSlice } from '../model/slice/sortSlice';
+import { sortActions } from '../model/slice/sortSlice';
 import {
 	ButtonProps,
 	FilterSortProps,
@@ -27,19 +27,19 @@ export const SortButtons: FC<{ sort: SortButtonsKeys }> = ({ sort }) => {
 		switch (sort) {
 			case 'category':
 				buttons = categoryButton;
-				toggleAction = sortSlice.actions.toggleCategory;
+				toggleAction = sortActions.toggleCategory;
 				break;
 			case 'sex':
 				buttons = sexButton;
-				toggleAction = sortSlice.actions.toggleSex;
+				toggleAction = sortActions.toggleSex;
 				break;
 			case 'age':
 				buttons = ageButton;
-				toggleAction = sortSlice.actions.toggleAge;
+				toggleAction = sortActions.toggleAge;
 				break;
 			case 'sorting':
 				buttons = sortingButton;
-				toggleAction = sortSlice.actions.toggleSorting;
+				toggleAction = sortActions.toggleSorting;
 				break;
 			default:
 				console.error('Unknown sort type');

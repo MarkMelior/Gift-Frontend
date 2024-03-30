@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSort } from '../model/selector/getSort';
-import { sortSlice } from '../model/slice/sortSlice';
+import { sortActions } from '../model/slice/sortSlice';
 import { SortButtons } from './SortButtons';
 import cls from './Sorts.module.scss';
 
@@ -37,13 +37,13 @@ export const Sorts: FC = () => {
 
 	const setMinPrice = useCallback(
 		(value: number) => {
-			dispatch(sortSlice.actions.setMinPrice(value));
+			dispatch(sortActions.setMinPrice(value));
 		},
 		[dispatch],
 	);
 	const setMaxPrice = useCallback(
 		(value: number) => {
-			dispatch(sortSlice.actions.setMaxPrice(value));
+			dispatch(sortActions.setMaxPrice(value));
 		},
 		[dispatch],
 	);

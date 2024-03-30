@@ -67,3 +67,6 @@ export const sortSlice = createSlice({
 		},
 	},
 });
+
+export const { actions: sortActions } = sortSlice;
+export const { reducer: sortReducer } = sortSlice;

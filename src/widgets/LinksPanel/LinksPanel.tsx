@@ -61,6 +61,7 @@ export const LinksPanel: FC<LinksPanelProps> = ({ product }) => {
 						{Markets[markets.market].name}
 					</Button>
 					<Tooltip
+						closeDelay={0}
 						offset={5}
 						placement='top'
 						content='Скопировать ссылку'
@@ -89,7 +90,6 @@ export const LinksPanel: FC<LinksPanelProps> = ({ product }) => {
 			{showNotification && (
 				<Notification
 					message='Ссылка скопирована в буфер обмена'
-					closable={false}
 					duration={2000}
 					placement='top'
 					onClose={() => setShowNotification(false)}

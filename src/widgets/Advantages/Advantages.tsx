@@ -85,11 +85,15 @@ export const Advantages: FC = () => {
 					transition={{ duration: 1, ease: 'easeIn' }}
 					className={`${cls.image} noselect`}
 				>
-					<Image
+					{/* <Image
 						src='/images/pages/glow-about.png'
 						width={1612}
 						height={1698}
 						alt='test'
+					/> */}
+					<img
+						src='/images/pages/deprecated/glow-about-default.png'
+						alt='Background glow image'
 					/>
 				</motion.div>
 			)}

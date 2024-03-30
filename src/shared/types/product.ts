@@ -9,6 +9,7 @@ export interface ProductDataProps {
 	filter: FilterSortProps[];
 	characteristics: Record<string, string[] | Record<string, string>>;
 	markets: MarketsProductData[];
+	tags?: string;
 }
 
 export interface MarketsProductData {

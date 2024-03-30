@@ -51,11 +51,15 @@ export const Ready: FC = () => {
 					transition={{ duration: 3, ease: 'easeIn' }}
 					className={`${cls.image} noselect`}
 				>
-					<Image
+					{/* <Image
 						src='/images/pages/glow-ready.png'
 						alt='Фоновое изображение'
 						width={1488}
 						height={1674}
+					/> */}
+					<img
+						src='/images/pages/deprecated/glow-ready-default.png'
+						alt='Background glow image'
 					/>
 				</motion.div>
 			)}

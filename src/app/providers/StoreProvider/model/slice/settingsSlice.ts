@@ -41,4 +41,5 @@ export const settingsSlice = createSlice({
 	},
 });
 
-export const { toggle } = settingsSlice.actions;
+export const { actions: settingsActions } = settingsSlice;
+export const { reducer: settingsReducer } = settingsSlice;

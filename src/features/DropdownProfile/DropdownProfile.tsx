@@ -1,12 +1,13 @@
 'use client';
 
-import { getSettings, settingsSlice } from '@/app/providers/StoreProvider';
+import { getSettings, settingsActions } from '@/app/providers/StoreProvider';
+import { getUserAuthData, userActions } from '@/entities/User';
+import { ModalLogin } from '@/features/Auth';
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
 import { MediaSize } from '@/shared/const';
 import { Currency } from '@/shared/types/localization';
 import { Theme } from '@/shared/types/theme';
-import { ModalLogin } from '@/widgets/Modal';
 import {
 	Dropdown,
 	DropdownItem,
@@ -19,10 +20,11 @@ import {
 } from '@nextui-org/react';
 import cn from 'clsx';
 import { useTheme } from 'next-themes';
-import { FC, ReactNode, useState } from 'react';
+import { FC, ReactNode, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './DropdownProfile.module.scss';
+
 interface DropdownProfileProps {
 	children?: ReactNode;
 }
@@ -37,10 +39,17 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	} = useDisclosure();
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
+	const dispatch = useDispatch();
+
 	const isOptimization = useSelector(getSettings('optimization'));
 	const isSpace = useSelector(getSettings('space'));
 	const isUSD = useSelector(getSettings<Currency>('currency'));
-	const dispatch = useDispatch();
+
+	const authData = useSelector(getUserAuthData);
+
+	const onLogout = useCallback(() => {
+		dispatch(userActions.logout());
+	}, [dispatch]);
 
 	return (
 		<>
@@ -66,7 +75,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 								isMD ? 'Не работает на мобильных' : 'Добавляет космос!'
 							}
 							onClick={() => {
-								dispatch(settingsSlice.actions.toggle('space'));
+								dispatch(settingsActions.toggle('space'));
 							}}
 							startContent={
 								<Switch
@@ -102,7 +111,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 							key='optimization'
 							description='Убирает все эффекты'
 							onClick={() => {
-								dispatch(settingsSlice.actions.toggle('optimization'));
+								dispatch(settingsActions.toggle('optimization'));
 							}}
 							startContent={
 								<Switch
@@ -120,9 +129,9 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 							description='Отображает цены в $'
 							onClick={() => {
 								if (isUSD === 'USD') {
-									dispatch(settingsSlice.actions.changeCurrency('RUB'));
+									dispatch(settingsActions.changeCurrency('RUB'));
 								} else {
-									dispatch(settingsSlice.actions.changeCurrency('USD'));
+									dispatch(settingsActions.changeCurrency('USD'));
 								}
 							}}
 							startContent={
@@ -137,35 +146,41 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 							Доллары
 						</DropdownItem>
 					</DropdownSection>
-					<DropdownSection title='Аккаунт'>
-						<DropdownItem isReadOnly key='profile' className='opacity-100'>
-							<User
-								name='Mark Melior'
-								description='mark.melior@yandex.com'
-								avatarProps={{
-									src: '/images/temp/ava.jpg',
+					{authData ? (
+						<DropdownSection title='Аккаунт'>
+							<DropdownItem isReadOnly key='profile' className='opacity-100'>
+								<User
+									name='Mark Melior'
+									description='mark.melior@yandex.com'
+									avatarProps={{
+										src: '/images/temp/ava.jpg',
+									}}
+								/>
+							</DropdownItem>
+							<DropdownItem
+								key='delete'
+								className='text-danger'
+								color='danger'
+								closeOnSelect
+								onClick={onLogout}
+							>
+								Выйти с аккаунта
+							</DropdownItem>
+						</DropdownSection>
+					) : (
+						<DropdownSection title='Аккаунт'>
+							<DropdownItem
+								key='login'
+								closeOnSelect
+								onClick={() => {
+									setIsOpen(false);
+									onOpenModal();
 								}}
-							/>
-						</DropdownItem>
-						<DropdownItem
-							key='delete'
-							className='text-danger'
-							color='danger'
-							closeOnSelect
-						>
-							Выйти с аккаунта
-						</DropdownItem>
-						<DropdownItem
-							key='login'
-							closeOnSelect
-							onClick={() => {
-								setIsOpen(false);
-								onOpenModal();
-							}}
-						>
-							Войти в аккаунт
-						</DropdownItem>
-					</DropdownSection>
+							>
+								Войти в аккаунт
+							</DropdownItem>
+						</DropdownSection>
+					)}
 				</DropdownMenu>
 			</Dropdown>
 			<ModalLogin isOpen={isOpenModal} onOpenChange={onOpenChangeModal} />

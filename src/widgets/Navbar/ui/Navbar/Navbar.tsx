@@ -23,19 +23,6 @@ interface NavbarProps {
 
 export const Navbar = memo(
 	({ className, blackhole, shouldHideOnScroll }: NavbarProps) => {
-		// const authData = useSelector(getUserAuthData);
-
-		// if (authData) {
-		// 	return (
-		// 		<header className={classNames(mainClass, {}, [className])}>
-		// 			<HStack gap='16' className={cls.actions}>
-		// 				<NotificationButton />
-		// 				<AvatarDropdown />
-		// 			</HStack>
-		// 		</header>
-		// 	);
-		// }
-
 		const pathname = usePathname();
 		const isSM = useMediaQuery({ maxWidth: MediaSize.SM });
 		const isLG = useMediaQuery({ maxWidth: MediaSize.LG });
@@ -209,6 +196,7 @@ export const Navbar = memo(
 					<MediaQuery minWidth={MediaSize.SM}>
 						<Tooltip
 							offset={15}
+							closeDelay={0}
 							showArrow
 							content='Что-то загружается...'
 							className={cls.tooltip}

@@ -77,10 +77,11 @@ export const ReviewsCarousel: FC = () => {
 						{cards}
 					</Swiper>
 					<Swiper
-						modules={[Autoplay]}
+						modules={[FreeMode, Autoplay]}
 						spaceBetween={30}
 						slidesPerView={slidesPerView}
 						loop
+						freeMode
 						speed={6000}
 						autoplay={{
 							delay: 500,
