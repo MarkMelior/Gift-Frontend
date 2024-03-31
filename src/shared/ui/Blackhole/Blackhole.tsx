@@ -1,6 +1,6 @@
 'use client';
 
-import { getSettings } from '@/app/providers/StoreProvider';
+import { getSettingsOptimization } from '@/features/Settings';
 import { MediaSize } from '@/shared/const';
 import cn from 'clsx';
 import Image from 'next/image';
@@ -22,7 +22,7 @@ export const Blackhole: FC<BlackholeProps> = ({
 }) => {
 	const [mounted, setMounted] = useState(false);
 	const isMobile = useMediaQuery({ maxWidth: MediaSize.MD });
-	const isOptimization = useSelector(getSettings('optimization'));
+	const isOptimization = useSelector(getSettingsOptimization);
 
 	useEffect(() => {
 		setMounted(true);

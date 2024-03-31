@@ -2,7 +2,7 @@
 
 import { productData } from '@/db';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
-import { getStorageData } from '@/shared/lib/hooks';
+import { convertIdToProductData, getLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { Button } from '@/shared/ui/Button';
 import { Cards } from '@/shared/ui/Card';
@@ -14,8 +14,11 @@ import { FC } from 'react';
 import cls from './FavoritesPage.module.scss';
 
 export const FavoritesPage: FC = () => {
-	const filteredData = getStorageData(productData, LocalstorageKeys.LIKED);
-	const historyData = getStorageData(productData, LocalstorageKeys.HISTORY);
+	const likedIdData = getLocalstorage<number[]>(LocalstorageKeys.LIKED);
+	const historyIdData = getLocalstorage<number[]>(LocalstorageKeys.HISTORY);
+
+	const likedData = convertIdToProductData(likedIdData, productData);
+	const historyData = convertIdToProductData(historyIdData, productData);
 
 	return (
 		<div className={cn(cls.wrapper, 'content')}>
@@ -23,7 +26,7 @@ export const FavoritesPage: FC = () => {
 				compact
 				title='Избранное'
 				description={
-					!filteredData
+					!likedData.length
 						? 'Вы ещё не добавили подарки в избранное, нужно это исправить'
 						: 'Войдите в аккаунт, чтобы избранные товары сохранялись в облаке'
 				}
@@ -38,8 +41,8 @@ export const FavoritesPage: FC = () => {
 					/>
 				}
 			/>
-			<Cards data={filteredData} />
-			{!filteredData ? (
+			<Cards data={likedData} />
+			{!likedData.length ? (
 				<>
 					<div className={cls.notFound}>
 						<Link href='/shop' style={{ display: 'inline-block' }}>

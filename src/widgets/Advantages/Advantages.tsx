@@ -1,6 +1,6 @@
 'use client';
 
-import { getSettings } from '@/app/providers/StoreProvider';
+import { getSettingsOptimization } from '@/features/Settings';
 import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/Button';
 import { CardRotate } from '@/shared/ui/CardRotate';
@@ -15,7 +15,7 @@ import cls from './Advantages.module.scss';
 
 export const Advantages: FC = () => {
 	const { theme } = useTheme();
-	const isOptimization = useSelector(getSettings('optimization'));
+	const isOptimization = useSelector(getSettingsOptimization);
 
 	return (
 		<section className={cn(cls.wrapper, 'content')}>

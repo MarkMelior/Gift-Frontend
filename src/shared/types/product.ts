@@ -1,4 +1,4 @@
-import { FilterSortProps } from '@/widgets/Sorts/model/types/sortType';
+import { FilterSortProps } from '@/features/Sorts';
 import { Currency } from './localization';
 
 export interface ProductDataProps {

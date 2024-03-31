@@ -1,12 +1,16 @@
 'use client';
 
-import { getSettings, settingsActions } from '@/app/providers/StoreProvider';
 import { getUserAuthData, userActions } from '@/entities/User';
 import { ModalLogin } from '@/features/Auth';
+import {
+	getSettingsCurrency,
+	getSettingsOptimization,
+	getSettingsSpace,
+	settingsActions,
+} from '@/features/Settings';
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
 import { MediaSize } from '@/shared/const';
-import { Currency } from '@/shared/types/localization';
 import { Theme } from '@/shared/types/theme';
 import {
 	Dropdown,
@@ -41,9 +45,9 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 
 	const dispatch = useDispatch();
 
-	const isOptimization = useSelector(getSettings('optimization'));
-	const isSpace = useSelector(getSettings('space'));
-	const isUSD = useSelector(getSettings<Currency>('currency'));
+	const isOptimization = useSelector(getSettingsOptimization);
+	const isSpace = useSelector(getSettingsSpace);
+	const isUSD = useSelector(getSettingsCurrency);
 
 	const authData = useSelector(getUserAuthData);
 
@@ -75,7 +79,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 								isMD ? 'Не работает на мобильных' : 'Добавляет космос!'
 							}
 							onClick={() => {
-								dispatch(settingsActions.toggle('space'));
+								dispatch(settingsActions.toggleSpace());
 							}}
 							startContent={
 								<Switch
@@ -111,7 +115,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 							key='optimization'
 							description='Убирает все эффекты'
 							onClick={() => {
-								dispatch(settingsActions.toggle('optimization'));
+								dispatch(settingsActions.toggleOptimization());
 							}}
 							startContent={
 								<Switch

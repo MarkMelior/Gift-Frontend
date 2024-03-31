@@ -1,10 +1,11 @@
 'use client';
 
 import { DropdownProfile } from '@/features/DropdownProfile';
+import { ModalSearch } from '@/features/Search';
 import { SearchIcon } from '@/shared/assets/icon/Search';
 import { MediaSize } from '@/shared/const';
 import { Avatar } from '@/shared/ui/Avatar';
-import { Input } from '@/shared/ui/Input';
+import { Button } from '@/shared/ui/Button';
 import { Logo } from '@/shared/ui/Logo';
 import { Spinner, Tooltip, useDisclosure } from '@nextui-org/react';
 import cn from 'clsx';
@@ -52,70 +53,22 @@ export const Navbar = memo(
 			[pathname],
 		);
 
-		const [isSearch, setIsSearch] = useState(false);
-		const { onOpenChange } = useDisclosure();
+		const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
 		const renderInput = useMemo(
 			() => (
 				<>
-					<Input
-						isClearable
-						size='sm'
-						radius='sm'
-						placeholder='Поиск'
-						className={cls.input}
-						onFocus={() => {
-							setIsSearch(true);
-						}}
+					<Button
+						onClick={onOpen}
+						className={cls.searchButton}
 						startContent={<SearchIcon width={18} height={18} />}
-					/>
-					{/* <Modal
-						isOpen={isSearch}
-						onClose={() => setIsSearch(false)}
-						onOpenChange={onOpenChange}
 					>
-						<ModalContent>
-							{(onClose) => (
-								<>
-									<ModalHeader className='flex flex-col gap-1'>
-										Modal Title
-									</ModalHeader>
-									<ModalBody>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-											Nullam pulvinar risus non risus hendrerit venenatis.
-											Pellentesque sit amet hendrerit risus, sed porttitor quam.
-										</p>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-											Nullam pulvinar risus non risus hendrerit venenatis.
-											Pellentesque sit amet hendrerit risus, sed porttitor quam.
-										</p>
-										<p>
-											Magna exercitation reprehenderit magna aute tempor
-											cupidatat consequat elit dolor adipisicing. Mollit dolor
-											eiusmod sunt ex incididunt cillum quis. Velit duis sit
-											officia eiusmod Lorem aliqua enim laboris do dolor
-											eiusmod. Et mollit incididunt nisi consectetur esse
-											laborum eiusmod pariatur proident Lorem eiusmod et. Culpa
-											deserunt nostrud ad veniam.
-										</p>
-									</ModalBody>
-									<ModalFooter>
-										<Button color='danger' variant='light' onPress={onClose}>
-											Close
-										</Button>
-										<Button color='primary' onPress={onClose}>
-											Action
-										</Button>
-									</ModalFooter>
-								</>
-							)}
-						</ModalContent>
-					</Modal> */}
+						Поиск
+					</Button>
+					<ModalSearch isOpen={isOpen} onOpenChange={onOpenChange} />
 				</>
 			),
-			[],
+			[isOpen, onOpen, onOpenChange],
 		);
 
 		const renderProfile = useMemo(

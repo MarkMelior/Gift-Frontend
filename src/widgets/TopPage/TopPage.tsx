@@ -1,6 +1,6 @@
 'use client';
 
-import { getSettings } from '@/app/providers/StoreProvider';
+import { getSettingsOptimization } from '@/features/Settings';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/Button';
@@ -36,7 +36,7 @@ export const TopPage: FC<TopPageProps> = memo(
 		// 	shadowRoot.appendChild(style);
 		// }, []);
 
-		const isOptimization = useSelector(getSettings('optimization'));
+		const isOptimization = useSelector(getSettingsOptimization);
 
 		const renderHeading = useMemo(() => {
 			return <Heading title={title} description={description} note={note} />;

@@ -1,7 +1,6 @@
 'use client';
 
-/* eslint-disable react-hooks/rules-of-hooks */
-import { getSettings } from '@/app/providers/StoreProvider';
+import { getSettingsCurrency } from '@/features/Settings';
 import { Rates, exchangeRates } from '@/shared/const';
 import { Currency } from '@/shared/types/localization';
 import { useSelector } from 'react-redux';
@@ -21,7 +20,7 @@ export const convertCurrency = (
 	number: number | undefined,
 	options: Options = {},
 ): string | number | false => {
-	const isUSD = useSelector(getSettings('currency')) as Currency;
+	const isUSD = useSelector(getSettingsCurrency);
 
 	const {
 		from = 'RUB',
@@ -41,7 +40,7 @@ export const convertCurrency = (
 
 	const formattedCurrency = new Intl.NumberFormat('ru-RU', {
 		style: 'currency',
-		currency: to as Currency,
+		currency: to,
 		minimumFractionDigits: precision,
 	}).format(targetPrice);
 

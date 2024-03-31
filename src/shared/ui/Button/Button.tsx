@@ -1,6 +1,6 @@
 'use client';
 
-import { getSettings } from '@/app/providers/StoreProvider';
+import { getSettingsOptimization } from '@/features/Settings';
 import { MediaSize } from '@/shared/const';
 import { cn } from '@/shared/lib/features';
 import { clsxMods } from '@/shared/types/types';
@@ -69,7 +69,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 		});
 
 		const isMobile = useMediaQuery({ minWidth: MediaSize.SM });
-		const isOptimization = useSelector(getSettings('optimization'));
+		const isOptimization = useSelector(getSettingsOptimization);
 
 		const renderStarlight = () => (
 			<>

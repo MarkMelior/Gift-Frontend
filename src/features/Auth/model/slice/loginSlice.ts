@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { loginByUsername } from '../..';
-import { LoginState } from '../types/loginSchema';
+import { LoginState } from '../types/loginState';
 
 const initialState: LoginState = {
 	username: '',
@@ -31,7 +31,7 @@ export const loginSlice = createSlice({
 			})
 			.addCase(loginByUsername.rejected, (state, action) => {
 				state.isLoading = false;
-				state.error = action.payload;
+				// state.error = action.payload;
 			});
 	},
 });

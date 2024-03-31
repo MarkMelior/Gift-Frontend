@@ -1,6 +1,6 @@
 'use client';
 
-import { getSettings } from '@/app/providers/StoreProvider';
+import { getSettingsOptimization } from '@/features/Settings';
 import { MediaSize } from '@/shared/const';
 import cn from 'clsx';
 import { CSSProperties, FC } from 'react';
@@ -15,7 +15,7 @@ interface WaveProps {
 
 export const Wave: FC<WaveProps> = ({ className, style }) => {
 	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
-	const isOptimization = useSelector(getSettings('optimization'));
+	const isOptimization = useSelector(getSettingsOptimization);
 
 	if (isPhone) {
 		return null;

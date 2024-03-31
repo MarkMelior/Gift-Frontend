@@ -1,6 +1,6 @@
 'use client';
 
-import { getSettings } from '@/app/providers/StoreProvider';
+import { getSettingsSpace } from '@/features/Settings';
 import { MediaSize } from '@/shared/const';
 import { Theme } from '@/shared/types/theme';
 import { PointMaterial, Points } from '@react-three/drei';
@@ -44,7 +44,7 @@ export const SpaceCanvas = () => {
 	const [isVisible, setIsVisible] = useState(true);
 	const { theme } = useTheme();
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
-	const isSpace = useSelector(getSettings('space'));
+	const isSpace = useSelector(getSettingsSpace);
 
 	useEffect(() => {
 		const handleResize = () => {

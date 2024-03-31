@@ -1,6 +1,6 @@
 'use client';
 
-import { getSettings } from '@/app/providers/StoreProvider';
+import { getSettingsOptimization } from '@/features/Settings';
 import { MediaSize } from '@/shared/const';
 import { SlideHeading } from '@/shared/ui/HeadingSlide';
 import { StarRating } from '@/shared/ui/StarRating';
@@ -19,7 +19,7 @@ export const ReviewsCarousel: FC = () => {
 	const isSM = useMediaQuery({ maxWidth: MediaSize.SM });
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
 	const isXL = useMediaQuery({ maxWidth: MediaSize.XL });
-	const isOptimization = useSelector(getSettings('optimization'));
+	const isOptimization = useSelector(getSettingsOptimization);
 
 	let slidesPerView: number = 3;
 	if (isXL) {
