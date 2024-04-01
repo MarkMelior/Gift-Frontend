@@ -77,6 +77,14 @@
 		padding: 10px 12px;
 	}
 
+	kbd {
+		position: absolute;
+		right: 4px;
+		background: rgba(var(--color-main-inverted-rgb), .075);
+
+		@apply text-xs;
+	}
+
 	&:hover {
 		background: rgb(var(--color-main-inverted-rgb), .1) !important;
 	}

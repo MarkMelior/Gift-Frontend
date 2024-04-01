@@ -3,6 +3,10 @@
 	grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
 	gap: 20px;
 
+	&[data-size='sm'] {
+		grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+	}
+
 	@media (max-width: theme('screens.lg')) {
 		grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 	}

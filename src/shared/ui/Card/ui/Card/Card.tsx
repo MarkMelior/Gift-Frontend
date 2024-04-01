@@ -23,9 +23,10 @@ import cls from './Card.module.scss';
 
 export interface CardProps {
 	data: ProductDataProps;
+	size?: 'sm' | 'md';
 }
 
-export const Card: FC<CardProps> = memo(({ data }) => {
+export const Card: FC<CardProps> = memo(({ data, size }) => {
 	const swiperRef = useRef<SwiperRef>(null);
 	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
 	const saltPagination = crypto.randomBytes(2).toString('hex');
@@ -70,7 +71,7 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 
 	return (
 		<Link href={productLink(data.title, data.id)} className={cls.wrapper}>
-			<div className={cls.top}>
+			<div className={cls.top} data-size={size}>
 				<div className={cls.image} onMouseMove={handleMouseMove}>
 					<Swiper
 						modules={[Pagination]}
@@ -145,6 +146,7 @@ export const Card: FC<CardProps> = memo(({ data }) => {
 				{data.images.length > 1 && (
 					<span
 						className={cls.bulletWrapper}
+						data-size={size}
 						data-slider-dots={`${data.id}-${saltPagination}`}
 					/>
 				)}

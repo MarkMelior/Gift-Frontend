@@ -22,6 +22,7 @@ export const productData: ProductDataProps[] = [
 				Процессор: 'Qualcomm Snapdragon 685',
 			},
 		},
+		description: 'секрет',
 		markets: [
 			{
 				market: 'ozon',

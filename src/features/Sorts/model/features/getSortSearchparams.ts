@@ -8,8 +8,14 @@ import {
 	SortState,
 } from '../types/sortType';
 
-export const getSortSearchparams = (): SortState => {
-	const searchParams = useSearchParams();
+export const getSortSearchparams = (hook: boolean = true): SortState => {
+	// TODO: FIX THIS TROUBLE
+	let searchParams;
+	if (hook) {
+		searchParams = useSearchParams();
+	} else {
+		searchParams = new URLSearchParams(location.search);
+	}
 
 	const category =
 		(searchParams.get('category')?.split('-') as SortCategory[]) ??

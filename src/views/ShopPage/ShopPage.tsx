@@ -35,7 +35,7 @@ export const ShopPage: FC = () => {
 			const meetsSexCriteria = !sex.some((s) => filter.includes(s));
 			// Проверка соответствия возраста критериям
 			const meetsAgeCriteria = !age.some((a) => filter.includes(a));
-			// Возвращаем true, если продукт соответствует всем критериям, иначе false
+
 			return (
 				meetsPriceCriteria &&
 				meetsCategoryCriteria &&
@@ -77,7 +77,7 @@ export const ShopPage: FC = () => {
 		<>
 			<TopPage
 				compact
-				title='Easy Gift'
+				title='Melior Gift'
 				description='Каждый подарок может быть искусством'
 				note='Лучший выбор в мире'
 				imageContent={

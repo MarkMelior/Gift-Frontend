@@ -1,5 +1,6 @@
 import { userReducer } from '@/entities/User';
 import { loginReducer } from '@/features/Auth';
+import { searchReducer } from '@/features/Search/model/slice/searchSlice';
 import { settingsReducer } from '@/features/Settings';
 import { sortReducer } from '@/features/Sorts';
 import { setLocalstorage } from '@/shared/lib/features';
@@ -11,6 +12,7 @@ export const store = configureStore({
 		settings: settingsReducer,
 		sort: sortReducer,
 		user: userReducer,
+		search: searchReducer,
 		loginForm: loginReducer,
 	},
 	devTools: process.env.NODE_ENV === 'development', // FIX: ReferenceError: IS_DEV is not defined

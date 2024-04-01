@@ -15,7 +15,7 @@ import { ReactNode, Suspense } from 'react';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'Melior Gift: Креативные подарки',
+	title: 'Melior Gift - Креативные подарки',
 	description: 'Описание зверское сайта',
 };
 

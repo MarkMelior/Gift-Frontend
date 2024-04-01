@@ -1,6 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { maxPrice, minPrice } from '../../ui/Sorts';
+import { getSortSearchparams } from '../features/getSortSearchparams';
 import {
 	SortAge,
 	SortCategory,
@@ -9,28 +10,6 @@ import {
 	SortState,
 } from '../types/sortType';
 
-// export const sortInitialState = {
-// 	category: ['joke'],
-// 	sex: ['male', 'female'],
-// 	age: ['adult'],
-// 	sorting: 'popular',
-// 	minPrice,
-// 	maxPrice,
-// };
-
-// const initialState = (): SortState => {
-// 	const { age, category, sex, minPrice, maxPrice, sorting } =
-// 		getSortSearchparams();
-// 	return {
-// 		category: category ?? sortInitialState.category,
-// 		sex: sex ?? sortInitialState.sex,
-// 		age: age ?? sortInitialState.age,
-// 		sorting: sorting ?? sortInitialState.sorting,
-// 		minPrice: minPrice ?? sortInitialState.minPrice,
-// 		maxPrice: maxPrice ?? sortInitialState.maxPrice,
-// 	};
-// };
-
 export const initialState: SortState = {
 	category: ['joke'],
 	sex: ['male'],
@@ -38,12 +17,20 @@ export const initialState: SortState = {
 	sorting: 'popular',
 	minPrice,
 	maxPrice,
-	// category: getSearchparams('category') ?? ['joke'],
-	// sex: getSearchparams('sex') ?? ['male', 'female'],
-	// age: getSearchparams('age') ?? ['adult'],
-	// sorting: getSearchparams('sorting') ?? 'popular',
-	// minPrice: getSearchparams('min') ?? minPrice,
-	// maxPrice: getSearchparams('max') ?? maxPrice,
+};
+
+const sortInitialState = (): SortState => {
+	const { age, category, sex, minPrice, maxPrice, sorting } =
+		getSortSearchparams(false);
+
+	return {
+		category,
+		sex,
+		age,
+		sorting,
+		minPrice,
+		maxPrice,
+	};
 };
 
 const toggleMultiple = (state: string[], action: string) => {
@@ -59,7 +46,7 @@ const toggleMultiple = (state: string[], action: string) => {
 
 export const sortSlice = createSlice({
 	name: 'sort',
-	initialState,
+	initialState: sortInitialState,
 	reducers: {
 		toggleCategory: (state, action: PayloadAction<SortCategory>) => {
 			toggleMultiple(state.category, action.payload);

@@ -13,7 +13,7 @@ const MainPage: FC = () => {
 	return (
 		<>
 			<TopPage
-				title='Easy Gift'
+				title='Melior Gift'
 				description='Каждый подарок может быть искусством'
 				note='Лучший выбор в мире'
 				imageContent={

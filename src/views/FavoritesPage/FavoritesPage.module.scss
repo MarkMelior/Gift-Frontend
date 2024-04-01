@@ -1,3 +1,5 @@
+@import '@/app/styles/utils';
+
 .wrapper {
 	position: static;
 }
@@ -26,5 +28,15 @@
 	h3 {
 		@apply text-xl;
 		@apply font-semibold;
+	}
+}
+
+.stats {
+	user-select: none;
+
+	@apply text-sm;
+
+	h6 {
+		@apply text-base;
 	}
 }

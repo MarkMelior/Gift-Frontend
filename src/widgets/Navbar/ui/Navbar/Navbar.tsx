@@ -7,11 +7,12 @@ import { MediaSize } from '@/shared/const';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Button } from '@/shared/ui/Button';
 import { Logo } from '@/shared/ui/Logo';
-import { Spinner, Tooltip, useDisclosure } from '@nextui-org/react';
+import { Kbd, Spinner, Tooltip, useDisclosure } from '@nextui-org/react';
 import cn from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import type { KeyboardEvent } from 'react';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
 import cls from './Navbar.module.scss';
@@ -26,6 +27,7 @@ export const Navbar = memo(
 	({ className, blackhole, shouldHideOnScroll }: NavbarProps) => {
 		const pathname = usePathname();
 		const isSM = useMediaQuery({ maxWidth: MediaSize.SM });
+		const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
 		const isLG = useMediaQuery({ maxWidth: MediaSize.LG });
 		const [isScrollingDown, setIsScrollingDown] = useState(true);
 		const [prevScrollY, setPrevScrollY] = useState(0);
@@ -55,6 +57,25 @@ export const Navbar = memo(
 
 		const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
+		const handleKeyDown = useCallback(
+			(e: KeyboardEvent) => {
+				if (e.ctrlKey && ['k', 'л'].includes(e.key)) {
+					e.preventDefault();
+					onOpenChange();
+				}
+			},
+			[onOpenChange],
+		);
+
+		useEffect(() => {
+			// @ts-ignore
+			document.addEventListener('keydown', handleKeyDown);
+			return () => {
+				// @ts-ignore
+				document.removeEventListener('keydown', handleKeyDown);
+			};
+		}, [handleKeyDown]);
+
 		const renderInput = useMemo(
 			() => (
 				<>
@@ -64,11 +85,12 @@ export const Navbar = memo(
 						startContent={<SearchIcon width={18} height={18} />}
 					>
 						Поиск
+						{!isMD && <Kbd keys={['ctrl']}>K</Kbd>}
 					</Button>
 					<ModalSearch isOpen={isOpen} onOpenChange={onOpenChange} />
 				</>
 			),
-			[isOpen, onOpen, onOpenChange],
+			[isMD, isOpen, onOpen, onOpenChange],
 		);
 
 		const renderProfile = useMemo(

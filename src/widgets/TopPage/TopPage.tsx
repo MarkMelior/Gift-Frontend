@@ -19,10 +19,19 @@ interface TopPageProps {
 	note?: string;
 	compact?: boolean;
 	imageContent?: ReactNode;
+	onClickNote?: () => void;
 }
 
 export const TopPage: FC<TopPageProps> = memo(
-	({ title, className, description, note, compact, imageContent }) => {
+	({
+		title,
+		className,
+		description,
+		note,
+		compact,
+		imageContent,
+		onClickNote,
+	}) => {
 		// const splineRef = useRef(null);
 
 		// Shadow DOM
@@ -39,8 +48,15 @@ export const TopPage: FC<TopPageProps> = memo(
 		const isOptimization = useSelector(getSettingsOptimization);
 
 		const renderHeading = useMemo(() => {
-			return <Heading title={title} description={description} note={note} />;
-		}, [description, note, title]);
+			return (
+				<Heading
+					title={title}
+					description={description}
+					note={note}
+					onClickNote={onClickNote}
+				/>
+			);
+		}, [description, note, onClickNote, title]);
 
 		return (
 			<section

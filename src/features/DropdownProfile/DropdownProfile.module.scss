@@ -1,7 +1,10 @@
+@import '@/app/styles/utils';
+
 .dropdown {
 	width: 260px;
-	background: var(--bg-noise), var(--color-background);
 	border: 1px solid var(--color-border);
+
+	@include background(1);
 }
 
 .dropdownItem {

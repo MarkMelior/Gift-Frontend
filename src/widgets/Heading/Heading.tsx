@@ -12,6 +12,7 @@ interface HeadingProps {
 	note?: string;
 	center?: boolean;
 	customSize?: number;
+	onClickNote?: () => void;
 }
 
 export const Heading: FC<HeadingProps> = memo(
@@ -23,6 +24,7 @@ export const Heading: FC<HeadingProps> = memo(
 		note,
 		center,
 		customSize,
+		onClickNote,
 	}) => {
 		return (
 			<div className={cn(cls.wrapper, { [cls.center]: center }, className)}>
@@ -30,6 +32,7 @@ export const Heading: FC<HeadingProps> = memo(
 					<Button
 						customVariant='hero'
 						className={cls.note}
+						onClick={onClickNote}
 						startContent={
 							<Image
 								src='/images/icons/stars-heading-colored.svg'

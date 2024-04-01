@@ -8,15 +8,16 @@ import cls from './Cards.module.scss';
 
 export interface CardsProps {
 	data: ProductDataProps[] | false;
+	size?: 'sm' | 'md';
 }
 
-export const Cards: FC<CardsProps> = ({ data }) => {
+export const Cards: FC<CardsProps> = ({ data, size }) => {
 	if (!data) return null;
 
 	return (
-		<div className={cls.wrapper}>
+		<div className={cls.wrapper} data-size={size}>
 			{data.map((cardData) => (
-				<Card key={cardData.id} data={cardData} />
+				<Card size={size} key={cardData.id} data={cardData} />
 			))}
 		</div>
 	);

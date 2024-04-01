@@ -8,7 +8,6 @@ module.exports = {
 		'next/core-web-vitals',
 		'plugin:react/recommended',
 		'plugin:import/recommended',
-		'plugin:storybook/recommended',
 	],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {

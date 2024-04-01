@@ -10,8 +10,6 @@
 	overflow: hidden;
 	box-shadow: 1px 1px 70px #93c4fd27;
 
-	@apply rounded-xl;
-
 	&::before {
 		position: absolute;
 		top: -50%;
@@ -42,8 +40,8 @@
 
 .modal {
 	padding: 20px 5px;
+	border-radius: var(--gift-radius-large);
 
-	@apply rounded-xl;
 	@include background(.98);
 
 	footer {
