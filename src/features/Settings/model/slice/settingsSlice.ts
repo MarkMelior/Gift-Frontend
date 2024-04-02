@@ -5,7 +5,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { SettingsState } from '../..';
 
-export const initialState: SettingsState = {
+export const settingsInitialState: SettingsState = {
 	space:
 		getLocalstorage<SettingsState>(LocalstorageKeys.SETTINGS)?.space ?? false,
 	optimization:
@@ -18,7 +18,7 @@ export const initialState: SettingsState = {
 
 export const settingsSlice = createSlice({
 	name: 'settings',
-	initialState,
+	initialState: settingsInitialState,
 	reducers: {
 		changeCurrency: (state, action: PayloadAction<Currency>) => {
 			state.currency = action.payload;

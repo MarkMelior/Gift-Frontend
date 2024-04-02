@@ -1,3 +1,5 @@
-import { RootState } from '@/app/store/store';
+import { RootState } from '@/app/providers/StoreProvider';
+import { loginInitialState } from '../slice/loginSlice';
 
-export const getLoginState = (state: RootState) => state?.loginForm;
+export const getLoginState = (state: RootState) =>
+	state?.loginForm ?? loginInitialState;

@@ -1,6 +1,9 @@
+'use client';
+
 import { MailIcon } from '@/shared/assets/icon/Mail';
 import { PasswordIcon } from '@/shared/assets/icon/Password';
 import { UserIcon } from '@/shared/assets/icon/User';
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import {
@@ -20,134 +23,138 @@ import { FC, memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLoginState } from '../../model/selector/getLoginState';
 import { loginByUsername } from '../../model/service/loginByUsername';
-import { loginActions } from '../../model/slice/loginSlice';
+import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import cls from './ModalLogin.module.scss';
 
-interface ModalLoginProps {
+export interface ModalLoginProps {
 	isOpen: boolean;
 	onOpenChange: (open: boolean) => void;
 }
 
-export const ModalLogin: FC<ModalLoginProps> = memo(
-	({ isOpen, onOpenChange }) => {
-		const searchParams = useSearchParams();
-		const isRegistration = searchParams.get('state') === 'sign-up';
+const initialReducers: ReducersList = {
+	loginForm: loginReducer,
+};
 
-		const dispatch = useDispatch();
-		const { password, username, error, isLoading } =
-			useSelector(getLoginState) || {};
+const ModalLogin: FC<ModalLoginProps> = memo(({ isOpen, onOpenChange }) => {
+	const searchParams = useSearchParams();
+	const isRegistration = searchParams.get('state') === 'sign-up';
 
-		const onChangeUsername = useCallback(
-			(value: string) => {
-				dispatch(loginActions.setUsername(value));
-			},
-			[dispatch],
-		);
+	const dispatch = useDispatch();
+	const { password, username, error, isLoading } =
+		useSelector(getLoginState) || {};
 
-		const onChangePassword = useCallback(
-			(value: string) => {
-				dispatch(loginActions.setPassword(value));
-			},
-			[dispatch],
-		);
+	const onChangeUsername = useCallback(
+		(value: string) => {
+			dispatch(loginActions.setUsername(value));
+		},
+		[dispatch],
+	);
 
-		const onLoginClick = useCallback(() => {
-			// @ts-ignore
-			dispatch(loginByUsername({ username, password }));
-		}, [dispatch, password, username]);
+	const onChangePassword = useCallback(
+		(value: string) => {
+			dispatch(loginActions.setPassword(value));
+		},
+		[dispatch],
+	);
 
-		const renderLogin = useMemo(() => {
-			return (
-				<Tab
-					as={Link}
-					// @ts-ignore
-					scroll={false}
-					href={'?state=login'}
-					key='login'
-					title='Вход'
-					className={cls.tab}
-				>
-					<form>
-						<Input
-							autoFocus
-							startContent={<MailIcon />}
-							placeholder='Введите логин'
-							variant='bordered'
-							onChange={(e) => {
-								onChangeUsername(e.target.value);
-							}}
-							value={username}
-						/>
-						<Input
-							startContent={<PasswordIcon />}
-							placeholder='Введите пароль'
-							type='password'
-							variant='bordered'
-							onChange={(e) => {
-								onChangePassword(e.target.value);
-							}}
-							value={password}
-						/>
-						<div className='flex py-2 px-1 justify-between'>
-							<Checkbox
-								classNames={{
-									label: 'text-small',
-								}}
-							>
-								Запомните меня
-							</Checkbox>
-							<Button clear disableRipple className={cls.button}>
-								Забыли пароль?
-							</Button>
-						</div>
-					</form>
-				</Tab>
-			);
-		}, [username, password, onChangeUsername, onChangePassword]);
+	const onLoginClick = useCallback(() => {
+		// @ts-ignore
+		dispatch(loginByUsername({ username, password }));
+	}, [dispatch, password, username]);
 
-		const renderRegister = useMemo(() => {
-			return (
-				<Tab
-					as={Link}
-					// @ts-ignore
-					scroll={false}
-					href={'?state=sign-up'}
-					key='sign-up'
-					title='Регистрация'
-					className={cls.tab}
-				>
-					<form>
-						<Input
-							autoFocus
-							startContent={<UserIcon />}
-							placeholder='Придумайте имя'
-							variant='bordered'
-						/>
-						<Input
-							startContent={<MailIcon />}
-							placeholder='Введите Email'
-							variant='bordered'
-						/>
-						<Input
-							startContent={<PasswordIcon />}
-							placeholder='Введите пароль'
-							type='password'
-							variant='bordered'
-						/>
-						<Input
-							startContent={<PasswordIcon />}
-							placeholder='Повторите пароль'
-							type='password'
-							variant='bordered'
-						/>
-					</form>
-				</Tab>
-			);
-		}, []);
-
-		const pathname = usePathname();
-
+	const renderLogin = useMemo(() => {
 		return (
+			<Tab
+				as={Link}
+				// @ts-ignore
+				scroll={false}
+				href={'?state=login'}
+				key='login'
+				title='Вход'
+				className={cls.tab}
+			>
+				<form>
+					<Input
+						autoFocus
+						startContent={<MailIcon />}
+						placeholder='Введите логин'
+						variant='bordered'
+						onChange={(e) => {
+							onChangeUsername(e.target.value);
+						}}
+						value={username}
+					/>
+					<Input
+						startContent={<PasswordIcon />}
+						placeholder='Введите пароль'
+						type='password'
+						variant='bordered'
+						onChange={(e) => {
+							onChangePassword(e.target.value);
+						}}
+						value={password}
+					/>
+					<div className='flex py-2 px-1 justify-between'>
+						<Checkbox
+							classNames={{
+								label: 'text-small',
+							}}
+						>
+							Запомните меня
+						</Checkbox>
+						<Button clear disableRipple className={cls.button}>
+							Забыли пароль?
+						</Button>
+					</div>
+				</form>
+			</Tab>
+		);
+	}, [username, password, onChangeUsername, onChangePassword]);
+
+	const renderRegister = useMemo(() => {
+		return (
+			<Tab
+				as={Link}
+				// @ts-ignore
+				scroll={false}
+				href={'?state=sign-up'}
+				key='sign-up'
+				title='Регистрация'
+				className={cls.tab}
+			>
+				<form>
+					<Input
+						autoFocus
+						startContent={<UserIcon />}
+						placeholder='Придумайте имя'
+						variant='bordered'
+					/>
+					<Input
+						startContent={<MailIcon />}
+						placeholder='Введите Email'
+						variant='bordered'
+					/>
+					<Input
+						startContent={<PasswordIcon />}
+						placeholder='Введите пароль'
+						type='password'
+						variant='bordered'
+					/>
+					<Input
+						startContent={<PasswordIcon />}
+						placeholder='Повторите пароль'
+						type='password'
+						variant='bordered'
+					/>
+				</form>
+			</Tab>
+		);
+	}, []);
+
+	const pathname = usePathname();
+
+	return (
+		<DynamicModuleLoader reducers={initialReducers}>
 			<Modal
 				isOpen={isOpen}
 				onOpenChange={onOpenChange}
@@ -199,6 +206,8 @@ export const ModalLogin: FC<ModalLoginProps> = memo(
 					)}
 				</ModalContent>
 			</Modal>
-		);
-	},
-);
+		</DynamicModuleLoader>
+	);
+});
+
+export default ModalLogin;

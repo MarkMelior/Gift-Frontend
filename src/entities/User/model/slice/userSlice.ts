@@ -6,11 +6,11 @@ import { User, UserState } from '../types/user';
 
 const authData = getLocalstorage<User>(LocalstorageKeys.USER);
 
-const initialState: UserState = { authData };
+export const userInitialState: UserState = { authData };
 
 export const userSlice = createSlice({
 	name: 'user',
-	initialState,
+	initialState: userInitialState,
 	reducers: {
 		setAuthData: (state, action: PayloadAction<User>) => {
 			state.authData = action.payload;

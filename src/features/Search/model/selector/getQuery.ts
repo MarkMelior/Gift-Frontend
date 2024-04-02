@@ -1,3 +1,5 @@
-import { RootState } from '@/app/store/store';
+import { RootState } from '@/app/providers/StoreProvider';
+import { searchInitialState } from '../slice/searchSlice';
 
-export const getQuery = (state: RootState) => state.search.query;
+export const getQuery = (state: RootState) =>
+	state.search?.query ?? searchInitialState.query;

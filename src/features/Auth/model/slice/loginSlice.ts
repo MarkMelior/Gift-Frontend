@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { loginByUsername } from '../..';
 import { LoginState } from '../types/loginState';
 
-const initialState: LoginState = {
+export const loginInitialState: LoginState = {
 	username: '',
 	password: '',
 	isLoading: false,
@@ -11,7 +11,7 @@ const initialState: LoginState = {
 
 export const loginSlice = createSlice({
 	name: 'login',
-	initialState,
+	initialState: loginInitialState,
 	reducers: {
 		setUsername: (state, action: PayloadAction<string>) => {
 			state.username = action.payload;

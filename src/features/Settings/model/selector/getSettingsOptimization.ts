@@ -1,4 +1,4 @@
-import { RootState } from '@/app/store/store';
+import { RootState } from '@/app/providers/StoreProvider';
 
 export const getSettingsOptimization = (state: RootState) =>
 	state.settings.optimization;
