@@ -21,8 +21,8 @@ import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { FC, memo, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLoginState } from '../../model/selector/getLoginState';
-import { loginByUsername } from '../../model/service/loginByUsername';
+import { getLoginState } from '../../model/selector/getLoginState/getLoginState';
+import { loginByUsername } from '../../model/service/loginByUsername/loginByUsername';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import cls from './ModalLogin.module.scss';
 

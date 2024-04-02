@@ -7,7 +7,7 @@ import { categoryButton } from '../model/const/categoryButton';
 import { sexButton } from '../model/const/sexButton';
 import { sortingButton } from '../model/const/sortingButton';
 import { getSortSearchparams } from '../model/features/getSortSearchparams';
-import { getSort } from '../model/selector/getSort';
+import { getSort } from '../model/selector/getSort/getSort';
 import { sortActions } from '../model/slice/sortSlice';
 import {
 	ButtonProps,

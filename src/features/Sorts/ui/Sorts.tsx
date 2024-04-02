@@ -8,7 +8,7 @@ import { Slider } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSort } from '../model/selector/getSort';
+import { getSort } from '../model/selector/getSort/getSort';
 import { sortActions, sortReducer } from '../model/slice/sortSlice';
 import { SortButtons } from './SortButtons';
 import cls from './Sorts.module.scss';

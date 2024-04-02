@@ -16,7 +16,7 @@ import {
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchActions } from '../..';
-import { getQuery } from '../../model/selector/getQuery';
+import { getQuery } from '../../model/selector/getQuery/getQuery';
 import { searchReducer } from '../../model/slice/searchSlice';
 import cls from './ModalSearch.module.scss';
 
