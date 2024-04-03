@@ -1,10 +1,10 @@
 import { Button } from '@/shared/ui/Button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import cls from './NotFoundPage.module.scss';
 
-const NotFoundPage: FC = () => {
+const NotFoundPage: FC = memo(() => {
 	return (
 		<div className={cls.wrapper}>
 			<div className={cls.information}>
@@ -30,6 +30,6 @@ const NotFoundPage: FC = () => {
 			</Link>
 		</div>
 	);
-};
+});
 
 export default NotFoundPage;

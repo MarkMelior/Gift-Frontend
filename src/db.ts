@@ -1,5 +1,5 @@
 // ! IS TEMPORARY DATA FOR TESTING
-import { ProductDataProps } from './shared/types/product';
+import { ProductDataProps } from './entities/Product/model/types/product';
 
 export const productData: ProductDataProps[] = [
 	{

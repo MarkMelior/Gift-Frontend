@@ -1,18 +1,18 @@
 'use client';
 
 import { productData } from '@/db';
+import { Cards } from '@/entities/Product';
 import { Sorts } from '@/features/Sorts';
 import { getSortSearchparams } from '@/features/Sorts/model/features/getSortSearchparams';
 import { Blackhole } from '@/shared/ui/Blackhole';
-import { Cards } from '@/shared/ui/Card';
 import { NavigationPanel } from '@/widgets/NavigationPanel';
 import { TopPage } from '@/widgets/TopPage';
 import { Image } from '@nextui-org/react';
 import cn from 'clsx';
-import { FC, useMemo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import cls from './ShopPage.module.scss';
 
-export const ShopPage: FC = () => {
+export const ShopPage: FC = memo(() => {
 	const { age, category, maxPrice, sex, minPrice, sorting } =
 		getSortSearchparams();
 
@@ -131,4 +131,4 @@ export const ShopPage: FC = () => {
 			</div>
 		</>
 	);
-};
+});

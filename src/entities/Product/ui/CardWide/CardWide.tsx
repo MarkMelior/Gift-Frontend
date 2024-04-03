@@ -1,10 +1,10 @@
 import { convertCurrency } from '@/shared/lib/features';
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { CardProps } from '../Card/Card';
 import cls from './CardWide.module.scss';
 
-export const CardWide: FC<CardProps> = ({ data }) => {
+export const CardWide: FC<CardProps> = memo(({ data }) => {
 	const convertedPrice = convertCurrency(data.markets[0].price);
 	const convertedOldPrice = convertCurrency(data.markets[0].oldPrice);
 
@@ -57,4 +57,4 @@ export const CardWide: FC<CardProps> = ({ data }) => {
 			</div>
 		</div>
 	);
-};
+});

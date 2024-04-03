@@ -1,19 +1,19 @@
 'use client';
 
 import { productData } from '@/db';
+import { Cards } from '@/entities/Product';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { convertIdToProductData, getLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { Button } from '@/shared/ui/Button';
-import { Cards } from '@/shared/ui/Card';
 import { TopPage } from '@/widgets/TopPage';
 import { Image } from '@nextui-org/react';
 import cn from 'clsx';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import cls from './FavoritesPage.module.scss';
 
-export const FavoritesPage: FC = () => {
+export const FavoritesPage: FC = memo(() => {
 	const likedIdData = getLocalstorage<number[]>(LocalstorageKeys.LIKED);
 	const historyIdData = getLocalstorage<number[]>(LocalstorageKeys.HISTORY);
 
@@ -99,4 +99,4 @@ export const FavoritesPage: FC = () => {
 			)}
 		</div>
 	);
-};
+});

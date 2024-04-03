@@ -1,4 +1,5 @@
-import { ProductDataProps } from '@/shared/types/product';
+import { ProductDataProps } from '@/entities/Product/model/types/product';
+import { getRouteProduct } from '@/shared/const';
 import { toKebabCase } from '../toKebabCase/toKebabCase';
 import { toLatin } from '../toLatin/toLatin';
 
@@ -8,5 +9,5 @@ export function filterInvalidURLCharacters(str: string) {
 }
 
 export const productLink = (title: string, id: ProductDataProps['id']) => {
-	return `/product/${filterInvalidURLCharacters(toLatin(toKebabCase(title)))}-${id}`;
+	return `${getRouteProduct(filterInvalidURLCharacters(toLatin(toKebabCase(title))) + '-' + id)}`;
 };

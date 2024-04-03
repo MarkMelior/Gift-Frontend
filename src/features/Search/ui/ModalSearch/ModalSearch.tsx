@@ -1,9 +1,9 @@
 'use client';
 
 import { productData } from '@/db';
+import { Cards } from '@/entities/Product';
 import { SearchIcon } from '@/shared/assets/icon/Search';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
-import { Cards } from '@/shared/ui/Card';
 import { Input } from '@/shared/ui/Input';
 import {
 	Kbd,

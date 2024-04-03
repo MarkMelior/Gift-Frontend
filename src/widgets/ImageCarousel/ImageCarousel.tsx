@@ -1,8 +1,8 @@
 'use client';
 
-import { ProductDataProps } from '@/shared/types/product';
+import { ProductDataProps } from '@/entities/Product/model/types/product';
 import { Button } from '@/shared/ui/Button';
-import { FC, useRef, useState } from 'react';
+import { FC, memo, useRef, useState } from 'react';
 import { Mousewheel, Navigation, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from './ImageCarousel.module.scss';
@@ -11,7 +11,7 @@ interface ImageCarouselProps {
 	product: ProductDataProps;
 }
 
-export const ImageCarousel: FC<ImageCarouselProps> = ({ product }) => {
+export const ImageCarousel: FC<ImageCarouselProps> = memo(({ product }) => {
 	const [thumbsSwiper, setThumbsSwiper] = useState(null);
 	const prevRef = useRef(null);
 	const nextRef = useRef(null);
@@ -77,4 +77,4 @@ export const ImageCarousel: FC<ImageCarouselProps> = ({ product }) => {
 			</Swiper>
 		</div>
 	);
-};
+});

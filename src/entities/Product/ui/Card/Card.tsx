@@ -1,5 +1,6 @@
 'use client';
 
+import { ProductDataProps } from '@/entities/Product/model/types/product';
 import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
@@ -7,7 +8,6 @@ import { Markets, MediaSize } from '@/shared/const';
 import { convertCurrency, productLink } from '@/shared/lib/features';
 import { useLocalstorageArray } from '@/shared/lib/hooks';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
-import { ProductDataProps } from '@/shared/types/product';
 import { Button } from '@/shared/ui/Button';
 import { Tooltip } from '@nextui-org/react';
 import cn from 'clsx';

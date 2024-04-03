@@ -1,7 +1,7 @@
 import { productData } from '@/db';
+import { Cards } from '@/entities/Product';
+import { ProductDataProps } from '@/entities/Product/model/types/product';
 import { Markets } from '@/shared/const';
-import { ProductDataProps } from '@/shared/types/product';
-import { Cards } from '@/shared/ui/Card';
 import { Light } from '@/shared/ui/Light';
 import { Characteristics } from '@/widgets/Characteristics';
 import { ImageCarousel } from '@/widgets/ImageCarousel';
@@ -10,10 +10,10 @@ import { Tooltip } from '@nextui-org/react';
 import { ProductPageProps } from 'app/product/[id]/page';
 import cn from 'clsx';
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import cls from './ProductPage.module.scss';
 
-export const ProductPage: FC<ProductPageProps> = ({ params }) => {
+export const ProductPage: FC<ProductPageProps> = memo(({ params }) => {
 	const productId = Number(params.id.split('-').reverse()[0]);
 	const product: ProductDataProps | undefined = productData.find(
 		(product) => product.id === productId,
@@ -70,4 +70,4 @@ export const ProductPage: FC<ProductPageProps> = ({ params }) => {
 			</section>
 		</div>
 	);
-};
+});

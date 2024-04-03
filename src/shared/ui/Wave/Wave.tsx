@@ -3,7 +3,7 @@
 import { getSettingsOptimization } from '@/features/Settings';
 import { MediaSize } from '@/shared/const';
 import cn from 'clsx';
-import { CSSProperties, FC } from 'react';
+import { CSSProperties, FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './Wave.module.scss';
@@ -13,7 +13,7 @@ interface WaveProps {
 	style?: CSSProperties;
 }
 
-export const Wave: FC<WaveProps> = ({ className, style }) => {
+export const Wave: FC<WaveProps> = memo(({ className, style }) => {
 	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
 	const isOptimization = useSelector(getSettingsOptimization);
 
@@ -33,4 +33,4 @@ export const Wave: FC<WaveProps> = ({ className, style }) => {
 			</div>
 		</div>
 	);
-};
+});

@@ -4,11 +4,11 @@ import { Logo } from '@/shared/ui/Logo';
 import { Wave } from '@/shared/ui/Wave';
 import cn from 'clsx';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import cls from './Footer.module.scss';
 import { Links } from './data';
 
-export const Footer: FC = () => {
+export const Footer: FC = memo(() => {
 	return (
 		<>
 			<Wave />
@@ -31,4 +31,4 @@ export const Footer: FC = () => {
 			</footer>
 		</>
 	);
-};
+});

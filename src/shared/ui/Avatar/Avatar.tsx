@@ -6,12 +6,12 @@ import {
 	useAvatar,
 } from '@nextui-org/react';
 import cn from 'clsx';
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, memo, useMemo } from 'react';
 import cls from './Avatar.module.scss';
 
 export interface AvatarProps extends BaseAvatarProps {}
 
-export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
+const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
 	const {
 		src,
 		icon = <AvatarIcon />,
@@ -95,3 +95,5 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
 		</div>
 	);
 });
+
+export default memo(Avatar);

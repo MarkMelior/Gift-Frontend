@@ -7,10 +7,10 @@ import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import cls from './Ready.module.scss';
 
-export const Ready: FC = () => {
+export const Ready: FC = memo(() => {
 	const { theme } = useTheme();
 
 	return (
@@ -65,4 +65,4 @@ export const Ready: FC = () => {
 			)}
 		</div>
 	);
-};
+});

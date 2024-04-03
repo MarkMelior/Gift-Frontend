@@ -1,5 +1,5 @@
 import { FilterSortProps } from '@/features/Sorts';
-import { Currency } from './localization';
+import { Currency } from '@/shared/types/localization';
 
 export interface ProductDataProps {
 	id: number;

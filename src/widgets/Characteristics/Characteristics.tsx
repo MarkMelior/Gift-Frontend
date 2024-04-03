@@ -1,19 +1,19 @@
 'use client';
 
+import { ProductDataProps } from '@/entities/Product/model/types/product';
 import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { useLocalstorageArray } from '@/shared/lib/hooks';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
-import { ProductDataProps } from '@/shared/types/product';
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
-import { FC, MouseEvent } from 'react';
+import { FC, MouseEvent, memo } from 'react';
 import cls from './Characteristics.module.scss';
 
 interface CharacteristicsProps {
 	product: ProductDataProps;
 }
 
-export const Characteristics: FC<CharacteristicsProps> = ({ product }) => {
+export const Characteristics: FC<CharacteristicsProps> = memo(({ product }) => {
 	const { toggle: toggleFavorite, isAdded: isFavorites } = useLocalstorageArray<
 		ProductDataProps['id']
 	>(LocalstorageKeys.LIKED, product.id);
@@ -69,4 +69,4 @@ export const Characteristics: FC<CharacteristicsProps> = ({ product }) => {
 			</li>
 		</ul>
 	);
-};
+});

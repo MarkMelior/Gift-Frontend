@@ -2,7 +2,7 @@
 
 import cn from 'clsx';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { FC, useRef } from 'react';
 import cls from './SlideHeading.module.scss';
 
 interface SlideHeadingProps {
@@ -10,7 +10,7 @@ interface SlideHeadingProps {
 	className?: string;
 }
 
-export const SlideHeading = ({ text, className }: SlideHeadingProps) => {
+export const SlideHeading: FC<SlideHeadingProps> = ({ text, className }) => {
 	const ref = useRef(null);
 	const { scrollYProgress } = useScroll({
 		target: ref,

@@ -24,6 +24,7 @@ import {
 } from '@nextui-org/react';
 import cn from 'clsx';
 import { useTheme } from 'next-themes';
+import Link from 'next/link';
 import { FC, ReactNode, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
@@ -68,7 +69,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 			>
 				<DropdownTrigger>{children}</DropdownTrigger>
 				<DropdownMenu
-					disabledKeys={['profile']}
+					// disabledKeys={['profile']}
 					variant='faded'
 					aria-label='Dropdown menu with description'
 				>
@@ -152,7 +153,13 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 					</DropdownSection>
 					{authData ? (
 						<DropdownSection title='Аккаунт'>
-							<DropdownItem isReadOnly key='profile' className='opacity-100'>
+							<DropdownItem
+								as={Link}
+								href={`/@${'MarkMelior'}`}
+								key='profile'
+								className='opacity-100'
+								onClick={() => setIsOpen(false)}
+							>
 								<User
 									name='Mark Melior'
 									description='mark.melior@yandex.com'
@@ -165,7 +172,6 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 								key='delete'
 								className='text-danger'
 								color='danger'
-								closeOnSelect
 								onClick={onLogout}
 							>
 								Выйти с аккаунта
@@ -175,7 +181,6 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 						<DropdownSection title='Аккаунт'>
 							<DropdownItem
 								key='login'
-								closeOnSelect
 								onClick={() => {
 									setIsOpen(false);
 									onOpenModal();

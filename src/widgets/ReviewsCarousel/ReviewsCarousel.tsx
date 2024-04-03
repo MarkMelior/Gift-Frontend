@@ -8,14 +8,14 @@ import { User } from '@nextui-org/react';
 import cn from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { Autoplay, FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from './ReviewsCarousel.module.scss';
 
-export const ReviewsCarousel: FC = () => {
+export const ReviewsCarousel: FC = memo(() => {
 	const isSM = useMediaQuery({ maxWidth: MediaSize.SM });
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
 	const isXL = useMediaQuery({ maxWidth: MediaSize.XL });
@@ -114,4 +114,4 @@ export const ReviewsCarousel: FC = () => {
 			</div>
 		</>
 	);
-};
+});

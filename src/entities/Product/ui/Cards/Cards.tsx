@@ -1,7 +1,7 @@
 'use client';
 
-import { ProductDataProps } from '@/shared/types/product';
-import { FC } from 'react';
+import { ProductDataProps } from '@/entities/Product/model/types/product';
+import { FC, memo } from 'react';
 import 'swiper/css/pagination';
 import { Card } from '../Card/Card';
 import cls from './Cards.module.scss';
@@ -11,7 +11,7 @@ export interface CardsProps {
 	size?: 'sm' | 'md';
 }
 
-export const Cards: FC<CardsProps> = ({ data, size }) => {
+export const Cards: FC<CardsProps> = memo(({ data, size }) => {
 	if (!data) return null;
 
 	return (
@@ -21,4 +21,4 @@ export const Cards: FC<CardsProps> = ({ data, size }) => {
 			))}
 		</div>
 	);
-};
+});

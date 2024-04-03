@@ -1,0 +1,32 @@
+.wrapper {
+	height: 100%;
+	opacity: .5;
+	transition: all .3s ease;
+
+	&:hover {
+		opacity: 1;
+	}
+
+	a {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		padding: 0 15px;
+		color: var(--color-main-inverted);
+
+		@media (max-width: theme('screens.lg')) {
+			@apply text-xs;
+		}
+	}
+
+	svg {
+		width: 28px;
+		height: 28px;
+	}
+}
+
+.selected {
+	opacity: 1;
+}

@@ -1,9 +1,12 @@
 'use client';
 
+import { Notification } from '@/entities/Notification';
+import { CheckIcon } from '@/shared/assets/icon/Check';
 import { MailIcon } from '@/shared/assets/icon/Mail';
 import { PasswordIcon } from '@/shared/assets/icon/Password';
 import { UserIcon } from '@/shared/assets/icon/User';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
+import { useAppDispatch } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import {
@@ -19,8 +22,8 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { FC, memo, useCallback, useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { FC, useCallback, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { getLoginState } from '../../model/selector/getLoginState/getLoginState';
 import { loginByUsername } from '../../model/service/loginByUsername/loginByUsername';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
@@ -35,11 +38,11 @@ const initialReducers: ReducersList = {
 	loginForm: loginReducer,
 };
 
-const ModalLogin: FC<ModalLoginProps> = memo(({ isOpen, onOpenChange }) => {
+const ModalLogin: FC<ModalLoginProps> = ({ isOpen, onOpenChange }) => {
 	const searchParams = useSearchParams();
 	const isRegistration = searchParams.get('state') === 'sign-up';
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const { password, username, error, isLoading } =
 		useSelector(getLoginState) || {};
 
@@ -57,16 +60,23 @@ const ModalLogin: FC<ModalLoginProps> = memo(({ isOpen, onOpenChange }) => {
 		[dispatch],
 	);
 
-	const onLoginClick = useCallback(() => {
-		// @ts-ignore
-		dispatch(loginByUsername({ username, password }));
-	}, [dispatch, password, username]);
+	const [showNotification, setShowNotification] = useState(false);
+
+	const onLoginClick = useCallback(async () => {
+		// @ts-ignore fix
+		const result = await dispatch(loginByUsername({ username, password }));
+
+		if (result.meta.requestStatus === 'fulfilled') {
+			onOpenChange(false);
+			setShowNotification(true);
+		}
+	}, [dispatch, onOpenChange, password, username]);
 
 	const renderLogin = useMemo(() => {
 		return (
 			<Tab
 				as={Link}
-				// @ts-ignore
+				// @ts-ignore fix
 				scroll={false}
 				href={'?state=login'}
 				key='login'
@@ -206,8 +216,25 @@ const ModalLogin: FC<ModalLoginProps> = memo(({ isOpen, onOpenChange }) => {
 					)}
 				</ModalContent>
 			</Modal>
+			{showNotification && (
+				<Notification
+					message={`${username}, вы успешно авторизовались!`}
+					duration={5000}
+					placement='top'
+					onClose={() => setShowNotification(false)}
+					closeOnClick
+					startContent={
+						<CheckIcon
+							width={16}
+							height={16}
+							color='hsl(var(--gift-success))'
+							isSelected
+						/>
+					}
+				/>
+			)}
 		</DynamicModuleLoader>
 	);
-});
+};
 
 export default ModalLogin;

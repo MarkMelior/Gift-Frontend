@@ -1,10 +1,10 @@
 import { InfinityIcon } from '@/shared/assets/icon/Infinity';
 import cn from 'clsx';
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import cls from './About.module.scss';
 
-export const About: FC = () => {
+export const About: FC = memo(() => {
 	return (
 		<section className={cn(cls.wrapper, 'content')}>
 			<div className={cls.heading}>
@@ -85,4 +85,4 @@ export const About: FC = () => {
 			</div>
 		</section>
 	);
-};
+});

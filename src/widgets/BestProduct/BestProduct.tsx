@@ -2,14 +2,14 @@
 
 /* eslint-disable indent */
 import { productData } from '@/db';
+import { CardWide } from '@/entities/Product';
 import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/Button';
-import { CardWide } from '@/shared/ui/Card';
 import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import { FC, useRef } from 'react';
+import { FC, memo, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
@@ -18,7 +18,7 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from './BestProduct.module.scss';
 
-export const BestProduct: FC = () => {
+export const BestProduct: FC = memo(() => {
 	const prevRef = useRef(null);
 	const nextRef = useRef(null);
 	const { theme } = useTheme();
@@ -129,4 +129,4 @@ export const BestProduct: FC = () => {
 			</div>
 		</section>
 	);
-};
+});

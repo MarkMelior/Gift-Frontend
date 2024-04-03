@@ -28,7 +28,7 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = ({
 	useEffect(() => {
 		Object.entries(reducers).forEach(([name, reducer]) => {
 			store.reducerManager.add(name as RootStateKey, reducer);
-			dispatch({ type: `@@INIT ${name} reducer` });
+			dispatch({ type: `@INIT ${name} reducer` });
 		});
 
 		return () => {
@@ -36,7 +36,7 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = ({
 				Object.entries(reducers).forEach(([name, reducer]) => {
 					store.reducerManager.remove(name as RootStateKey);
 					dispatch({
-						type: `@@DESTROY ${name} reducer`,
+						type: `@DESTROY ${name} reducer`,
 					});
 				});
 			}

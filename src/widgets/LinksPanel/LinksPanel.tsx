@@ -1,25 +1,28 @@
 'use client';
 
 import { Notification } from '@/entities/Notification';
+import {
+	MarketsProductData,
+	ProductDataProps,
+} from '@/entities/Product/model/types/product';
 import { CheckIcon } from '@/shared/assets/icon/Check';
 import { CopyIcon } from '@/shared/assets/icon/Copy';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
 import { Markets } from '@/shared/const';
 import { convertCurrency } from '@/shared/lib/features';
-import { MarketsProductData, ProductDataProps } from '@/shared/types/product';
 import { Button } from '@/shared/ui/Button';
 import { Tooltip } from '@nextui-org/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import cls from './LinksPanel.module.scss';
 
 interface LinksPanelProps {
 	product: ProductDataProps;
 }
 
-export const LinksPanel: FC<LinksPanelProps> = ({ product }) => {
+export const LinksPanel: FC<LinksPanelProps> = memo(({ product }) => {
 	const [showNotification, setShowNotification] = useState(false);
 
 	const renderLinks = (markets: MarketsProductData) => {
@@ -106,4 +109,4 @@ export const LinksPanel: FC<LinksPanelProps> = ({ product }) => {
 			)}
 		</div>
 	);
-};
+});

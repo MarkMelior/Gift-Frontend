@@ -3,12 +3,12 @@
 import { InputProps as NextInputProps, useInput } from '@nextui-org/react';
 import { CloseFilledIcon } from '@nextui-org/shared-icons';
 import cn from 'clsx';
-import { forwardRef, useMemo } from 'react';
+import { forwardRef, memo, useMemo } from 'react';
 import cls from './Input.module.scss';
 
 export interface InputProps extends NextInputProps {}
 
-export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 	const {
 		Component,
 		label,
@@ -78,3 +78,5 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 		</Component>
 	);
 });
+
+export default memo(Input);

@@ -6,7 +6,7 @@ import { Theme } from '@/shared/types/theme';
 import { PointMaterial, Points } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import cn from 'clsx';
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { Suspense, memo, useEffect, useRef, useState } from 'react';
 // @ts-ignore
 import * as random from 'maath/random/dist/maath-random.esm';
 import { useTheme } from 'next-themes';
@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './SpaceCanvas.module.scss';
 
-const StarBackground = (props: any) => {
+const StarBackground = memo((props: any) => {
 	const ref: any = useRef();
 	const [sphere] = useState(() =>
 		random.inSphere(new Float32Array(5000), { radius: 1.2 }),
@@ -38,9 +38,9 @@ const StarBackground = (props: any) => {
 			</Points>
 		</group>
 	);
-};
+});
 
-export const SpaceCanvas = () => {
+export const SpaceCanvas = memo(() => {
 	const [isVisible, setIsVisible] = useState(true);
 	const { theme } = useTheme();
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
@@ -74,4 +74,4 @@ export const SpaceCanvas = () => {
 			</Canvas>
 		</div>
 	);
-};
+});

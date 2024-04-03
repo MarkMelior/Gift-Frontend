@@ -7,9 +7,9 @@ import { Ready } from '@/widgets/Ready';
 import { ReviewsCarousel } from '@/widgets/ReviewsCarousel';
 import { TopPage } from '@/widgets/TopPage';
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
-const MainPage: FC = () => {
+const MainPage: FC = memo(() => {
 	return (
 		<>
 			<TopPage
@@ -35,6 +35,6 @@ const MainPage: FC = () => {
 			<Ready />
 		</>
 	);
-};
+});
 
 export default MainPage;

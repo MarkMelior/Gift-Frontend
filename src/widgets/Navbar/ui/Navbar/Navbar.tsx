@@ -3,18 +3,17 @@
 import { DropdownProfile } from '@/features/DropdownProfile';
 import { ModalSearch } from '@/features/Search';
 import { SearchIcon } from '@/shared/assets/icon/Search';
-import { MediaSize } from '@/shared/const';
+import { MediaSize, getRouteMain } from '@/shared/const';
 import { Avatar } from '@/shared/ui/Avatar';
 import { Button } from '@/shared/ui/Button';
 import { Logo } from '@/shared/ui/Logo';
 import { Kbd, Spinner, Tooltip, useDisclosure } from '@nextui-org/react';
 import cn from 'clsx';
-import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import type { KeyboardEvent } from 'react';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
+import { NavbarItems } from '../NavbarItems/NavbarItems';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -25,10 +24,8 @@ interface NavbarProps {
 
 export const Navbar = memo(
 	({ className, blackhole, shouldHideOnScroll }: NavbarProps) => {
-		const pathname = usePathname();
 		const isSM = useMediaQuery({ maxWidth: MediaSize.SM });
 		const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
-		const isLG = useMediaQuery({ maxWidth: MediaSize.LG });
 		const [isScrollingDown, setIsScrollingDown] = useState(true);
 		const [prevScrollY, setPrevScrollY] = useState(0);
 
@@ -47,13 +44,6 @@ export const Navbar = memo(
 				window.removeEventListener('scroll', handleScroll);
 			};
 		}, [prevScrollY]);
-
-		const isActive = useCallback(
-			(href: string) => {
-				return pathname === href ? cls.selected : '';
-			},
-			[pathname],
-		);
 
 		const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -106,57 +96,9 @@ export const Navbar = memo(
 			[],
 		);
 
-		const renderLink = useMemo(() => {
-			return (
-				<>
-					<li className={cn(cls.link, isActive('/'))}>
-						<Link href='/'>
-							{isLG && (
-								<Image
-									src='/images/icons/home.svg'
-									alt=''
-									width={28}
-									height={28}
-								/>
-							)}
-							Главная
-						</Link>
-					</li>
-					<li className={cn(cls.link, isActive('/shop/'))}>
-						<Link href='/shop'>
-							{isLG && (
-								<Image
-									src='/images/icons/cart.svg'
-									alt=''
-									width={28}
-									height={28}
-								/>
-							)}
-							Магазин
-						</Link>
-					</li>
-					{/* <MediaQuery maxWidth={MediaSize.SM}> */}
-					<li className={cn(cls.link, isActive('/favorites/'))}>
-						<Link href='/favorites'>
-							{isLG && (
-								<Image
-									src='/images/icons/heart.svg'
-									alt=''
-									width={28}
-									height={28}
-								/>
-							)}
-							Избранное
-						</Link>
-					</li>
-					{/* </MediaQuery> */}
-				</>
-			);
-		}, [isActive, isLG]);
-
 		const renderMobile = () => (
 			<ul className={cls.mobile}>
-				{renderLink}
+				<NavbarItems />
 				<li>{renderProfile}</li>
 			</ul>
 		);
@@ -164,7 +106,7 @@ export const Navbar = memo(
 		const renderDesktop = () => (
 			<>
 				<div className={cls.left}>
-					<Link href='/' className={cls.logo}>
+					<Link href={getRouteMain()} className={cls.logo}>
 						<Logo />
 					</Link>
 					{renderInput}
@@ -180,7 +122,9 @@ export const Navbar = memo(
 						</Tooltip>
 					</MediaQuery>
 				</div>
-				<ul className={cls.center}>{renderLink}</ul>
+				<ul className={cls.center}>
+					<NavbarItems />
+				</ul>
 				<ul className={cls.right}>{renderProfile}</ul>
 			</>
 		);
@@ -194,7 +138,7 @@ export const Navbar = memo(
 					}}
 				>
 					<div className={cn(cls.contentSearch, 'content')}>
-						<Link href='/' className={cls.logo}>
+						<Link href={getRouteMain()} className={cls.logo}>
 							<Logo scale={0.75} />
 						</Link>
 						{renderInput}

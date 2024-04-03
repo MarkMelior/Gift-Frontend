@@ -27,5 +27,32 @@
 			"username": "admin",
 			"password": "123"
 		}
-	]
+	],
+	"reviews": [
+		{
+			"id": 1,
+			"userId": 1,
+			"rating": 5,
+			"comment": "good",
+			"passed": true
+		}
+	],
+	"profile": {
+		"id": 1,
+		"private": false,
+		"email": "mark.melior@yandex.com",
+		"phone": "9834956634",
+		"first": "Mark",
+		"last": "Melior",
+		"age": 19,
+		"currency": "USD",
+		"country": "Russia",
+		"city": "Krasnodar",
+		"username": "MarkMelior",
+		"avatar": "ava.jpg",
+		"sex": "male",
+		"status": "active",
+		"favorites": [1],
+		"history": []
+	}
 }
