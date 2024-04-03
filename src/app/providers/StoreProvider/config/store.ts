@@ -1,11 +1,12 @@
 import { userReducer } from '@/entities/User';
 import { settingsReducer } from '@/features/Settings';
+import { $api } from '@/shared/api/api';
 import type {
 	ReducerFromReducersMapObject,
 	ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
-import { RootState } from './RootState';
+import { RootState, ThunkExtraArg } from './RootState';
 import { createReducerManager } from './reducerManager';
 
 export function createReduxStore(
@@ -20,10 +21,17 @@ export function createReduxStore(
 
 	const reducerManager = createReducerManager(rootReducers);
 
+	const extraArgument: ThunkExtraArg = {
+		api: $api,
+	};
+
 	const store = configureStore<RootState>({
 		reducer: reducerManager.reduce as ReducerFromReducersMapObject<RootState>,
-		devTools: process.env.NODE_ENV === 'development', // FIX: ReferenceError: IS_DEV is not defined
+		devTools: JSON.parse(process.env.IS_DEV),
 		preloadedState: initialState,
+		// @ts-ignore fix
+		middleware: (getDefaultMiddleware) =>
+			getDefaultMiddleware({ thunk: { extraArgument } }),
 	});
 
 	// @ts-ignore

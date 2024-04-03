@@ -10,6 +10,7 @@ import type {
 	ReducersMapObject,
 	UnknownAction,
 } from '@reduxjs/toolkit';
+import type { AxiosInstance } from 'axios';
 
 export interface RootState {
 	settings: SettingsState;
@@ -26,11 +27,21 @@ export type RootStateKey = keyof RootState;
 
 export interface ReducerManager {
 	getReducerMap: () => ReducersMapObject<RootState>;
-	reduce: (state: RootState, action: UnknownAction) => Partial<RootState>;
+	reduce: (state: RootState, action: UnknownAction) => RootState;
 	add: (key: RootStateKey, reducer: Reducer) => void;
 	remove: (key: RootStateKey) => void;
 }
 
 export interface ReduxStoreWithManager extends EnhancedStore<RootState> {
 	reducerManager: ReducerManager;
+}
+
+export interface ThunkExtraArg {
+	api: AxiosInstance;
+}
+
+export interface ThunkConfig<T> {
+	rejectValue: T;
+	extra: ThunkExtraArg;
+	state: RootState;
 }

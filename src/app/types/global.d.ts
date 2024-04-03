@@ -16,9 +16,13 @@ declare module '*.svg' {
 	export default SVG;
 }
 
-declare const IS_DEV: boolean;
-
 type Messages = typeof import('public/locales/ru.json');
 type EnMessages = typeof import('public/locales/en.json');
 
 declare interface IntlMessages extends Messages, EnMessages {}
+
+type DeepPartial<T> = T extends object
+	? {
+			[P in keyof T]?: DeepPartial<T[P]>;
+		}
+	: T;

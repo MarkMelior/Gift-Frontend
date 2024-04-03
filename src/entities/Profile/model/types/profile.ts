@@ -6,7 +6,6 @@ export type ConfidentialityParams = 'private' | 'public' | 'friend';
 
 export interface Profile {
 	id: number;
-	private: boolean;
 	email: string;
 	phone: string;
 	first: string;

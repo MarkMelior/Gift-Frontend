@@ -63,12 +63,13 @@ const ModalLogin: FC<ModalLoginProps> = ({ isOpen, onOpenChange }) => {
 	const [showNotification, setShowNotification] = useState(false);
 
 	const onLoginClick = useCallback(async () => {
-		// @ts-ignore fix
 		const result = await dispatch(loginByUsername({ username, password }));
 
 		if (result.meta.requestStatus === 'fulfilled') {
 			onOpenChange(false);
 			setShowNotification(true);
+			// store.reducerManager.remove('loginForm');
+			// dispatch({ type: `@DESTROY loginForm reducer` });
 		}
 	}, [dispatch, onOpenChange, password, username]);
 
@@ -76,7 +77,7 @@ const ModalLogin: FC<ModalLoginProps> = ({ isOpen, onOpenChange }) => {
 		return (
 			<Tab
 				as={Link}
-				// @ts-ignore fix
+				// @ts-ignore
 				scroll={false}
 				href={'?state=login'}
 				key='login'

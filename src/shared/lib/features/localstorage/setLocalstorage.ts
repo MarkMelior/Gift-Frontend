@@ -4,5 +4,11 @@ export const setLocalstorage = <T = boolean>(
 	key: LocalstorageKeys,
 	value: T,
 ) => {
-	localStorage.setItem(key, JSON.stringify(value));
+	try {
+		if (typeof window !== 'undefined') {
+			localStorage.setItem(key, JSON.stringify(value));
+		}
+	} catch (e) {
+		console.log(e);
+	}
 };

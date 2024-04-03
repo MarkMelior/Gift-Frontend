@@ -192,7 +192,9 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 					)}
 				</DropdownMenu>
 			</Dropdown>
-			<ModalLogin isOpen={isOpenModal} onOpenChange={onOpenChangeModal} />
+			{isOpenModal && (
+				<ModalLogin isOpen={isOpenModal} onOpenChange={onOpenChangeModal} />
+			)}
 		</>
 	);
 };

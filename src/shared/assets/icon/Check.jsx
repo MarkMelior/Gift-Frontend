@@ -20,6 +20,6 @@ export const CheckIcon = ({
 			strokeLinejoin='round'
 			strokeWidth='1.5'
 			style={{ transition: 'stroke-dashoffset 200ms ease 0s' }}
-		></polyline>
+		/>
 	</svg>
 );

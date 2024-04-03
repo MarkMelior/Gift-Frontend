@@ -16,9 +16,6 @@ export default {
 		'\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
 		'^@/(.*)$': '<rootDir>src/$1',
 	},
-	globals: {
-		IS_DEV: true,
-	},
 	transform: {
 		'^.+\\.(t|j)sx?$': [
 			'@swc/jest',

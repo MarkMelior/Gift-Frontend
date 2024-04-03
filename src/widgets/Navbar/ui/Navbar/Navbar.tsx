@@ -77,7 +77,9 @@ export const Navbar = memo(
 						Поиск
 						{!isMD && <Kbd keys={['ctrl']}>K</Kbd>}
 					</Button>
-					<ModalSearch isOpen={isOpen} onOpenChange={onOpenChange} />
+					{isOpen && (
+						<ModalSearch isOpen={isOpen} onOpenChange={onOpenChange} />
+					)}
 				</>
 			),
 			[isMD, isOpen, onOpen, onOpenChange],

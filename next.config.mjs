@@ -7,6 +7,7 @@ const isDev = process.env.NODE_ENV === 'development';
 const nextConfig = {
 	env: {
 		IS_DEV: JSON.stringify(isDev),
+		API: process.env.API,
 	},
 	webpack: (config, options) => {
 		config.module.rules.push(...buildLoaders(isDev));
