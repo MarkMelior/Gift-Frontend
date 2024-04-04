@@ -1,8 +1,4 @@
-import type {
-	Reducer,
-	ReducersMapObject,
-	UnknownAction,
-} from '@reduxjs/toolkit';
+import type { ReducersMapObject } from '@reduxjs/toolkit';
 import { combineReducers } from '@reduxjs/toolkit';
 import { ReducerManager, RootState, RootStateKey } from './RootState';
 
@@ -15,7 +11,7 @@ export function createReducerManager(
 
 	return {
 		getReducerMap: () => reducers,
-		reduce: (state: RootState, action: UnknownAction) => {
+		reduce: (state, action) => {
 			if (keysToRemove.length > 0) {
 				state = { ...state };
 				for (let key of keysToRemove) {
@@ -23,17 +19,16 @@ export function createReducerManager(
 				}
 				keysToRemove = [];
 			}
-			// @ts-ignore fix
 			return combinedReducer(state, action);
 		},
-		add: (key: RootStateKey, reducer: Reducer) => {
+		add: (key, reducer) => {
 			if (!key || reducers[key]) {
 				return;
 			}
 			reducers[key] = reducer;
 			combinedReducer = combineReducers(reducers);
 		},
-		remove: (key: RootStateKey) => {
+		remove: (key) => {
 			if (!key || !reducers[key]) {
 				return;
 			}

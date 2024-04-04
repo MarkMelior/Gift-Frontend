@@ -1,6 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import { default as Button } from './Button';
 
+jest.mock('react-redux', () => ({
+	useDispatch: jest.fn(),
+	useSelector: jest.fn(),
+}));
+
 describe('Button', () => {
 	test('Test render', () => {
 		render(<Button>TEST</Button>);

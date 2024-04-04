@@ -13,7 +13,7 @@ describe('getQuery.test', () => {
 			search: initialState,
 		};
 
-		expect(getQuery(state as RootState)).toEqual(initialState);
+		expect(getQuery(state as RootState)).toEqual(initialState.query);
 	});
 
 	test('should work with empty state', () => {

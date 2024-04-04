@@ -1,10 +1,9 @@
 import { userReducer } from '@/entities/User';
 import { settingsReducer } from '@/features/Settings';
 import { $api } from '@/shared/api/api';
-import type {
-	ReducerFromReducersMapObject,
-	ReducersMapObject,
-} from '@reduxjs/toolkit';
+import { setLocalstorage } from '@/shared/lib/features';
+import { LocalstorageKeys } from '@/shared/types/localstorage';
+import type { ReducersMapObject } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
 import { RootState, ThunkExtraArg } from './RootState';
 import { createReducerManager } from './reducerManager';
@@ -25,13 +24,16 @@ export function createReduxStore(
 		api: $api,
 	};
 
-	const store = configureStore<RootState>({
-		reducer: reducerManager.reduce as ReducerFromReducersMapObject<RootState>,
+	const store = configureStore({
+		reducer: reducerManager.reduce,
 		devTools: JSON.parse(process.env.IS_DEV),
 		preloadedState: initialState,
-		// @ts-ignore fix
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware({ thunk: { extraArgument } }),
+	});
+
+	store.subscribe(() => {
+		setLocalstorage(LocalstorageKeys.SETTINGS, store.getState().settings);
 	});
 
 	// @ts-ignore

@@ -3,7 +3,7 @@ import { LocalstorageKeys } from '@/shared/types/localstorage';
 export const setLocalstorage = <T = boolean>(
 	key: LocalstorageKeys,
 	value: T,
-) => {
+): void => {
 	try {
 		if (typeof window !== 'undefined') {
 			localStorage.setItem(key, JSON.stringify(value));

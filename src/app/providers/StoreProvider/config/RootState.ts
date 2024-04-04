@@ -27,7 +27,7 @@ export type RootStateKey = keyof RootState;
 
 export interface ReducerManager {
 	getReducerMap: () => ReducersMapObject<RootState>;
-	reduce: (state: RootState, action: UnknownAction) => RootState;
+	reduce: (state: any, action: UnknownAction) => RootState;
 	add: (key: RootStateKey, reducer: Reducer) => void;
 	remove: (key: RootStateKey) => void;
 }

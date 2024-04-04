@@ -34,6 +34,14 @@ export const ProfilePage: FC<ProfilePageProps> = memo(({ params }) => {
 		dispatch(fetchProfileData());
 	}, [dispatch]);
 
+	if (isLoading) {
+		return <div>Загрузка идёт!</div>;
+	}
+
+	if (error) {
+		return <div>Ошибка: {error}</div>;
+	}
+
 	return (
 		<DynamicModuleLoader reducers={reducers} removeAfterUnmount>
 			<div className={cn(cls.wrapper, 'content')}>

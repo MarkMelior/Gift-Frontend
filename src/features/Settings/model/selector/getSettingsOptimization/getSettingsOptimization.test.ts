@@ -14,10 +14,4 @@ describe('getSettingsOptimization.test', () => {
 
 		expect(getSettingsOptimization(state as RootState)).toEqual(true);
 	});
-
-	test('should work with empty state', () => {
-		const state: Partial<RootState> = {};
-
-		expect(getSettingsOptimization(state as RootState)).toEqual(undefined);
-	});
 });

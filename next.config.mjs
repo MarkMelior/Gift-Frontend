@@ -9,6 +9,9 @@ const nextConfig = {
 		IS_DEV: JSON.stringify(isDev),
 		API: process.env.API,
 	},
+	compiler: {
+		styledComponents: true,
+	},
 	webpack: (config, options) => {
 		config.module.rules.push(...buildLoaders(isDev));
 		config.plugins.push(...buildPlugins(config, isDev));

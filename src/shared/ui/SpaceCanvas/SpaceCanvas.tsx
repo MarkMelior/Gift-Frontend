@@ -17,7 +17,7 @@ import cls from './SpaceCanvas.module.scss';
 const StarBackground = memo((props: any) => {
 	const ref: any = useRef();
 	const [sphere] = useState(() =>
-		random.inSphere(new Float32Array(5000), { radius: 1.2 }),
+		random.inSphere(new Float32Array(5001), { radius: 1.2 }),
 	);
 
 	useFrame((_, delta) => {
@@ -26,7 +26,7 @@ const StarBackground = memo((props: any) => {
 	});
 
 	return (
-		// eslint-disable-next-line react/no-unknown-property
+		// eslint-disable-next-line
 		<group rotation={[0, 0, 0]}>
 			<Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
 				<PointMaterial

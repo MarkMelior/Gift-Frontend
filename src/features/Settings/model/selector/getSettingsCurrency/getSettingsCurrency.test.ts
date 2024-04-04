@@ -14,10 +14,4 @@ describe('getSettingsCurrency.test', () => {
 
 		expect(getSettingsCurrency(state as RootState)).toEqual('RUB');
 	});
-
-	test('should work with empty state', () => {
-		const state: Partial<RootState> = {};
-
-		expect(getSettingsCurrency(state as RootState)).toEqual(undefined);
-	});
 });

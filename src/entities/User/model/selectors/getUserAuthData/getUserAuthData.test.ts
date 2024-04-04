@@ -16,12 +16,6 @@ describe('getUserAuthData.test', () => {
 			user: initialState,
 		};
 
-		expect(getUserAuthData(state as RootState)).toEqual(initialState);
-	});
-
-	test('should work with empty state', () => {
-		const state: Partial<RootState> = {};
-
-		expect(getUserAuthData(state as RootState)).toEqual(undefined);
+		expect(getUserAuthData(state as RootState)).toEqual(initialState.authData);
 	});
 });

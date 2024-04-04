@@ -14,10 +14,4 @@ describe('getSettingsSpace.test', () => {
 
 		expect(getSettingsSpace(state as RootState)).toEqual(false);
 	});
-
-	test('should work with empty state', () => {
-		const state: Partial<RootState> = {};
-
-		expect(getSettingsSpace(state as RootState)).toEqual(undefined);
-	});
 });

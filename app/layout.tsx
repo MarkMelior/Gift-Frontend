@@ -1,5 +1,4 @@
-import { ClientProviders } from '@/app/providers/ClientProviders';
-import { ServerProviders } from '@/app/providers/ServerProviders';
+import { Providers } from '@/app/providers/Providers';
 import '@/app/styles/index.scss';
 import { Notification } from '@/entities/Notification';
 import { ScrollUp } from '@/features/ScrollUp';
@@ -28,20 +27,18 @@ export default function LocaleLayout({ children }: LocaleLayoutProps) {
 		<html lang='ru'>
 			<body className={inter.className}>
 				<Suspense fallback={<PageLoader />}>
-					<ServerProviders>
-						<ClientProviders>
-							<Navbar />
-							{/* <Light /> */}
-							{children}
-							<Notification
-								message='Добавьте наш сайт в закладки, чтобы не потерять'
-								startContent={<BookmarkIcon opacity={0.5} />}
-							/>
-							<SpaceCanvas />
-							<ScrollUp />
-							<Footer />
-						</ClientProviders>
-					</ServerProviders>
+					<Providers>
+						<Navbar />
+						{/* <Light /> */}
+						{children}
+						<Notification
+							message='Добавьте наш сайт в закладки, чтобы не потерять'
+							startContent={<BookmarkIcon opacity={0.5} />}
+						/>
+						<SpaceCanvas />
+						<ScrollUp />
+						<Footer />
+					</Providers>
 				</Suspense>
 			</body>
 		</html>
