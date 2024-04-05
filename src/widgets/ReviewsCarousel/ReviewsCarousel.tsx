@@ -8,7 +8,7 @@ import { User } from '@nextui-org/react';
 import cn from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, memo } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { Autoplay, FreeMode } from 'swiper/modules';
@@ -57,6 +57,12 @@ export const ReviewsCarousel: FC = memo(() => {
 		);
 	}
 
+	const [isMounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
 	return (
 		<>
 			<SlideHeading className='mt-20' text='Отзывы' />
@@ -101,15 +107,17 @@ export const ReviewsCarousel: FC = memo(() => {
 						className={`${cls.video} noselect`}
 					/>
 				) : (
-					<video
-						autoPlay
-						loop
-						muted
-						playsInline
-						className={cn(cls.video, 'noselect')}
-					>
-						<source src='/videos/encryption.webm' />
-					</video>
+					isMounted && (
+						<video
+							autoPlay
+							loop
+							muted
+							playsInline
+							className={cn(cls.video, 'noselect')}
+						>
+							<source src='/videos/encryption.webm' />
+						</video>
+					)
 				)}
 			</div>
 		</>

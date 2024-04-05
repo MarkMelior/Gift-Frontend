@@ -7,11 +7,16 @@ import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, memo } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 import cls from './Ready.module.scss';
 
 export const Ready: FC = memo(() => {
+	const [isMounted, setMounted] = useState(false);
 	const { theme } = useTheme();
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
 	return (
 		<div className={cn(cls.wrapper, 'content')}>
@@ -43,7 +48,7 @@ export const Ready: FC = memo(() => {
 					Найти подарок
 				</Button>
 			</Link>
-			{theme === 'dark' && (
+			{theme === 'dark' && isMounted && (
 				<motion.div
 					initial={{ opacity: 0 }}
 					whileInView={{ opacity: 1 }}

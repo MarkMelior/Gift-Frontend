@@ -9,7 +9,7 @@ import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import { FC, memo, useRef } from 'react';
+import { FC, memo, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
@@ -51,9 +51,15 @@ export const BestProduct: FC = memo(() => {
 		);
 	}
 
+	const [isMounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
 	return (
 		<section className={cn(cls.wrapper, 'content')}>
-			{theme === 'dark' && (
+			{theme === 'dark' && isMounted && (
 				<motion.div
 					initial={{ opacity: 0 }}
 					whileInView={{ opacity: 1 }}

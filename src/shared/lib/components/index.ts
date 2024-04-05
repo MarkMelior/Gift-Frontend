@@ -1,7 +1,8 @@
+import { Component } from './Component/Component';
 import {
 	DynamicModuleLoader,
 	ReducersList,
 } from './DynamicModuleLoader/DynamicModuleLoader';
 
-export { DynamicModuleLoader };
+export { Component, DynamicModuleLoader };
 export type { ReducersList };

@@ -11,6 +11,7 @@ import {
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
 import { MediaSize } from '@/shared/const';
+import { Component } from '@/shared/lib/components';
 import { Theme } from '@/shared/types/theme';
 import {
 	Dropdown,
@@ -192,9 +193,9 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 					)}
 				</DropdownMenu>
 			</Dropdown>
-			{isOpenModal && (
+			<Component isRender={isOpenModal}>
 				<ModalLogin isOpen={isOpenModal} onOpenChange={onOpenChangeModal} />
-			)}
+			</Component>
 		</>
 	);
 };

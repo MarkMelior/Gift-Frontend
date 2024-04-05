@@ -8,7 +8,7 @@ import cn from 'clsx';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import { FC, memo } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import MediaQuery from 'react-responsive';
 import cls from './Advantages.module.scss';
@@ -16,6 +16,14 @@ import cls from './Advantages.module.scss';
 export const Advantages: FC = memo(() => {
 	const { theme } = useTheme();
 	const isOptimization = useSelector(getSettingsOptimization);
+
+	const [isMounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!isMounted) return;
 
 	return (
 		<section className={cn(cls.wrapper, 'content')}>

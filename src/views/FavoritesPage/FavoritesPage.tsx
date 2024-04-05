@@ -10,7 +10,7 @@ import { TopPage } from '@/widgets/TopPage';
 import { Image } from '@nextui-org/react';
 import cn from 'clsx';
 import Link from 'next/link';
-import { FC, memo } from 'react';
+import { FC, memo, useEffect, useState } from 'react';
 import cls from './FavoritesPage.module.scss';
 
 export const FavoritesPage: FC = memo(() => {
@@ -28,6 +28,14 @@ export const FavoritesPage: FC = memo(() => {
 	// 	(acc, item) => acc + item.markets[0].price,
 	// 	0,
 	// );
+
+	const [isMounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!isMounted) return;
 
 	return (
 		<div className={cn(cls.wrapper, 'content')}>

@@ -6,7 +6,7 @@ import { useLocalstorageArray } from '@/shared/lib/hooks';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { Button } from '@/shared/ui/Button';
 import cn from 'clsx';
-import { FC, MouseEvent, memo } from 'react';
+import { FC, MouseEvent, memo, useEffect, useState } from 'react';
 import cls from './Characteristics.module.scss';
 
 interface CharacteristicsProps {
@@ -17,6 +17,14 @@ export const Characteristics: FC<CharacteristicsProps> = memo(({ product }) => {
 	const { toggle: toggleFavorite, isAdded: isFavorites } = useLocalstorageArray<
 		ProductDataProps['id']
 	>(LocalstorageKeys.LIKED, product.id);
+
+	const [isMounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!isMounted) return;
 
 	return (
 		<ul className={cls.wrapper}>

@@ -77,9 +77,7 @@ export const Navbar = memo(
 						Поиск
 						{!isMD && <Kbd keys={['ctrl']}>K</Kbd>}
 					</Button>
-					{isOpen && (
-						<ModalSearch isOpen={isOpen} onOpenChange={onOpenChange} />
-					)}
+					<ModalSearch isOpen={isOpen} onOpenChange={onOpenChange} />
 				</>
 			),
 			[isMD, isOpen, onOpen, onOpenChange],
@@ -149,14 +147,20 @@ export const Navbar = memo(
 			);
 		};
 
+		const [isMounted, setMounted] = useState(false);
+
+		useEffect(() => {
+			setMounted(true);
+		}, []);
+
 		return (
 			<>
 				<header className={cn(cls.wrapper, className)}>
 					<nav className={cn(cls.content, 'content')}>
-						{isSM ? renderMobile() : renderDesktop()}
+						{isSM && isMounted ? renderMobile() : isMounted && renderDesktop()}
 					</nav>
 				</header>
-				{isSM && renderSearch()}
+				{isSM && isMounted && renderSearch()}
 				<div className={cls.spacer} />
 			</>
 		);

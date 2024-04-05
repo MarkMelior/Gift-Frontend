@@ -10,7 +10,7 @@ import {
 	Spinner,
 	useButton,
 } from '@nextui-org/react';
-import { CSSProperties, forwardRef, memo } from 'react';
+import { CSSProperties, forwardRef, memo, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './Button.module.scss';
@@ -142,6 +142,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 		[cls.selected]: isSelected,
 	};
 
+	const [isMounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
 	return (
 		<button
 			type='button'
@@ -159,7 +165,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 		>
 			{lines && renderLinesItem()}
 			{renderButtonContent()}
-			{!disableRipple && !isOptimization && isMobile && (
+			{!disableRipple && !isOptimization && isMobile && isMounted && (
 				<div className='rippleRoot'>
 					<Ripple {...getRippleProps()} />
 				</div>

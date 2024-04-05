@@ -7,7 +7,7 @@ import { Button } from '@/shared/ui/Button';
 import { Heading } from '@/widgets/Heading';
 import cn from 'clsx';
 import Link from 'next/link';
-import { FC, ReactNode, memo, useMemo } from 'react';
+import { FC, ReactNode, memo, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import MediaQuery from 'react-responsive';
 import cls from './TopPage.module.scss';
@@ -57,6 +57,14 @@ export const TopPage: FC<TopPageProps> = memo(
 				/>
 			);
 		}, [description, note, onClickNote, title]);
+
+		const [isMounted, setMounted] = useState(false);
+
+		useEffect(() => {
+			setMounted(true);
+		}, []);
+
+		if (!isMounted) return;
 
 		return (
 			<section

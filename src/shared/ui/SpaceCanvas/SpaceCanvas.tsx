@@ -61,9 +61,14 @@ export const SpaceCanvas = memo(() => {
 		};
 	}, []);
 
-	if (!isVisible || theme === Theme.LIGHT || isMD || !isSpace) {
+	const [isMounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
+
+	if (!isVisible || theme === Theme.LIGHT || isMD || !isSpace || !isMounted)
 		return null;
-	}
 
 	return (
 		<div className={cn(cls.wrapper, 'noselect')}>
