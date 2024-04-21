@@ -1,3 +1,4 @@
+import { ProductState } from '@/entities/Product';
 import { ProfileState } from '@/entities/Profile';
 import { UserState } from '@/entities/User';
 import { LoginState } from '@/features/Auth';
@@ -21,6 +22,7 @@ export interface RootState {
 	loginForm?: LoginState;
 	search?: SearchState;
 	profile?: ProfileState;
+	product?: ProductState;
 }
 
 export type RootStateKey = keyof RootState;

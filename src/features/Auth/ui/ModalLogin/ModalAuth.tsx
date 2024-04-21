@@ -10,7 +10,6 @@ import { useAppDispatch } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import {
-	Checkbox,
 	Modal,
 	ModalBody,
 	ModalContent,
@@ -25,9 +24,9 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { FC, useCallback, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getLoginState } from '../../model/selector/getLoginState/getLoginState';
-import { loginByUsername } from '../../model/service/loginByUsername/loginByUsername';
+import { loginByEmail } from '../../model/service/loginByEmail/loginByEmail';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
-import cls from './ModalLogin.module.scss';
+import cls from './ModalAuth.module.scss';
 
 export interface ModalLoginProps {
 	isOpen: boolean;
@@ -43,12 +42,12 @@ const ModalLogin: FC<ModalLoginProps> = ({ isOpen, onOpenChange }) => {
 	const isRegistration = searchParams.get('state') === 'sign-up';
 
 	const dispatch = useAppDispatch();
-	const { password, username, error, isLoading } =
+	const { password, email, error, isLoading } =
 		useSelector(getLoginState) || {};
 
 	const onChangeUsername = useCallback(
 		(value: string) => {
-			dispatch(loginActions.setUsername(value));
+			dispatch(loginActions.setEmail(value));
 		},
 		[dispatch],
 	);
@@ -63,7 +62,7 @@ const ModalLogin: FC<ModalLoginProps> = ({ isOpen, onOpenChange }) => {
 	const [showNotification, setShowNotification] = useState(false);
 
 	const onLoginClick = useCallback(async () => {
-		const result = await dispatch(loginByUsername({ username, password }));
+		const result = await dispatch(loginByEmail({ email, password }));
 
 		if (result.meta.requestStatus === 'fulfilled') {
 			onOpenChange(false);
@@ -71,7 +70,7 @@ const ModalLogin: FC<ModalLoginProps> = ({ isOpen, onOpenChange }) => {
 			// store.reducerManager.remove('loginForm');
 			// dispatch({ type: `@DESTROY loginForm reducer` });
 		}
-	}, [dispatch, onOpenChange, password, username]);
+	}, [dispatch, email, onOpenChange, password]);
 
 	const renderLogin = useMemo(() => {
 		return (
@@ -88,12 +87,13 @@ const ModalLogin: FC<ModalLoginProps> = ({ isOpen, onOpenChange }) => {
 					<Input
 						autoFocus
 						startContent={<MailIcon />}
-						placeholder='Введите логин'
+						type='text'
+						placeholder='Введите email'
 						variant='bordered'
 						onChange={(e) => {
 							onChangeUsername(e.target.value);
 						}}
-						value={username}
+						value={email}
 					/>
 					<Input
 						startContent={<PasswordIcon />}
@@ -105,7 +105,7 @@ const ModalLogin: FC<ModalLoginProps> = ({ isOpen, onOpenChange }) => {
 						}}
 						value={password}
 					/>
-					<div className='flex py-2 px-1 justify-between'>
+					{/* <div className='flex py-2 px-1 justify-between'>
 						<Checkbox
 							classNames={{
 								label: 'text-small',
@@ -116,11 +116,11 @@ const ModalLogin: FC<ModalLoginProps> = ({ isOpen, onOpenChange }) => {
 						<Button clear disableRipple className={cls.button}>
 							Забыли пароль?
 						</Button>
-					</div>
+					</div> */}
 				</form>
 			</Tab>
 		);
-	}, [username, password, onChangeUsername, onChangePassword]);
+	}, [email, password, onChangeUsername, onChangePassword]);
 
 	const renderRegister = useMemo(() => {
 		return (
@@ -219,7 +219,7 @@ const ModalLogin: FC<ModalLoginProps> = ({ isOpen, onOpenChange }) => {
 			</Modal>
 			{showNotification && (
 				<Notification
-					message={`${username}, вы успешно авторизовались!`}
+					message={`${email}, вы успешно авторизовались!`}
 					duration={5000}
 					placement='top'
 					onClose={() => setShowNotification(false)}

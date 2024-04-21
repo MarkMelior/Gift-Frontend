@@ -5,7 +5,7 @@ describe('loginSlice.test', () => {
 	test('test set username', () => {
 		const state: Partial<LoginState> = { username: 'Foren' };
 		expect(
-			loginReducer(state as LoginState, loginActions.setUsername('MarkMelior')),
+			loginReducer(state as LoginState, loginActions.setEmail('MarkMelior')),
 		).toEqual({ username: 'MarkMelior' });
 	});
 

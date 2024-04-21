@@ -1,10 +1,10 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { loginByUsername } from '../..';
+import { loginByEmail } from '../service/loginByEmail/loginByEmail';
 import { LoginState } from '../types/loginState';
 
 export const loginInitialState: LoginState = {
-	username: '',
+	email: '',
 	password: '',
 	isLoading: false,
 };
@@ -13,8 +13,8 @@ export const loginSlice = createSlice({
 	name: 'login',
 	initialState: loginInitialState,
 	reducers: {
-		setUsername: (state, action: PayloadAction<string>) => {
-			state.username = action.payload;
+		setEmail: (state, action: PayloadAction<string>) => {
+			state.email = action.payload;
 		},
 		setPassword: (state, action: PayloadAction<string>) => {
 			state.password = action.payload;
@@ -22,14 +22,14 @@ export const loginSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(loginByUsername.pending, (state) => {
+			.addCase(loginByEmail.pending, (state) => {
 				state.error = undefined;
 				state.isLoading = true;
 			})
-			.addCase(loginByUsername.fulfilled, (state, action) => {
+			.addCase(loginByEmail.fulfilled, (state, action) => {
 				state.isLoading = false;
 			})
-			.addCase(loginByUsername.rejected, (state, action) => {
+			.addCase(loginByEmail.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			});

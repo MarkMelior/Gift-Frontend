@@ -1,3 +1,5 @@
+'use client';
+
 import { ShopPage } from '@/views';
 import { FC } from 'react';
 

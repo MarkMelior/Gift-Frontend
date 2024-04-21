@@ -1,12 +1,12 @@
 import { FilterSortProps } from '@/features/Sorts';
 import { Currency } from '@/shared/types/localization';
 
-export interface ProductDataProps {
+export interface Product {
 	id: number;
 	images: string[];
 	title: string;
 	creativity: number;
-	filter: FilterSortProps[];
+	filters: FilterSortProps[];
 	characteristics: Record<string, string[] | Record<string, string>>;
 	markets: MarketsProductData[];
 	description?: string;
@@ -28,3 +28,10 @@ export type MarketType =
 	| 'aliexpress'
 	| 'wildberries'
 	| 'sber';
+
+export interface ProductState {
+	data?: Product[];
+	isLoading: boolean;
+	error?: string;
+	readonly: boolean;
+}

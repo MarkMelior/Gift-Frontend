@@ -3,20 +3,20 @@ import { User, userActions } from '@/entities/User';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-interface LoginByUsernameProps {
-	username: string;
+interface LoginByEmailProps {
+	email: string;
 	password: string;
 }
 
-export const loginByUsername = createAsyncThunk<
+export const loginByEmail = createAsyncThunk<
 	User,
-	LoginByUsernameProps,
+	LoginByEmailProps,
 	ThunkConfig<string>
 >(
-	'login/loginByUsername',
+	'login/loginByEmail',
 	async (authData, { dispatch, extra, rejectWithValue }) => {
 		try {
-			const response = await extra.api.post<User>('/login', authData);
+			const response = await extra.api.post<User>('/auth/login', authData);
 
 			if (!response.data) throw new Error();
 
@@ -28,8 +28,7 @@ export const loginByUsername = createAsyncThunk<
 
 			return response.data;
 		} catch (e) {
-			console.log(e);
-			return rejectWithValue('Вы ввели неверную почту или пароль');
+			return rejectWithValue(e.response.data?.message);
 		}
 	},
 );

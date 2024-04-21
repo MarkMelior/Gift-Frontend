@@ -1,7 +1,7 @@
 // ! IS TEMPORARY DATA FOR TESTING
-import { ProductDataProps } from './entities/Product/model/types/product';
+import { Product } from './entities/Product';
 
-export const productData: ProductDataProps[] = [
+export const productData: Product[] = [
 	{
 		id: 1,
 		images: [
@@ -11,7 +11,7 @@ export const productData: ProductDataProps[] = [
 		],
 		title: 'Ого! Это я недавно такие наушники купил',
 		creativity: 5,
-		filter: ['joke'],
+		filters: ['joke'],
 		characteristics: {
 			Версия: ['global', 'Ростест (EAC)'],
 			Конфигурация: ['4/128 ГБ', '6/128 ГБ', '8/256 ГБ'],
@@ -49,7 +49,7 @@ export const productData: ProductDataProps[] = [
 		images: ['6665452272.webp', '6665452284.webp'],
 		title: 'Невероятный накачанный Максим гигабайт',
 		creativity: 5,
-		filter: ['female', 'love'],
+		filters: ['female', 'love'],
 		characteristics: {
 			'Характеристика 1': ['Значение характеристики 1'],
 		},
@@ -70,7 +70,7 @@ export const productData: ProductDataProps[] = [
 		images: ['600014177060b0.webp'],
 		title: 'Шашлык лютейший без шампура понял?',
 		creativity: 5,
-		filter: ['kid'],
+		filters: ['kid'],
 		characteristics: {
 			'Характеристика 1': ['Значение характеристики 1'],
 		},
@@ -91,7 +91,7 @@ export const productData: ProductDataProps[] = [
 		images: ['100025078688b2.webp'],
 		title: 'Ого! Это я недавно такие наушники купил',
 		creativity: 5,
-		filter: ['year'],
+		filters: ['year'],
 		characteristics: {
 			'Характеристика 1': ['Значение характеристики 1'],
 		},

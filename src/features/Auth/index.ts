@@ -1,7 +1,7 @@
-import { loginByUsername } from './model/service/loginByUsername/loginByUsername';
+import { loginByEmail } from './model/service/loginByEmail/loginByEmail';
 import { loginActions, loginReducer } from './model/slice/loginSlice';
 import { LoginState } from './model/types/loginState';
-import ModalLogin from './ui/ModalLogin/ModalLogin';
+import ModalLogin from './ui/ModalLogin/ModalAuth';
 
-export { ModalLogin, loginActions, loginByUsername, loginReducer };
+export { ModalLogin, loginActions, loginByEmail, loginReducer };
 export type { LoginState };
