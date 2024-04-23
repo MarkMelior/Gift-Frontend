@@ -1,3 +1,3 @@
-import { default as Button } from './Button';
+import { default as Button } from './ui/button';
 
 export { Button };

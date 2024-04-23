@@ -1,1 +1,3 @@
-export { Logo } from './Logo';
+import { Logo } from './ui/logo';
+
+export { Logo };

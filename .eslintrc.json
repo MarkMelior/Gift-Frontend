@@ -1,0 +1,17 @@
+{
+	"extends": "next/core-web-vitals",
+	"rules": {
+		"indent": [2, "tab", { "SwitchCase": 1 }],
+		"react/jsx-indent": [2, "tab"],
+		"react/display-name": "off",
+		"@next/next/no-img-element": "off",
+		"jsx-a11y/alt-text": "off",
+		"react/self-closing-comp": [
+			"error",
+			{
+				"component": true,
+				"html": true
+			}
+		]
+	}
+}

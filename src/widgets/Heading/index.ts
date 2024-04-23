@@ -1,1 +1,3 @@
-export { Heading } from './Heading';
+import { Heading } from './ui/heading';
+
+export { Heading };

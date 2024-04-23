@@ -1,1 +1,3 @@
-export { Wave } from './Wave';
+import { Wave } from './ui/wave';
+
+export { Wave };

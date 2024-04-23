@@ -1,12 +1,12 @@
 import { useSearchParams } from 'next/navigation';
-import { initialState } from '../slice/sortSlice';
+import { initialState } from '../slice/sort.slice';
 import {
 	SortAge,
 	SortCategory,
 	SortSex,
 	SortSorting,
 	SortState,
-} from '../types/sortType';
+} from '../types/sort.type';
 
 export const getSortSearchparams = (hook: boolean = true): SortState => {
 	// TODO: FIX THIS TROUBLE

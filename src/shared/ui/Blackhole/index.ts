@@ -1,1 +1,3 @@
-export { Blackhole } from './Blackhole';
+import { Blackhole } from './ui/blackhole';
+
+export { Blackhole };

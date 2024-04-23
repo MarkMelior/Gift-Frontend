@@ -1,4 +1,4 @@
-import { Currency } from '../../types/localization';
+import { Currency } from '@/shared/types/localization';
 
 export type Rates = {
 	[key in Currency]: number;

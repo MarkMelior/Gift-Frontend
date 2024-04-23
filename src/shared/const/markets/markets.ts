@@ -1,4 +1,4 @@
-import { MarketType } from '@/entities/Product/model/types/product';
+import { MarketType } from '@/entities/products';
 
 interface MarketParams {
 	name: string;

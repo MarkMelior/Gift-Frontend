@@ -1,5 +1,5 @@
 import { Markets } from './markets/markets';
-import { MediaSize } from './mediaSize/mediaSize';
+import { MediaSize } from './media-size/media-size';
 import { Rates, exchangeRates } from './rates/rates';
 import {
 	AppRouteByPathPattern,

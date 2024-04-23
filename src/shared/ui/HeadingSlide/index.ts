@@ -1,1 +1,0 @@
-export { SlideHeading } from './SlideHeading';

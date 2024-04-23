@@ -1,16 +1,16 @@
 'use client';
 
 import { productData } from '@/db';
-import { Button } from '@/shared/ui/Button';
-import { Input } from '@/shared/ui/Input';
+import { Button } from '@/shared/ui/button';
+import { Input } from '@/shared/ui/input';
 import { Slider } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSort } from '../model/selector/getSort/getSort';
-import { sortActions } from '../model/slice/sortSlice';
-import { SortButtons } from './SortButtons';
-import cls from './Sorts.module.scss';
+import { getSort } from '../model/selectors/getSort';
+import { sortActions } from '../model/slice/sort.slice';
+import { SortButtons } from './sort-buttons';
+import cls from './sorts.module.scss';
 
 // export const minPrice = productData
 // 	.map((item) => item.markets[0].price)

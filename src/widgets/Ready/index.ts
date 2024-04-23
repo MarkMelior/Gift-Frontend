@@ -1,1 +1,3 @@
-export { Ready } from './Ready';
+import { Ready } from './ui/ready';
+
+export { Ready };

@@ -1,3 +1,3 @@
-import { Characteristics } from './Characteristics';
+import { Characteristics } from './ui/characteristics';
 
 export { Characteristics };

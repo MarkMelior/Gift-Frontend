@@ -1,16 +1,14 @@
-import { convertCurrency } from './convertCurrency/convertCurrency';
-import { convertIdToProductData } from './convertIdToProductData/convertIdToProductData';
+import { convertCurrency } from './convert-currency/convert-currency';
 import { getLocalstorage } from './localstorage/getLocalstorage';
 import { setLocalstorage } from './localstorage/setLocalstorage';
-import { productLink } from './productLink/productLink';
-import { cn } from './tailwindMerge/tailwindMerge';
-import { toKebabCase } from './toKebabCase/toKebabCase';
-import { toLatin } from './toLatin/toLatin';
+import { productLink } from './product-link/product-link';
+import { cn } from './tailwind-merge/tailwind-merge';
+import { toKebabCase } from './to-kebab-case/to-kebab-case';
+import { toLatin } from './to-latin/to-latin';
 
 export {
 	cn,
 	convertCurrency,
-	convertIdToProductData,
 	getLocalstorage,
 	productLink,
 	setLocalstorage,

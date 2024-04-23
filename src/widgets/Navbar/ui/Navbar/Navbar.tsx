@@ -1,20 +1,20 @@
 'use client';
 
-import { DropdownProfile } from '@/features/DropdownProfile';
-import { ModalSearch } from '@/features/Search';
+import { ModalSearch } from '@/features/search';
 import { SearchIcon } from '@/shared/assets/icon/Search';
 import { MediaSize, getRouteMain } from '@/shared/const';
-import { Avatar } from '@/shared/ui/Avatar';
-import { Button } from '@/shared/ui/Button';
-import { Logo } from '@/shared/ui/Logo';
+import { Avatar } from '@/shared/ui/avatar';
+import { Button } from '@/shared/ui/button';
+import { Logo } from '@/shared/ui/logo';
+import { DropdownProfile } from '@/widgets/dropdown-profile';
 import { Kbd, Spinner, Tooltip, useDisclosure } from '@nextui-org/react';
 import cn from 'clsx';
 import Link from 'next/link';
 import type { KeyboardEvent } from 'react';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
-import { NavbarItems } from '../NavbarItems/NavbarItems';
-import cls from './Navbar.module.scss';
+import { NavbarItems } from '../navbar-items/navbar-items';
+import cls from './navbar.module.scss';
 
 interface NavbarProps {
 	className?: string;
@@ -58,10 +58,10 @@ export const Navbar = memo(
 		);
 
 		useEffect(() => {
-			// @ts-ignore
+			// @ts-ignore fix
 			document.addEventListener('keydown', handleKeyDown);
 			return () => {
-				// @ts-ignore
+				// @ts-ignore fix
 				document.removeEventListener('keydown', handleKeyDown);
 			};
 		}, [handleKeyDown]);

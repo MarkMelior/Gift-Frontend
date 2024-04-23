@@ -1,1 +1,3 @@
-export { Advantages } from './Advantages';
+import { Advantages } from './ui/advantages';
+
+export { Advantages };

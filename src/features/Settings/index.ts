@@ -1,9 +1,12 @@
-import { getSettings } from './model/selector/getSettings/getSettings';
-import { getSettingsCurrency } from './model/selector/getSettingsCurrency/getSettingsCurrency';
-import { getSettingsOptimization } from './model/selector/getSettingsOptimization/getSettingsOptimization';
-import { getSettingsSpace } from './model/selector/getSettingsSpace/getSettingsSpace';
-import { settingsActions, settingsReducer } from './model/slice/settingsSlice';
-import { SettingsState, SettingsStateKey } from './model/types/settingsState';
+import { getSettings } from './model/selectors/getSettings';
+import { getSettingsCurrency } from './model/selectors/getSettingsCurrency';
+import { getSettingsOptimization } from './model/selectors/getSettingsOptimization';
+import { getSettingsSpace } from './model/selectors/getSettingsSpace';
+import { settingsActions, settingsReducer } from './model/slice/settings.slice';
+import {
+	SettingsState,
+	SettingsStateKey,
+} from './model/types/settings-state.type';
 
 export {
 	getSettings,

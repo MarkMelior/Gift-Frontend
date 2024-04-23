@@ -1,3 +1,3 @@
-import { default as Avatar } from './Avatar';
+import { default as Avatar } from './ui/avatar';
 
 export { Avatar };

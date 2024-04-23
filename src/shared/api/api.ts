@@ -1,10 +1,13 @@
+import { AccessToken } from '@/features/Auth';
+import { getLocalstorage } from '@/shared/lib/features';
+import { LocalstorageKeys } from '@/shared/types/localstorage';
 import axios from 'axios';
-import { getLocalstorage } from '../lib/features';
-import { LocalstorageKeys } from '../types/localstorage';
 
 export const $api = axios.create({
 	baseURL: process.env.API,
 	headers: {
-		authorization: getLocalstorage(LocalstorageKeys.USER),
+		Authorization: `Bearer ${
+			getLocalstorage<AccessToken>(LocalstorageKeys.USER)?.access_token
+		}`,
 	},
 });

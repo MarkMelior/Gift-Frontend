@@ -1,1 +1,3 @@
-export { Light } from './Light';
+import { Light } from './ui/light';
+
+export { Light };
