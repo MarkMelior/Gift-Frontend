@@ -33,4 +33,6 @@ export interface UserState {
 	error?: string;
 	readonly: boolean;
 	access_token?: string;
+
+	// _inited: boolean;
 }

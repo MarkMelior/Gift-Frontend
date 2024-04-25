@@ -31,6 +31,7 @@ export type MarketType =
 
 export interface ProductState {
 	data?: Product[];
+	prices: ProductPrices;
 	isLoading: boolean;
 	error?: string;
 	readonly: boolean;
@@ -42,4 +43,10 @@ export interface FindProductDto {
 	filters?: FilterSortProps[];
 	maxPrice?: number;
 	minPrice?: number;
+}
+
+export interface ProductPrices {
+	minPrice: number;
+	maxPrice: number;
+	avgPrice: number;
 }

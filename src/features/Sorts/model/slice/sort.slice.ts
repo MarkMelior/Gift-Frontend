@@ -1,6 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { maxPrice, minPrice } from '../../ui/sorts';
 import { getSortSearchparams } from '../features/getSortSearchparams';
 import {
 	SortAge,
@@ -15,8 +14,8 @@ export const initialState: SortState = {
 	sex: ['male'],
 	age: ['adult'],
 	sorting: 'popular',
-	minPrice,
-	maxPrice,
+	minPrice: 100,
+	maxPrice: 20000,
 };
 
 const sortInitialState = (): SortState => {

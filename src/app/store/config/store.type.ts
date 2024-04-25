@@ -18,18 +18,21 @@ export interface RootState {
 
 	// Async reducers
 	sort?: SortState;
-	loginForm?: LoginState;
 	search?: SearchState;
 	product?: ProductState;
+	loginForm?: LoginState;
+	// registerForm?: RegisterState;
 }
 
 export type RootStateKey = keyof RootState;
+export type MountedReducers = OptionalRecord<RootStateKey, boolean>;
 
 export interface ReducerManager {
 	getReducerMap: () => ReducersMapObject<RootState>;
 	reduce: (state: any, action: UnknownAction) => RootState;
 	add: (key: RootStateKey, reducer: Reducer) => void;
 	remove: (key: RootStateKey) => void;
+	getMountedReducers: () => MountedReducers;
 }
 
 export interface ReduxStoreWithManager extends EnhancedStore<RootState> {

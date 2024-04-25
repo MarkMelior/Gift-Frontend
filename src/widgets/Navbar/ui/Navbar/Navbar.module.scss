@@ -30,17 +30,12 @@
 	}
 }
 
-.content,
-.contentSearch {
+.content {
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	height: 100%;
-}
-
-.contentSearch {
-	gap: 10px;
 }
 
 .spacer {
@@ -49,44 +44,6 @@
 
 	@media (max-width: theme('screens.sm')) {
 		height: var(--navbar-height-search-mobile);
-	}
-}
-
-.logo {
-	&>div {
-		transition: transform .3s ease;
-
-		&:active {
-			transform: scale(0.95);
-		}
-	}
-}
-
-.searchButton {
-	position: relative;
-	justify-content: start !important;
-	width: 155px !important;
-	padding: 6px 12px;
-	background: rgb(var(--color-main-inverted-rgb), .05) !important;
-	border: none !important;
-
-	@apply text-sm;
-
-	@media (max-width: theme('screens.sm')) {
-		width: 100% !important;
-		padding: 10px 12px;
-	}
-
-	kbd {
-		position: absolute;
-		right: 4px;
-		background: rgba(var(--color-main-inverted-rgb), .075);
-
-		@apply text-xs;
-	}
-
-	&:hover {
-		background: rgb(var(--color-main-inverted-rgb), .1) !important;
 	}
 }
 
@@ -133,64 +90,6 @@
 	}
 }
 
-.spinner {
-	i {
-		border-bottom-color: var(--color-main-inverted);
-	}
-}
-
-.left {
-	.logo:not(:last-child) {
-		margin-right: 35px;
-	}
-
-	.searchButton:not(:last-child) {
-		margin-right: 10px;
-	}
-
-	.spinner:not(:last-child) {
-		margin-right: 250px;
-	}
-
-	display: flex;
-	flex: 1;
-	align-items: center;
-	justify-content: left;
-
-	@media (max-width: theme('screens.xl')) {
-		flex: 0;
-	}
-}
-
-.center {
-	display: flex;
-	flex: 0 0 auto;
-	gap: 20px;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-
-	@media (max-width: theme('screens.xl')) {
-		flex: 1;
-	}
-}
-
-.right {
-	display: flex;
-	flex: 1;
-	gap: 25px;
-	align-items: center;
-	justify-content: right;
-
-	@media (max-width: theme('screens.xl')) {
-		flex: 0;
-	}
-
-	@media (max-width: theme('screens.sm')) {
-		max-width: min-content;
-	}
-}
-
 .controlButtons {
 	$opacity-buttons: .2;
 
@@ -226,38 +125,5 @@
 
 	svg *[stroke] {
 		stroke: var(--color-main-inverted);
-	}
-}
-
-.tooltip {
-	background: var(--bg-noise), var(--color-background);
-	border: 1px solid var(--color-border);
-}
-
-.search {
-	position: fixed;
-	z-index: var(--z-index-navbar);
-	width: 100%;
-	height: var(--navbar-height-search-mobile);
-	backdrop-filter: var(--blur-xl);
-	border-bottom: 1px solid var(--color-border);
-	transition: all .3s ease;
-
-	@apply rounded-b-2xl;
-	@include background(.5);
-
-	@media (max-width: theme('screens.md')) {
-		@include background(1);
-	}
-}
-
-.mobile {
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-
-	&>* {
-		display: flex;
-		align-items: center;
 	}
 }

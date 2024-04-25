@@ -1,0 +1,31 @@
+.searchButton {
+	position: relative;
+	justify-content: start !important;
+	width: 155px !important;
+	padding: 6px 12px;
+	background: rgb(var(--color-main-inverted-rgb), .05) !important;
+	border: none !important;
+
+	@apply text-sm;
+
+	@media (max-width: theme('screens.sm')) {
+		width: 100% !important;
+		padding: 10px 12px;
+	}
+
+	kbd {
+		position: absolute;
+		right: 4px;
+		background: rgba(var(--color-main-inverted-rgb), .075);
+
+		@apply text-xs;
+	}
+
+	&:hover {
+		background: rgb(var(--color-main-inverted-rgb), .1) !important;
+	}
+
+	&:not(:last-child) {
+		margin-right: 10px;
+	}
+}

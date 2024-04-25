@@ -6,22 +6,29 @@ import {
 	getProductData,
 	getProductError,
 	getProductIsLoading,
+	productReducer,
 } from '@/entities/products';
-import { getSortSearchparams } from '@/features/sorts/model/features/getSortSearchparams';
+import { sortReducer } from '@/features/sorts';
+import { initialState } from '@/features/sorts/model/slice/sort.slice';
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { FC, memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 interface ShopProductsProps {}
 
-export const ShopProducts: FC<ShopProductsProps> = memo(() => {
-	const { age, category, maxPrice, sex, minPrice, sorting } =
-		getSortSearchparams();
+const initialReducers: ReducersList = {
+	product: productReducer,
+	sort: sortReducer,
+};
 
+export const ShopProducts: FC<ShopProductsProps> = memo(() => {
 	const dispatch = useAppDispatch();
 	const productData = useSelector(getProductData);
 	const isLoading = useSelector(getProductIsLoading);
 	const error = useSelector(getProductError);
+
+	const { age, category, maxPrice, sex, minPrice, sorting } = initialState;
 
 	useEffect(() => {
 		dispatch(
@@ -33,15 +40,16 @@ export const ShopProducts: FC<ShopProductsProps> = memo(() => {
 				sort: sorting,
 			}),
 		);
-	}, [age, category, dispatch, maxPrice, minPrice, sex, sorting]);
-
-	if (isLoading) {
-		return <div>Загрузка идёт!</div>;
-	}
+		// eslint-disable-next-line
+	}, []);
 
 	if (error) {
 		return <div>Ошибка: {error}</div>;
 	}
 
-	return <Cards data={productData} />;
+	return (
+		<DynamicModuleLoader reducers={initialReducers}>
+			<Cards data={productData} isLoading={isLoading} />
+		</DynamicModuleLoader>
+	);
 });

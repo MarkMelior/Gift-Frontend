@@ -23,6 +23,7 @@ export const userSlice = createSlice({
 			state.access_token = action.payload;
 		},
 		logout: (state) => {
+			state.data = undefined;
 			state.access_token = undefined;
 			localStorage.removeItem(LocalstorageKeys.USER);
 		},

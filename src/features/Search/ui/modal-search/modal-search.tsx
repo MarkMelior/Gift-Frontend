@@ -7,6 +7,7 @@ import {
 	DynamicModuleLoader,
 	ReducersList,
 } from '@/shared/lib/components';
+import { useAppDispatch } from '@/shared/lib/hooks';
 import { Input } from '@/shared/ui/input';
 import {
 	Kbd,
@@ -17,7 +18,7 @@ import {
 	Tooltip,
 } from '@nextui-org/react';
 import { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getQuery } from '../../model/selectors/getQuery';
 import { getSearchData } from '../../model/selectors/getSearchData';
 import { searchProduct } from '../../model/service/search-product';
@@ -34,7 +35,7 @@ const initialReducers: ReducersList = {
 };
 
 const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const query = useSelector(getQuery);
 	const searchData = useSelector(getSearchData);
 

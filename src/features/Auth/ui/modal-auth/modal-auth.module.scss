@@ -82,3 +82,9 @@
 .tab {
 	padding: 10px 0;
 }
+
+.error {
+	@apply text-danger-500;
+	@apply font-medium;
+	@apply text-sm;
+}

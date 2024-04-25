@@ -2,23 +2,18 @@ import { ThunkConfig } from '@/app/store';
 import { userActions } from '@/entities/User';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AccessToken, LoginProps } from '../types/auth.type';
+import { AccessToken, RegisterProps } from '../types/auth.type';
 
-export const userLogin = createAsyncThunk<
+export const userRegister = createAsyncThunk<
 	AccessToken,
-	LoginProps,
+	RegisterProps,
 	ThunkConfig<string>
->('user/login', async (authData, { dispatch, extra, rejectWithValue }) => {
+>('user/register', async (authData, { dispatch, extra, rejectWithValue }) => {
 	try {
-		const response = await extra.api.post<AccessToken>('/auth/login', authData);
-
-		// const { remember } = useSelector(getLoginFormData);
-		// if (remember) {
-		// 	localStorage.setItem(
-		// 		LocalstorageKeys.USER,
-		// 		JSON.stringify(response.data),
-		// 	);
-		// }
+		const response = await extra.api.post<AccessToken>(
+			'/auth/register',
+			authData,
+		);
 
 		localStorage.setItem(LocalstorageKeys.USER, JSON.stringify(response.data));
 

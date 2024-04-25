@@ -1,17 +1,17 @@
 'use client';
 
-import { getUserAuthData, userActions } from '@/entities/User';
-import { ModalLogin } from '@/features/Auth';
 import {
-	getSettingsCurrency,
-	getSettingsOptimization,
-	getSettingsSpace,
-	settingsActions,
-} from '@/features/settings';
+	getUserAuthData,
+	getUserData,
+	getUserIsLoading,
+	userActions,
+} from '@/entities/User';
+import { ModalAuth } from '@/features/Auth';
+import { getSettings, settingsActions } from '@/features/settings';
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
 import { MediaSize } from '@/shared/const';
-import { Component } from '@/shared/lib/components';
+import { useAppDispatch } from '@/shared/lib/hooks';
 import { Theme } from '@/shared/types/theme';
 import {
 	Dropdown,
@@ -19,6 +19,7 @@ import {
 	DropdownMenu,
 	DropdownSection,
 	DropdownTrigger,
+	Skeleton,
 	Switch,
 	User,
 	useDisclosure,
@@ -27,7 +28,7 @@ import cn from 'clsx';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { FC, ReactNode, useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './dropdown-profile.module.scss';
 
@@ -38,20 +39,24 @@ interface DropdownProfileProps {
 export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	const { theme, setTheme } = useTheme();
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
+
+	const dispatch = useAppDispatch();
+	const user = useSelector(getUserData);
+	const isLoadingUser = useSelector(getUserIsLoading);
+	const authData = useSelector(getUserAuthData);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+
 	const {
 		isOpen: isOpenModal,
 		onOpen: onOpenModal,
 		onOpenChange: onOpenChangeModal,
 	} = useDisclosure();
-	const [isOpen, setIsOpen] = useState<boolean>(false);
 
-	const dispatch = useDispatch();
-
-	const isOptimization = useSelector(getSettingsOptimization);
-	const isSpace = useSelector(getSettingsSpace);
-	const isUSD = useSelector(getSettingsCurrency);
-
-	const authData = useSelector(getUserAuthData);
+	const {
+		currency: isUSD,
+		optimization: isOptimization,
+		space: isSpace,
+	} = useSelector(getSettings);
 
 	const onLogout = useCallback(() => {
 		dispatch(userActions.logout());
@@ -70,7 +75,6 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 			>
 				<DropdownTrigger>{children}</DropdownTrigger>
 				<DropdownMenu
-					// disabledKeys={['profile']}
 					variant='faded'
 					aria-label='Dropdown menu with description'
 				>
@@ -156,18 +160,30 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 						<DropdownSection title='Аккаунт'>
 							<DropdownItem
 								as={Link}
-								href={`/@${'MarkMelior'}`}
+								href='/profile'
 								key='profile'
 								className='opacity-100'
 								onClick={() => setIsOpen(false)}
 							>
-								<User
-									name='Mark Melior'
-									description='mark.melior@yandex.com'
-									avatarProps={{
-										src: '/images/temp/ava.jpg',
-									}}
-								/>
+								{isLoadingUser ? (
+									<div className='max-w-[300px] w-full flex items-center gap-2'>
+										<div>
+											<Skeleton className='flex rounded-full w-10 h-10' />
+										</div>
+										<div className='w-full flex flex-col gap-2'>
+											<Skeleton className='h-2.5 w-2/5 rounded-lg' />
+											<Skeleton className='h-2.5 w-3/5 rounded-lg' />
+										</div>
+									</div>
+								) : (
+									<User
+										name={user?.username}
+										description={user?.email}
+										avatarProps={{
+											src: user?.avatar,
+										}}
+									/>
+								)}
 							</DropdownItem>
 							<DropdownItem
 								key='delete'
@@ -193,9 +209,8 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 					)}
 				</DropdownMenu>
 			</Dropdown>
-			<Component isRender={isOpenModal}>
-				<ModalLogin isOpen={isOpenModal} onOpenChange={onOpenChangeModal} />
-			</Component>
+
+			<ModalAuth isOpen={isOpenModal} onOpenChange={onOpenChangeModal} />
 		</>
 	);
 };

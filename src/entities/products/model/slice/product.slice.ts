@@ -1,13 +1,19 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchProductData } from '../services/fetch-product-data';
-import { Product, ProductState } from '../types/product.type';
+import { fetchProductPrices } from '../services/fetch-product-prices';
+import { Product, ProductPrices, ProductState } from '../types/product.type';
 
 export const productInitialState: ProductState = {
 	readonly: true,
 	isLoading: false,
 	error: undefined,
 	data: undefined,
+	prices: {
+		minPrice: 0,
+		maxPrice: 50000,
+		avgPrice: 25000,
+	},
 };
 
 export const productSlice = createSlice({
@@ -28,6 +34,21 @@ export const productSlice = createSlice({
 				},
 			)
 			.addCase(fetchProductData.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			.addCase(fetchProductPrices.pending, (state) => {
+				state.error = undefined;
+				state.isLoading = true;
+			})
+			.addCase(
+				fetchProductPrices.fulfilled,
+				(state, action: PayloadAction<ProductPrices>) => {
+					state.isLoading = false;
+					state.prices = action.payload;
+				},
+			)
+			.addCase(fetchProductPrices.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			});
