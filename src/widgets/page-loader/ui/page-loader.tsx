@@ -1,10 +1,15 @@
+import cn from 'clsx';
 import Image from 'next/image';
 import { FC, memo } from 'react';
 import cls from './page-loader.module.scss';
 
-export const PageLoader: FC = memo(() => {
+interface PageLoaderProps {
+	classNames?: string;
+}
+
+export const PageLoader: FC<PageLoaderProps> = memo(({ classNames }) => {
 	return (
-		<section className={cls.pageLoader}>
+		<section className={cn(cls.pageLoader, classNames)}>
 			<div className={cls.loader}>
 				<span className={cls.spinner} />
 				<Image

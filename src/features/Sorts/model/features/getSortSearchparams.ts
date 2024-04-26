@@ -1,4 +1,4 @@
-import { useSearchParams } from 'next/navigation';
+import { ReadonlyURLSearchParams } from 'next/navigation';
 import { initialState } from '../slice/sort.slice';
 import {
 	SortAge,
@@ -8,15 +8,9 @@ import {
 	SortState,
 } from '../types/sort.type';
 
-export const getSortSearchparams = (hook: boolean = true): SortState => {
-	// TODO: FIX THIS TROUBLE
-	let searchParams;
-	if (hook) {
-		searchParams = useSearchParams();
-	} else {
-		searchParams = new URLSearchParams(location.search);
-	}
-
+export const getSortSearchParams = (
+	searchParams: ReadonlyURLSearchParams | URLSearchParams,
+): SortState => {
 	const category =
 		(searchParams.get('category')?.split('-') as SortCategory[]) ??
 		initialState.category;

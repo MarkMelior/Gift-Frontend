@@ -2,7 +2,7 @@ import { FilterSortProps, SortSorting } from '@/features/sorts';
 import { Currency } from '@/shared/types/localization';
 
 export interface Product {
-	id: number;
+	_id: number;
 	images: string[];
 	title: string;
 	creativity: number;
@@ -31,6 +31,7 @@ export type MarketType =
 
 export interface ProductState {
 	data?: Product[];
+	product?: Product;
 	prices: ProductPrices;
 	isLoading: boolean;
 	error?: string;

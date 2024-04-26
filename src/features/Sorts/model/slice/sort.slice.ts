@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { getSortSearchparams } from '../features/getSortSearchparams';
+import { getSortSearchParams } from '../features/getSortSearchParams';
 import {
 	SortAge,
 	SortCategory,
@@ -19,8 +19,10 @@ export const initialState: SortState = {
 };
 
 const sortInitialState = (): SortState => {
+	const searchParams = new URLSearchParams(location.search);
+
 	const { age, category, sex, minPrice, maxPrice, sorting } =
-		getSortSearchparams(false);
+		getSortSearchParams(searchParams);
 
 	return {
 		category,

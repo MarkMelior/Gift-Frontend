@@ -1,5 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchProductById } from '../services/fetch-product-by-id';
 import { fetchProductData } from '../services/fetch-product-data';
 import { fetchProductPrices } from '../services/fetch-product-prices';
 import { Product, ProductPrices, ProductState } from '../types/product.type';
@@ -7,8 +8,6 @@ import { Product, ProductPrices, ProductState } from '../types/product.type';
 export const productInitialState: ProductState = {
 	readonly: true,
 	isLoading: false,
-	error: undefined,
-	data: undefined,
 	prices: {
 		minPrice: 0,
 		maxPrice: 50000,
@@ -22,6 +21,7 @@ export const productSlice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
+			// * fetch product data
 			.addCase(fetchProductData.pending, (state) => {
 				state.error = undefined;
 				state.isLoading = true;
@@ -37,6 +37,7 @@ export const productSlice = createSlice({
 				state.isLoading = false;
 				state.error = action.payload;
 			})
+			// * fetch product prices
 			.addCase(fetchProductPrices.pending, (state) => {
 				state.error = undefined;
 				state.isLoading = true;
@@ -49,6 +50,22 @@ export const productSlice = createSlice({
 				},
 			)
 			.addCase(fetchProductPrices.rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.payload;
+			})
+			// * fetch product by id
+			.addCase(fetchProductById.pending, (state) => {
+				state.error = undefined;
+				state.isLoading = true;
+			})
+			.addCase(
+				fetchProductById.fulfilled,
+				(state, action: PayloadAction<Product>) => {
+					state.isLoading = false;
+					state.product = action.payload;
+				},
+			)
+			.addCase(fetchProductById.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			});

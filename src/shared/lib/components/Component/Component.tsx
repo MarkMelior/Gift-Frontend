@@ -1,8 +1,8 @@
 import { FC, ReactNode, useEffect, useState } from 'react';
 
 interface ComponentProps {
-	isRender: boolean;
 	children: ReactNode;
+	isRender?: boolean;
 	delayOpen?: number;
 	delayClose?: number;
 }

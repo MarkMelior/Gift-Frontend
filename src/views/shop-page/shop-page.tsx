@@ -1,6 +1,14 @@
 'use client';
 
-import { Sorts } from '@/features/sorts';
+import {
+	Cards,
+	getProductData,
+	getProductError,
+	getProductIsLoading,
+	productReducer,
+} from '@/entities/products';
+import { Sorts, sortReducer } from '@/features/sorts';
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
 import { Blackhole } from '@/shared/ui/blackhole';
 import { Button } from '@/shared/ui/button';
 import { NavigationPanel } from '@/widgets/navigation-panel';
@@ -8,12 +16,21 @@ import { TopPage } from '@/widgets/top-page';
 import { Image, Textarea } from '@nextui-org/react';
 import cn from 'clsx';
 import { FC, memo } from 'react';
+import { useSelector } from 'react-redux';
 import cls from './shop-page.module.scss';
-import { ShopProducts } from './shop-products';
+
+const initialReducers: ReducersList = {
+	sort: sortReducer,
+	product: productReducer,
+};
 
 export const ShopPage: FC = memo(() => {
+	const productData = useSelector(getProductData);
+	const isLoading = useSelector(getProductIsLoading);
+	const error = useSelector(getProductError);
+
 	return (
-		<>
+		<DynamicModuleLoader reducers={initialReducers}>
 			<TopPage
 				compact
 				title='Melior Gift'
@@ -65,9 +82,9 @@ export const ShopPage: FC = memo(() => {
 							Найти подарок
 						</Button>
 					</div>
-					<ShopProducts />
+					<Cards data={productData} isLoading={isLoading} error={error} />
 				</div>
 			</div>
-		</>
+		</DynamicModuleLoader>
 	);
 });

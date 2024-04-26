@@ -48,7 +48,7 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 
 	const pagination = {
 		clickable: true,
-		el: `[data-slider-dots="${data.id}-${saltPagination}"]`,
+		el: `[data-slider-dots="${data._id}-${saltPagination}"]`,
 		bulletClass: cls.bullet,
 		bulletActiveClass: cls.bulletActive,
 		renderBullet(_: number, className: string) {
@@ -59,18 +59,18 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 	const images = data.images.slice(0, 5);
 
 	const { toggle: toggleFavorite, isAdded: isFavorites } = useLocalstorageArray<
-		Product['id']
-	>(LocalstorageKeys.LIKED, data.id);
-	const { add: addHistory } = useLocalstorageArray<Product['id']>(
+		Product['_id']
+	>(LocalstorageKeys.LIKED, data._id);
+	const { add: addHistory } = useLocalstorageArray<Product['_id']>(
 		LocalstorageKeys.HISTORY,
-		data.id,
+		data._id,
 	);
 
 	const convertedPrice = convertCurrency(data.markets[0].price);
 	const convertedOldPrice = convertCurrency(data.markets[0].oldPrice);
 
 	return (
-		<Link href={productLink(data.title, data.id)} className={cls.wrapper}>
+		<Link href={productLink(data.title, data._id)} className={cls.wrapper}>
 			<div className={cls.top} data-size={size}>
 				<div className={cls.image} onMouseMove={handleMouseMove}>
 					<Swiper
@@ -149,7 +149,7 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 					<span
 						className={cls.bulletWrapper}
 						data-size={size}
-						data-slider-dots={`${data.id}-${saltPagination}`}
+						data-slider-dots={`${data._id}-${saltPagination}`}
 					/>
 				)}
 			</div>

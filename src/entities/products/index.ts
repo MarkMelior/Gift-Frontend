@@ -1,7 +1,9 @@
+import { getProduct } from './model/selectors/getProduct';
 import { getProductData } from './model/selectors/getProductData';
 import { getProductError } from './model/selectors/getProductError';
 import { getProductIsLoading } from './model/selectors/getProductIsLoading';
 import { getProductPrices } from './model/selectors/getProductPrices';
+import { fetchProductById } from './model/services/fetch-product-by-id';
 import { fetchProductData } from './model/services/fetch-product-data';
 import { productActions, productReducer } from './model/slice/product.slice';
 import {
@@ -19,7 +21,9 @@ export {
 	Card,
 	CardWide,
 	Cards,
+	fetchProductById,
 	fetchProductData,
+	getProduct,
 	getProductData,
 	getProductError,
 	getProductIsLoading,
