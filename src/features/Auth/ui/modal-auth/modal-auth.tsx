@@ -68,7 +68,12 @@ const ModalAuth: FC<ModalAuthProps> = ({ isOpen, onOpenChange }) => {
 											/>
 										</Tab>
 										<Tab key='register' title='Регистрация' className={cls.tab}>
-											<ModalFormRegister />
+											<ModalFormRegister
+												onSubmit={() => {
+													onOpenChange(false);
+													setShowNotification(true);
+												}}
+											/>
 										</Tab>
 									</Tabs>
 								</ModalBody>

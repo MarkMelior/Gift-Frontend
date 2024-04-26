@@ -17,7 +17,7 @@ import {
 	ModalHeader,
 	Tooltip,
 } from '@nextui-org/react';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getQuery } from '../../model/selectors/getQuery';
 import { getSearchData } from '../../model/selectors/getSearchData';
@@ -38,10 +38,14 @@ const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
 	const dispatch = useAppDispatch();
 	const query = useSelector(getQuery);
 	const searchData = useSelector(getSearchData);
+	const [searched, setSearched] = useState(false);
 
 	useEffect(() => {
-		dispatch(searchProduct(query));
-	}, [dispatch, query]);
+		if (isOpen && !searched) {
+			dispatch(searchProduct(query));
+			setSearched(true);
+		}
+	}, [dispatch, isOpen, query, searched]);
 
 	return (
 		<Component isRender={isOpen} delayClose={500}>

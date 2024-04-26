@@ -8,6 +8,17 @@ export interface LoginState {
 	passwordError?: string;
 }
 
+export interface RegisterState {
+	email: string;
+	emailError?: string;
+	username: string;
+	usernameError?: string;
+	password: string;
+	passwordError?: string;
+	isLoading: boolean;
+	error?: string;
+}
+
 export interface AccessToken {
 	access_token: string;
 }

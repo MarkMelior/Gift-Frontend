@@ -15,6 +15,7 @@ import {
 	loginFormActions,
 	loginFormReducer,
 } from '../../model/slice/login-form.slice';
+import { LoginProps } from '../../model/types/auth.type';
 import cls from './modal-auth.module.scss';
 
 interface ModalFormLoginProps {
@@ -30,30 +31,45 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 	const { reducerManager } = useStore() as ReduxStoreWithManager;
 	const formData = useSelector(getLoginFormData);
 
+	const handleFulfilledResult = useCallback(() => {
+		onSubmit();
+		reducerManager.remove('loginForm');
+		reducerManager.remove('registerForm');
+		dispatch({ type: `@DESTROY loginForm and registerForm reducer` });
+	}, [dispatch, onSubmit, reducerManager]);
+
+	const handleRejectedResult = useCallback(
+		(payload: LoginProps) => {
+			if (typeof payload === 'string') {
+				dispatch(loginFormActions.setError(payload));
+			} else {
+				const { login, password } = payload;
+
+				dispatch(loginFormActions.setLoginError(login));
+				dispatch(loginFormActions.setPasswordError(password));
+			}
+		},
+		[dispatch],
+	);
+
 	const handleLogin = useCallback(
 		async (e: FormEvent) => {
 			e.preventDefault();
+			const { login, password } = formData;
 
-			const result = await dispatch(
-				userLogin({ login: formData.login, password: formData.password }),
-			);
+			try {
+				const result = await dispatch(userLogin({ login, password }));
 
-			if (result.meta.requestStatus === 'fulfilled') {
-				onSubmit();
-				reducerManager.remove('loginForm');
-				dispatch({ type: `@DESTROY loginForm reducer` });
-			}
-
-			if (result.meta.requestStatus === 'rejected') {
-				if (typeof result.payload === 'string') {
-					dispatch(loginFormActions.setError(result.payload));
-				} else {
-					dispatch(loginFormActions.setLoginError(result.payload?.login));
-					dispatch(loginFormActions.setPasswordError(result.payload?.password));
+				if (result.meta.requestStatus === 'fulfilled') {
+					handleFulfilledResult();
+				} else if (result.meta.requestStatus === 'rejected') {
+					handleRejectedResult(result.payload);
 				}
+			} catch (error) {
+				console.error('Ошибка при выполнении запроса:', error);
 			}
 		},
-		[dispatch, formData.login, formData.password, onSubmit, reducerManager],
+		[dispatch, formData, handleFulfilledResult, handleRejectedResult],
 	);
 
 	return (
@@ -92,6 +108,7 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 					}}
 				/>
 				<div className='flex py-2 px-1 justify-between'>
+					{/* TODO */}
 					{/* <Checkbox
 						classNames={{
 							label: 'text-small',

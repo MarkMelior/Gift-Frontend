@@ -1,6 +1,10 @@
 import { userLogin } from './model/service/user-login';
-import { AccessToken, LoginState } from './model/types/auth.type';
+import {
+	AccessToken,
+	LoginState,
+	RegisterState,
+} from './model/types/auth.type';
 import ModalAuth from './ui/modal-auth/modal-auth';
 
 export { ModalAuth, userLogin };
-export type { AccessToken, LoginState };
+export type { AccessToken, LoginState, RegisterState };
