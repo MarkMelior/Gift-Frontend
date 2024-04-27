@@ -1,4 +1,8 @@
-import { ProductState } from '@/entities/products';
+import {
+	ProductPricesState,
+	ProductState,
+	ProductsState,
+} from '@/entities/products';
 import { UserState } from '@/entities/user';
 import { LoginState, RegisterState } from '@/features/auth';
 import { SearchState } from '@/features/search';
@@ -20,6 +24,9 @@ export interface RootState {
 	sort?: SortState;
 	search?: SearchState;
 	product?: ProductState;
+	products?: ProductsState;
+	productPrices?: ProductPricesState;
+	productsFavorites?: ProductsState;
 	loginForm?: LoginState;
 	registerForm?: RegisterState;
 }

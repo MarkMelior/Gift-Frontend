@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchProductData, getProductPrices } from '@/entities/products';
+import { fetchProducts, getProductPrices } from '@/entities/products';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
@@ -16,7 +16,7 @@ import cls from './sorts.module.scss';
 export const Sorts: FC = () => {
 	const dispatch = useAppDispatch();
 	const sort = useSelector(getSort);
-	const { minPrice, maxPrice } = useSelector(getProductPrices);
+	const { maxPrice, minPrice } = useSelector(getProductPrices).prices;
 
 	const setMinPrice = useCallback(
 		(value: number) => {
@@ -34,7 +34,7 @@ export const Sorts: FC = () => {
 	// * worked!
 	// const applyFilters = useMemo(() => {
 	// 	const result = dispatch(
-	// 		fetchProductData({
+	// 		fetchProducts({
 	// 			limit: 20,
 	// 			filters: [...sort.category, ...sort.age, ...sort.sex],
 	// 			maxPrice: sort.maxPrice,
@@ -50,9 +50,9 @@ export const Sorts: FC = () => {
 
 	const handleFetch = useCallback(() => {
 		dispatch(
-			fetchProductData({
+			fetchProducts({
 				limit: 20,
-				filters: [...sort.category, ...sort.age, ...sort.sex],
+				filters: [...sort.category, sort.age, sort.sex],
 				maxPrice: sort.maxPrice,
 				minPrice: sort.minPrice,
 				sort: sort.sorting,
@@ -69,10 +69,10 @@ export const Sorts: FC = () => {
 
 	const applyFilters = useCallback(() => {
 		const category = sort.category.join('-');
-		const sex = sort.sex.join('-');
+		const sex = sort.sex;
 		const minPrice = sort.minPrice;
 		const maxPrice = sort.maxPrice;
-		const age = sort.age.join('-');
+		const age = sort.age;
 		const sorting = sort.sorting;
 
 		router.replace(

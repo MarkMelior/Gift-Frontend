@@ -11,8 +11,8 @@ import {
 
 export const initialState: SortState = {
 	category: ['joke'],
-	sex: ['male'],
-	age: ['adult'],
+	sex: 'male',
+	age: 'adult',
 	sorting: 'popular',
 	minPrice: 100,
 	maxPrice: 20000,
@@ -53,10 +53,10 @@ export const sortSlice = createSlice({
 			toggleMultiple(state.category, action.payload);
 		},
 		toggleSex: (state, action: PayloadAction<SortSex>) => {
-			toggleMultiple(state.sex, action.payload);
+			state.sex = action.payload;
 		},
 		toggleAge: (state, action: PayloadAction<SortAge>) => {
-			toggleMultiple(state.age, action.payload);
+			state.age = action.payload;
 		},
 		toggleSorting: (state, action: PayloadAction<SortSorting>) => {
 			state.sorting = action.payload;

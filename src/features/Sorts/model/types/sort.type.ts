@@ -23,8 +23,8 @@ export type SortSorting =
 
 export interface SortButtonsProps {
 	category: SortCategory[];
-	sex: SortSex[];
-	age: SortAge[];
+	sex: SortSex;
+	age: SortAge;
 	sorting: SortSorting;
 }
 

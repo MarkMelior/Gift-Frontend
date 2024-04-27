@@ -1,20 +1,20 @@
-import { Country, Currency } from '@/shared/types/localization';
-
 export type Gender = 'male' | 'female';
 export type Status = 'online' | 'offline' | 'busy' | 'invisible' | 'away';
 export type ConfidentialityParams = 'private' | 'public' | 'friend';
 
+export enum UserRole {
+	ADMIN = 'admin',
+	MANAGER = 'manager',
+}
+
 export interface User {
-	id: number;
+	_id: number;
+	username: string;
 	email: string;
-	phone: string;
+	roles: UserRole[];
 	first: string;
 	last: string;
 	age: number;
-	currency: Currency;
-	country: Country;
-	city: string;
-	username: string;
 	avatar: string;
 	sex?: Gender;
 	favorites: number[];

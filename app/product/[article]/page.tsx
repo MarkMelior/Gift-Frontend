@@ -2,7 +2,7 @@ import { ProductPage } from '@/views';
 import { FC } from 'react';
 
 export interface ProductPageProps {
-	params: { id: string };
+	params: { article: string };
 }
 
 const Product: FC<ProductPageProps> = ({ params }) => {

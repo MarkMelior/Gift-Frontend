@@ -1,18 +1,22 @@
 import { getProduct } from './model/selectors/getProduct';
-import { getProductData } from './model/selectors/getProductData';
-import { getProductError } from './model/selectors/getProductError';
-import { getProductIsLoading } from './model/selectors/getProductIsLoading';
 import { getProductPrices } from './model/selectors/getProductPrices';
-import { fetchProductById } from './model/services/fetch-product-by-id';
-import { fetchProductData } from './model/services/fetch-product-data';
-import { productActions, productReducer } from './model/slice/product.slice';
+import { getProducts } from './model/selectors/getProducts';
+import { getProductsFavorites } from './model/selectors/getProductsFavorites';
+import { fetchFavoritesProducts } from './model/services/fetch-favorites-products';
+import { fetchProductByArticle } from './model/services/fetch-product-by-article';
+import { fetchProducts } from './model/services/fetch-products';
+import { productReducer } from './model/slice/product.slice';
+import { productsFavoritesReducer } from './model/slice/products-favorites.slice';
+import { productsReducer } from './model/slice/products.slice';
+import { ProductPricesState } from './model/types/product-prices.type';
 import {
 	MarketType,
 	MarketsProductData,
 	Product,
-	ProductPrices,
+	ProductCard,
 	ProductState,
 } from './model/types/product.type';
+import { ProductsState } from './model/types/products.type';
 import { CardWide } from './ui/card-wide/card-wide';
 import { Card } from './ui/card/card';
 import { Cards, CardsProps } from './ui/cards/cards';
@@ -21,15 +25,16 @@ export {
 	Card,
 	CardWide,
 	Cards,
-	fetchProductById,
-	fetchProductData,
+	fetchFavoritesProducts,
+	fetchProductByArticle,
+	fetchProducts,
 	getProduct,
-	getProductData,
-	getProductError,
-	getProductIsLoading,
 	getProductPrices,
-	productActions,
+	getProducts,
+	getProductsFavorites,
 	productReducer,
+	productsFavoritesReducer,
+	productsReducer,
 };
 
 export type {
@@ -37,6 +42,8 @@ export type {
 	MarketType,
 	MarketsProductData,
 	Product,
-	ProductPrices,
+	ProductCard,
+	ProductPricesState,
 	ProductState,
+	ProductsState,
 };

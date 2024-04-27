@@ -1,8 +1,9 @@
-import { FilterSortProps, SortSorting } from '@/features/sorts';
+import { FilterSortProps } from '@/features/sorts';
 import { Currency } from '@/shared/types/localization';
 
 export interface Product {
-	_id: number;
+	_id: string;
+	article: string;
 	images: string[];
 	title: string;
 	creativity: number;
@@ -10,6 +11,19 @@ export interface Product {
 	characteristics: Record<string, string[] | Record<string, string>>;
 	markets: MarketsProductData[];
 	description?: string;
+}
+
+export interface ProductState {
+	product?: Product;
+	isLoading: boolean;
+	error?: string;
+}
+
+export interface ProductCard {
+	images: string[];
+	title: string;
+	markets: MarketsProductData[];
+	article: string;
 }
 
 export interface MarketsProductData {
@@ -28,26 +42,3 @@ export type MarketType =
 	| 'aliexpress'
 	| 'wildberries'
 	| 'sber';
-
-export interface ProductState {
-	data?: Product[];
-	product?: Product;
-	prices: ProductPrices;
-	isLoading: boolean;
-	error?: string;
-	readonly: boolean;
-}
-
-export interface FindProductDto {
-	limit: number;
-	sort?: SortSorting;
-	filters?: FilterSortProps[];
-	maxPrice?: number;
-	minPrice?: number;
-}
-
-export interface ProductPrices {
-	minPrice: number;
-	maxPrice: number;
-	avgPrice: number;
-}

@@ -1,12 +1,6 @@
 'use client';
 
-import {
-	Cards,
-	getProductData,
-	getProductError,
-	getProductIsLoading,
-	productReducer,
-} from '@/entities/products';
+import { Cards, getProducts, productsReducer } from '@/entities/products';
 import { Sorts, sortReducer } from '@/features/sorts';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
 import { Blackhole } from '@/shared/ui/blackhole';
@@ -21,13 +15,13 @@ import cls from './shop-page.module.scss';
 
 const initialReducers: ReducersList = {
 	sort: sortReducer,
-	product: productReducer,
+	products: productsReducer,
 };
 
 export const ShopPage: FC = memo(() => {
-	const productData = useSelector(getProductData);
-	const isLoading = useSelector(getProductIsLoading);
-	const error = useSelector(getProductError);
+	const productData = useSelector(getProducts).data;
+	const isLoading = useSelector(getProducts).isLoading;
+	const error = useSelector(getProducts).error;
 
 	return (
 		<DynamicModuleLoader reducers={initialReducers}>

@@ -1,6 +1,6 @@
 import { ThunkConfig } from '@/app/store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ProductPrices } from '../types/product.type';
+import { ProductPrices } from '../types/product-prices.type';
 
 export const fetchProductPrices = createAsyncThunk<
 	ProductPrices,

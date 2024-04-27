@@ -3,13 +3,13 @@
 import { ErrorScreen } from '@/shared/ui/errors';
 import { FC, memo, useEffect, useState } from 'react';
 import 'swiper/css/pagination';
-import { Product } from '../../model/types/product.type';
+import { ProductCard } from '../../model/types/product.type';
 import { Card } from '../card/card';
 import { CardSkeleton } from '../card/card.skeleton';
 import cls from './cards.module.scss';
 
 export interface CardsProps {
-	data: Product[] | undefined;
+	data: ProductCard[] | undefined;
 	isLoading?: boolean;
 	error?: string;
 	skeletonCount?: number;
@@ -47,7 +47,7 @@ export const Cards: FC<CardsProps> = memo(
 					<CardSkeleton />
 				) : (
 					data.map((cardData) => (
-						<Card size={size} key={cardData._id} data={cardData} />
+						<Card size={size} key={cardData.article} data={cardData} />
 					))
 				)}
 			</div>

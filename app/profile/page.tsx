@@ -1,4 +1,4 @@
-import { ProfilePage } from '@/views/ProfilePage';
+import { ProfilePage } from '@/views';
 import { Metadata } from 'next';
 import { FC } from 'react';
 

@@ -8,8 +8,8 @@ export function filterInvalidURLCharacters(str: string) {
 	return str.replace(regex, '');
 }
 
-export const productLink = (title: string, id: Product['id']) => {
+export const productLink = (title: string, article: Product['article']) => {
 	return `${getRouteProduct(
-		filterInvalidURLCharacters(toLatin(toKebabCase(title))) + '-' + id,
+		filterInvalidURLCharacters(toLatin(toKebabCase(title))) + '-' + article,
 	)}`;
 };

@@ -1,10 +1,11 @@
 import { ThunkConfig } from '@/app/store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { FindProductDto, Product } from '../types/product.type';
+import { Product } from '../types/product.type';
+import { FindProductsDto } from '../types/products.type';
 
-export const fetchProductData = createAsyncThunk<
+export const fetchProducts = createAsyncThunk<
 	Product[],
-	FindProductDto,
+	FindProductsDto,
 	ThunkConfig<string>
 >('products/find', async (dto, thunkAPI) => {
 	try {

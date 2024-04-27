@@ -2,11 +2,10 @@
 
 import {
 	Cards,
-	fetchProductById,
-	fetchProductData,
+	fetchProductByArticle,
+	fetchProducts,
 	getProduct,
-	getProductData,
-	getProductIsLoading,
+	getProducts,
 	productReducer,
 } from '@/entities/products';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
@@ -20,7 +19,7 @@ import { Tooltip } from '@nextui-org/react';
 import cn from 'clsx';
 import { FC, memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { ProductPageProps } from '../../../app/product/[id]/page';
+import { ProductPageProps } from '../../../app/product/[article]/page';
 import cls from './product-page.module.scss';
 
 const reducers: ReducersList = {
@@ -28,17 +27,17 @@ const reducers: ReducersList = {
 };
 
 export const ProductPage: FC<ProductPageProps> = memo(({ params }) => {
-	const productId = params.id.split('-').reverse()[0];
+	const productArticle = params.article.split('-').reverse()[0];
 
 	const dispatch = useAppDispatch();
-	const product = useSelector(getProduct);
-	const products = useSelector(getProductData);
-	const isLoading = useSelector(getProductIsLoading);
+	const { product } = useSelector(getProduct);
+	const { data: products } = useSelector(getProducts);
+	const isLoading = useSelector(getProducts).isLoading;
 
 	useEffect(() => {
-		dispatch(fetchProductById(productId));
-		dispatch(fetchProductData({ limit: 10 }));
-	}, [dispatch, productId]);
+		dispatch(fetchProductByArticle(productArticle));
+		dispatch(fetchProducts({ limit: 10 }));
+	}, [dispatch, productArticle]);
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>
