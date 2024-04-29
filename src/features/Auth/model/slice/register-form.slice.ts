@@ -1,13 +1,11 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { userRegister } from '../service/user-register';
 import { RegisterState } from '../types/auth.type';
 
 export const registerFormInitialState: RegisterState = {
 	email: '',
 	username: '',
 	password: '',
-	isLoading: false,
 };
 
 export const registerFormSlice = createSlice({
@@ -35,19 +33,6 @@ export const registerFormSlice = createSlice({
 		setError: (state, action: PayloadAction<string>) => {
 			state.error = action.payload;
 		},
-	},
-	extraReducers: (builder) => {
-		builder
-			.addCase(userRegister.pending, (state) => {
-				state.error = undefined;
-				state.isLoading = true;
-			})
-			.addCase(userRegister.fulfilled, (state, action) => {
-				state.isLoading = false;
-			})
-			.addCase(userRegister.rejected, (state, action) => {
-				state.isLoading = false;
-			});
 	},
 });
 

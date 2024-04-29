@@ -18,7 +18,7 @@ import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
-import { Product, ProductCard } from '../../model/types/product.type';
+import { Product, ProductCard } from '../../model/types/products.type';
 import cls from './card.module.scss';
 
 export interface CardProps {

@@ -1,3 +1,4 @@
+import { AccessRole } from './access-role/access-role';
 import { Markets } from './markets/markets';
 import { MediaSize } from './media-size/media-size';
 import { Rates, exchangeRates } from './rates/rates';
@@ -12,6 +13,7 @@ import {
 } from './router/router';
 
 export {
+	AccessRole,
 	AppRouteByPathPattern,
 	Markets,
 	MediaSize,

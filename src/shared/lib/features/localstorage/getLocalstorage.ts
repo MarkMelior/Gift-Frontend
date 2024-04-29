@@ -9,7 +9,7 @@ export const getLocalstorage = <T = boolean>(
 		const storedSettings = localStorage.getItem(key);
 		return storedSettings ? (JSON.parse(storedSettings) as T) : undefined;
 	} catch (e) {
-		console.log(`Hook getLocalstorage error: ${e}`);
+		console.log(`getLocalstorage error: ${e}`);
 		return undefined;
 	}
 };

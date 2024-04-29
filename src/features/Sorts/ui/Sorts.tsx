@@ -1,22 +1,25 @@
 'use client';
 
-import { fetchProducts, getProductPrices } from '@/entities/products';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { Slider } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { getSort } from '../model/selectors/getSort';
 import { sortActions } from '../model/slice/sort.slice';
 import { SortButtons } from './sort-buttons';
 import cls from './sorts.module.scss';
 
-export const Sorts: FC = () => {
+interface SortsProps {
+	onFetch: () => void;
+}
+
+export const Sorts: FC<SortsProps> = ({ onFetch }) => {
 	const dispatch = useAppDispatch();
 	const sort = useSelector(getSort);
-	const { maxPrice, minPrice } = useSelector(getProductPrices).prices;
+	const { minPrice, maxPrice } = useSelector(getSort);
 
 	const setMinPrice = useCallback(
 		(value: number) => {
@@ -31,41 +34,7 @@ export const Sorts: FC = () => {
 		[dispatch],
 	);
 
-	// * worked!
-	// const applyFilters = useMemo(() => {
-	// 	const result = dispatch(
-	// 		fetchProducts({
-	// 			limit: 20,
-	// 			filters: [...sort.category, ...sort.age, ...sort.sex],
-	// 			maxPrice: sort.maxPrice,
-	// 			minPrice: sort.minPrice,
-	// 			sort: sort.sorting,
-	// 		}),
-	// 	);
-	// 	return () => result;
-	// }, [dispatch, sort]);
-
 	const router = useRouter();
-	const [filtersApplied, setFiltersApplied] = useState(true);
-
-	const handleFetch = useCallback(() => {
-		dispatch(
-			fetchProducts({
-				limit: 20,
-				filters: [...sort.category, sort.age, sort.sex],
-				maxPrice: sort.maxPrice,
-				minPrice: sort.minPrice,
-				sort: sort.sorting,
-			}),
-		);
-	}, [dispatch, sort]);
-
-	useEffect(() => {
-		if (filtersApplied) {
-			handleFetch();
-		}
-		setFiltersApplied(false);
-	}, [filtersApplied, handleFetch]);
 
 	const applyFilters = useCallback(() => {
 		const category = sort.category.join('-');
@@ -80,8 +49,8 @@ export const Sorts: FC = () => {
 			{ scroll: false },
 		);
 
-		handleFetch();
-	}, [sort, router, handleFetch]);
+		onFetch();
+	}, [sort, router, onFetch]);
 
 	return (
 		<div className={cls.wrapper}>

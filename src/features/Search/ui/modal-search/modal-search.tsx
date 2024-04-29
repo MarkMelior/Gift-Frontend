@@ -8,6 +8,7 @@ import {
 	ReducersList,
 } from '@/shared/lib/components';
 import { useAppDispatch } from '@/shared/lib/hooks';
+import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import {
 	Kbd,
@@ -17,11 +18,11 @@ import {
 	ModalHeader,
 	Tooltip,
 } from '@nextui-org/react';
-import { FC, useEffect, useState } from 'react';
+import { FC, FormEvent, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { useGetSearchedProductsQuery } from '../../api/search.api';
 import { getQuery } from '../../model/selectors/getQuery';
-import { getSearchData } from '../../model/selectors/getSearchData';
-import { searchProduct } from '../../model/service/search-product';
+import { getQueryInput } from '../../model/selectors/getQueryInput';
 import { searchActions, searchReducer } from '../../model/slice/search.slice';
 import cls from './modal-search.module.scss';
 
@@ -37,15 +38,19 @@ const initialReducers: ReducersList = {
 const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
 	const dispatch = useAppDispatch();
 	const query = useSelector(getQuery);
-	const searchData = useSelector(getSearchData);
-	const [searched, setSearched] = useState(false);
+	const queryInput = useSelector(getQueryInput);
+	const { data: searchedData, isLoading } = useGetSearchedProductsQuery(query, {
+		skip: !query,
+	});
 
-	useEffect(() => {
-		if (isOpen && !searched) {
-			dispatch(searchProduct(query));
-			setSearched(true);
-		}
-	}, [dispatch, isOpen, query, searched]);
+	const handleSearch = useCallback(
+		(e: FormEvent) => {
+			e.preventDefault();
+
+			dispatch(searchActions.setQuery(queryInput));
+		},
+		[dispatch, queryInput],
+	);
 
 	return (
 		<Component isRender={isOpen} delayClose={500}>
@@ -62,36 +67,46 @@ const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
 					<ModalContent>
 						{(onClose) => (
 							<>
-								<ModalHeader className='flex flex-col gap-1'>
-									<Input
-										placeholder='Поиск'
-										autoFocus
-										variant='bordered'
-										onChange={(e) => {
-											dispatch(searchActions.setQuery(e.target.value));
-										}}
-										value={query}
-										startContent={<SearchIcon />}
-										endContent={
-											<Tooltip
-												closeDelay={0}
-												offset={5}
-												placement='top'
-												showArrow
-												content='Закрыть'
-											>
-												<Kbd
-													className={cls.kbd}
-													onClick={() => onOpenChange(true)}
+								<ModalHeader>
+									<form onSubmit={handleSearch} className={cls.form}>
+										<Input
+											placeholder='Поиск'
+											autoFocus
+											variant='bordered'
+											onChange={(e) => {
+												dispatch(searchActions.setQueryInput(e.target.value));
+											}}
+											value={queryInput}
+											startContent={<SearchIcon />}
+											endContent={
+												<Tooltip
+													closeDelay={0}
+													offset={5}
+													placement='top'
+													showArrow
+													content='Закрыть'
 												>
-													Esc
-												</Kbd>
-											</Tooltip>
-										}
-									/>
+													<Kbd
+														className={cls.kbd}
+														onClick={() => onOpenChange(true)}
+													>
+														Esc
+													</Kbd>
+												</Tooltip>
+											}
+										/>
+										<Button type='submit' className={cls.find}>
+											Найти
+										</Button>
+									</form>
 								</ModalHeader>
 								<ModalBody>
-									<Cards size='sm' data={searchData} />
+									<Cards
+										size='sm'
+										data={searchedData}
+										isLoading={isLoading}
+										skeletonCount={3}
+									/>
 								</ModalBody>
 								{/* <ModalFooter></ModalFooter> */}
 							</>

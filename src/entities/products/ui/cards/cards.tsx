@@ -3,7 +3,7 @@
 import { ErrorScreen } from '@/shared/ui/errors';
 import { FC, memo, useEffect, useState } from 'react';
 import 'swiper/css/pagination';
-import { ProductCard } from '../../model/types/product.type';
+import { ProductCard } from '../../model/types/products.type';
 import { Card } from '../card/card';
 import { CardSkeleton } from '../card/card.skeleton';
 import cls from './cards.module.scss';
@@ -17,7 +17,7 @@ export interface CardsProps {
 }
 
 export const Cards: FC<CardsProps> = memo(
-	({ data, isLoading, error, size }) => {
+	({ data, isLoading, error, size, skeletonCount }) => {
 		const [isTime, setIsTime] = useState(false);
 
 		useEffect(() => {
@@ -44,7 +44,7 @@ export const Cards: FC<CardsProps> = memo(
 		return (
 			<div className={cls.wrapper} data-size={size}>
 				{isLoading || !data ? (
-					<CardSkeleton />
+					<CardSkeleton size={size} skeletonCount={skeletonCount} />
 				) : (
 					data.map((cardData) => (
 						<Card size={size} key={cardData.article} data={cardData} />

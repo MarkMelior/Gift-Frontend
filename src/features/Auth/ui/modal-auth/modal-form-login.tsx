@@ -9,8 +9,8 @@ import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { FC, FormEvent, useCallback } from 'react';
 import { useSelector, useStore } from 'react-redux';
+import { useLoginUserMutation } from '../../api/auth.api';
 import { getLoginFormData } from '../../model/selectors/getLoginFormData';
-import { userLogin } from '../../model/service/user-login';
 import {
 	loginFormActions,
 	loginFormReducer,
@@ -30,6 +30,8 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 	const dispatch = useAppDispatch();
 	const { reducerManager } = useStore() as ReduxStoreWithManager;
 	const formData = useSelector(getLoginFormData);
+
+	const [loginUser] = useLoginUserMutation();
 
 	const handleFulfilledResult = useCallback(() => {
 		onSubmit();
@@ -55,21 +57,16 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 	const handleLogin = useCallback(
 		async (e: FormEvent) => {
 			e.preventDefault();
-			const { login, password } = formData;
 
 			try {
-				const result = await dispatch(userLogin({ login, password }));
-
-				if (result.meta.requestStatus === 'fulfilled') {
-					handleFulfilledResult();
-				} else if (result.meta.requestStatus === 'rejected') {
-					handleRejectedResult(result.payload);
-				}
-			} catch (error) {
-				console.error('Ошибка при выполнении запроса:', error);
+				const { login, password } = formData;
+				await loginUser({ login, password }).unwrap();
+				handleFulfilledResult();
+			} catch (error: any) {
+				handleRejectedResult(error.data.message);
 			}
 		},
-		[dispatch, formData, handleFulfilledResult, handleRejectedResult],
+		[formData, handleFulfilledResult, handleRejectedResult, loginUser],
 	);
 
 	return (

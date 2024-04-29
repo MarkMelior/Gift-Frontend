@@ -1,3 +1,4 @@
+import { AccessToken } from '@/features/auth';
 import { SettingsState } from '@/features/settings';
 import { getLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
@@ -20,6 +21,10 @@ export const StoreProvider: FC<StoreProviderProps> = ({
 }) => {
 	const initialState: DeepPartial<RootState> = {
 		settings: getLocalstorage<SettingsState>(LocalstorageKeys.SETTINGS),
+		user: {
+			access_token: getLocalstorage<AccessToken>(LocalstorageKeys.USER)
+				?.access_token,
+		},
 	};
 
 	const store = createReduxStore(

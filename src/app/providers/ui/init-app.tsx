@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchUserData, getUserAuthData } from '@/entities/user';
+import { getUserAuthData, initAuthData } from '@/entities/user';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { ReactNode, useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -14,7 +14,7 @@ export const InitApp = ({ children }: InitAppProps) => {
 	const isUserLogged = useSelector(getUserAuthData);
 
 	useEffect(() => {
-		if (isUserLogged) dispatch(fetchUserData());
+		if (isUserLogged) dispatch(initAuthData());
 	});
 
 	return <>{children}</>;

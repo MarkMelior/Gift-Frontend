@@ -1,8 +1,6 @@
 import { Providers } from '@/app/providers/ui/providers';
 import '@/app/styles/index.scss';
-import { Notification } from '@/entities/notification';
 import { ScrollUp } from '@/features/scroll-up';
-import { BookmarkIcon } from '@/shared/assets/icon/Bookmark';
 import { SpaceCanvas } from '@/shared/ui/space-canvas';
 import { Footer } from '@/widgets/footer';
 import { Navbar } from '@/widgets/navbar';
@@ -29,12 +27,12 @@ export default function LocaleLayout({ children }: LocaleLayoutProps) {
 				<Suspense fallback={<PageLoader />}>
 					<Providers>
 						<Navbar />
-						{/* <Light /> */}
 						{children}
-						<Notification
+						{/* todo */}
+						{/* <Notification
 							message='Добавьте наш сайт в закладки, чтобы не потерять'
 							startContent={<BookmarkIcon opacity={0.5} />}
-						/>
+						/> */}
 						<SpaceCanvas />
 						<ScrollUp />
 						<Footer />

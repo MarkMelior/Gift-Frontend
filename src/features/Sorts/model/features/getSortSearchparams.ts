@@ -14,16 +14,14 @@ export const getSortSearchParams = (
 	const category =
 		(searchParams.get('category')?.split('-') as SortCategory[]) ??
 		initialState.category;
-	const sex =
-		(searchParams.get('sex')?.split('-') as SortSex[]) ?? initialState.sex;
+	const sex = (searchParams.get('sex') as SortSex) ?? initialState.sex;
 	const minPrice: number = searchParams.get('min')
 		? Number(searchParams.get('min'))
 		: initialState.minPrice;
 	const maxPrice: number = searchParams.get('max')
 		? Number(searchParams.get('max'))
 		: initialState.maxPrice;
-	const age =
-		(searchParams.get('age')?.split('-') as SortAge[]) ?? initialState.age;
+	const age = (searchParams.get('age') as SortAge) ?? initialState.age;
 	const sorting =
 		(searchParams.get('sorting') as SortSorting) ?? initialState.sorting;
 

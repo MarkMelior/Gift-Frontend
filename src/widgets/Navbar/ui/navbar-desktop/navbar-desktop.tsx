@@ -1,11 +1,9 @@
 'use client';
 
-import { MediaSize, getRouteMain } from '@/shared/const';
+import { getRouteMain } from '@/shared/const';
 import { Logo } from '@/shared/ui/logo';
-import { Spinner, Tooltip } from '@nextui-org/react';
 import Link from 'next/link';
 import { FC, memo, useEffect, useState } from 'react';
-import MediaQuery from 'react-responsive';
 import { NavbarInput } from '../navbar-input/navbar-input';
 import { NavbarItems } from '../navbar-items/navbar-items';
 import { NavbarProfile } from '../navbar-profile/navbar-profile';
@@ -26,7 +24,8 @@ export const NavbarDesktop: FC = memo(() => {
 						<Logo />
 					</Link>
 					<NavbarInput />
-					<MediaQuery minWidth={MediaSize.SM}>
+					{/* todo: loading navbar */}
+					{/* <MediaQuery minWidth={MediaSize.SM}>
 						<Tooltip
 							offset={15}
 							closeDelay={0}
@@ -36,7 +35,7 @@ export const NavbarDesktop: FC = memo(() => {
 						>
 							<Spinner size='sm' className={cls.spinner} />
 						</Tooltip>
-					</MediaQuery>
+					</MediaQuery> */}
 				</div>
 				<ul className={cls.center}>
 					<NavbarItems />

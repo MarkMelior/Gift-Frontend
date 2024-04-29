@@ -10,3 +10,20 @@
 .kbd {
 	cursor: pointer;
 }
+
+.form {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	width: 100%;
+}
+
+.find {
+	height: 100%;
+	padding: 0 20px;
+	color: white !important;
+	background: hsl(var(--gift-primary)) !important;
+
+	@apply font-normal;
+	@apply text-sm;
+}

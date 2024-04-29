@@ -16,7 +16,7 @@ export default function useLocalStorage<T>(
 				setValue(JSON.parse(item));
 			}
 		} catch (e) {
-			console.log(e);
+			console.log('useLocalStorage error:', e);
 		}
 		return () => {
 			isMounted.current = false;

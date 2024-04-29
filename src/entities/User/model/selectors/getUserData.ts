@@ -1,3 +1,3 @@
 import { RootState } from '@/app/store';
 
-export const getUserData = (state: RootState) => state.user?.data;
+export const getUserData = (state: RootState) => state.user.data;

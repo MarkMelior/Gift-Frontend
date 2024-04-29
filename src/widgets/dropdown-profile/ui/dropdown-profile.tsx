@@ -1,12 +1,7 @@
 'use client';
 
-import {
-	getUserAuthData,
-	getUserData,
-	getUserIsLoading,
-	userActions,
-} from '@/entities/User';
-import { ModalAuth } from '@/features/Auth';
+import { getUserAuthData, getUserState } from '@/entities/User';
+import { ModalAuth, useAuth } from '@/features/Auth';
 import { getSettings, settingsActions } from '@/features/settings';
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
@@ -27,7 +22,7 @@ import {
 import cn from 'clsx';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
-import { FC, ReactNode, useCallback, useState } from 'react';
+import { FC, ReactNode, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './dropdown-profile.module.scss';
@@ -41,10 +36,16 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
 
 	const dispatch = useAppDispatch();
-	const user = useSelector(getUserData);
-	const isLoadingUser = useSelector(getUserIsLoading);
+	const { onUserLogout } = useAuth();
 	const authData = useSelector(getUserAuthData);
+	const {
+		data: user,
+		isLoading: isLoadingUser,
+		error,
+	} = useSelector(getUserState);
 	const [isOpen, setIsOpen] = useState<boolean>(false);
+
+	console.log(error);
 
 	const {
 		isOpen: isOpenModal,
@@ -57,10 +58,6 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 		optimization: isOptimization,
 		space: isSpace,
 	} = useSelector(getSettings);
-
-	const onLogout = useCallback(() => {
-		dispatch(userActions.logout());
-	}, [dispatch]);
 
 	return (
 		<>
@@ -189,7 +186,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 								key='delete'
 								className='text-danger'
 								color='danger'
-								onClick={onLogout}
+								onClick={onUserLogout}
 							>
 								Выйти с аккаунта
 							</DropdownItem>

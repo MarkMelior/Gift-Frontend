@@ -31,8 +31,8 @@ export interface UserState {
 	data?: User;
 	isLoading: boolean;
 	error?: string;
-	readonly: boolean;
 	access_token?: string;
+	readonly: boolean;
 
 	// _inited: boolean;
 }

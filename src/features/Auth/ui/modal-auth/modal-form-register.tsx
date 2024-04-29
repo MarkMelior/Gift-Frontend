@@ -10,8 +10,8 @@ import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
 import { FC, FormEvent, memo, useCallback } from 'react';
 import { useSelector, useStore } from 'react-redux';
+import { useRegisterUserMutation } from '../../api/auth.api';
 import { getRegisterFormData } from '../../model/selectors/getRegisterFormData';
-import { userRegister } from '../../model/service/user-register';
 import {
 	registerFormActions,
 	registerFormReducer,
@@ -32,6 +32,7 @@ export const ModalFormRegister: FC<ModalFormRegisterProps> = memo(
 		const dispatch = useAppDispatch();
 		const { reducerManager } = useStore() as ReduxStoreWithManager;
 		const formData = useSelector(getRegisterFormData);
+		const [registerUser] = useRegisterUserMutation();
 
 		const handleFulfilledResult = useCallback(() => {
 			onSubmit();
@@ -58,23 +59,16 @@ export const ModalFormRegister: FC<ModalFormRegisterProps> = memo(
 		const handleRegister = useCallback(
 			async (e: FormEvent) => {
 				e.preventDefault();
-				const { username, password, email } = formData;
 
 				try {
-					const result = await dispatch(
-						userRegister({ username, password, email }),
-					);
-
-					if (result.meta.requestStatus === 'fulfilled') {
-						handleFulfilledResult();
-					} else if (result.meta.requestStatus === 'rejected') {
-						handleRejectedResult(result.payload);
-					}
-				} catch (error) {
-					console.error('Ошибка при выполнении запроса:', error);
+					const { username, password, email } = formData;
+					await registerUser({ username, password, email }).unwrap();
+					handleFulfilledResult();
+				} catch (error: any) {
+					handleRejectedResult(error.data.message);
 				}
 			},
-			[dispatch, formData, handleFulfilledResult, handleRejectedResult],
+			[formData, handleFulfilledResult, handleRejectedResult, registerUser],
 		);
 
 		return (

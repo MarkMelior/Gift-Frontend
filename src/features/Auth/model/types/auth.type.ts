@@ -1,11 +1,10 @@
 export interface LoginState {
 	login: string;
-	password: string;
-	remember: boolean;
-	isLoading: boolean;
-	error?: string;
 	loginError?: string;
+	password: string;
 	passwordError?: string;
+	remember: boolean;
+	error?: string;
 }
 
 export interface RegisterState {
@@ -15,7 +14,6 @@ export interface RegisterState {
 	usernameError?: string;
 	password: string;
 	passwordError?: string;
-	isLoading: boolean;
 	error?: string;
 }
 

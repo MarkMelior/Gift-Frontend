@@ -9,6 +9,6 @@ export const setLocalstorage = <T = boolean>(
 			localStorage.setItem(key, JSON.stringify(value));
 		}
 	} catch (e) {
-		console.log(e);
+		console.log('setLocalstorage error:', e);
 	}
 };

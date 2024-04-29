@@ -1,7 +1,7 @@
 'use client';
 
 import { Notification } from '@/entities/notification';
-import { getUserData } from '@/entities/user';
+import { getUserState } from '@/entities/user';
 import { CheckIcon } from '@/shared/assets/icon/Check';
 import { Component } from '@/shared/lib/components';
 import {
@@ -27,7 +27,11 @@ export interface ModalAuthProps {
 const ModalAuth: FC<ModalAuthProps> = ({ isOpen, onOpenChange }) => {
 	const [showNotification, setShowNotification] = useState(false);
 	const [selected, setSelected] = useState('login');
-	const user = useSelector(getUserData);
+	const {
+		data: user,
+		isLoading: isLoadingUser,
+		error,
+	} = useSelector(getUserState);
 
 	return (
 		<>

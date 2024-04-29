@@ -1,6 +1,7 @@
 import { userReducer } from '@/entities/user';
 import { settingsReducer } from '@/features/settings';
 import { $api } from '@/shared/api/api';
+import { rtkApi } from '@/shared/api/rtkApi';
 import { setLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import type { ReducersMapObject } from '@reduxjs/toolkit';
@@ -16,6 +17,7 @@ export function createReduxStore(
 		...asyncReducers,
 		settings: settingsReducer,
 		user: userReducer,
+		[rtkApi.reducerPath]: rtkApi.reducer,
 	};
 
 	const reducerManager = createReducerManager(rootReducers);
@@ -29,7 +31,9 @@ export function createReduxStore(
 		devTools: process.env.NODE_ENV === 'development',
 		preloadedState: initialState,
 		middleware: (getDefaultMiddleware) =>
-			getDefaultMiddleware({ thunk: { extraArgument } }),
+			getDefaultMiddleware({ thunk: { extraArgument } }).concat(
+				rtkApi.middleware,
+			),
 	});
 
 	store.subscribe(() => {

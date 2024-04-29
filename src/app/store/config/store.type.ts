@@ -1,13 +1,9 @@
-import {
-	ProductPricesState,
-	ProductState,
-	ProductsState,
-} from '@/entities/products';
 import { UserState } from '@/entities/user';
 import { LoginState, RegisterState } from '@/features/auth';
 import { SearchState } from '@/features/search';
 import { SettingsState } from '@/features/settings';
 import { SortState } from '@/features/sorts';
+import { rtkApi } from '@/shared/api/rtkApi';
 import type {
 	EnhancedStore,
 	Reducer,
@@ -19,14 +15,11 @@ import type { AxiosInstance } from 'axios';
 export interface RootState {
 	settings: SettingsState;
 	user: UserState;
+	[rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
 	// Async reducers
 	sort?: SortState;
 	search?: SearchState;
-	product?: ProductState;
-	products?: ProductsState;
-	productPrices?: ProductPricesState;
-	productsFavorites?: ProductsState;
 	loginForm?: LoginState;
 	registerForm?: RegisterState;
 }

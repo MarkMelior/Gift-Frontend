@@ -1,7 +1,6 @@
 'use client';
 
-import { getUserData, getUserError, getUserIsLoading } from '@/entities/User';
-import { useAppDispatch } from '@/shared/lib/hooks';
+import { getUserState } from '@/entities/user';
 import { PageLoader } from '@/widgets/page-loader';
 import cn from 'clsx';
 import { FC, memo } from 'react';
@@ -10,17 +9,15 @@ import { ProfilePageProps } from '../../../app/profile/page';
 import cls from './profile-page.module.scss';
 
 export const ProfilePage: FC<ProfilePageProps> = memo(() => {
-	const dispatch = useAppDispatch();
-	const userData = useSelector(getUserData);
-	const isLoading = useSelector(getUserIsLoading);
-	const error = useSelector(getUserError);
+	const { data: userData, isLoading, error } = useSelector(getUserState);
 
 	if (isLoading) {
 		return <PageLoader />;
 	}
 
 	if (error) {
-		return <div>Ошибка: {error}</div>;
+		console.log(error);
+		return <div>Ошибка в console log!</div>;
 	}
 
 	if (!userData) return null;

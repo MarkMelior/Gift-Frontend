@@ -1,13 +1,10 @@
-import { Product } from '@/entities/products';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { searchProduct } from '../service/search-product';
 import { SearchState } from '../types/search-state.type';
 
 export const searchInitialState: SearchState = {
 	query: '',
-	data: [],
-	isLoading: false,
+	queryInput: '',
 };
 
 export const searchSlice = createSlice({
@@ -17,24 +14,9 @@ export const searchSlice = createSlice({
 		setQuery: (state, action: PayloadAction<string>) => {
 			state.query = action.payload;
 		},
-	},
-	extraReducers: (builder) => {
-		builder
-			.addCase(searchProduct.pending, (state) => {
-				state.error = undefined;
-				state.isLoading = true;
-			})
-			.addCase(
-				searchProduct.fulfilled,
-				(state, action: PayloadAction<Product[]>) => {
-					state.isLoading = false;
-					state.data = action.payload;
-				},
-			)
-			.addCase(searchProduct.rejected, (state, action) => {
-				state.isLoading = false;
-				state.error = action.payload;
-			});
+		setQueryInput: (state, action: PayloadAction<string>) => {
+			state.queryInput = action.payload;
+		},
 	},
 });
 

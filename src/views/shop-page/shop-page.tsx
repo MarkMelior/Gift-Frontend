@@ -1,7 +1,11 @@
 'use client';
 
-import { Cards, getProducts, productsReducer } from '@/entities/products';
-import { Sorts, sortReducer } from '@/features/sorts';
+import {
+	Cards,
+	FindProductsDto,
+	useGetProductsQuery,
+} from '@/entities/products';
+import { Sorts, getSort, sortReducer } from '@/features/sorts';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
 import { Blackhole } from '@/shared/ui/blackhole';
 import { Button } from '@/shared/ui/button';
@@ -9,19 +13,35 @@ import { NavigationPanel } from '@/widgets/navigation-panel';
 import { TopPage } from '@/widgets/top-page';
 import { Image, Textarea } from '@nextui-org/react';
 import cn from 'clsx';
-import { FC, memo } from 'react';
+import { FC, memo, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import cls from './shop-page.module.scss';
 
 const initialReducers: ReducersList = {
 	sort: sortReducer,
-	products: productsReducer,
 };
 
 export const ShopPage: FC = memo(() => {
-	const productData = useSelector(getProducts).data;
-	const isLoading = useSelector(getProducts).isLoading;
-	const error = useSelector(getProducts).error;
+	const sort = useSelector(getSort);
+	const FindProducts: FindProductsDto = {
+		limit: 100,
+		filters: [...sort.category, sort.age, sort.sex].join('-'),
+		maxPrice: sort.maxPrice,
+		minPrice: sort.minPrice,
+		sort: sort.sorting,
+	};
+	const [fetchData, setFetchData] = useState(FindProducts);
+
+	const {
+		data: products,
+		isLoading,
+		error,
+	} = useGetProductsQuery(fetchData, { skip: !fetchData });
+
+	const handleFetch = useCallback(() => {
+		setFetchData(FindProducts);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [sort]);
 
 	return (
 		<DynamicModuleLoader reducers={initialReducers}>
@@ -45,7 +65,7 @@ export const ShopPage: FC = memo(() => {
 				<NavigationPanel />
 			</div>
 			<div className={cn(cls.wrapper, 'content')}>
-				<Sorts />
+				<Sorts onFetch={() => handleFetch()} />
 				<div className={cls.block}>
 					<div className={cls.ai}>
 						<Textarea
@@ -76,7 +96,12 @@ export const ShopPage: FC = memo(() => {
 							Найти подарок
 						</Button>
 					</div>
-					<Cards data={productData} isLoading={isLoading} error={error} />
+					<Cards
+						data={products}
+						isLoading={isLoading}
+						// ! fix error type
+						error={error && 'status' in error && error.data.message}
+					/>
 				</div>
 			</div>
 		</DynamicModuleLoader>

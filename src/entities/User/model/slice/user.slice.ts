@@ -1,18 +1,12 @@
-import { AccessToken } from '@/features/auth';
-import { getLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchUserData } from '../service/fetch-user-data';
+import { initAuthData } from '../services/initAuthData';
 import { User, UserState } from '../types/user';
 
 export const userInitialState: UserState = {
 	readonly: true,
 	isLoading: false,
-	error: undefined,
-	data: undefined,
-	access_token: getLocalstorage<AccessToken>(LocalstorageKeys.USER)
-		?.access_token,
 };
 
 export const userSlice = createSlice({
@@ -23,25 +17,21 @@ export const userSlice = createSlice({
 			state.access_token = action.payload;
 		},
 		logout: (state) => {
-			state.data = undefined;
 			state.access_token = undefined;
 			localStorage.removeItem(LocalstorageKeys.USER);
 		},
 	},
 	extraReducers: (builder) => {
 		builder
-			.addCase(fetchUserData.pending, (state) => {
+			.addCase(initAuthData.pending, (state) => {
 				state.error = undefined;
 				state.isLoading = true;
 			})
-			.addCase(
-				fetchUserData.fulfilled,
-				(state, action: PayloadAction<User>) => {
-					state.isLoading = false;
-					state.data = action.payload;
-				},
-			)
-			.addCase(fetchUserData.rejected, (state, action) => {
+			.addCase(initAuthData.fulfilled, (state, action: PayloadAction<User>) => {
+				state.isLoading = false;
+				state.data = action.payload;
+			})
+			.addCase(initAuthData.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;
 			});
