@@ -4,9 +4,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { initAuthData } from '../services/initAuthData';
 import { User, UserState } from '../types/user';
 
-export const userInitialState: UserState = {
+export const userInitialState: Omit<UserState, 'data'> & {
+	data: Partial<User>;
+} = {
 	readonly: true,
 	isLoading: false,
+	data: { favorites: [] },
 };
 
 export const userSlice = createSlice({
@@ -19,6 +22,13 @@ export const userSlice = createSlice({
 		logout: (state) => {
 			state.access_token = undefined;
 			localStorage.removeItem(LocalstorageKeys.USER);
+		},
+		toggleFavorites: (state, action: PayloadAction<string>) => {
+			if (state.data && state.data.favorites) {
+				state.data.favorites = state.data.favorites.includes(action.payload)
+					? state.data.favorites.filter((item) => item !== action.payload)
+					: [...state.data.favorites, action.payload];
+			}
 		},
 	},
 	extraReducers: (builder) => {

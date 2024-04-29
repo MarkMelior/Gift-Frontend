@@ -33,8 +33,17 @@ export const productsApi = rtkApi.injectEndpoints({
 				method: 'GET',
 			}),
 		}),
+		toggleFavoritesProduct: build.mutation<void, string>({
+			query: (article) => ({
+				url: `/favorites/toggle/${article}`,
+				method: 'PATCH',
+			}),
+		}),
 	}),
 });
+
+export const toggleFavoritesProduct =
+	productsApi.endpoints.toggleFavoritesProduct.initiate;
 
 export const {
 	useGetFavoritesProductsQuery,

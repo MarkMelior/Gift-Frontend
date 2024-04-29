@@ -2,6 +2,7 @@ import { getUserDataApi, userApi } from './api/user.api';
 import { isUserAdmin, isUserManager } from './model/selectors/getRoles';
 import { getUserAuthData } from './model/selectors/getUserAuthData';
 import { getUserData } from './model/selectors/getUserData';
+import { getUserFavorites } from './model/selectors/getUserFavorites';
 import { getUserState } from './model/selectors/getUserState';
 import { initAuthData } from './model/services/initAuthData';
 import { userActions, userReducer } from './model/slice/user.slice';
@@ -23,6 +24,7 @@ export {
 	getUserAuthData,
 	getUserData,
 	getUserDataApi,
+	getUserFavorites,
 	getUserState,
 	initAuthData,
 	isUserAdmin,

@@ -1,9 +1,11 @@
 import {
+	toggleFavoritesProduct,
 	useGetFavoritesProductsQuery,
 	useGetProductQuery,
 	useGetProductsPriceQuery,
 	useGetProductsQuery,
 } from './model/api/products.api';
+import { useProducts } from './model/hooks/useProducts';
 import {
 	FindProductsDto,
 	MarketType,
@@ -20,10 +22,12 @@ export {
 	Card,
 	CardWide,
 	Cards,
+	toggleFavoritesProduct,
 	useGetFavoritesProductsQuery,
 	useGetProductQuery,
 	useGetProductsPriceQuery,
 	useGetProductsQuery,
+	useProducts,
 };
 
 export type {

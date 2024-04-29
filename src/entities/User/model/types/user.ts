@@ -11,14 +11,14 @@ export interface User {
 	_id: number;
 	username: string;
 	email: string;
-	roles: UserRole[];
-	first: string;
-	last: string;
-	age: number;
-	avatar: string;
+	roles?: UserRole[];
+	first?: string;
+	last?: string;
+	age?: number;
+	avatar?: string;
 	sex?: Gender;
-	favorites: number[];
-	history: number[];
+	favorites?: string[];
+	history?: number[];
 	confidentiality?: ConfidentialityUser;
 	gameId?: number;
 }
