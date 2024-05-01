@@ -1,6 +1,6 @@
-import { ButtonProps, SortAge } from '../types/sort.type';
+import { SortAge, SortButtonProps } from '../types/sort.type';
 
-interface ButtonAgeProps extends ButtonProps {
+interface ButtonAgeProps extends SortButtonProps {
 	key: SortAge;
 }
 

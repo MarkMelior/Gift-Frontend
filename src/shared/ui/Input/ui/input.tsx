@@ -55,7 +55,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 			);
 		}
 
-		return <input {...getInputProps()} />;
+		return (
+			<div className={cls.inputWrapper}>
+				<input {...getInputProps()} />
+			</div>
+		);
 	}, [startContent, end, getInputProps, getInnerWrapperProps]);
 
 	return (

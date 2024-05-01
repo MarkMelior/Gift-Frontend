@@ -14,8 +14,8 @@ export const InitApp = ({ children }: InitAppProps) => {
 	const isUserLogged = useSelector(getUserAuthData);
 
 	useEffect(() => {
-		if (isUserLogged) dispatch(initAuthData());
-	});
+		dispatch(initAuthData());
+	}, [dispatch, isUserLogged]);
 
 	return <>{children}</>;
 };

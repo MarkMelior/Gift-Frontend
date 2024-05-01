@@ -1,10 +1,12 @@
 'use client';
 
-import { AccessRole } from '@/shared/const';
+import { useRoleAccess } from '@/entities/user';
 import { AdminProductPage, NotFoundPage } from '@/views';
 
 const AdminProduct = () => {
-	if (!AccessRole.addProduct) return <NotFoundPage />;
+	const { isAdmin, isManager } = useRoleAccess();
+
+	if (!isAdmin && !isManager) return <NotFoundPage />;
 
 	return <AdminProductPage />;
 };

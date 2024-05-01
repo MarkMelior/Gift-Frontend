@@ -1,6 +1,5 @@
 'use client';
 
-import { getUserFavorites } from '@/entities/user';
 import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
@@ -12,13 +11,12 @@ import cn from 'clsx';
 import crypto from 'crypto';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, MouseEvent, memo, useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { FC, MouseEvent, memo, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
-import { useProducts } from '../../model/hooks/useProducts';
+import { useProducts } from '../../hooks/useProducts';
 import { ProductCard } from '../../model/types/products.type';
 import cls from './card.module.scss';
 
@@ -32,17 +30,7 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
 	const saltPagination = crypto.randomBytes(2).toString('hex');
 
-	const favorites = useSelector(getUserFavorites);
-	const [isFavorites, setIsFavorites] = useState(false);
-	const { toggleFavorites } = useProducts(data);
-
-	useEffect(() => {
-		if (favorites && favorites.includes(data.article)) {
-			setIsFavorites(true);
-		} else {
-			setIsFavorites(false);
-		}
-	}, [favorites, data.article]);
+	const { isFavorites, toggleFavorites } = useProducts(data);
 
 	const handleMouseMove = (e: MouseEvent) => {
 		const sliderLength = swiperRef.current?.swiper.slides.length;
@@ -91,7 +79,7 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 								<Image
 									width={512}
 									height={512}
-									src={`/images/products/${image}`}
+									src={`${process.env.UPLOADS}/products/${data.article}/${image}`}
 									alt={`Card ${index}`}
 									className='noselect'
 									loading='lazy'

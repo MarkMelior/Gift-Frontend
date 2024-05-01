@@ -1,5 +1,5 @@
 import { getUserDataApi, userApi } from './api/user.api';
-import { isUserAdmin, isUserManager } from './model/selectors/getRoles';
+import { useRoleAccess } from './hooks/useRoleAccess';
 import { getUserAuthData } from './model/selectors/getUserAuthData';
 import { getUserData } from './model/selectors/getUserData';
 import { getUserFavorites } from './model/selectors/getUserFavorites';
@@ -27,8 +27,7 @@ export {
 	getUserFavorites,
 	getUserState,
 	initAuthData,
-	isUserAdmin,
-	isUserManager,
+	useRoleAccess,
 	userActions,
 	userApi,
 	userReducer,

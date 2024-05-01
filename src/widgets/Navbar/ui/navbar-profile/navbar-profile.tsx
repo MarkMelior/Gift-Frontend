@@ -14,7 +14,10 @@ export const NavbarProfile = memo(() => {
 		<DropdownProfile>
 			<Avatar
 				isBordered
-				src={user?.avatar}
+				src={
+					user?.avatar &&
+					`${process.env.UPLOADS}/avatars/${user?.id}/${user.avatar}`
+				}
 				fallback={<UserIcon />}
 				alt='Иконка пользователя'
 			/>

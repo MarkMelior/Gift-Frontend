@@ -1,7 +1,6 @@
-import { ButtonProps, SortSorting } from '../types/sort.type';
+import { SortButtonProps, SortSorting } from '../types/sort.type';
 
-// @ts-ignore
-interface ButtonSortingProps extends ButtonProps {
+interface ButtonSortingProps extends SortButtonProps {
 	key: SortSorting;
 }
 

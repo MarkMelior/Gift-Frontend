@@ -1,12 +1,16 @@
 import {
+	addProduct,
+	addProductImages,
 	toggleFavoritesProduct,
+	useAddProductMutation,
 	useGetFavoritesProductsQuery,
 	useGetProductQuery,
 	useGetProductsPriceQuery,
 	useGetProductsQuery,
-} from './model/api/products.api';
-import { useProducts } from './model/hooks/useProducts';
+} from './api/products.api';
+import { useProducts } from './hooks/useProducts';
 import {
+	CreateProductDto,
 	FindProductsDto,
 	MarketType,
 	MarketsProductData,
@@ -22,7 +26,10 @@ export {
 	Card,
 	CardWide,
 	Cards,
+	addProduct,
+	addProductImages,
 	toggleFavoritesProduct,
+	useAddProductMutation,
 	useGetFavoritesProductsQuery,
 	useGetProductQuery,
 	useGetProductsPriceQuery,
@@ -32,6 +39,7 @@ export {
 
 export type {
 	CardsProps,
+	CreateProductDto,
 	FindProductsDto,
 	MarketType,
 	MarketsProductData,

@@ -20,7 +20,9 @@ export const ImageCarousel: FC<ImageCarouselProps> = memo(({ product }) => {
 	for (let i = 0; i < product.images.length; i++) {
 		images.push(
 			<SwiperSlide key={i}>
-				<img src={`/images/products/${product.images[i]}`} />
+				<img
+					src={`${process.env.UPLOADS}/products/${product.article}/${product.images[i]}`}
+				/>
 			</SwiperSlide>,
 		);
 	}

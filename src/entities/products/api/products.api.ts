@@ -1,10 +1,11 @@
 import { rtkApi } from '@/shared/api/rtkApi';
 import {
+	CreateProductDto,
 	FindProductsDto,
 	Product,
 	ProductCard,
 	ProductPrices,
-} from '../types/products.type';
+} from '../model/types/products.type';
 
 export const productsApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
@@ -39,15 +40,49 @@ export const productsApi = rtkApi.injectEndpoints({
 				method: 'PATCH',
 			}),
 		}),
+		deleteProductImages: build.mutation<
+			string[],
+			{ productArticle: string; images: string }
+		>({
+			query: ({ productArticle, images }) => ({
+				url: `/products/images/${productArticle}/${images}`,
+				method: 'DELETE',
+			}),
+		}),
+		addProductImages: build.mutation<
+			string[],
+			{ productArticle: string; images: File[] }
+		>({
+			query: ({ productArticle, images }) => ({
+				url: `/products/images/${productArticle}`,
+				method: 'POST',
+				body: images,
+			}),
+		}),
+		addProduct: build.mutation<Product, CreateProductDto>({
+			query: (dto) => ({
+				url: `/products`,
+				method: 'POST',
+				body: dto,
+			}),
+		}),
 	}),
 });
 
 export const toggleFavoritesProduct =
 	productsApi.endpoints.toggleFavoritesProduct.initiate;
 
+export const deleteProductImages =
+	productsApi.endpoints.deleteProductImages.initiate;
+
+export const addProductImages = productsApi.endpoints.addProductImages.initiate;
+
+export const addProduct = productsApi.endpoints.addProduct.initiate;
+
 export const {
 	useGetFavoritesProductsQuery,
 	useGetProductQuery,
 	useGetProductsPriceQuery,
 	useGetProductsQuery,
+	useAddProductMutation,
 } = productsApi;

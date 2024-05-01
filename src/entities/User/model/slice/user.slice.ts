@@ -1,7 +1,7 @@
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { initAuthData } from '../services/initAuthData';
+import { NotUserLogin, initAuthData } from '../services/initAuthData';
 import { User, UserState } from '../types/user';
 
 export const userInitialState: Omit<UserState, 'data'> & {
@@ -37,10 +37,13 @@ export const userSlice = createSlice({
 				state.error = undefined;
 				state.isLoading = true;
 			})
-			.addCase(initAuthData.fulfilled, (state, action: PayloadAction<User>) => {
-				state.isLoading = false;
-				state.data = action.payload;
-			})
+			.addCase(
+				initAuthData.fulfilled,
+				(state, action: PayloadAction<User | NotUserLogin>) => {
+					state.isLoading = false;
+					state.data = action.payload;
+				},
+			)
 			.addCase(initAuthData.rejected, (state, action) => {
 				state.isLoading = false;
 				state.error = action.payload;

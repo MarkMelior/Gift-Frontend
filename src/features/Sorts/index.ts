@@ -1,8 +1,8 @@
 import { getSort } from './model/selectors/getSort';
 import { sortActions, sortReducer } from './model/slice/sort.slice';
 import {
-	FilterSortProps,
 	SortCategory,
+	SortFilterProps,
 	SortSex,
 	SortSorting,
 	SortState,
@@ -10,4 +10,10 @@ import {
 import { Sorts } from './ui/sorts';
 
 export { Sorts, getSort, sortActions, sortReducer };
-export type { FilterSortProps, SortCategory, SortSex, SortSorting, SortState };
+export type {
+	SortFilterProps as FilterSortProps,
+	SortCategory,
+	SortSex,
+	SortSorting,
+	SortState,
+};

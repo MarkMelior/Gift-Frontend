@@ -1,12 +1,10 @@
 'use client';
 
-import { Product } from '@/entities/products';
+import { Product, useProducts } from '@/entities/products';
 import { HeartIcon } from '@/shared/assets/icon/Heart';
-import { useLocalstorageArray } from '@/shared/lib/hooks';
-import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { Button } from '@/shared/ui/button';
 import cn from 'clsx';
-import { FC, MouseEvent, memo, useEffect, useState } from 'react';
+import { FC, MouseEvent, memo } from 'react';
 import cls from './characteristics.module.scss';
 
 interface CharacteristicsProps {
@@ -14,17 +12,7 @@ interface CharacteristicsProps {
 }
 
 export const Characteristics: FC<CharacteristicsProps> = memo(({ product }) => {
-	const { toggle: toggleFavorite, isAdded: isFavorites } = useLocalstorageArray<
-		Product['id']
-	>(LocalstorageKeys.LIKED, product.id);
-
-	const [isMounted, setMounted] = useState(false);
-
-	useEffect(() => {
-		setMounted(true);
-	}, []);
-
-	if (!isMounted) return;
+	const { isFavorites, toggleFavorites } = useProducts(product);
 
 	return (
 		<ul className={cls.wrapper}>
@@ -68,7 +56,7 @@ export const Characteristics: FC<CharacteristicsProps> = memo(({ product }) => {
 					data-selected={isFavorites}
 					onClick={(e: MouseEvent) => {
 						e.preventDefault();
-						toggleFavorite(e);
+						toggleFavorites(e);
 					}}
 					startContent={<HeartIcon />}
 				>

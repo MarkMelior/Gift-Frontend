@@ -12,35 +12,23 @@ export type SortSorting =
 	| 'cheap'
 	| 'new';
 
-// export interface SortState {
-// 	category: SortCategory[];
-// 	sex: SortSex[];
-// 	age: SortAge[];
-// 	minPrice: number;
-// 	maxPrice: number;
-// 	sorting: SortSorting;
-// }
-
-export interface SortButtonsProps {
+export interface SortState {
 	category: SortCategory[];
 	sex: SortSex;
 	age: SortAge;
 	sorting: SortSorting;
-}
-
-export type SortButtonsKeys = keyof SortButtonsProps;
-
-export interface SortState extends SortButtonsProps {
 	minPrice: number;
 	maxPrice: number;
 }
 
 export type SortStateKeys = keyof SortState;
 
-export type FilterSortProps = SortCategory | SortSex | SortAge | SortSorting;
+export type SortButtonsKeys = Exclude<keyof SortState, 'minPrice' | 'maxPrice'>;
 
-export interface ButtonProps {
+export type SortFilterProps = SortCategory | SortSex | SortAge | SortSorting;
+
+export interface SortButtonProps {
 	text: string;
 	color: string;
-	key: FilterSortProps;
+	key: SortFilterProps;
 }

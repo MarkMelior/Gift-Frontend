@@ -45,8 +45,6 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	} = useSelector(getUserState);
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
-	console.log(error);
-
 	const {
 		isOpen: isOpenModal,
 		onOpen: onOpenModal,
@@ -177,7 +175,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 										name={user?.username}
 										description={user?.email}
 										avatarProps={{
-											src: user?.avatar,
+											src: `${process.env.UPLOADS}/avatars/${user?.id}/${user?.avatar}`,
 										}}
 									/>
 								)}

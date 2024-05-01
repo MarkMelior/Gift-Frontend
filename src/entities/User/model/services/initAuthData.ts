@@ -6,23 +6,29 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getUserDataApi } from '../../api/user.api';
 import { User } from '../types/user';
 
-export const initAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
-	'user/initAuthData',
-	async (_, { rejectWithValue, dispatch }) => {
-		const authUser = getLocalstorage<AccessToken>(
-			LocalstorageKeys.USER,
-		)?.access_token;
+export interface NotUserLogin {
+	favorites: string[] | undefined;
+}
 
-		if (!authUser) {
-			return rejectWithValue('');
-		}
+export const initAuthData = createAsyncThunk<
+	User | NotUserLogin,
+	void,
+	ThunkConfig<string>
+>('user/initAuthData', async (_, { rejectWithValue, dispatch }) => {
+	const authUser = getLocalstorage<AccessToken>(
+		LocalstorageKeys.USER,
+	)?.access_token;
 
-		try {
-			const response = await dispatch(getUserDataApi()).unwrap();
-			return response;
-		} catch (e) {
-			console.log(e);
-			return rejectWithValue('');
-		}
-	},
-);
+	if (!authUser) {
+		const favorites = getLocalstorage<string[]>(LocalstorageKeys.LIKED, []);
+		return { favorites };
+	}
+
+	try {
+		const response = await dispatch(getUserDataApi()).unwrap();
+		return response;
+	} catch (e) {
+		console.log(e);
+		return rejectWithValue('');
+	}
+});

@@ -10,7 +10,26 @@ export interface Product {
 	filters: FilterSortProps[];
 	characteristics: Record<string, string[] | Record<string, string>>;
 	markets: MarketsProductData[];
-	description?: string;
+	seoText?: string;
+}
+
+export interface CreateProductDto {
+	images?: string[];
+	title: string;
+	creativity: number;
+	filters: FilterSortProps[];
+	characteristics: Record<string, string[] | Record<string, string>>;
+	markets: MarketsProductDto[];
+	seoText?: string;
+}
+
+export interface MarketsProductDto {
+	market: MarketType;
+	link: string;
+	rating: number;
+	reviewCount: number;
+	price: number;
+	oldPrice?: number;
 }
 
 export interface ProductState {

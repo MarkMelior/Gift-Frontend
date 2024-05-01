@@ -1,7 +1,7 @@
 import { CheckIcon } from '@/shared/assets/icon/Check';
 import { Button } from '@/shared/ui/button';
 import { useSearchParams } from 'next/navigation';
-import { FC, memo, useCallback, useMemo } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ageButton } from '../model/const/age-button';
 import { categoryButton } from '../model/const/category-button';
@@ -11,9 +11,10 @@ import { getSortSearchParams } from '../model/features/getSortSearchParams';
 import { getSort } from '../model/selectors/getSort';
 import { sortActions } from '../model/slice/sort.slice';
 import {
-	ButtonProps,
-	FilterSortProps,
+	SortButtonProps,
 	SortButtonsKeys,
+	SortCategory,
+	SortFilterProps,
 } from '../model/types/sort.type';
 import cls from './sorts.module.scss';
 
@@ -25,7 +26,7 @@ export const SortButtons: FC<{ sort: SortButtonsKeys }> = ({ sort }) => {
 	const sortSearchParams = getSortSearchParams(searchParams);
 
 	const { buttons, toggleAction } = useMemo(() => {
-		let buttons: ButtonProps[] = [];
+		let buttons: SortButtonProps[] = [];
 		let toggleAction: any = null;
 
 		switch (sort) {
@@ -54,17 +55,26 @@ export const SortButtons: FC<{ sort: SortButtonsKeys }> = ({ sort }) => {
 	}, [sort]);
 
 	const isSelected = useCallback(
-		// @ts-ignore
-		(key: FilterSortProps) => sortState[sort].includes(key),
+		(key: SortFilterProps) => {
+			if (Array.isArray(sortState[sort])) {
+				return sortState[sort].includes(key as SortCategory);
+			}
+
+			return sortState[sort] === key;
+		},
 		[sortState, sort],
 	);
 
 	const isDiffer = useCallback(
-		(key: FilterSortProps, enable: boolean): boolean => {
-			// @ts-ignore
-			const stateIncludesKey = sortState[sort].includes(key);
-			// @ts-ignore
-			const paramsIncludesKey = sortSearchParams[sort].includes(key);
+		(key: SortFilterProps, enable: boolean): boolean => {
+			const stateIncludesKey = Array.isArray(sortState[sort])
+				? sortState[sort].includes(key as SortCategory)
+				: sortState[sort] === key;
+
+			const paramsIncludesKey = Array.isArray(sortSearchParams[sort])
+				? sortSearchParams[sort].includes(key as SortCategory)
+				: sortSearchParams[sort] === key;
+
 			return enable
 				? stateIncludesKey && !paramsIncludesKey
 				: !stateIncludesKey && paramsIncludesKey;
@@ -74,43 +84,27 @@ export const SortButtons: FC<{ sort: SortButtonsKeys }> = ({ sort }) => {
 
 	return (
 		<>
-			{buttons.map(({ text, color, key }) => (
-				<MemoizedButton
-					key={key}
-					text={text}
-					color={color}
-					isDiffer={isDiffer}
-					keyProp={key}
-					isSelected={isSelected(key)}
-					onClick={() => dispatch(toggleAction(key))}
-				/>
-			))}
+			{buttons.map(({ text, color, key }) => {
+				return (
+					<Button
+						key={text}
+						hoverColor={color}
+						isSelected={isSelected(key)}
+						onClick={() => dispatch(toggleAction(key))}
+						startContent={
+							<CheckIcon isSelected={isSelected(key)} className={cls.check} />
+						}
+						endContent={
+							<>
+								{isDiffer(key, false) && <span className={cls.changed}>-</span>}
+								{isDiffer(key, true) && <span className={cls.changed}>+</span>}
+							</>
+						}
+					>
+						{text}
+					</Button>
+				);
+			})}
 		</>
 	);
 };
-
-interface MemoizedButtonProps extends ButtonProps {
-	isDiffer: (key: FilterSortProps, enable: boolean) => boolean;
-	keyProp: FilterSortProps;
-	isSelected: boolean;
-	onClick: () => void;
-}
-
-const MemoizedButton: FC<MemoizedButtonProps> = memo(
-	({ text, color, isSelected, onClick, isDiffer, keyProp }) => (
-		<Button
-			hoverColor={color}
-			isSelected={isSelected}
-			onClick={onClick}
-			startContent={<CheckIcon isSelected={isSelected} className={cls.check} />}
-			endContent={
-				<>
-					{isDiffer(keyProp, false) && <span className={cls.changed}>-</span>}
-					{isDiffer(keyProp, true) && <span className={cls.changed}>+</span>}
-				</>
-			}
-		>
-			{text}
-		</Button>
-	),
-);

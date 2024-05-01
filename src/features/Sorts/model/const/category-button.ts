@@ -1,6 +1,6 @@
-import { ButtonProps, SortCategory } from '../types/sort.type';
+import { SortButtonProps, SortCategory } from '../types/sort.type';
 
-interface ButtonCategoryProps extends ButtonProps {
+interface ButtonCategoryProps extends SortButtonProps {
 	key: SortCategory;
 }
 
