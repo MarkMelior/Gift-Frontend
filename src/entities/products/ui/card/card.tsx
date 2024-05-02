@@ -1,11 +1,13 @@
 'use client';
 
+import { useFavorites } from '@/features/favorites';
 import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
 import { Markets, MediaSize } from '@/shared/const';
 import { convertCurrency, productLink } from '@/shared/lib/features';
 import { Button } from '@/shared/ui/button';
+import { ProductCardResponse } from '@melior-gift/zod-contracts';
 import { Tooltip } from '@nextui-org/react';
 import cn from 'clsx';
 import crypto from 'crypto';
@@ -16,13 +18,12 @@ import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
-import { useProducts } from '../../hooks/useProducts';
-import { ProductCard } from '../../model/types/products.type';
 import cls from './card.module.scss';
 
 export interface CardProps {
-	data: ProductCard;
+	data: ProductCardResponse;
 	size?: 'sm' | 'md';
+	isLoading?: boolean;
 }
 
 export const Card: FC<CardProps> = memo(({ data, size }) => {
@@ -30,14 +31,13 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
 	const saltPagination = crypto.randomBytes(2).toString('hex');
 
-	const { isFavorites, toggleFavorites } = useProducts(data);
+	const { isFavorites, toggleFavorites } = useFavorites(data);
 
 	const handleMouseMove = (e: MouseEvent) => {
 		const sliderLength = swiperRef.current?.swiper.slides.length;
-		// @ts-ignore
-		if (sliderLength > 1) {
+
+		if (sliderLength && sliderLength > 1) {
 			const sliderWidth = swiperRef.current?.swiper.width;
-			// @ts-ignore
 			const sliderPath = Math.round(sliderWidth / sliderLength);
 			const sliderMousePos =
 				// @ts-ignore
@@ -92,7 +92,7 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 					onClick={(e) => {
 						e.preventDefault();
 						window.open(data.markets[0].link, '_blank');
-						// addHistory(e);
+						// addHistory(e); // todo: add history
 					}}
 				>
 					Купить

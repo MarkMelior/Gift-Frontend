@@ -8,6 +8,7 @@ import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
+import { AuthRegisterRequest } from '@melior-gift/zod-contracts';
 import { FC, FormEvent, memo, useCallback } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useRegisterUserMutation } from '../../api/auth.api';
@@ -16,7 +17,6 @@ import {
 	registerFormActions,
 	registerFormReducer,
 } from '../../model/slice/register-form.slice';
-import { RegisterProps } from '../../model/types/auth.type';
 import cls from './modal-auth.module.scss';
 
 interface ModalFormRegisterProps {
@@ -42,7 +42,7 @@ export const ModalFormRegister: FC<ModalFormRegisterProps> = memo(
 		}, [dispatch, onSubmit, reducerManager]);
 
 		const handleRejectedResult = useCallback(
-			(payload: RegisterProps) => {
+			(payload: AuthRegisterRequest) => {
 				if (typeof payload === 'string') {
 					dispatch(registerFormActions.setError(payload));
 				} else {

@@ -8,8 +8,13 @@ export const useLocalstorageArray = <T>(
 	key: LocalstorageKeys,
 	initialValue: T,
 ) => {
-	const isBrowser = typeof window !== 'undefined';
-	if (!isBrowser) {
+	const [isAdded, setIsAdded] = useState<boolean>(() => {
+		const storedItems = getLocalstorage<T[]>(key) ?? [];
+
+		return storedItems.includes(initialValue);
+	});
+
+	if (typeof window === 'undefined') {
 		return {
 			isAdded: false,
 			toggle: () => {},
@@ -17,12 +22,6 @@ export const useLocalstorageArray = <T>(
 			remove: () => {},
 		};
 	}
-
-	const [isAdded, setIsAdded] = useState<boolean>(() => {
-		const storedItems = getLocalstorage<T[]>(key) ?? [];
-
-		return storedItems.includes(initialValue);
-	});
 
 	const updateLocalStorage = (products: T[]) => {
 		setLocalstorage(key, products);

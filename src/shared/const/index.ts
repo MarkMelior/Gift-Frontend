@@ -1,3 +1,4 @@
+import { bestProducts } from './best-products/best-products';
 import { Markets } from './markets/markets';
 import { MediaSize } from './media-size/media-size';
 import { Rates, exchangeRates } from './rates/rates';
@@ -15,6 +16,7 @@ export {
 	AppRouteByPathPattern,
 	Markets,
 	MediaSize,
+	bestProducts,
 	exchangeRates,
 	getRouteFavorites,
 	getRouteMain,

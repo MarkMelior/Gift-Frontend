@@ -9,11 +9,8 @@ export const About: FC = memo(() => {
 		<section className={cn(cls.wrapper, 'content')}>
 			<div className={cls.heading}>
 				<InfinityIcon width={24} height={24} />
-				<h3>Все, что вам нужно, на одной платформе</h3>
-				<p>
-					От прототипирования к производству - разрабатывайте, не переключая
-					вкладки
-				</p>
+				<h3>Всё, что вам нужно, на одной платформе</h3>
+				<p>От поиска к удивлению - найдите идеальный подарок здесь и сейчас.</p>
 			</div>
 			<div className={cls.backgroundWrapper}>
 				<div className={cls.swipeWrapper}>
@@ -25,9 +22,9 @@ export const About: FC = memo(() => {
 							alt='Иконка микрофона'
 							className='noselect'
 						/>
-						<p>Расшифровывайте голосовые заметки</p>
+						<p>Поиск по голосу</p>
 						<p className={cls.swipeDescription}>
-							с точностью до человеческого уровня
+							нейросеть найдёт нужный подарок
 						</p>
 					</div>
 					<div className={cls.swipe}>
@@ -38,8 +35,10 @@ export const About: FC = memo(() => {
 							alt='Иконка списка'
 							className='noselect'
 						/>
-						<p>Создавайте наброски статей</p>
-						<p className={cls.swipeDescription}>из ваших рассеянных мыслей</p>
+						<p>Сравнивайте цены</p>
+						<p className={cls.swipeDescription}>
+							и отзывы любимых маркетплейсов
+						</p>
 					</div>
 					<div className={cls.swipe}>
 						<Image
@@ -49,8 +48,8 @@ export const About: FC = memo(() => {
 							alt='Иконка списка с галочкой'
 							className='noselect'
 						/>
-						<p>Перечислите основные выводы и действия</p>
-						<p className={cls.swipeDescription}>из ваших заметок о собраниях</p>
+						<p>Только проверенные</p>
+						<p className={cls.swipeDescription}>продавцы и подарки</p>
 					</div>
 					<div className={cls.swipe}>
 						<Image
@@ -60,8 +59,8 @@ export const About: FC = memo(() => {
 							alt='Иконка поиска по символам'
 							className='noselect'
 						/>
-						<p>Исправьте грамматику, орфографию</p>
-						<p className={cls.swipeDescription}>и улучшите свой почерк</p>
+						<p>Удобный поиск</p>
+						<p className={cls.swipeDescription}>ищи подарки быстро и просто</p>
 					</div>
 					<div className={cls.swipe}>
 						<Image
@@ -71,8 +70,10 @@ export const About: FC = memo(() => {
 							alt='Иконка сохранения'
 							className='noselect'
 						/>
-						<p>Сохраните свои собственные</p>
-						<p className={cls.swipeDescription}>пользовательские подсказки</p>
+						<p>Сохраняй в избранное</p>
+						<p className={cls.swipeDescription}>
+							подарки, которые тебе понравились
+						</p>
 					</div>
 				</div>
 				<Image

@@ -1,21 +1,16 @@
 import { ThunkConfig } from '@/app/store';
-import { AccessToken } from '@/features/auth';
 import { getLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
+import { AuthResponse, UserResponse } from '@melior-gift/zod-contracts';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getUserDataApi } from '../../api/user.api';
-import { User } from '../types/user';
-
-export interface NotUserLogin {
-	favorites: string[] | undefined;
-}
 
 export const initAuthData = createAsyncThunk<
-	User | NotUserLogin,
+	UserResponse | Pick<UserResponse, 'favorites'>,
 	void,
 	ThunkConfig<string>
 >('user/initAuthData', async (_, { rejectWithValue, dispatch }) => {
-	const authUser = getLocalstorage<AccessToken>(
+	const authUser = getLocalstorage<AuthResponse>(
 		LocalstorageKeys.USER,
 	)?.access_token;
 

@@ -1,6 +1,7 @@
 'use client';
 
-import { Cards, useGetFavoritesProductsQuery } from '@/entities/products';
+import { Cards } from '@/entities/products';
+import { useGetFavoritesProductsQuery } from '@/features/favorites';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { Button } from '@/shared/ui/button';
 import Link from 'next/link';
@@ -8,9 +9,6 @@ import { FC, memo } from 'react';
 import cls from './favorites-page.module.scss';
 
 export const FavoritesProducts: FC = memo(() => {
-	// todo
-	// const likedIdData = getLocalstorage<number[]>(LocalstorageKeys.LIKED);
-
 	const { data: favoritesProducts, isLoading } = useGetFavoritesProductsQuery();
 
 	if (isLoading) return <div>ЗАГРУЗКА ДАТЫ!</div>;
@@ -39,7 +37,7 @@ export const FavoritesProducts: FC = memo(() => {
 				</>
 			) : (
 				<div className={cls.recommended}>
-					<h3>Вы недавно смотрели</h3>
+					<h3>Просмотренные</h3>
 					{/* <Cards data={historyData} /> */}
 				</div>
 			)}

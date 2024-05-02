@@ -79,7 +79,6 @@ export const Notification: FC<NotificationProps> = memo(
 		const handleTouchEnd = () => {
 			const deltaX = touchEndX - touchStartX;
 
-			// Set threshold for swipe action
 			const threshold = 100;
 
 			if (Math.abs(deltaX) > threshold) {

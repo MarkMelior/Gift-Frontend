@@ -1,4 +1,4 @@
-import { AccessToken } from '@/features/auth';
+import { AuthResponse } from '@melior-gift/zod-contracts';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getLocalstorage } from '../lib/features';
 import { LocalstorageKeys } from '../types/localstorage';
@@ -8,7 +8,7 @@ export const rtkApi = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: process.env.API,
 		prepareHeaders: (headers) => {
-			const token = getLocalstorage<AccessToken>(
+			const token = getLocalstorage<AuthResponse>(
 				LocalstorageKeys.USER,
 			)?.access_token;
 

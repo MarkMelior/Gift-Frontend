@@ -1,16 +1,13 @@
 'use client';
 
-import {
-	Cards,
-	FindProductsDto,
-	useGetProductsQuery,
-} from '@/entities/products';
+import { Cards, useGetProductsQuery } from '@/entities/products';
 import { Sorts, getSort, sortReducer } from '@/features/sorts';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
 import { Blackhole } from '@/shared/ui/blackhole';
 import { Button } from '@/shared/ui/button';
 import { NavigationPanel } from '@/widgets/navigation-panel';
 import { TopPage } from '@/widgets/top-page';
+import { ProductFindRequest, SortFilters } from '@melior-gift/zod-contracts';
 import { Image, Textarea } from '@nextui-org/react';
 import cn from 'clsx';
 import { FC, memo, useCallback, useState } from 'react';
@@ -23,11 +20,11 @@ const initialReducers: ReducersList = {
 
 export const ShopPage: FC = memo(() => {
 	const sort = useSelector(getSort);
-	const FindProducts: FindProductsDto = {
-		limit: 100,
-		filters: [...sort.category, sort.age, sort.sex].join('-'),
-		maxPrice: sort.maxPrice,
-		minPrice: sort.minPrice,
+	const FindProducts: ProductFindRequest = {
+		limit: '100',
+		filters: [...sort.category, sort.age, sort.sex].join('-') as SortFilters,
+		maxPrice: String(sort.maxPrice),
+		minPrice: String(sort.minPrice),
 		sort: sort.sorting,
 	};
 	const [fetchData, setFetchData] = useState(FindProducts);
@@ -46,10 +43,10 @@ export const ShopPage: FC = memo(() => {
 	return (
 		<DynamicModuleLoader reducers={initialReducers}>
 			<TopPage
-				compact
+				note='Найти подарок - легко'
 				title='Melior Gift'
-				description='Каждый подарок может быть искусством'
-				note='Лучший выбор в мире'
+				description='Находить креативные подарки теперь легко и приятно.'
+				compact
 				imageContent={
 					<Image
 						src='/images/pages/gift.png'
@@ -74,7 +71,7 @@ export const ShopPage: FC = memo(() => {
 							className={cls.textarea}
 							id='textarea'
 							aria-label='Текстовое поле ввода для поиска подарка нейросетью'
-							placeholder='Введите текстовый запрос и нейросеть поможет вам подобрать подарок'
+							placeholder='Введи текстовый запрос и нейросеть поможет тебе подобрать подарок'
 						/>
 						<Button
 							aria-labelledby='textarea'

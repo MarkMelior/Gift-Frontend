@@ -6,12 +6,15 @@ import {
 import { setLocalstorage } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
+import {
+	ProductCardResponse,
+	ProductResponse,
+} from '@melior-gift/zod-contracts';
 import { MouseEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { toggleFavoritesProduct } from '../api/products.api';
-import { Product, ProductCard } from '../model/types/products.type';
+import { toggleFavoritesProduct } from '../api/favorites.api';
 
-export const useProducts = (data: ProductCard | Product) => {
+export const useFavorites = (data: ProductCardResponse | ProductResponse) => {
 	const dispatch = useAppDispatch();
 	const [isFavorites, setIsFavorites] = useState(false);
 	const favorites = useSelector(getUserFavorites);

@@ -1,13 +1,13 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
-import { getSortSearchParams } from '../features/getSortSearchParams';
 import {
 	SortAge,
 	SortCategory,
 	SortSex,
 	SortSorting,
-	SortState,
-} from '../types/sort.type';
+} from '@melior-gift/zod-contracts';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { getSortSearchParams } from '../features/getSortSearchParams';
+import { SortState } from '../types/sort.type';
 
 export const initialState: SortState = {
 	category: ['joke'],

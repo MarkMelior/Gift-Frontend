@@ -1,16 +1,9 @@
-export type SortCategory = 'birthday' | 'love' | 'year' | 'joke';
-
-export type SortSex = 'male' | 'female';
-
-export type SortAge = 'kid' | 'adult' | 'old';
-
-export type SortSorting =
-	| 'popular'
-	| 'rating'
-	| 'creativity'
-	| 'expensive'
-	| 'cheap'
-	| 'new';
+import {
+	SortAge,
+	SortCategory,
+	SortSex,
+	SortSorting,
+} from '@melior-gift/zod-contracts';
 
 export interface SortState {
 	category: SortCategory[];

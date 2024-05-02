@@ -1,95 +1,83 @@
 'use client';
 
-import { CreateProductDto, addProduct } from '@/entities/products';
+import { addProduct } from '@/entities/products';
+import { CharacteristicsEditor } from '@/features/product-edit';
+import { SortSelectInput } from '@/features/sorts';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
-import { Select, SelectItem } from '@nextui-org/react';
-import { ChangeEvent, FC, FormEvent, memo, useState } from 'react';
+import {
+	ProductCreateRequest,
+	ProductMarkets,
+	SortFilters,
+} from '@melior-gift/zod-contracts';
+import { Selection, Slider } from '@nextui-org/react';
+import {
+	ChangeEvent,
+	FC,
+	FormEvent,
+	SetStateAction,
+	memo,
+	useEffect,
+	useState,
+} from 'react';
+import { ZodError } from 'zod';
 
-const filters = [
-	{
-		label: 'Мужчинам',
-		value: 'male',
-		description: 'The second most popular pet in the world',
-	},
-	{
-		label: 'Женщинам',
-		value: 'female',
-		description: 'The most popular pet in the world',
-	},
-	{
-		label: 'Детям',
-		value: 'kid',
-		description: 'The largest land animal',
-	},
-	{
-		label: 'Взрослым',
-		value: 'adult',
-		description: 'The king of the jungle',
-	},
-	{
-		label: 'Старикам',
-		value: 'old',
-		description: 'The largest cat species',
-	},
-	{
-		label: 'День рождение',
-		value: 'birthday',
-		description: 'The tallest land animal',
-	},
-	{
-		label: 'Влюблённым',
-		value: 'love',
-		description: 'A widely distributed and diverse group of aquatic mammals',
-	},
-	{
-		label: 'Новый год',
-		value: 'year',
-		description: 'A group of aquatic flightless birds',
-	},
-	{
-		label: 'Приколы',
-		value: 'joke',
-		description: 'A several species of African equids',
-	},
-];
+type Errors = Partial<
+	Omit<ProductCreateRequest, 'images'> & { images: string }
+>;
 
 export const AdminProductPage: FC = memo(() => {
-	const [formData, setFormData] = useState<CreateProductDto>({
-		title: '',
-		creativity: 4.5,
-		filters: [],
-		characteristics: {},
-		markets: [],
-		seoText: '',
-	});
-	const [images, setImages] = useState<File[]>([]);
+	const [images, setImages] = useState<FileList>();
+	const [title, setTitle] = useState('');
+	const [seoText, setSeoText] = useState('');
+	const [characteristics, setCharacteristics] = useState({});
+	const [markets, setMarkets] = useState<ProductMarkets[]>([]);
+	const [creativity, setCreativity] = useState(6);
+	const [filters, setFilters] = useState<Selection>(new Set([]));
+
+	const [errors, setErrors] = useState<Errors>({});
+	const [formData, setFormData] = useState<ProductCreateRequest>();
 
 	const dispatch = useAppDispatch();
 
-	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-		const { name, value, type } = e.target;
-		if (type === 'file') {
-			const files = e.target.files;
-			if (files) {
-				setImages(Array.from(files));
-			}
-		} else {
-			setFormData({
-				...formData,
-				[name]: value,
-			});
-		}
-	};
+	useEffect(() => {
+		setFormData({
+			title,
+			characteristics,
+			markets,
+			seoText,
+			creativity,
+			filters: Array.from(filters) as SortFilters[],
+		});
+		setErrors({});
+	}, [characteristics, creativity, filters, images, markets, seoText, title]);
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		console.log(formData);
-		const product = await dispatch(addProduct(formData));
-		console.log(product);
-		// dispatch(addProductImages({ images, productArticle: product.article }));
+		if (!images) {
+			setErrors((prev) => ({
+				...prev,
+				images: 'Выберите изображения',
+			}));
+			return;
+		}
+
+		try {
+			await dispatch(
+				addProduct({ body: formData as ProductCreateRequest, images }),
+			).unwrap();
+		} catch (e: any) {
+			const error = e.data as ZodError;
+
+			error.issues.map((error) => {
+				setErrors((prev) => ({
+					...prev,
+					[error.path[0]]: error.message,
+				}));
+			});
+		}
 	};
 
 	return (
@@ -98,61 +86,60 @@ export const AdminProductPage: FC = memo(() => {
 			<form onSubmit={handleSubmit} className='flex flex-col gap-5 w-[390px]'>
 				<Input
 					isRequired
+					errorMessage={errors.title}
 					label='Название продукта'
 					name='title'
-					value={formData.title}
-					onChange={handleInputChange}
+					value={title}
+					onChange={(e) => setTitle(e.target.value)}
 				/>
-				<label htmlFor='image'>Изображения:</label>
-				<Input
-					isRequired
+				<label htmlFor='image'>Изображения: *</label>
+				<input
 					type='file'
-					id='image'
-					name='image'
-					accept='image/*'
+					id='images'
+					name='images'
+					accept='images/*,.png,.jpg,.jpeg'
 					multiple
-					onChange={handleInputChange}
+					onChange={(e: ChangeEvent<HTMLInputElement>) => {
+						const files = e.target.files;
+						if (files) setImages(files);
+					}}
 				/>
-				<Input
-					isRequired
-					label='Креативность'
-					type='number'
+				{errors.images && (
+					<p className='text-red-500 text-xs'>{errors.images}</p>
+				)}
+				<Slider
+					size='lg'
+					step={1}
 					name='creativity'
-					max={5}
-					min={1}
-					value={String(formData.creativity)}
-					onChange={handleInputChange}
+					color='primary'
+					label='Креативность'
+					showSteps={true}
+					maxValue={10}
+					minValue={1}
+					defaultValue={6}
+					className='max-w-md'
+					value={creativity}
+					onChange={(value: number | number[]) =>
+						setCreativity(value as SetStateAction<number>)
+					}
 				/>
-				<Select
-					label='Фильтры'
-					selectionMode='multiple'
-					description='Выберите то, что не должно попасть в категории'
-				>
-					{filters.map((animal) => (
-						<SelectItem key={animal.value} value={animal.value}>
-							{animal.label}
-						</SelectItem>
-					))}
-				</Select>
+				<SortSelectInput
+					selectedKeys={filters}
+					onSelectionChange={setFilters}
+				/>
+				<CharacteristicsEditor />
 				{/* <Input
-					label='Фильтры'
-					placeholder='Фильтры'
-					name='filters'
-					value={formData.filters.join(',')}
-					onChange={handleInputChange}
-				/> */}
-				<Input
 					label='Характеристики'
 					name='characteristics'
 					value={JSON.stringify(formData.characteristics)}
 					onChange={handleInputChange}
-				/>
+				/> */}
 				<Input
 					label='SEO текст'
 					description='Добавьте дополнительную информацию для быстрого поиска'
 					name='seoText'
-					value={formData.seoText}
-					onChange={handleInputChange}
+					value={seoText}
+					onChange={(e) => setSeoText(e.target.value)}
 				/>
 				<Button type='submit'>Создать новый продукт</Button>
 			</form>

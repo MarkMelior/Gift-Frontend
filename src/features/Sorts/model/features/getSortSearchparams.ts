@@ -1,12 +1,12 @@
-import { ReadonlyURLSearchParams } from 'next/navigation';
-import { initialState } from '../slice/sort.slice';
 import {
 	SortAge,
 	SortCategory,
 	SortSex,
 	SortSorting,
-	SortState,
-} from '../types/sort.type';
+} from '@melior-gift/zod-contracts';
+import { ReadonlyURLSearchParams } from 'next/navigation';
+import { initialState } from '../slice/sort.slice';
+import { SortState } from '../types/sort.type';
 
 export const getSortSearchParams = (
 	searchParams: ReadonlyURLSearchParams | URLSearchParams,

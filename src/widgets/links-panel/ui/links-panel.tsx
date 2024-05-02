@@ -1,7 +1,6 @@
 'use client';
 
 import { Notification } from '@/entities/notification';
-import { MarketsProductData, Product } from '@/entities/products';
 import { CheckIcon } from '@/shared/assets/icon/Check';
 import { CopyIcon } from '@/shared/assets/icon/Copy';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
@@ -9,6 +8,10 @@ import { StarIcon } from '@/shared/assets/icon/Star';
 import { Markets } from '@/shared/const';
 import { convertCurrency } from '@/shared/lib/features';
 import { Button } from '@/shared/ui/button';
+import {
+	ProductCardResponse,
+	ProductMarkets,
+} from '@melior-gift/zod-contracts';
 import { Tooltip } from '@nextui-org/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,13 +19,13 @@ import { FC, memo, useState } from 'react';
 import cls from './links-panel.module.scss';
 
 interface LinksPanelProps {
-	product: Product;
+	product: ProductCardResponse;
 }
 
 export const LinksPanel: FC<LinksPanelProps> = memo(({ product }) => {
 	const [showNotification, setShowNotification] = useState(false);
 
-	const renderLinks = (markets: MarketsProductData) => {
+	const renderLinks = (markets: ProductMarkets) => {
 		const convertedPrice = convertCurrency(markets.price);
 		const convertedOldPrice = convertCurrency(markets.oldPrice);
 

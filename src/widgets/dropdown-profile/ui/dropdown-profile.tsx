@@ -33,6 +33,7 @@ interface DropdownProfileProps {
 
 export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	const { theme, setTheme } = useTheme();
+	const isDark = theme === Theme.DARK;
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
 
 	const dispatch = useAppDispatch();
@@ -57,6 +58,8 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 		space: isSpace,
 	} = useSelector(getSettings);
 
+	const isSpaceAllowed = !isMD && isDark && !isOptimization;
+
 	return (
 		<>
 			<Dropdown
@@ -77,7 +80,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 						<DropdownItem
 							key='space'
 							description={
-								isMD ? 'Не работает на мобильных' : 'Добавляет космос!'
+								isMD ? 'Не работает на мобильных' : 'Добавить космос!'
 							}
 							onClick={() => {
 								dispatch(settingsActions.toggleSpace());
@@ -86,7 +89,8 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 								<Switch
 									size='sm'
 									aria-label='Automatic updates'
-									isSelected={isSpace}
+									isDisabled={!isSpaceAllowed}
+									isSelected={isSpace && isSpaceAllowed}
 									className={cn(cls.switch, 'noselect')}
 								/>
 							}
@@ -98,7 +102,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 								setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK);
 							}}
 							key='theme'
-							description='Делает тему светлой'
+							description='Сделать тему светлой'
 							startContent={
 								<Switch
 									size='sm'
@@ -114,7 +118,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 						</DropdownItem>
 						<DropdownItem
 							key='optimization'
-							description='Убирает все эффекты'
+							description='Убрать все эффекты'
 							onClick={() => {
 								dispatch(settingsActions.toggleOptimization());
 							}}
@@ -131,7 +135,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 						</DropdownItem>
 						<DropdownItem
 							key='usd'
-							description='Отображает цены в $'
+							description='Отображать цены в $'
 							onClick={() => {
 								if (isUSD === 'USD') {
 									dispatch(settingsActions.changeCurrency('RUB'));

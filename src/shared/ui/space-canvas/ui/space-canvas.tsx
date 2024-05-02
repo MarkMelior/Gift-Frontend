@@ -6,7 +6,7 @@ import { Theme } from '@/shared/types/theme';
 import { PointMaterial, Points } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import cn from 'clsx';
-import * as random from 'maath/random/dist/maath-random.esm';
+import { random } from 'maath';
 import { useTheme } from 'next-themes';
 import { Suspense, memo, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -25,7 +25,6 @@ const StarBackground = memo((props: any) => {
 	});
 
 	return (
-		// eslint-disable-next-line
 		<group rotation={[0, 0, 0]}>
 			<Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
 				<PointMaterial
@@ -51,7 +50,7 @@ export const SpaceCanvas = memo(() => {
 			setIsVisible(!isSmallScreen);
 		};
 
-		handleResize(); // Вызываем при монтировании, чтобы установить начальное состояние
+		handleResize();
 
 		window.addEventListener('resize', handleResize);
 

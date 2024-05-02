@@ -13,9 +13,9 @@ const MainPage: FC = memo(() => {
 	return (
 		<>
 			<TopPage
+				note='Найти подарок - легко'
 				title='Melior Gift'
-				description='Каждый подарок может быть искусством'
-				note='Лучший выбор в мире'
+				description='Находить креативные подарки теперь легко и приятно.'
 				imageContent={
 					<Image
 						src='/images/pages/gift.png'

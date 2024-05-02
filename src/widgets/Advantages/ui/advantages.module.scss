@@ -50,18 +50,10 @@
 }
 
 .heading {
-	margin-top: 40px;
-
-	@media (max-width: theme('screens.sm')) {
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-	}
+	@apply gap-2 flex flex-col mt-10;
 
 	h2 {
-		font-weight: 700;
-
-		@apply text-4xl;
+		@apply text-4xl font-bold;
 	}
 
 	p {

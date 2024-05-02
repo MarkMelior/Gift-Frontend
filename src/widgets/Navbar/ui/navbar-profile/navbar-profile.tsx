@@ -19,6 +19,7 @@ export const NavbarProfile = memo(() => {
 					`${process.env.UPLOADS}/avatars/${user?.id}/${user.avatar}`
 				}
 				fallback={<UserIcon />}
+				color='primary'
 				alt='Иконка пользователя'
 			/>
 		</DropdownProfile>

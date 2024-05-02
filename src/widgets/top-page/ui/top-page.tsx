@@ -32,16 +32,14 @@ export const TopPage: FC<TopPageProps> = memo(
 		imageContent,
 		onClickNote,
 	}) => {
+		// * spline remove logo
 		// const splineRef = useRef(null);
-
 		// Shadow DOM
 		// useEffect(() => {
 		// 	const shadowRoot = splineRef.current.shadowRoot;
-
 		// 	const style = document.createElement('style');
 		// 	style.textContent =
 		// 		'canvas { width: 600px !important; height: 600px !important; } a { display: none !important; }';
-
 		// 	shadowRoot.appendChild(style);
 		// }, []);
 

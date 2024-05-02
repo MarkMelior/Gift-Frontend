@@ -4,13 +4,15 @@ import { FC, memo } from 'react';
 import { CardProps } from '../card/card';
 import cls from './card-wide.module.scss';
 
-export const CardWide: FC<CardProps> = memo(({ data }) => {
+export const CardWide: FC<CardProps> = memo(({ data, isLoading }) => {
 	const convertedPrice = convertCurrency(data.markets[0].price);
 	const convertedOldPrice = convertCurrency(data.markets[0].oldPrice);
 
 	return (
 		<div className={cls.card}>
-			<img src={`/images/products/${data.images[0]}`} alt={data.title} />
+			<img
+				src={`${process.env.UPLOADS}/products/${data.article}/${data.images[0]}`}
+			/>
 			<div className={cls.title}>{data.title}</div>
 			<div className={cls.wrapper}>
 				<div className={cls.info}>

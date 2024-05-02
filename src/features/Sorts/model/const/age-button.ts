@@ -1,4 +1,5 @@
-import { SortAge, SortButtonProps } from '../types/sort.type';
+import { SortAge } from '@melior-gift/zod-contracts';
+import { SortButtonProps } from '../types/sort.type';
 
 interface ButtonAgeProps extends SortButtonProps {
 	key: SortAge;

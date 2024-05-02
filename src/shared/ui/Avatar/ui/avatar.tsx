@@ -77,15 +77,14 @@ const Avatar = forwardRef<HTMLSpanElement, AvatarProps>((props, ref) => {
 		icon,
 	]);
 
-	const { originalProps, ...avatarProps } = getAvatarProps(); // this line for fix error with originalProps
+	const { originalProps, ...avatarProps } = getAvatarProps();
 
-	// TODO: сделать чтобы можно было менять цвет при наведении, а не константа
 	return (
 		<div
 			{...avatarProps}
 			className={cn(
 				avatarProps.className,
-				cls.avatar,
+				cls.wrapper,
 				'click',
 				'cursor-pointer',
 			)}

@@ -1,4 +1,5 @@
-import { SortButtonProps, SortSorting } from '../types/sort.type';
+import { SortSorting } from '@melior-gift/zod-contracts';
+import { SortButtonProps } from '../types/sort.type';
 
 interface ButtonSortingProps extends SortButtonProps {
 	key: SortSorting;

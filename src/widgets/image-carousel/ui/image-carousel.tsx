@@ -1,18 +1,19 @@
 'use client';
 
-import { Product } from '@/entities/products';
 import { Button } from '@/shared/ui/button';
+import { ProductResponse } from '@melior-gift/zod-contracts';
 import { FC, memo, useRef, useState } from 'react';
 import { Mousewheel, Navigation, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperType } from 'swiper/types';
 import cls from './image-carousel.module.scss';
 
 interface ImageCarouselProps {
-	product: Product;
+	product: ProductResponse;
 }
 
 export const ImageCarousel: FC<ImageCarouselProps> = memo(({ product }) => {
-	const [thumbsSwiper, setThumbsSwiper] = useState(null);
+	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | undefined>();
 	const prevRef = useRef(null);
 	const nextRef = useRef(null);
 
@@ -30,7 +31,6 @@ export const ImageCarousel: FC<ImageCarouselProps> = memo(({ product }) => {
 	return (
 		<div className={cls.wrapper}>
 			<Swiper
-				// @ts-ignore fix
 				onSwiper={setThumbsSwiper}
 				direction='vertical'
 				watchSlidesProgress
@@ -47,7 +47,6 @@ export const ImageCarousel: FC<ImageCarouselProps> = memo(({ product }) => {
 				slideActiveClass={cls.slideActive}
 				loop
 				thumbs={{
-					// @ts-ignore fix
 					swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
 					slideThumbActiveClass: cls.slideThumbActive,
 				}}

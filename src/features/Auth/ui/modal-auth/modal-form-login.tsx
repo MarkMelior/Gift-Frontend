@@ -7,6 +7,7 @@ import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
+import { AuthLoginRequest } from '@melior-gift/zod-contracts';
 import { FC, FormEvent, useCallback } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useLoginUserMutation } from '../../api/auth.api';
@@ -15,7 +16,6 @@ import {
 	loginFormActions,
 	loginFormReducer,
 } from '../../model/slice/login-form.slice';
-import { LoginProps } from '../../model/types/auth.type';
 import cls from './modal-auth.module.scss';
 
 interface ModalFormLoginProps {
@@ -41,7 +41,7 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 	}, [dispatch, onSubmit, reducerManager]);
 
 	const handleRejectedResult = useCallback(
-		(payload: LoginProps) => {
+		(payload: AuthLoginRequest) => {
 			if (typeof payload === 'string') {
 				dispatch(loginFormActions.setError(payload));
 			} else {

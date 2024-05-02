@@ -1,8 +1,7 @@
 'use client';
 
-import { productData } from '@/db';
-import { CardWide } from '@/entities/products';
-import { MediaSize } from '@/shared/const';
+import { CardWide, useGetProductsQuery } from '@/entities/products';
+import { MediaSize, bestProducts } from '@/shared/const';
 import { Button } from '@/shared/ui/button';
 import { Heading } from '@/widgets/heading';
 import cn from 'clsx';
@@ -41,14 +40,10 @@ export const BestProduct: FC = memo(() => {
 		slidesPerView = 1;
 	}
 
-	const cards = [];
-	for (let i = 0; i < 4; i++) {
-		cards.push(
-			<SwiperSlide key={i}>
-				<CardWide data={productData[i]} />
-			</SwiperSlide>,
-		);
-	}
+	const { data: products, isLoading } = useGetProductsQuery({
+		limit: '10',
+		articles: bestProducts.join(','),
+	});
 
 	const [isMounted, setMounted] = useState(false);
 
@@ -79,9 +74,9 @@ export const BestProduct: FC = memo(() => {
 				</motion.div>
 			)}
 			<Heading
+				note='Популярное'
 				title='Лучшие подарки'
-				description='Это забота и внимание, которые приносят радость и оставляют незабываемые впечатления'
-				note='Топ из топов'
+				description='Не теряйте время на поиски - наши подарки точно угодят и впечатлят даже самых взыскательных.'
 				doubleTitle={false}
 				center
 				customSize={3}
@@ -120,7 +115,11 @@ export const BestProduct: FC = memo(() => {
 						swiper.navigation.update();
 					}}
 				>
-					{cards}
+					{products?.map((product) => (
+						<SwiperSlide key={product.article}>
+							<CardWide data={product} isLoading={isLoading} />
+						</SwiperSlide>
+					))}
 					<div className={cls.buttonPrev}>
 						<Button disableRipple ref={prevRef} />
 					</div>

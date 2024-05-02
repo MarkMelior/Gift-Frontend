@@ -1,18 +1,19 @@
 'use client';
 
-import { Product, useProducts } from '@/entities/products';
+import { useFavorites } from '@/features/favorites';
 import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { Button } from '@/shared/ui/button';
+import { ProductResponse } from '@melior-gift/zod-contracts';
 import cn from 'clsx';
 import { FC, MouseEvent, memo } from 'react';
 import cls from './characteristics.module.scss';
 
 interface CharacteristicsProps {
-	product: Product;
+	product: ProductResponse;
 }
 
 export const Characteristics: FC<CharacteristicsProps> = memo(({ product }) => {
-	const { isFavorites, toggleFavorites } = useProducts(product);
+	const { isFavorites, toggleFavorites } = useFavorites(product);
 
 	return (
 		<ul className={cls.wrapper}>

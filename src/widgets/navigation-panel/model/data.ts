@@ -23,13 +23,13 @@ export const NavigationPanelData: NavigationPanelLinks = {
 		image: '/images/icons/cart.svg',
 		alt: 'Иконка главной страницы',
 		title: 'Магазин',
-		description: 'Найди свой подарок!',
+		description: 'Найди лучший подарок!',
 	},
 	favorites: {
 		to: '/favorites',
 		image: '/images/icons/heart.svg',
 		alt: 'Иконка главной страницы',
 		title: 'Избранное',
-		description: 'Ваши сохранённые товары',
+		description: 'Твои избранные подарки',
 	},
 };

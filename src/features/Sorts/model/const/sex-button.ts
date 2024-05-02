@@ -1,4 +1,5 @@
-import { SortButtonProps, SortSex } from '../types/sort.type';
+import { SortSex } from '@melior-gift/zod-contracts';
+import { SortButtonProps } from '../types/sort.type';
 
 interface ButtonSexProps extends SortButtonProps {
 	key: SortSex;

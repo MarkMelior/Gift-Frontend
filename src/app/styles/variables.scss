@@ -1,20 +1,20 @@
 :root {
-	// Fonts
+	// * Fonts
 	--font-family-main: inter, sans-serif;
 
-	// Sizes
+	// * Sizes
 	--navbar-height: 80px;
 	--navbar-height-mobile: 60px;
 	--navbar-height-search-mobile: 70px;
 
-	// Colors
+	// * Colors
 	--color-ozon-rgb: 0, 91, 255;
 	--color-yandex-rgb: 254, 212, 43;
-	--color-aliexpress-rgb: 255, 0, 0; // todo
-	--color-wildberries-rgb: 0, 255, 0; // todo
-	--color-sber-rgb: 0, 0, 255; // todo
+	--color-aliexpress-rgb: 252, 36, 41;
+	--color-wildberries-rgb: 158, 34, 148;
+	--color-sber-rgb: 24, 165, 88;
 
-	// z Indexes
+	// * z Indexes
 	--z-index-space: -30;
 	--z-index-title-heading: -25;
 	--z-index-bg-images: -20;
@@ -27,7 +27,7 @@
 	--z-index-scroll-up: 25;
 	--z-index-modal: 30;
 
-	// Filters
+	// * Filters
 	--blur-xs: blur(8px);
 	--blur-sm: blur(16px);
 	--blur-md: blur(32px);
@@ -43,7 +43,7 @@
 		--blur-xl: none;
 	}
 
-	// Others
+	// * Others
 	--position-bottom: 45px;
 	--position-top: calc(var(--navbar-height) + 10px);
 

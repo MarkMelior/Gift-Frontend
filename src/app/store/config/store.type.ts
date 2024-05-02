@@ -17,7 +17,7 @@ export interface RootState {
 	user: UserState;
 	[rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
-	// Async reducers
+	// * Async reducers
 	sort?: SortState;
 	search?: SearchState;
 	loginForm?: LoginState;

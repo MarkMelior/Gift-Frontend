@@ -20,6 +20,7 @@ export const convertCurrency = (
 	number: number | undefined,
 	options: Options = {},
 ): string | number | false => {
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const isUSD = useSelector(getSettingsCurrency);
 
 	const {

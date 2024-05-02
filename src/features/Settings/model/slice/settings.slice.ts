@@ -17,9 +17,16 @@ export const settingsSlice = createSlice({
 			state.currency = action.payload;
 		},
 		toggleSpace: (state) => {
-			state.space = !state.space;
+			if (state.optimization) {
+				state.space = false;
+			} else {
+				state.space = !state.space;
+			}
 		},
 		toggleOptimization: (state) => {
+			if (!state.optimization) {
+				state.space = false;
+			}
 			state.optimization = !state.optimization;
 		},
 	},

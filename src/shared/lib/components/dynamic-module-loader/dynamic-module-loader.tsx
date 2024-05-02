@@ -44,7 +44,7 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = ({
 				});
 			}
 		};
-		// eslint-disable-next-line
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return <>{children}</>;

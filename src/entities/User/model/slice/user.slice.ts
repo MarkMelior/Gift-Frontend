@@ -1,11 +1,12 @@
 import { LocalstorageKeys } from '@/shared/types/localstorage';
+import { UserResponse } from '@melior-gift/zod-contracts';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { NotUserLogin, initAuthData } from '../services/initAuthData';
-import { User, UserState } from '../types/user';
+import { initAuthData } from '../services/initAuthData';
+import { UserState } from '../types/user';
 
 export const userInitialState: Omit<UserState, 'data'> & {
-	data: Partial<User>;
+	data: Partial<UserResponse>;
 } = {
 	readonly: true,
 	isLoading: false,
@@ -39,7 +40,10 @@ export const userSlice = createSlice({
 			})
 			.addCase(
 				initAuthData.fulfilled,
-				(state, action: PayloadAction<User | NotUserLogin>) => {
+				(
+					state,
+					action: PayloadAction<UserResponse | Pick<UserResponse, 'favorites'>>,
+				) => {
 					state.isLoading = false;
 					state.data = action.payload;
 				},

@@ -2,14 +2,14 @@ import { userActions, userApi } from '@/entities/user';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import {
-	AccessToken,
-	LoginProps,
-	RegisterProps,
-} from '../model/types/auth.type';
+	AuthLoginRequest,
+	AuthRegisterRequest,
+	AuthResponse,
+} from '@melior-gift/zod-contracts';
 
 const authApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
-		loginUser: build.mutation<AccessToken, LoginProps>({
+		loginUser: build.mutation<AuthResponse, AuthLoginRequest>({
 			query: (authData) => ({
 				url: `/auth/login`,
 				method: 'POST',
@@ -26,7 +26,7 @@ const authApi = rtkApi.injectEndpoints({
 				});
 			},
 		}),
-		registerUser: build.mutation<AccessToken, RegisterProps>({
+		registerUser: build.mutation<AuthResponse, AuthRegisterRequest>({
 			query: (authData) => ({
 				url: `/auth/register`,
 				method: 'POST',

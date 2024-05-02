@@ -12,9 +12,9 @@ export const FavoritesPage: FC = memo(() => {
 		<div className={cn(cls.wrapper, 'content')}>
 			<TopPage
 				compact
+				note='Мой выбор'
 				title='Избранное'
-				description={'Сохраняйте подарки в избранное, чтобы не потерять (:'}
-				note='Моё избранное'
+				description={'Сохраняй подарки в избранное, чтобы не потерять (:'}
 				imageContent={
 					<Image
 						src='/images/pages/heart.png'

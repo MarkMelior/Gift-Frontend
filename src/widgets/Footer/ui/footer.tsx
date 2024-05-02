@@ -17,7 +17,7 @@ export const Footer: FC = memo(() => {
 					<Link href='/' className={cn(cls.logo)}>
 						<Logo opacity={0.3} width='3rem' height='3rem' />
 					</Link>
-					<p>© 2024 Brand Melior. Все права защищены</p>
+					<p>© 2024 Mark Melior. Все права защищены</p>
 					<div className={cls.linksContent}>
 						<Link target='blank' href={Links.telegram.link}>
 							<TelegramIcon width='1.5rem' height='1.5rem' />

@@ -1,7 +1,7 @@
-import { AccessToken } from '@/features/auth';
 import { SettingsState } from '@/features/settings';
 import { getLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
+import { AuthResponse } from '@melior-gift/zod-contracts';
 import type { ReducersMapObject } from '@reduxjs/toolkit';
 import { FC, ReactNode } from 'react';
 import { Provider } from 'react-redux';
@@ -22,7 +22,7 @@ export const StoreProvider: FC<StoreProviderProps> = ({
 	const initialState: DeepPartial<RootState> = {
 		settings: getLocalstorage<SettingsState>(LocalstorageKeys.SETTINGS),
 		user: {
-			access_token: getLocalstorage<AccessToken>(LocalstorageKeys.USER)
+			access_token: getLocalstorage<AuthResponse>(LocalstorageKeys.USER)
 				?.access_token,
 		},
 	};

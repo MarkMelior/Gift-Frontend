@@ -1,5 +1,6 @@
 import { CheckIcon } from '@/shared/assets/icon/Check';
 import { Button } from '@/shared/ui/button';
+import { SortCategory } from '@melior-gift/zod-contracts';
 import { useSearchParams } from 'next/navigation';
 import { FC, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +14,6 @@ import { sortActions } from '../model/slice/sort.slice';
 import {
 	SortButtonProps,
 	SortButtonsKeys,
-	SortCategory,
 	SortFilterProps,
 } from '../model/types/sort.type';
 import cls from './sorts.module.scss';
