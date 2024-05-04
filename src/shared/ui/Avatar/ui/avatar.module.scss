@@ -2,10 +2,12 @@
 	min-width: fit-content;
 
 	&:not(:hover) {
+		background-color: #3a3641;
 		box-shadow: 0 0 0 0.125rem rgb(var(--color-main-rgb), 1), 0 0 0 4px #3a3641;
 	}
 
 	&[aria-expanded="true"] {
+		background-color: theme('colors.primary');
 		box-shadow: 0 0 0 0.125rem rgb(var(--color-main-rgb), 1), 0 0 0 4px theme('colors.primary');
 	}
 }

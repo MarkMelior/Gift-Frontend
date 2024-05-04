@@ -22,7 +22,7 @@
 	border: 1px solid var(--color-border);
 
 	@media (max-width: theme('screens.md')) {
-		@include background(1);
+		@include background(.8);
 	}
 
 	header {

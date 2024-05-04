@@ -7,7 +7,7 @@ import { Blackhole } from '@/shared/ui/blackhole';
 import { Button } from '@/shared/ui/button';
 import { NavigationPanel } from '@/widgets/navigation-panel';
 import { TopPage } from '@/widgets/top-page';
-import { ProductFindRequest, SortFilters } from '@melior-gift/zod-contracts';
+import { ProductFindRequest } from '@melior-gift/zod-contracts';
 import { Image, Textarea } from '@nextui-org/react';
 import cn from 'clsx';
 import { FC, memo, useCallback, useState } from 'react';
@@ -21,10 +21,10 @@ const initialReducers: ReducersList = {
 export const ShopPage: FC = memo(() => {
 	const sort = useSelector(getSort);
 	const FindProducts: ProductFindRequest = {
-		limit: '100',
-		filters: [...sort.category, sort.age, sort.sex].join('-') as SortFilters,
-		maxPrice: String(sort.maxPrice),
-		minPrice: String(sort.minPrice),
+		limit: 100,
+		filters: [...sort.category, sort.age, sort.sex],
+		maxPrice: sort.maxPrice,
+		minPrice: sort.minPrice,
 		sort: sort.sorting,
 	};
 	const [fetchData, setFetchData] = useState(FindProducts);
@@ -97,7 +97,7 @@ export const ShopPage: FC = memo(() => {
 						data={products}
 						isLoading={isLoading}
 						// ! fix error type
-						error={error && 'status' in error && error.data.message}
+						// error={error && 'status' in error && error.data.message}
 					/>
 				</div>
 			</div>

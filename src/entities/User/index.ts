@@ -1,4 +1,4 @@
-import { getUserDataApi, userApi } from './api/user.api';
+import { getUserDataApi, useFindUsersQuery, userApi } from './api/user.api';
 import { useRoleAccess } from './hooks/useRoleAccess';
 import { getUserAuthData } from './model/selectors/getUserAuthData';
 import { getUserData } from './model/selectors/getUserData';
@@ -21,6 +21,7 @@ export {
 	getUserFavorites,
 	getUserState,
 	initAuthData,
+	useFindUsersQuery,
 	useRoleAccess,
 	userActions,
 	userApi,

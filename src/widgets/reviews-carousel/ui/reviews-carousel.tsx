@@ -1,13 +1,12 @@
 'use client';
 
+import { ReviewCard, useGetReviewsQuery } from '@/entities/reviews';
 import { getSettingsOptimization } from '@/features/settings';
 import { MediaSize } from '@/shared/const';
+import { mainReviewsIds } from '@/shared/const/main-reviews/main-reviews';
 import { SlideHeading } from '@/shared/ui/slide-heading';
-import { StarRating } from '@/shared/ui/star-rating';
-import { User } from '@nextui-org/react';
 import cn from 'clsx';
 import Image from 'next/image';
-import Link from 'next/link';
 import { FC, memo, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
@@ -21,40 +20,21 @@ export const ReviewsCarousel: FC = memo(() => {
 	const isXL = useMediaQuery({ maxWidth: MediaSize.XL });
 	const isOptimization = useSelector(getSettingsOptimization);
 
+	const { data: reviews } = useGetReviewsQuery({
+		limit: 10,
+		ids: mainReviewsIds,
+	});
+	const halfLength =
+		reviews && reviews.length > 0 ? Math.ceil(reviews.length / 2) : 0;
+	const reviewsFirst = reviews?.slice(0, halfLength);
+	const reviewsSecond = reviews?.slice(halfLength);
+
 	let slidesPerView: number = 3;
 	if (isXL) {
 		slidesPerView = 2;
 	}
 	if (isMD) {
 		slidesPerView = 1;
-	}
-
-	const cards = [];
-	for (let i = 0; i < 20; i++) {
-		cards.push(
-			<SwiperSlide key={i}>
-				<div className={cls.review}>
-					<div className={cls.reviewHead}>
-						<User
-							name='Junior Garcia'
-							description={
-								<Link target='_blank' href='https://twitter.com/jrgarciadev'>
-									@MarkMelior
-								</Link>
-							}
-							avatarProps={{
-								src: 'https://avatars.githubusercontent.com/u/30373425?v=4',
-							}}
-						/>
-						<StarRating rating={i + 1} />
-					</div>
-					<p className={cls.text}>
-						Очень рад сотрудничеству! Заказал у него создание личного
-						сайта-портфолио, и результат превзошел все мои ожидания!
-					</p>
-				</div>
-			</SwiperSlide>,
-		);
 	}
 
 	const [isMounted, setMounted] = useState(false);
@@ -80,7 +60,11 @@ export const ReviewsCarousel: FC = memo(() => {
 						}}
 						className={cls.reviewRow1}
 					>
-						{cards}
+						{reviewsFirst?.map((review) => (
+							<SwiperSlide key={review._id}>
+								<ReviewCard review={review} />
+							</SwiperSlide>
+						))}
 					</Swiper>
 					<Swiper
 						modules={[FreeMode, Autoplay]}
@@ -95,7 +79,11 @@ export const ReviewsCarousel: FC = memo(() => {
 						}}
 						className={cls.reviewRow2}
 					>
-						{cards}
+						{reviewsSecond?.map((review) => (
+							<SwiperSlide key={review._id}>
+								<ReviewCard review={review} />
+							</SwiperSlide>
+						))}
 					</Swiper>
 				</div>
 				{isSM || isOptimization ? (

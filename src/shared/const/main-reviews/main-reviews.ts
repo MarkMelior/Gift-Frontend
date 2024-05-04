@@ -1,0 +1,8 @@
+export const mainReviewsIds = [
+	'66252228b3520d0426b18784',
+	'663605bb8b4ca3d687a3fa6f',
+	'663605e58b4ca3d687a3fa71',
+	'663605f48b4ca3d687a3fa73',
+	'663606078b4ca3d687a3fa75',
+	'6636089e8b4ca3d687a3fa7e',
+];

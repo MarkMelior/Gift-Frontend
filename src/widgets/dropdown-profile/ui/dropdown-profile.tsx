@@ -164,7 +164,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 								className='opacity-100'
 								onClick={() => setIsOpen(false)}
 							>
-								{isLoadingUser ? (
+								{isLoadingUser || !user ? (
 									<div className='max-w-[300px] w-full flex items-center gap-2'>
 										<div>
 											<Skeleton className='flex rounded-full w-10 h-10' />

@@ -1,6 +1,7 @@
 'use client';
 
-import { FC, ReactNode, memo, useEffect, useState } from 'react';
+import { FC, ReactNode, memo } from 'react';
+import { useDelay } from '../../hooks';
 
 export interface SkeletonComponentProps {
 	children: ReactNode;
@@ -10,15 +11,7 @@ export interface SkeletonComponentProps {
 
 export const SkeletonComponent: FC<SkeletonComponentProps> = memo(
 	({ children, skeletonCount = 4, delay = 300 }) => {
-		const [isTime, setIsTime] = useState(false);
-
-		useEffect(() => {
-			const timer = setTimeout(() => {
-				setIsTime(true);
-			}, delay);
-
-			return () => clearTimeout(timer);
-		}, [delay]);
+		const isTime = useDelay(delay);
 
 		const renderSkeletons = () => {
 			return Array.from({ length: skeletonCount }, () => children);

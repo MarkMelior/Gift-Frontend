@@ -1,0 +1,34 @@
+@import '@/app/styles/utils';
+
+.wrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding: 30px;
+	cursor: default;
+	backdrop-filter: var(--blur-md);
+	border: 1px solid var(--color-border);
+	transition: all .3s ease;
+
+	@apply rounded-lg;
+	@include background(.4);
+
+	@media (max-width: theme('screens.sm')) {
+		@include background(1);
+	}
+
+	&:hover {
+		border: 1px solid var(--color-border-select);
+		transform: scale(1.025);
+	}
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.text {
+	opacity: .8;
+}

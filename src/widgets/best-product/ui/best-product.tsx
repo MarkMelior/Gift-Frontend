@@ -1,13 +1,17 @@
 'use client';
 
-import { CardWide, useGetProductsQuery } from '@/entities/products';
+import {
+	CardWide,
+	CardWideSkeleton,
+	useGetProductsQuery,
+} from '@/entities/products';
 import { MediaSize, bestProducts } from '@/shared/const';
 import { Button } from '@/shared/ui/button';
 import { Heading } from '@/widgets/heading';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import { FC, memo, useEffect, useRef, useState } from 'react';
+import { FC, memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
@@ -41,8 +45,8 @@ export const BestProduct: FC = memo(() => {
 	}
 
 	const { data: products, isLoading } = useGetProductsQuery({
-		limit: '10',
-		articles: bestProducts.join(','),
+		limit: 10,
+		articles: bestProducts,
 	});
 
 	const [isMounted, setMounted] = useState(false);
@@ -50,6 +54,21 @@ export const BestProduct: FC = memo(() => {
 	useEffect(() => {
 		setMounted(true);
 	}, []);
+
+	const renderCard = useCallback(() => {
+		if (!products) {
+			return Array.from({ length: 6 }, () => (
+				<SwiperSlide key={Math.random()}>
+					<CardWideSkeleton />
+				</SwiperSlide>
+			));
+		}
+		return products.map((product) => (
+			<SwiperSlide key={product.article}>
+				<CardWide data={product} />
+			</SwiperSlide>
+		));
+	}, [products]);
 
 	return (
 		<section className={cn(cls.wrapper, 'content')}>
@@ -115,11 +134,7 @@ export const BestProduct: FC = memo(() => {
 						swiper.navigation.update();
 					}}
 				>
-					{products?.map((product) => (
-						<SwiperSlide key={product.article}>
-							<CardWide data={product} isLoading={isLoading} />
-						</SwiperSlide>
-					))}
+					{renderCard()}
 					<div className={cls.buttonPrev}>
 						<Button disableRipple ref={prevRef} />
 					</div>

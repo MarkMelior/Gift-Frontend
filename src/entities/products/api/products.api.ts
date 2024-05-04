@@ -10,20 +10,20 @@ export const productsApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
 		getProducts: build.query<ProductResponse[], ProductFindRequest>({
 			query: (dto) => ({
-				url: '/products/find',
+				url: '/products',
 				method: 'GET',
 				params: dto,
-			}),
-		}),
-		getProductsPrice: build.query<ProductPricesResponse, void>({
-			query: () => ({
-				url: `products/prices`,
-				method: 'GET',
 			}),
 		}),
 		getProduct: build.query<ProductResponse, string>({
 			query: (productArticle) => ({
 				url: `/products/${productArticle}`,
+				method: 'GET',
+			}),
+		}),
+		getProductsPrice: build.query<ProductPricesResponse, void>({
+			query: () => ({
+				url: `products/prices`,
 				method: 'GET',
 			}),
 		}),

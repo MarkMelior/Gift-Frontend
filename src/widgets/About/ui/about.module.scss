@@ -57,7 +57,7 @@
 	}
 
 	p {
-		opacity: .5;
+		@apply text-gray-500;
 
 		@media (max-width: theme('screens.sm')) {
 			@apply text-sm;
@@ -112,10 +112,7 @@ $swipe-size: 280px;
 	}
 
 	.swipeDescription {
-		font-weight: 300;
-		opacity: .5;
-
-		@apply text-sm;
+		@apply text-sm text-gray-500 font-light;
 	}
 
 	@media (min-width: theme('screens.xl')) {

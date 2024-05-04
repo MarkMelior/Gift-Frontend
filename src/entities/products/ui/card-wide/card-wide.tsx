@@ -1,10 +1,10 @@
 import { convertCurrency } from '@/shared/lib/features';
+import { ProductCardResponse } from '@melior-gift/zod-contracts';
 import Image from 'next/image';
 import { FC, memo } from 'react';
-import { CardProps } from '../card/card';
 import cls from './card-wide.module.scss';
 
-export const CardWide: FC<CardProps> = memo(({ data, isLoading }) => {
+export const CardWide: FC<{ data: ProductCardResponse }> = memo(({ data }) => {
 	const convertedPrice = convertCurrency(data.markets[0].price);
 	const convertedOldPrice = convertCurrency(data.markets[0].oldPrice);
 

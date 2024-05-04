@@ -1,6 +1,6 @@
 'use client';
 
-import { Cards } from '@/entities/products';
+import { Cards, useGetProductsQuery } from '@/entities/products';
 import { useGetFavoritesProductsQuery } from '@/features/favorites';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { Button } from '@/shared/ui/button';
@@ -11,15 +11,15 @@ import cls from './favorites-page.module.scss';
 export const FavoritesProducts: FC = memo(() => {
 	const { data: favoritesProducts, isLoading } = useGetFavoritesProductsQuery();
 
-	if (isLoading) return <div>ЗАГРУЗКА ДАТЫ!</div>;
+	const { data: recommendedProducts, isLoading: isLoadingProducts } =
+		useGetProductsQuery({ limit: '10' });
 
 	return (
 		<>
-			<Cards data={favoritesProducts} />
-			{!favoritesProducts ? (
+			{!favoritesProducts && !isLoading ? (
 				<>
 					<div className={cls.notFound}>
-						<Link href='/shop' style={{ display: 'inline-block' }}>
+						<Link href='/shop' className='inline-block'>
 							<Button
 								starlight
 								className='py-5 px-12 rounded-xl'
@@ -29,18 +29,18 @@ export const FavoritesProducts: FC = memo(() => {
 								За подарками!
 							</Button>
 						</Link>
-					</div>
-					<div className={cls.recommended}>
-						<h3>Рекомендуемые товары</h3>
-						{/* <Cards data={productData} /> */}
+						<span className='text-xs text-gray-500'>
+							Избранные подарки не найдены
+						</span>
 					</div>
 				</>
 			) : (
-				<div className={cls.recommended}>
-					<h3>Просмотренные</h3>
-					{/* <Cards data={historyData} /> */}
-				</div>
+				<Cards data={favoritesProducts} isLoading={isLoading} />
 			)}
+			<div className={cls.recommended}>
+				<h3>Рекомендуемые товары</h3>
+				<Cards data={recommendedProducts} isLoading={isLoadingProducts} />
+			</div>
 		</>
 	);
 });

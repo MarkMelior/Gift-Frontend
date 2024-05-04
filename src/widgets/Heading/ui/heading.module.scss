@@ -50,7 +50,8 @@
 
 .description {
 	max-width: 528px;
-	color: rgba(var(--color-text), .5);
+
+	@apply text-gray-500;
 }
 
 .center {
