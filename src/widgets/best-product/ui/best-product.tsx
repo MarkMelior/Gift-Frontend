@@ -111,6 +111,7 @@ export const BestProduct: FC = memo(() => {
 						disableOnInteraction: false,
 					}}
 					centeredSlides
+					centeredSlidesBounds
 					pagination={{
 						clickable: true,
 						el: '[data-slider-dots]',

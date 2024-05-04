@@ -2,7 +2,6 @@ import {
 	addProduct,
 	useAddProductMutation,
 	useGetProductQuery,
-	useGetProductsPriceQuery,
 	useGetProductsQuery,
 } from './api/products.api';
 import { CardWide } from './ui/card-wide/card-wide';
@@ -18,7 +17,6 @@ export {
 	addProduct,
 	useAddProductMutation,
 	useGetProductQuery,
-	useGetProductsPriceQuery,
 	useGetProductsQuery,
 };
 

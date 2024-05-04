@@ -2,7 +2,6 @@ import { rtkApi } from '@/shared/api/rtkApi';
 import {
 	ProductCreateRequest,
 	ProductFindRequest,
-	ProductPricesResponse,
 	ProductResponse,
 } from '@melior-gift/zod-contracts';
 
@@ -18,12 +17,6 @@ export const productsApi = rtkApi.injectEndpoints({
 		getProduct: build.query<ProductResponse, string>({
 			query: (productArticle) => ({
 				url: `/products/${productArticle}`,
-				method: 'GET',
-			}),
-		}),
-		getProductsPrice: build.query<ProductPricesResponse, void>({
-			query: () => ({
-				url: `products/prices`,
 				method: 'GET',
 			}),
 		}),
@@ -83,7 +76,6 @@ export const addProduct = productsApi.endpoints.addProduct.initiate;
 
 export const {
 	useGetProductQuery,
-	useGetProductsPriceQuery,
 	useGetProductsQuery,
 	useAddProductMutation,
 } = productsApi;

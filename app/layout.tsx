@@ -2,6 +2,7 @@ import { Providers } from '@/app/providers/ui/providers';
 import '@/app/styles/index.scss';
 import { ScrollUp } from '@/features/scroll-up';
 import { SpaceCanvas } from '@/shared/ui/space-canvas';
+import { AdminPanel } from '@/widgets/admin-panel';
 import { Footer } from '@/widgets/footer';
 import { Navbar } from '@/widgets/navbar';
 import { PageLoader } from '@/widgets/page-loader';
@@ -26,16 +27,18 @@ export default function LocaleLayout({ children }: LocaleLayoutProps) {
 			<body className={inter.className}>
 				<Suspense fallback={<PageLoader />}>
 					<Providers>
-						<Navbar />
-						{children}
-						{/* todo */}
-						{/* <Notification
+						<AdminPanel>
+							<Navbar />
+							{children}
+							{/* todo */}
+							{/* <Notification
 							message='Добавьте наш сайт в закладки, чтобы не потерять'
 							startContent={<BookmarkIcon opacity={0.5} />}
 						/> */}
-						<SpaceCanvas />
-						<ScrollUp />
-						<Footer />
+							<SpaceCanvas />
+							<ScrollUp />
+							<Footer />
+						</AdminPanel>
 					</Providers>
 				</Suspense>
 			</body>

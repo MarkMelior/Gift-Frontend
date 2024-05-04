@@ -1,6 +1,6 @@
 'use client';
 
-import { Cards } from '@/entities/products';
+import { Cards, useGetProductsQuery } from '@/entities/products';
 import { SearchIcon } from '@/shared/assets/icon/Search';
 import {
 	Component,
@@ -20,7 +20,6 @@ import {
 } from '@nextui-org/react';
 import { FC, FormEvent, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useGetSearchedProductsQuery } from '../../api/search.api';
 import { getQuery } from '../../model/selectors/getQuery';
 import { getQueryInput } from '../../model/selectors/getQueryInput';
 import { searchActions, searchReducer } from '../../model/slice/search.slice';
@@ -39,9 +38,12 @@ const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
 	const dispatch = useAppDispatch();
 	const query = useSelector(getQuery);
 	const queryInput = useSelector(getQueryInput);
-	const { data: searchedData, isLoading } = useGetSearchedProductsQuery(query, {
-		skip: !query,
-	});
+	const { data: searchedData, isLoading } = useGetProductsQuery(
+		{ limit: 20, param: query },
+		{
+			skip: !query,
+		},
+	);
 
 	const handleSearch = useCallback(
 		(e: FormEvent) => {
