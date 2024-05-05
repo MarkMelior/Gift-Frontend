@@ -38,7 +38,11 @@ const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
 	const dispatch = useAppDispatch();
 	const query = useSelector(getQuery);
 	const queryInput = useSelector(getQueryInput);
-	const { data: searchedData, isLoading } = useGetProductsQuery(
+	const {
+		data: searchedData,
+		isLoading,
+		error,
+	} = useGetProductsQuery(
 		{ limit: 20, param: query },
 		{
 			skip: !query,
@@ -103,11 +107,14 @@ const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
 									</form>
 								</ModalHeader>
 								<ModalBody>
+									{!searchedData && <div>Введите запрос!</div>}
+									{!searchedData?.length && <div>Мы ничего не нашли!</div>}
 									<Cards
 										size='sm'
 										data={searchedData}
 										isLoading={isLoading}
 										skeletonCount={3}
+										// error={error}
 									/>
 								</ModalBody>
 								{/* <ModalFooter></ModalFooter> */}

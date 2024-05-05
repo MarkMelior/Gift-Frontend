@@ -1,0 +1,53 @@
+@import '@/app/styles/utils';
+
+.wrapper {
+	position: fixed;
+	top: 50%;
+	left: 25px;
+	z-index: var(--z-index-navbar);
+	display: flex;
+	flex-direction: column;
+	gap: .25rem;
+	align-items: center;
+	justify-content: center;
+	padding: .25rem;
+	backdrop-filter: var(--blur-xl);
+	border: 1px solid var(--color-border);
+	border-radius: .625rem;
+	transform: translateY(-50%);
+
+	@include background(1);
+
+	@media (max-width: theme('screens.sm')) {
+		top: calc(var(--navbar-height-search-mobile) + 10px);
+		left: 50%;
+		flex-direction: row;
+		transform: translateX(-50%);
+	}
+}
+
+
+.item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	color: rgba(var(--color-text), 1);
+	border-radius: .5rem;
+	transition: all .2s ease;
+
+	&:hover {
+		background: rgba(var(--color-main-inverted-rgb), .25);
+	}
+
+	&.active {
+		border: 2px solid theme('backgroundColor.primary-400');
+
+		@apply bg-primary-100;
+
+		&:hover {
+			@apply bg-primary-200;
+		}
+	}
+}

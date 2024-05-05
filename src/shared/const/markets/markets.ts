@@ -1,4 +1,4 @@
-import { MarketType } from '@/entities/products';
+import { MarketType } from '@melior-gift/zod-contracts';
 
 interface MarketParams {
 	name: string;

@@ -1,9 +1,7 @@
 'use client';
 
 import { MediaSize } from '@/shared/const';
-import { Button } from '@/shared/ui/button';
 import cn from 'clsx';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FC, memo } from 'react';
@@ -20,34 +18,22 @@ export const NavigationPanel: FC<NavigationPanelProps> = memo(
 		const pathname = usePathname();
 		const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
 
-		if (isPhone) {
-			return null;
-		}
-
-		const isActive = (href: string) => {
-			return pathname === href ? cls.selected : '';
-		};
+		if (isPhone) return;
 
 		return (
 			<section className={cn(cls.wrapper, className, 'content')}>
-				{Object.keys(NavigationPanelData).map((key) => {
-					const { to, image, alt, title, description } =
-						NavigationPanelData[key];
+				{NavigationPanelData.map(({ to, image, alt, title, description }) => {
 					return (
-						<Link key={key} href={to} className={isActive(to)}>
-							<Button key={key} variant='flat' className={cls.button}>
-								<div className={cls.item}>
-									<Image
-										src={image}
-										width={24}
-										height={24}
-										alt={alt}
-										className='noselect'
-									/>
-									<p>{title}</p>
-								</div>
-								<p>{description}</p>
-							</Button>
+						<Link
+							key={to}
+							href={to}
+							className={cn(cls.item, pathname === to && cls.selected)}
+						>
+							<div className='flex items-center gap-1'>
+								{image}
+								<p>{title}</p>
+							</div>
+							<span>{description}</span>
 						</Link>
 					);
 				})}

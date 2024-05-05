@@ -1,3 +1,4 @@
+import { getGlobalIsLoading } from './model/selectors/getGlobalIsLoading';
 import { getSettings } from './model/selectors/getSettings';
 import { getSettingsCurrency } from './model/selectors/getSettingsCurrency';
 import { getSettingsOptimization } from './model/selectors/getSettingsOptimization';
@@ -9,6 +10,7 @@ import {
 } from './model/types/settings-state.type';
 
 export {
+	getGlobalIsLoading,
 	getSettings,
 	getSettingsCurrency,
 	getSettingsOptimization,

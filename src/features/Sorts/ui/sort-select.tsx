@@ -19,6 +19,7 @@ export const SortSelectInput: FC<SortSelectInputProps> = memo(
 		return (
 			<Select
 				label='Фильтры'
+				size='sm'
 				selectionMode='multiple'
 				description='Выберите категорию, кому это точно не подойдёт'
 				selectedKeys={selectedKeys}

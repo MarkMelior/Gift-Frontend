@@ -1,35 +1,36 @@
+import { CartIcon } from '@/shared/assets/icon/Cart';
+import { HeartIcon } from '@/shared/assets/icon/Heart';
+import { HomeIcon } from '@/shared/assets/icon/Home';
+import { ReactNode } from 'react';
+
 interface NavigationPanelItem {
 	to: string;
-	image: string;
+	image: ReactNode;
 	alt: string;
 	title: string;
 	description: string;
 }
 
-interface NavigationPanelLinks {
-	[key: string]: NavigationPanelItem;
-}
-
-export const NavigationPanelData: NavigationPanelLinks = {
-	main: {
+export const NavigationPanelData: NavigationPanelItem[] = [
+	{
 		to: '/',
-		image: '/images/icons/home.svg',
+		image: <HomeIcon />,
 		alt: 'Иконка главной страницы',
 		title: 'Главная',
 		description: 'Коротко про нас',
 	},
-	shop: {
+	{
 		to: '/shop',
-		image: '/images/icons/cart.svg',
+		image: <CartIcon />,
 		alt: 'Иконка главной страницы',
 		title: 'Магазин',
 		description: 'Найди лучший подарок!',
 	},
-	favorites: {
+	{
 		to: '/favorites',
-		image: '/images/icons/heart.svg',
+		image: <HeartIcon />,
 		alt: 'Иконка главной страницы',
 		title: 'Избранное',
 		description: 'Твои избранные подарки',
 	},
-};
+];

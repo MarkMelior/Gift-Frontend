@@ -7,6 +7,7 @@ export const settingsInitialState: SettingsState = {
 	space: false,
 	optimization: false,
 	currency: 'RUB',
+	globalIsLoading: true,
 };
 
 export const settingsSlice = createSlice({
@@ -28,6 +29,9 @@ export const settingsSlice = createSlice({
 				state.space = false;
 			}
 			state.optimization = !state.optimization;
+		},
+		setGlobalIsLoading: (state, action: PayloadAction<boolean>) => {
+			state.globalIsLoading = action.payload;
 		},
 	},
 });

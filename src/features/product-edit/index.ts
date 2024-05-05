@@ -1,3 +1,4 @@
-import { CharacteristicsEditor } from './ui/characteristics-editor';
+import { AboutEditor } from './ui/about-editor';
+import { MarketsEditor } from './ui/markets-editor';
 
-export { CharacteristicsEditor };
+export { AboutEditor, MarketsEditor };

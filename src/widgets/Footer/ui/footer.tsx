@@ -14,7 +14,7 @@ export const Footer: FC = memo(() => {
 			<Wave />
 			<footer className={cls.footer}>
 				<nav className={cn(cls.wrapper, 'content')}>
-					<Link href='/' className={cn(cls.logo)}>
+					<Link href='/' className={cls.logo}>
 						<Logo opacity={0.3} width='3rem' height='3rem' />
 					</Link>
 					<p>© 2024 Mark Melior. Все права защищены</p>

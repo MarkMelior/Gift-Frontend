@@ -24,8 +24,4 @@
 	&:hover {
 		background: rgb(var(--color-main-inverted-rgb), .1) !important;
 	}
-
-	&:not(:last-child) {
-		margin-right: 10px;
-	}
 }

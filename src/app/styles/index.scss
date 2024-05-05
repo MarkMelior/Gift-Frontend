@@ -43,16 +43,6 @@ body {
 	margin: 0 var(--content-margin);
 }
 
-a {
-	color: rgba(var(--color-text), .5);
-	text-decoration: none;
-	transition: all .1s ease;
-
-	&:hover {
-		color: rgba(var(--color-text), 1)
-	}
-}
-
 .noselect {
 	pointer-events: none;
 	user-select: none;

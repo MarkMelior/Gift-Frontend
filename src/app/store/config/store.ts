@@ -6,6 +6,7 @@ import { setLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import type { ReducersMapObject } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
+import { loaderMiddleware } from './loader-middleware';
 import { createReducerManager } from './reducer-manager';
 import { RootState, ThunkExtraArg } from './store.type';
 
@@ -31,9 +32,9 @@ export function createReduxStore(
 		devTools: process.env.NODE_ENV === 'development',
 		preloadedState: initialState,
 		middleware: (getDefaultMiddleware) =>
-			getDefaultMiddleware({ thunk: { extraArgument } }).concat(
-				rtkApi.middleware,
-			),
+			getDefaultMiddleware({ thunk: { extraArgument } })
+				.concat(rtkApi.middleware)
+				.concat(loaderMiddleware),
 	});
 
 	store.subscribe(() => {

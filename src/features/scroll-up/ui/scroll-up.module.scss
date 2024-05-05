@@ -43,7 +43,7 @@
 
 @keyframes slideInFromRight {
 	from {
-		transform: translateX(100%);
+		transform: translateX(calc(100% + 30px));
 	}
 
 	to {
@@ -57,6 +57,6 @@
 	}
 
 	to {
-		transform: translateX(100%);
+		transform: translateX(calc(100% + 30px));
 	}
 }
