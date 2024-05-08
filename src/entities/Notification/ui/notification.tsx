@@ -24,6 +24,18 @@ interface NotificationProps {
 	startContent?: JSX.Element;
 	placement?: 'top' | 'bottom';
 	closeOnClick?: boolean;
+	/**
+	 * todo: Через какое время уведомление появится повторно
+	 */
+	// repeatTime?: number;
+	/**
+	 * todo: Отобразить один раз
+	 */
+	// displayOnce?: boolean;
+	/**
+	 * todo: Задержка перед появлением
+	 */
+	delayBeforeShow?: number;
 }
 
 export const Notification: FC<NotificationProps> = memo(
@@ -36,37 +48,63 @@ export const Notification: FC<NotificationProps> = memo(
 		startContent,
 		closeOnClick,
 		placement = 'bottom',
+		delayBeforeShow = 0,
 	}) => {
-		const [visible, setVisible] = useState(true);
+		const [visible, setVisible] = useState(false);
 		const [closing, setClosing] = useState(false);
 		const [touchStartX, setTouchStartX] = useState(0);
 		const [touchEndX, setTouchEndX] = useState(0);
 		const [swipeClose, setSwipeClose] = useState(false);
 
+		// todo: Показывать только один раз
+		// useEffect(() => {
+		// 	const isShowed = getLocalstorage<{ bookmarksOnce: boolean }>(
+		// 		LocalstorageKeys.NOTIFICATION,
+		// 	)?.bookmarksOnce;
+
+		// 	if (!isShowed || !displayOnce) {
+		// 		setVisible(true);
+		// 	}
+		// }, [displayOnce]);
+
 		const handleClose = useCallback(() => {
 			setClosing(true);
-			setTimeout(() => {
+			const timeoutId = setTimeout(() => {
 				setVisible(false);
 				setClosing(false);
 				if (onClose) onClose();
 			}, animationCloseDuration);
-		}, [animationCloseDuration, onClose]);
 
-		useEffect(() => {
-			const timer = setTimeout(() => {
-				handleClose();
-			}, duration);
-			return () => clearTimeout(timer);
-		}, [duration, handleClose]);
+			return () => clearTimeout(timeoutId);
+		}, [animationCloseDuration, onClose]);
 
 		const handleCancel = () => {
 			setClosing(true);
-			setTimeout(() => {
+			const timeoutId = setTimeout(() => {
 				setVisible(false);
 				setClosing(false);
 				if (onCancel) onCancel();
 			}, animationCloseDuration);
+
+			return () => clearTimeout(timeoutId);
 		};
+
+		useEffect(() => {
+			const timeoutId = setTimeout(() => {
+				handleClose();
+			}, duration + delayBeforeShow);
+
+			return () => clearTimeout(timeoutId);
+		}, [delayBeforeShow, duration, handleClose]);
+
+		// * Задержка перед появлением
+		useEffect(() => {
+			const timeoutId = setTimeout(() => {
+				setVisible(true);
+			}, delayBeforeShow);
+
+			return () => clearTimeout(timeoutId);
+		}, [delayBeforeShow]);
 
 		const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
 			setTouchStartX(e.touches[0].clientX);

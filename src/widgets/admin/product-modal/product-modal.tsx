@@ -1,5 +1,5 @@
 import { addProduct } from '@/entities/products';
-import { AboutEditor, MarketsEditor } from '@/features/product-edit';
+import { MarketsEditor, OptionsEditor } from '@/features/product-edit';
 import { SortSelectInput } from '@/features/sorts';
 import { UploadImages } from '@/features/upload-image';
 import { useAppDispatch } from '@/shared/lib/hooks';
@@ -51,7 +51,7 @@ export const ProductModal: FC<ProductModalProps> = ({
 			oldPrice: 4999,
 		},
 	]);
-	const [options, setOptions] = useState([]);
+	const [options, setOptions] = useState<ProductCreateRequest['options']>([]);
 	const [description, setDescription] = useState('');
 
 	const [errors, setErrors] = useState<Errors>({});
@@ -145,7 +145,7 @@ export const ProductModal: FC<ProductModalProps> = ({
 									selectedKeys={filters}
 									onSelectionChange={setFilters}
 								/>
-								<AboutEditor />
+								<OptionsEditor />
 								<MarketsEditor markets={markets} setMarkets={setMarkets} />
 								<Textarea
 									label='Описание'

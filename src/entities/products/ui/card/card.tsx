@@ -1,6 +1,7 @@
 'use client';
 
 import { useFavorites } from '@/features/favorites';
+import { useProductsHistory } from '@/features/products-history';
 import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
@@ -30,6 +31,7 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 	const swiperRef = useRef<SwiperRef>(null);
 	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
 	const saltPagination = crypto.randomBytes(2).toString('hex');
+	const { addProductHistory } = useProductsHistory(data.article);
 
 	const { isFavorites, toggleFavorites } = useFavorites(data);
 
@@ -92,7 +94,8 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 					onClick={(e) => {
 						e.preventDefault();
 						window.open(data.markets[0].link, '_blank');
-						// addHistory(e); // todo: add history
+
+						addProductHistory(e);
 					}}
 				>
 					Купить

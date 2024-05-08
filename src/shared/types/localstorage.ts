@@ -3,4 +3,5 @@ export enum LocalstorageKeys {
 	HISTORY = 'history-products-id',
 	SETTINGS = 'settings',
 	USER = 'user',
+	NOTIFICATION = 'notification',
 }

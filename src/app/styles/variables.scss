@@ -6,6 +6,9 @@
 	--navbar-height: 80px;
 	--navbar-height-mobile: 60px;
 	--navbar-height-search-mobile: 70px;
+	--height-wave: 200px;
+	--height-footer: 190px;
+	--height-screen: calc(100vh - var(--height-wave) - var(--height-footer) - var(--navbar-height));
 
 	// * Colors
 	--color-ozon-rgb: 0, 91, 255;
@@ -35,20 +38,22 @@
 	--blur-xl: blur(128px);
 	--bg-noise: url('/images/noise.png') repeat;
 
+	// * Others
+	--position-bottom: 45px;
+	--position-top: calc(var(--navbar-height) + 10px);
+
 	@media (max-width: theme('screens.md')) {
 		--blur-xs: none;
 		--blur-sm: none;
 		--blur-md: none;
 		--blur-lg: none;
 		--blur-xl: none;
+		--height-wave: 0;
 	}
-
-	// * Others
-	--position-bottom: 45px;
-	--position-top: calc(var(--navbar-height) + 10px);
 
 	@media (max-width: theme('screens.sm')) {
 		--position-bottom: calc(var(--navbar-height-mobile) + 10px);
 		--position-top: calc(var(--navbar-height-search-mobile) + 10px);
+		--height-screen: calc(100vh - var(--navbar-height-mobile) - var(--navbar-height-search-mobile) - var(--navbar-height));
 	}
 }

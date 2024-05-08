@@ -1,1 +1,37 @@
-.wrapper {}
+@import '@/app/styles/utils';
+
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: var(--height-screen);
+	padding: 40px 0;
+
+	h6 {
+		@apply font-semibold;
+	}
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	padding: 20px;
+}
+
+.avatar {
+	margin: 0 auto;
+	border-radius: 100%;
+}
+
+.user {
+	display: flex;
+	flex-direction: column;
+	gap: .625rem;
+	align-items: center;
+	text-align: center;
+
+	p {
+		@apply text-gray-500 text-sm;
+	}
+}

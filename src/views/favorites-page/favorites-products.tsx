@@ -2,6 +2,7 @@
 
 import { Cards, useGetProductsQuery } from '@/entities/products';
 import { useGetFavoritesProductsQuery } from '@/features/favorites';
+import { useGetProductsHistoryQuery } from '@/features/products-history';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { Button } from '@/shared/ui/button';
 import Link from 'next/link';
@@ -12,7 +13,10 @@ export const FavoritesProducts: FC = memo(() => {
 	const { data: favoritesProducts, isLoading } = useGetFavoritesProductsQuery();
 
 	const { data: recommendedProducts, isLoading: isLoadingProducts } =
-		useGetProductsQuery({ limit: '10' });
+		useGetProductsQuery({ limit: 10 });
+
+	const { data: productsHistory, isLoading: isLoadingProductsHistory } =
+		useGetProductsHistoryQuery();
 
 	return (
 		<>
@@ -39,8 +43,22 @@ export const FavoritesProducts: FC = memo(() => {
 			)}
 			<div className={cls.recommended}>
 				<h3>Рекомендуемые товары</h3>
-				<Cards data={recommendedProducts} isLoading={isLoadingProducts} />
+				<Cards
+					size='sm'
+					data={recommendedProducts}
+					isLoading={isLoadingProducts}
+				/>
 			</div>
+			{productsHistory && productsHistory.length > 0 && (
+				<div className={cls.recommended}>
+					<h3>Ваша история просмотра</h3>
+					<Cards
+						size='sm'
+						data={productsHistory}
+						isLoading={isLoadingProductsHistory}
+					/>
+				</div>
+			)}
 		</>
 	);
 });

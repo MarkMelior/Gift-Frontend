@@ -6,10 +6,10 @@ import {
 	useGetProductsQuery,
 } from '@/entities/products';
 import { Light } from '@/shared/ui/light';
-import { Characteristics } from '@/widgets/characteristics';
 import { ImageCarousel } from '@/widgets/image-carousel';
 import { LinksPanel } from '@/widgets/links-panel';
 import { PageLoader } from '@/widgets/page-loader';
+import { ProductOptions } from '@/widgets/product-options';
 import { Tooltip } from '@nextui-org/react';
 import cn from 'clsx';
 import { FC, memo } from 'react';
@@ -20,7 +20,7 @@ export const ProductPage: FC<ProductPageProps> = memo(({ params }) => {
 	const productArticle = params.article.split('-').reverse()[0];
 
 	const { data: product } = useGetProductQuery(productArticle);
-	const { data: products, isLoading } = useGetProductsQuery({ limit: '10' });
+	const { data: products, isLoading } = useGetProductsQuery({ limit: 10 });
 
 	return (
 		<div className={cn(cls.wrapper, 'content')}>
@@ -65,8 +65,8 @@ export const ProductPage: FC<ProductPageProps> = memo(({ params }) => {
 				) : (
 					<div className={cls.productWrapper}>
 						<ImageCarousel product={product} />
-						<div className={cls.linksAndCharacteristics}>
-							<Characteristics product={product} />
+						<div className={cls.linksAndOptions}>
+							<ProductOptions product={product} />
 							<LinksPanel product={product} />
 						</div>
 					</div>

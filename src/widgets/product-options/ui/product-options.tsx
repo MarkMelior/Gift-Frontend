@@ -6,19 +6,19 @@ import { Button } from '@/shared/ui/button';
 import { ProductResponse } from '@melior-gift/zod-contracts';
 import cn from 'clsx';
 import { FC, MouseEvent, memo } from 'react';
-import cls from './characteristics.module.scss';
+import cls from './product-options.module.scss';
 
-interface CharacteristicsProps {
+interface ProductOptionsProps {
 	product: ProductResponse;
 }
 
-export const Characteristics: FC<CharacteristicsProps> = memo(({ product }) => {
+export const ProductOptions: FC<ProductOptionsProps> = memo(({ product }) => {
 	const { isFavorites, toggleFavorites } = useFavorites(product);
 
 	return (
 		<ul className={cls.wrapper}>
-			{product.characteristics &&
-				Object.entries(product.characteristics).map(([key, value]) => (
+			{product.options &&
+				Object.entries(product.options).map(([key, value]) => (
 					<li key={key} className={cls.characteristic}>
 						<h3>{key}:</h3>
 						<div>

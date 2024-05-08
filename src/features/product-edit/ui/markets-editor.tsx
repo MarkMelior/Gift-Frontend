@@ -1,5 +1,5 @@
 import { Markets } from '@/shared/const';
-import { ProductMarkets } from '@melior-gift/zod-contracts';
+import { MarketType, ProductMarkets } from '@melior-gift/zod-contracts';
 import type { Selection } from '@nextui-org/react';
 import {
 	Accordion,
@@ -49,10 +49,12 @@ export const MarketsEditor: FC<MarketsEditorProps> = memo(
 									{Object.keys(Markets).map((market) => (
 										<SelectItem key={market} value={market}>
 											<img
-												src={`/images/icons/market/${Markets[market].image}`}
+												src={`/images/icons/market/${
+													Markets[market as MarketType].image
+												}`}
 												alt=''
 											/>
-											{Markets[market].name}
+											{Markets[market as MarketType].name}
 										</SelectItem>
 									))}
 								</Select>
@@ -71,7 +73,7 @@ export const MarketsEditor: FC<MarketsEditorProps> = memo(
 									placeholder='Рейтинг'
 									size='sm'
 									variant='bordered'
-									value={rating}
+									value={String(rating)}
 									onChange={(e) => handleChange(e, index)}
 								/>
 								<Input
@@ -80,7 +82,7 @@ export const MarketsEditor: FC<MarketsEditorProps> = memo(
 									placeholder='Кол-во отзывов'
 									size='sm'
 									variant='bordered'
-									value={reviewCount}
+									value={String(reviewCount)}
 									onChange={(e) => handleChange(e, index)}
 								/>
 								<Input
@@ -89,7 +91,7 @@ export const MarketsEditor: FC<MarketsEditorProps> = memo(
 									placeholder='Цена'
 									size='sm'
 									variant='bordered'
-									value={price}
+									value={String(price)}
 									onChange={(e) => handleChange(e, index)}
 								/>
 								<Input
@@ -98,7 +100,7 @@ export const MarketsEditor: FC<MarketsEditorProps> = memo(
 									placeholder='Старая цена'
 									size='sm'
 									variant='bordered'
-									value={oldPrice}
+									value={String(oldPrice)}
 									onChange={(e) => handleChange(e, index)}
 								/>
 								<Button color='danger' size='sm'>

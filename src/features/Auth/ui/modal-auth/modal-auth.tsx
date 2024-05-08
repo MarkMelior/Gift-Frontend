@@ -4,6 +4,7 @@ import { Notification } from '@/entities/notification';
 import { getUserState } from '@/entities/user';
 import { CheckIcon } from '@/shared/assets/icon/Check';
 import { Component } from '@/shared/lib/components';
+import { BackgroundColorSpin } from '@/shared/ui/animate-background';
 import {
 	Modal,
 	ModalBody,
@@ -44,7 +45,7 @@ const ModalAuth: FC<ModalAuthProps> = ({ isOpen, onOpenChange }) => {
 				>
 					<ModalContent>
 						{(onClose) => (
-							<div className={cls.modal}>
+							<BackgroundColorSpin className={cls.modal}>
 								<ModalHeader className={cls.header}>
 									<Image
 										src='/images/icons/logo-melior-white.svg'
@@ -81,7 +82,7 @@ const ModalAuth: FC<ModalAuthProps> = ({ isOpen, onOpenChange }) => {
 										</Tab>
 									</Tabs>
 								</ModalBody>
-							</div>
+							</BackgroundColorSpin>
 						)}
 					</ModalContent>
 				</Modal>

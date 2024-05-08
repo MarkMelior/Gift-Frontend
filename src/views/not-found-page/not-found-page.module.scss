@@ -5,7 +5,7 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	height: calc(100vh - var(--navbar-height) - 383px);
+	min-height: var(--height-screen);
 }
 
 .information {

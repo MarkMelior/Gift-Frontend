@@ -1,4 +1,4 @@
-import { AboutEditor } from './ui/about-editor';
 import { MarketsEditor } from './ui/markets-editor';
+import { OptionsEditor } from './ui/options-editor';
 
-export { AboutEditor, MarketsEditor };
+export { MarketsEditor, OptionsEditor };

@@ -31,6 +31,11 @@ export const userSlice = createSlice({
 					: [...state.data.favorites, action.payload];
 			}
 		},
+		addProductHistory: (state, action: PayloadAction<string>) => {
+			if (state.data && state.data.history) {
+				state.data.history.push(action.payload);
+			}
+		},
 	},
 	extraReducers: (builder) => {
 		builder
