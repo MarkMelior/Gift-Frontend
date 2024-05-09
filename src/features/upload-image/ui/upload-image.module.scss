@@ -33,8 +33,7 @@
 	border: 2px solid var(--color-border);
 	border-radius: 1rem;
 
-	@include background(1);
-	@apply text-sm;
+	@apply text-sm bg-zinc-800;
 
 	img {
 		width: 100%;

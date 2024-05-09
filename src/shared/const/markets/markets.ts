@@ -20,16 +20,16 @@ export const Markets: Record<MarketType, MarketParams> = {
 	aliexpress: {
 		name: 'AliExpress',
 		color: 'var(--color-aliexpress-rgb)',
-		image: 'aliexpress.svg',
+		image: 'aliexpress.png',
 	},
 	wildberries: {
 		name: 'Wildberries',
 		color: 'var(--color-wildberries-rgb)',
-		image: 'wildberries.svg',
+		image: 'wildberries.png',
 	},
-	sber: {
-		name: 'Sber Market',
-		color: 'var(--color-sber-rgb)',
-		image: 'sber-market.svg',
-	},
+	// sber: {
+	// 	name: 'Sber Market',
+	// 	color: 'var(--color-sber-rgb)',
+	// 	image: 'sber-market.png',
+	// },
 };

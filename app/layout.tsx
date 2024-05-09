@@ -1,8 +1,8 @@
 import { Providers } from '@/app/providers/ui/providers';
 import '@/app/styles/index.scss';
-import { Notification } from '@/entities/notification';
 import { ScrollUp } from '@/features/scroll-up';
 import { BookmarkIcon } from '@/shared/assets/icon/Bookmark';
+import { Notification } from '@/shared/ui/notification';
 import { SpaceCanvas } from '@/shared/ui/space-canvas';
 import { Footer } from '@/widgets/footer';
 import { Navbar } from '@/widgets/navbar';

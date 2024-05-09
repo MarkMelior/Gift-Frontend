@@ -1,10 +1,10 @@
 'use client';
 
-import { Notification } from '@/entities/notification';
 import { getUserState } from '@/entities/user';
 import { CheckIcon } from '@/shared/assets/icon/Check';
 import { Component } from '@/shared/lib/components';
 import { BackgroundColorSpin } from '@/shared/ui/animate-background';
+import { Notification } from '@/shared/ui/notification';
 import {
 	Modal,
 	ModalBody,

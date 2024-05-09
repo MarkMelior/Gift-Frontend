@@ -4,6 +4,7 @@ import { SearchState } from '@/features/search';
 import { SettingsState } from '@/features/settings';
 import { SortState } from '@/features/sorts';
 import { rtkApi } from '@/shared/api/rtkApi';
+import { ProductModalState } from '@/widgets/admin';
 import type {
 	EnhancedStore,
 	Reducer,
@@ -22,6 +23,7 @@ export interface RootState {
 	search?: SearchState;
 	loginForm?: LoginState;
 	registerForm?: RegisterState;
+	productModal?: ProductModalState;
 }
 
 export type RootStateKey = keyof RootState;

@@ -1,6 +1,5 @@
 'use client';
 
-import { Notification } from '@/entities/notification';
 import { CheckIcon } from '@/shared/assets/icon/Check';
 import { CopyIcon } from '@/shared/assets/icon/Copy';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
@@ -8,6 +7,7 @@ import { StarIcon } from '@/shared/assets/icon/Star';
 import { Markets } from '@/shared/const';
 import { convertCurrency } from '@/shared/lib/features';
 import { Button } from '@/shared/ui/button';
+import { Notification } from '@/shared/ui/notification';
 import {
 	ProductCardResponse,
 	ProductMarkets,

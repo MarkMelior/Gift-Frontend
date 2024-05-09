@@ -1,7 +1,7 @@
 'use client';
 
-import { useFavorites } from '@/features/favorites';
-import { useProductsHistory } from '@/features/products-history';
+import { useFavorites } from '@/entities/favorites';
+import { useProductsHistory } from '@/entities/products-history';
 import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
@@ -59,7 +59,7 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 		},
 	};
 
-	const images = data.images.slice(0, 5);
+	const images = data.images.slice(0, 4);
 
 	const convertedPrice = convertCurrency(data.markets[0].price);
 	const convertedOldPrice = convertCurrency(data.markets[0].oldPrice);
