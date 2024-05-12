@@ -5,6 +5,11 @@
 	gap: 6px;
 	height: 100%;
 	user-select: none;
+
+	@media (max-width: theme('screens.lg')) {
+		position: relative;
+		top: 0;
+	}
 }
 
 .slideThumbActive {
@@ -20,6 +25,14 @@
 	height: 660px;
 
 	@apply rounded-lg;
+
+	@media (max-width: theme('screens.lg')) {
+		width: 100%;
+
+		img {
+			object-fit: contain;
+		}
+	}
 
 	img {
 		height: 100%;

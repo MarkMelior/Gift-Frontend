@@ -26,12 +26,7 @@ export const Cards: FC<CardsProps> = memo(
 		}
 
 		if (!isLoading && data && data.length === 0) {
-			return (
-				<ErrorScreen
-					title='Продукты не найдены'
-					description='Измените параметры поиска'
-				/>
-			);
+			return <ErrorScreen typeError='not-found-search' />;
 		}
 
 		return (

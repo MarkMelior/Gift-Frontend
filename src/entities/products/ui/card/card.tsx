@@ -6,7 +6,11 @@ import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
 import { Markets, MediaSize } from '@/shared/const';
-import { convertCurrency, productLink } from '@/shared/lib/features';
+import {
+	ConvertData,
+	convertCurrency,
+	productLink,
+} from '@/shared/lib/features';
 import { Button } from '@/shared/ui/button';
 import { ProductCardResponse } from '@melior-gift/zod-contracts';
 import { Tooltip } from '@nextui-org/react';
@@ -59,10 +63,12 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 		},
 	};
 
-	const images = data.images.slice(0, 4);
+	const images =
+		size === 'md' ? data.images.slice(0, 4) : data.images.slice(0, 3);
 
 	const convertedPrice = convertCurrency(data.markets[0].price);
 	const convertedOldPrice = convertCurrency(data.markets[0].oldPrice);
+	const formattedDate = ConvertData(data.updatedAt, { isTime: false });
 
 	return (
 		<Link href={productLink(data.title, data.article)} className={cls.wrapper}>
@@ -126,7 +132,10 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 									height={24}
 									alt='test'
 								/>
-								<span>Статистика с {Markets[data.markets[0].market].name}</span>
+								<span>
+									Статистика с {Markets[data.markets[0].market].name}{' '}
+									{formattedDate}
+								</span>
 							</div>
 						}
 						className={cls.tooltip}

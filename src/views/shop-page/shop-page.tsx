@@ -48,13 +48,7 @@ export const ShopPage: FC = memo(() => {
 				description='Находить креативные подарки теперь легко и приятно.'
 				compact
 				imageContent={
-					<Image
-						src='/images/pages/gift.png'
-						alt='image'
-						width={371}
-						height={419}
-						className='noselect'
-					/>
+					<img src='/images/pages/gift.png' alt='image' className='noselect' />
 				}
 			/>
 			<div className={cls.navigation}>

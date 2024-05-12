@@ -26,7 +26,7 @@ export default function LocaleLayout({ children }: LocaleLayoutProps) {
 	return (
 		<html lang='ru'>
 			<body className={inter.className}>
-				<Suspense fallback={<PageLoader />}>
+				<Suspense fallback={<PageLoader classNames='h-screen' />}>
 					<Providers>
 						<Navbar />
 						{children}

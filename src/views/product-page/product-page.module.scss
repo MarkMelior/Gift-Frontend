@@ -13,7 +13,8 @@
 .heading {
 	display: flex;
 	gap: 10px;
-	align-items: center;
+
+	// align-items: center;
 
 	h1 {
 		@apply text-2xl;
@@ -24,6 +25,10 @@
 .productWrapper {
 	display: flex;
 	gap: 50px;
+
+	@media (max-width: theme('screens.lg')) {
+		flex-direction: column;
+	}
 }
 
 .cards {

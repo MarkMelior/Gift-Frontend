@@ -1,8 +1,10 @@
 'use client';
 
 import { getUserAuthData, getUserState } from '@/entities/user';
-import { useAuth } from '@/features/auth';
+import { ModalAuth, useAuth } from '@/features/auth';
+import { ConvertData } from '@/shared/lib/features';
 import { BackgroundColorSpin } from '@/shared/ui/animate-background';
+import { Button as MyButton } from '@/shared/ui/button';
 import { ErrorScreen } from '@/shared/ui/errors';
 import { PageLoader } from '@/widgets/page-loader';
 import {
@@ -13,6 +15,7 @@ import {
 	TableColumn,
 	TableHeader,
 	TableRow,
+	useDisclosure,
 } from '@nextui-org/react';
 import cn from 'clsx';
 import Image from 'next/image';
@@ -23,25 +26,47 @@ import cls from './profile-page.module.scss';
 
 export const ProfilePage: FC<ProfilePageProps> = memo(() => {
 	const { data: user, isLoading, error } = useSelector(getUserState);
-	const nowDate = new Date();
-	const convertedDate = new Date(user?.createdAt);
 	const isUserLogged = useSelector(getUserAuthData);
 	const { onUserLogout } = useAuth();
+	const formattedDate = ConvertData(user?.updatedAt);
 
-	const formattedDate = `${convertedDate.getDate()}.${
-		convertedDate.getMonth() + 1
-	}.${convertedDate.getFullYear()}, ${convertedDate.getHours()}:${convertedDate
-		.getMinutes()
-		.toString()
-		.padStart(2, '0')}`;
+	const {
+		isOpen: isOpenAuthModal,
+		onOpen: onOpenAuthModal,
+		onOpenChange: onOpenChangeAuthModal,
+	} = useDisclosure();
 
 	if (!isUserLogged && !isLoading)
 		return (
-			<ErrorScreen
-				title='Войдите или зарегистрируйтесь'
-				description='Вы не авторизованы'
-				fullHeight
-			/>
+			<>
+				<div className={cls.notAuth}>
+					<ErrorScreen
+						title='Войдите или зарегистрируйтесь'
+						description='Вы не авторизованы'
+						image={<img src='/images/error/lock.png' />}
+					/>
+					<MyButton
+						starlight
+						className='py-5 px-12 rounded-xl'
+						customVariant='layer'
+						onClick={onOpenAuthModal}
+						startContent={
+							<Image
+								src='/images/icons/logo-melior-white.svg'
+								width={24}
+								height={24}
+								alt='Логотип'
+							/>
+						}
+					>
+						Войти
+					</MyButton>
+				</div>
+				<ModalAuth
+					isOpen={isOpenAuthModal}
+					onOpenChange={onOpenChangeAuthModal}
+				/>
+			</>
 		);
 
 	if (isLoading || !user) {

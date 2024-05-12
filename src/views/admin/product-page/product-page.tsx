@@ -1,57 +1,51 @@
 'use client';
 
-import { ProductModal } from '@/widgets/admin';
+import { useGetProductsQuery } from '@/entities/products';
+import { ConfirmButton } from '@/features/confirm-action';
+import { DeleteIcon } from '@/shared/assets/icon/Delete';
+import { EditIcon } from '@/shared/assets/icon/Edit';
+import { EyeIcon } from '@/shared/assets/icon/Eye';
+import { useAppDispatch } from '@/shared/lib/hooks';
+import { ProductModal, productModalActions } from '@/widgets/admin';
+import { PageLoader } from '@/widgets/page-loader';
+import { ProductResponse } from '@melior-gift/zod-contracts';
 import {
 	Button,
-	Chip,
-	ChipProps,
 	Dropdown,
 	DropdownItem,
 	DropdownMenu,
 	DropdownTrigger,
-	Input,
-	Pagination,
-	SortDescriptor,
+	Selection,
 	Table,
 	TableBody,
 	TableCell,
 	TableColumn,
 	TableHeader,
 	TableRow,
-	User,
+	Tooltip,
 	useDisclosure,
 } from '@nextui-org/react';
-import { ChangeEvent, FC, Key, useCallback, useMemo, useState } from 'react';
-import { columns, statusOptions, users } from './data';
-import { capitalize } from './utils';
-
-const statusColorMap: Record<string, ChipProps['color']> = {
-	active: 'success',
-	paused: 'danger',
-	vacation: 'warning',
-};
-
-const INITIAL_VISIBLE_COLUMNS = ['name', 'role', 'status', 'actions'];
-
-type User = (typeof users)[0];
+import cn from 'clsx';
+import Link from 'next/link';
+import { FC, Key, useCallback, useMemo, useState } from 'react';
+import { INITIAL_VISIBLE_COLUMNS, columns, filtersOptions } from './model/data';
+import cls from './product-page.module.scss';
 
 export const AdminProductPage: FC = () => {
-	const [filterValue, setFilterValue] = useState('');
-	const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
+	const {
+		isOpen: isOpenAdd,
+		onOpen: onOpenAdd,
+		onOpenChange: onOpenChangeAdd,
+	} = useDisclosure();
+	const dispatch = useAppDispatch();
+	const { data: products } = useGetProductsQuery({ limit: 10 });
+
+	// const [isProductEdit, setIsProductEdit] = useState(false);
+	const [statusFilter, setStatusFilter] = useState<Selection>('all');
 	const [visibleColumns, setVisibleColumns] = useState<Selection>(
 		new Set(INITIAL_VISIBLE_COLUMNS),
 	);
-	const [statusFilter, setStatusFilter] = useState<Selection>('all');
-	const [rowsPerPage, setRowsPerPage] = useState(5);
-	const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
-		column: 'age',
-		direction: 'ascending',
-	});
-	const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
-	const [page, setPage] = useState(1);
-
-	const hasSearchFilter = Boolean(filterValue);
+	const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
 
 	const headerColumns = useMemo(() => {
 		if (visibleColumns === 'all') return columns;
@@ -61,170 +55,34 @@ export const AdminProductPage: FC = () => {
 		);
 	}, [visibleColumns]);
 
-	const filteredItems = useMemo(() => {
-		let filteredUsers = [...users];
-
-		if (hasSearchFilter) {
-			filteredUsers = filteredUsers.filter((user) =>
-				user.name.toLowerCase().includes(filterValue.toLowerCase()),
-			);
-		}
-		if (
-			statusFilter !== 'all' &&
-			Array.from(statusFilter).length !== statusOptions.length
-		) {
-			filteredUsers = filteredUsers.filter((user) =>
-				Array.from(statusFilter).includes(user.status),
-			);
-		}
-
-		return filteredUsers;
-	}, [hasSearchFilter, statusFilter, filterValue]);
-
-	const pages = Math.ceil(filteredItems.length / rowsPerPage);
-
-	const items = useMemo(() => {
-		const start = (page - 1) * rowsPerPage;
-		const end = start + rowsPerPage;
-
-		return filteredItems.slice(start, end);
-	}, [page, filteredItems, rowsPerPage]);
-
-	const sortedItems = useMemo(() => {
-		return [...items].sort((a: User, b: User) => {
-			const first = a[sortDescriptor.column as keyof User] as number;
-			const second = b[sortDescriptor.column as keyof User] as number;
-			const cmp = first < second ? -1 : first > second ? 1 : 0;
-
-			return sortDescriptor.direction === 'descending' ? -cmp : cmp;
-		});
-	}, [sortDescriptor, items]);
-
-	const renderCell = useCallback((user: User, columnKey: Key) => {
-		const cellValue = user[columnKey as keyof User];
-
-		switch (columnKey) {
-			case 'name':
-				return (
-					<User
-						avatarProps={{ radius: 'lg', src: user.avatar }}
-						description={user.email}
-						name={cellValue}
-					>
-						{user.email}
-					</User>
-				);
-			case 'role':
-				return (
-					<div className='flex flex-col'>
-						<p className='text-bold text-small capitalize'>{cellValue}</p>
-						<p className='text-bold text-tiny capitalize text-default-400'>
-							{user.team}
-						</p>
-					</div>
-				);
-			case 'status':
-				return (
-					<Chip
-						className='capitalize'
-						color={statusColorMap[user.status]}
-						size='sm'
-						variant='flat'
-					>
-						{cellValue}
-					</Chip>
-				);
-			case 'actions':
-				return (
-					<div className='relative flex justify-end items-center gap-2'>
-						<Dropdown>
-							<DropdownTrigger>
-								<Button isIconOnly size='sm' variant='light'>
-									ICON
-								</Button>
-							</DropdownTrigger>
-							<DropdownMenu>
-								<DropdownItem>View</DropdownItem>
-								<DropdownItem>Edit</DropdownItem>
-								<DropdownItem>Delete</DropdownItem>
-							</DropdownMenu>
-						</Dropdown>
-					</div>
-				);
-			default:
-				return cellValue;
-		}
-	}, []);
-
-	const onNextPage = useCallback(() => {
-		if (page < pages) {
-			setPage(page + 1);
-		}
-	}, [page, pages]);
-
-	const onPreviousPage = useCallback(() => {
-		if (page > 1) {
-			setPage(page - 1);
-		}
-	}, [page]);
-
-	const onRowsPerPageChange = useCallback(
-		(e: ChangeEvent<HTMLSelectElement>) => {
-			setRowsPerPage(Number(e.target.value));
-			setPage(1);
-		},
-		[],
-	);
-
-	const onSearchChange = useCallback((value?: string) => {
-		if (value) {
-			setFilterValue(value);
-			setPage(1);
-		} else {
-			setFilterValue('');
-		}
-	}, []);
-
-	const onClear = useCallback(() => {
-		setFilterValue('');
-		setPage(1);
-	}, []);
-
 	const topContent = useMemo(() => {
+		if (!products) return <PageLoader />;
+
 		return (
 			<div className='flex flex-col gap-4'>
 				<div className='flex justify-between gap-3 items-end'>
-					<Input
-						isClearable
-						className='w-full sm:max-w-[44%]'
-						placeholder='Search by name...'
-						value={filterValue}
-						onClear={() => onClear()}
-						onValueChange={onSearchChange}
-					/>
+					{/* TODO: SEARCH PRODUCTS */}
 					<div className='flex gap-3'>
 						<Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
-								<Button variant='flat'>Status</Button>
+								<Button variant='flat'>Фильтры</Button>
 							</DropdownTrigger>
 							<DropdownMenu
 								disallowEmptySelection
 								aria-label='Table Columns'
 								closeOnSelect={false}
-								selectedKeys={statusFilter}
 								selectionMode='multiple'
+								selectedKeys={statusFilter}
 								onSelectionChange={setStatusFilter}
 							>
-								{statusOptions.map((status) => (
-									<DropdownItem key={status.uid} className='capitalize'>
-										{capitalize(status.name)}
-									</DropdownItem>
+								{filtersOptions.map((status) => (
+									<DropdownItem key={status.uid}>{status.name}</DropdownItem>
 								))}
 							</DropdownMenu>
 						</Dropdown>
 						<Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
-								<Button variant='flat'>Columns</Button>
+								<Button variant='flat'>Столбцы</Button>
 							</DropdownTrigger>
 							<DropdownMenu
 								disallowEmptySelection
@@ -235,111 +93,118 @@ export const AdminProductPage: FC = () => {
 								onSelectionChange={setVisibleColumns}
 							>
 								{columns.map((column) => (
-									<DropdownItem key={column.uid} className='capitalize'>
-										{capitalize(column.name)}
-									</DropdownItem>
+									<DropdownItem key={column.uid}>{column.name}</DropdownItem>
 								))}
 							</DropdownMenu>
 						</Dropdown>
-						<Button color='primary' onPress={onOpen}>
+						<Button color='primary' onPress={onOpenAdd}>
 							Добавить продукт
 						</Button>
-						<ProductModal isOpen={isOpen} onOpenChange={onOpenChange} />
+						<ProductModal isOpen={isOpenAdd} onOpenChange={onOpenChangeAdd} />
 					</div>
 				</div>
 				<div className='flex justify-between items-center'>
 					<span className='text-default-400 text-small'>
-						Total {users.length} users
+						Всего продуктов: {products.length}
 					</span>
-					<label className='flex items-center text-default-400 text-small'>
-						Rows per page:
-						<select
-							className='bg-transparent outline-none text-default-400 text-small'
-							onChange={onRowsPerPageChange}
-						>
-							<option value='5'>5</option>
-							<option value='10'>10</option>
-							<option value='15'>15</option>
-						</select>
-					</label>
+					{/* <label className='flex items-center text-default-400 text-small'>
+							Rows per page:
+							<select
+								className='bg-transparent outline-none text-default-400 text-small'
+								onChange={onRowsPerPageChange}
+							>
+								<option value='5'>5</option>
+								<option value='10'>10</option>
+								<option value='15'>15</option>
+							</select>
+						</label> */}
 				</div>
 			</div>
 		);
 	}, [
-		filterValue,
-		onSearchChange,
+		products,
 		statusFilter,
 		visibleColumns,
-		onOpen,
-		isOpen,
-		onOpenChange,
-		onRowsPerPageChange,
-		onClear,
+		onOpenAdd,
+		isOpenAdd,
+		onOpenChangeAdd,
 	]);
 
-	const bottomContent = useMemo(() => {
-		return (
-			<div className='py-2 px-2 flex justify-between items-center'>
-				<span className='w-[30%] text-small text-default-400'>
-					{selectedKeys === 'all'
-						? 'All items selected'
-						: `${selectedKeys.size} of ${filteredItems.length} selected`}
-				</span>
-				<Pagination
-					isCompact
-					showControls
-					showShadow
-					color='primary'
-					page={page}
-					total={pages}
-					onChange={setPage}
-				/>
-				<div className='hidden sm:flex w-[30%] justify-end gap-2'>
-					<Button
-						isDisabled={pages === 1}
-						size='sm'
-						variant='flat'
-						onPress={onPreviousPage}
-					>
-						Previous
-					</Button>
-					<Button
-						isDisabled={pages === 1}
-						size='sm'
-						variant='flat'
-						onPress={onNextPage}
-					>
-						Next
-					</Button>
-				</div>
-			</div>
-		);
-	}, [
-		selectedKeys,
-		filteredItems.length,
-		page,
-		pages,
-		onPreviousPage,
-		onNextPage,
-	]);
+	const renderCell = useCallback((product: ProductResponse, columnKey: Key) => {
+		const cellValue = product[columnKey as keyof ProductResponse];
+
+		switch (columnKey as keyof ProductResponse) {
+			case 'images':
+				return (
+					<img
+						src={`${process.env.UPLOADS}/products/${product.article}/${product.images[0]}`}
+						className='w-12 h-12 rounded-md'
+					/>
+				);
+			case 'title':
+				return <div className={cls.title}>{product.title}</div>;
+			case 'actions':
+				return (
+					<div className='relative flex justify-center items-center gap-2'>
+						<Tooltip content='Посмотреть' showArrow closeDelay={0}>
+							<Button
+								as={Link}
+								target='_blank'
+								href={`/product/${product.article}`}
+								isIconOnly
+								size='sm'
+								variant='light'
+							>
+								<EyeIcon width={18} height={18} className='opacity-50' />
+							</Button>
+						</Tooltip>
+						<Tooltip content='Редактировать продукт' showArrow closeDelay={0}>
+							<Button
+								isIconOnly
+								size='sm'
+								variant='light'
+								onClick={() => {
+									dispatch(productModalActions.updateProductModal(product));
+									onOpenAdd();
+								}}
+							>
+								<EditIcon width={18} height={18} className='opacity-50' />
+							</Button>
+						</Tooltip>
+						<Tooltip content='Удалить' showArrow closeDelay={0}>
+							<ConfirmButton
+								size='sm'
+								isIconOnly
+								variant='light'
+								color='danger'
+								onConfirm={() => console.log('DELETE PRODUCT')}
+								confirmDescription={`Вы уверены, что хотите удалить продукт ${product.article}?`}
+							>
+								<DeleteIcon
+									color='hsl(var(--gift-danger-500))'
+									width={18}
+									height={18}
+								/>
+							</ConfirmButton>
+						</Tooltip>
+					</div>
+				);
+			default:
+				return cellValue;
+		}
+	}, []);
+
+	if (!products) return <PageLoader />;
 
 	return (
 		<Table
+			className={cn(cls.wrapper, 'content')}
 			aria-label='Example table with custom cells, pagination and sorting'
-			isHeaderSticky
-			bottomContent={bottomContent}
-			bottomContentPlacement='outside'
-			classNames={{
-				wrapper: 'max-h-[382px]',
-			}}
-			selectedKeys={selectedKeys}
-			selectionMode='multiple'
-			sortDescriptor={sortDescriptor}
 			topContent={topContent}
 			topContentPlacement='outside'
+			selectedKeys={selectedKeys}
+			selectionMode='multiple'
 			onSelectionChange={setSelectedKeys}
-			onSortChange={setSortDescriptor}
-			className='content'
 		>
 			<TableHeader columns={headerColumns}>
 				{(column) => (
@@ -348,13 +213,13 @@ export const AdminProductPage: FC = () => {
 						align={column.uid === 'actions' ? 'center' : 'start'}
 						allowsSorting={column.sortable}
 					>
-						{column.name}
+						{column.name.toUpperCase()}
 					</TableColumn>
 				)}
 			</TableHeader>
-			<TableBody emptyContent={'No users found'} items={sortedItems}>
+			<TableBody emptyContent={'Продукты не найдены'} items={products}>
 				{(item) => (
-					<TableRow key={item.id}>
+					<TableRow key={item.article}>
 						{(columnKey) => (
 							<TableCell>{renderCell(item, columnKey)}</TableCell>
 						)}

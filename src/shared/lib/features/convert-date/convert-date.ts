@@ -1,18 +1,23 @@
 export const ConvertData = (
-	date: string,
-	isTime: boolean = true,
-	isDate: boolean = true,
+	date: string | undefined,
+	options?: {
+		isTime?: boolean;
+		isDate?: boolean;
+	},
 ) => {
 	if (!date) return '';
+
+	const { isTime = true, isDate = true } = options || {};
 
 	const convertedDate = new Date(date);
 
 	let formattedDate = '';
 
 	if (isDate) {
-		formattedDate += `${convertedDate.getDate()}.${
-			convertedDate.getMonth() + 1
-		}.${convertedDate.getFullYear()}`;
+		formattedDate +=
+			`${convertedDate.getDate().toString().padStart(2, '0')}.` +
+			`${(convertedDate.getMonth() + 1).toString().padStart(2, '0')}.` +
+			`${convertedDate.getFullYear()}`;
 	}
 
 	if (isTime) {

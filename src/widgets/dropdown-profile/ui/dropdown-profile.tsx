@@ -47,9 +47,9 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	const {
-		isOpen: isOpenModal,
-		onOpen: onOpenModal,
-		onOpenChange: onOpenChangeModal,
+		isOpen: isOpenAuthModal,
+		onOpen: onOpenAuthModal,
+		onOpenChange: onOpenChangeAuthModal,
 	} = useDisclosure();
 
 	const {
@@ -199,7 +199,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 								key='login'
 								onClick={() => {
 									setIsOpen(false);
-									onOpenModal();
+									onOpenAuthModal();
 								}}
 							>
 								Войти в аккаунт
@@ -209,7 +209,10 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 				</DropdownMenu>
 			</Dropdown>
 
-			<ModalAuth isOpen={isOpenModal} onOpenChange={onOpenChangeModal} />
+			<ModalAuth
+				isOpen={isOpenAuthModal}
+				onOpenChange={onOpenChangeAuthModal}
+			/>
 		</>
 	);
 };

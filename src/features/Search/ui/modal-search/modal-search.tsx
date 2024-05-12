@@ -9,6 +9,7 @@ import {
 } from '@/shared/lib/components';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/button';
+import { ErrorScreen } from '@/shared/ui/errors';
 import { Input } from '@/shared/ui/input';
 import {
 	Kbd,
@@ -58,6 +59,24 @@ const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
 		[dispatch, queryInput],
 	);
 
+	const renderBody = useCallback(() => {
+		if (!searchedData) {
+			return <ErrorScreen typeError='what-search' fullHeight />;
+		} else if (!searchedData?.length) {
+			return <ErrorScreen typeError='not-found-search' fullHeight />;
+		} else {
+			return (
+				<Cards
+					size='sm'
+					data={searchedData}
+					isLoading={isLoading}
+					skeletonCount={3}
+					// error={error}
+				/>
+			);
+		}
+	}, [isLoading, searchedData]);
+
 	return (
 		<Component isRender={isOpen} delayClose={500}>
 			<DynamicModuleLoader reducers={initialReducers}>
@@ -106,17 +125,7 @@ const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
 										</Button>
 									</form>
 								</ModalHeader>
-								<ModalBody>
-									{!searchedData && <div>Введите запрос!</div>}
-									{!searchedData?.length && <div>Мы ничего не нашли!</div>}
-									<Cards
-										size='sm'
-										data={searchedData}
-										isLoading={isLoading}
-										skeletonCount={3}
-										// error={error}
-									/>
-								</ModalBody>
+								<ModalBody>{renderBody()}</ModalBody>
 								{/* <ModalFooter></ModalFooter> */}
 							</>
 						)}

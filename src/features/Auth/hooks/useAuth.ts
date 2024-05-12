@@ -9,5 +9,7 @@ export const useAuth = () => {
 		dispatch(userApi.util.resetApiState());
 	};
 
-	return { onUserLogout };
+	return {
+		onUserLogout,
+	};
 };

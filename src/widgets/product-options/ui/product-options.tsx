@@ -18,30 +18,11 @@ export const ProductOptions: FC<ProductOptionsProps> = memo(({ product }) => {
 	return (
 		<ul className={cls.wrapper}>
 			{product.options &&
-				Object.entries(product.options).map(([key, value]) => (
-					<li key={key} className={cls.characteristic}>
-						<h3>{key}:</h3>
-						<div>
-							{Array.isArray(value) ? (
-								<div className={cls.chipWrapper}>
-									{value.map((item, index) => (
-										<Button key={index} className={cls.chip}>
-											{item}
-										</Button>
-									))}
-								</div>
-							) : (
-								<ul>
-									{Object.entries(value).map(([subKey, subValue]) => (
-										<li key={subKey} className={cls.description}>
-											<p>{subKey}</p>
-											<span />
-											{subValue}
-										</li>
-									))}
-								</ul>
-							)}
-						</div>
+				product.options.map((option, index) => (
+					<li key={index} className={cls.description}>
+						<p className={cls.key}>{option.name}:</p>
+						<span />
+						<p className={cls.value}>{option.value}</p>
 					</li>
 				))}
 			<li className={cls.panel}>

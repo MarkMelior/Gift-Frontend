@@ -12,7 +12,7 @@ export const NavbarAdmin: FC = memo(() => {
 
 	return (
 		<div className={cls.wrapper}>
-			<Tooltip offset={10} content={'Статистика'} placement='right'>
+			{/* <Tooltip offset={10} content={'Статистика'} placement='right'>
 				<Link
 					href={'/admin/dashboard'}
 					className={cn(
@@ -22,7 +22,7 @@ export const NavbarAdmin: FC = memo(() => {
 				>
 					📊
 				</Link>
-			</Tooltip>
+			</Tooltip> */}
 			<Tooltip offset={10} content={'Продукты'} placement='right'>
 				<Link
 					href={'/admin/products'}
@@ -31,7 +31,7 @@ export const NavbarAdmin: FC = memo(() => {
 					📦
 				</Link>
 			</Tooltip>
-			<Tooltip offset={10} content={'Отзывы'} placement='right'>
+			{/* <Tooltip offset={10} content={'Отзывы'} placement='right'>
 				<Link
 					href={'/admin/reviews'}
 					className={cn(cls.item, pathname === '/admin/reviews' && cls.active)}
@@ -46,7 +46,7 @@ export const NavbarAdmin: FC = memo(() => {
 				>
 					❇️
 				</Link>
-			</Tooltip>
+			</Tooltip> */}
 		</div>
 	);
 });

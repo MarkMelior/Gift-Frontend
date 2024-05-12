@@ -28,6 +28,7 @@ export const productModalSlice = createSlice({
 	reducers: {
 		clearProductModal: (state) => {
 			state = productModalInitialState;
+			return state;
 		},
 		setErrorsProductModal: (
 			state,

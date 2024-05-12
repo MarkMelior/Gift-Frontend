@@ -6,7 +6,6 @@ import { NavigationPanel } from '@/widgets/navigation-panel';
 import { Ready } from '@/widgets/ready';
 import { ReviewsCarousel } from '@/widgets/reviews-carousel';
 import { TopPage } from '@/widgets/top-page';
-import Image from 'next/image';
 import { FC, memo } from 'react';
 
 const MainPage: FC = memo(() => {
@@ -17,13 +16,7 @@ const MainPage: FC = memo(() => {
 				title='Melior Gift'
 				description='Находить креативные подарки теперь легко и приятно.'
 				imageContent={
-					<Image
-						src='/images/pages/gift.png'
-						alt='image'
-						width={371}
-						height={419}
-						className='noselect'
-					/>
+					<img src='/images/pages/gift.png' alt='image' className='noselect' />
 				}
 			/>
 			<Blackhole disabledOnMobile />

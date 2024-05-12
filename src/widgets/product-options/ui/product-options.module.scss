@@ -5,7 +5,7 @@
 	top: calc(var(--navbar-height) + 10px);
 	display: flex;
 	flex-direction: column;
-	gap: 25px;
+	gap: 14px;
 	width: 100%;
 	height: min-content;
 
@@ -15,41 +15,20 @@
 	}
 }
 
-.characteristic {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-
-	h3 {
-		@apply font-medium;
-	}
-}
-
-.chipWrapper {
-	display: flex;
-	gap: 10px;
-}
-
-.chip {
-	padding: 7px 15px;
-	white-space: nowrap;
-	border: 1px solid var(--color-border);
-
-	@apply text-sm;
-	@apply rounded-lg;
-	@include background(.75);
-}
-
 .description {
 	display: flex;
-	gap: 10px;
+	gap: 8px;
 	width: 100%;
 	white-space: nowrap;
 
-	@apply text-sm;
-
-	p {
+	.key {
 		opacity: .5;
+	}
+
+	.value {
+		min-width: 128px;
+		max-width: 128px;
+		text-wrap: wrap;
 	}
 
 	span {

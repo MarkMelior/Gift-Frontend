@@ -1,11 +1,16 @@
-import { addProduct } from '@/entities/products';
 import { MarketsEditor, OptionsEditor } from '@/features/product-edit';
 import { SortSelectInput } from '@/features/sorts';
 import { UploadImages } from '@/features/upload-image';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
+import { CheckIcon } from '@/shared/assets/icon/Check';
+import {
+	Component,
+	DynamicModuleLoader,
+	ReducersList,
+} from '@/shared/lib/components';
 import { parseErrorPathToNestedObject } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Input } from '@/shared/ui/input';
+import { Notification } from '@/shared/ui/notification';
 import {
 	Button,
 	Modal,
@@ -42,6 +47,7 @@ export const ProductModal: FC<ProductModalProps> = ({
 	const dispatch = useAppDispatch();
 	const product = useSelector(getProductModal);
 	const [images, setImages] = useState<FileList>();
+	const [showNotification, setShowNotification] = useState(false);
 
 	const onChangeTitle = useCallback(
 		(value: string) => {
@@ -100,11 +106,11 @@ export const ProductModal: FC<ProductModalProps> = ({
 		}
 
 		try {
-			await dispatch(addProduct({ body: product, images })).unwrap();
+			// await dispatch(addProduct({ body: product, images })).unwrap();
 
 			dispatch(productModalActions.clearProductModal());
 			onOpenChange(false);
-			// todo: notification
+			setShowNotification(true);
 		} catch (e: any) {
 			const error = e.data as ZodError;
 
@@ -119,71 +125,99 @@ export const ProductModal: FC<ProductModalProps> = ({
 	};
 
 	return (
-		<DynamicModuleLoader reducers={reducers}>
-			<Modal
-				isOpen={isOpen}
-				onOpenChange={onOpenChange}
-				size='lg'
-				scrollBehavior='inside'
-			>
-				<ModalContent>
-					{(onClose) => (
-						<>
-							<ModalHeader className='flex flex-col gap-1'>
-								Добавление продукта
-							</ModalHeader>
-							<ModalBody className={cls.body}>
-								<form className='flex flex-col gap-5'>
-									<UploadImages
-										state={{ images, setImages }}
-										error={product?.errors?.images}
-									/>
-									<Input
-										name='title'
-										label='Название продукта'
-										size='sm'
-										value={product?.title}
-										errorMessage={product?.errors?.title}
-										onChange={(e) => onChangeTitle(e.target.value)}
-									/>
-									<SortSelectInput />
-									<MarketsEditor />
-									<OptionsEditor />
-									<Slider
-										size='lg'
-										step={1}
-										name='creativity'
-										color='primary'
-										label='Креативность'
-										showSteps={true}
-										maxValue={10}
-										minValue={1}
-										className='max-w-md'
-										value={product?.creativity}
-										onChange={onChangeCreativity}
-									/>
-									<Textarea
-										label='Описание'
-										size='sm'
-										description='Добавьте дополнительную информацию для быстрого поиска'
-										name='description'
-										value={product?.description}
-										onChange={(e) => onChangeDescription(e.target.value)}
-									/>
-								</form>
-							</ModalBody>
-							<ModalFooter>
-								<Button color='danger' variant='light' onPress={onClose}>
-									Отменить
-								</Button>
-								<Button color='primary' onClick={onSubmit}>
-									Создать продукт
-								</Button>
-							</ModalFooter>
-						</>
-					)}
-				</ModalContent>
-			</Modal>
-		</DynamicModuleLoader>
+		<>
+			<Component isRender={isOpen} delayClose={500}>
+				<DynamicModuleLoader reducers={reducers}>
+					<Modal
+						isOpen={isOpen}
+						onOpenChange={onOpenChange}
+						size='lg'
+						scrollBehavior='inside'
+					>
+						<ModalContent>
+							{(onClose) => (
+								<>
+									<ModalHeader className='flex flex-col gap-1'>
+										Редактор продукта
+									</ModalHeader>
+									<ModalBody className={cls.body}>
+										<form className='flex flex-col gap-5'>
+											<UploadImages
+												state={{ images, setImages }}
+												error={product?.errors?.images}
+											/>
+											<Input
+												name='title'
+												label='Название продукта'
+												size='sm'
+												value={product?.title}
+												errorMessage={product?.errors?.title}
+												onChange={(e) => onChangeTitle(e.target.value)}
+											/>
+											<SortSelectInput />
+											<MarketsEditor />
+											<OptionsEditor />
+											<Slider
+												size='lg'
+												step={1}
+												name='creativity'
+												color='primary'
+												label='Креативность'
+												showSteps={true}
+												maxValue={10}
+												minValue={1}
+												className='max-w-md'
+												value={product?.creativity}
+												onChange={onChangeCreativity}
+											/>
+											<Textarea
+												label='Описание'
+												size='sm'
+												description='Добавьте дополнительную информацию для быстрого поиска'
+												name='description'
+												value={product?.description}
+												onChange={(e) => onChangeDescription(e.target.value)}
+											/>
+										</form>
+									</ModalBody>
+									<ModalFooter>
+										<Button
+											color='danger'
+											variant='light'
+											onPress={() => {
+												onClose();
+												dispatch(productModalActions.clearProductModal());
+											}}
+										>
+											Отменить
+										</Button>
+										<Button color='primary' onClick={onSubmit}>
+											Сохранить продукт
+										</Button>
+									</ModalFooter>
+								</>
+							)}
+						</ModalContent>
+					</Modal>
+				</DynamicModuleLoader>
+			</Component>
+			{showNotification && (
+				<Notification
+					message='Продукт успешно добавлен!'
+					duration={3500}
+					placement='top'
+					onClose={() => setShowNotification(false)}
+					closeOnClick
+					startContent={
+						<CheckIcon
+							width={16}
+							height={16}
+							color='hsl(var(--gift-success))'
+							isSelected
+						/>
+					}
+				/>
+			)}
+		</>
 	);
 };
