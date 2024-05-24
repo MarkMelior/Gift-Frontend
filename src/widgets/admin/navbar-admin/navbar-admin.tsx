@@ -23,7 +23,7 @@ export const NavbarAdmin: FC = memo(() => {
 					📊
 				</Link>
 			</Tooltip> */}
-			<Tooltip offset={10} content={'Продукты'} placement='right'>
+			<Tooltip offset={10} content={'Продукты'} placement='top'>
 				<Link
 					href={'/admin/products'}
 					className={cn(cls.item, pathname === '/admin/products' && cls.active)}

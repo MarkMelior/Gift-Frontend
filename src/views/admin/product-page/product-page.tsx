@@ -1,7 +1,7 @@
 'use client';
 
 import { deleteProduct, useGetProductsQuery } from '@/entities/products';
-import { ConfirmButton } from '@/features/confirm-action';
+import { ModalConfirm } from '@/features/modal-confirm';
 import { DeleteIcon } from '@/shared/assets/icon/Delete';
 import { EditIcon } from '@/shared/assets/icon/Edit';
 import { EyeIcon } from '@/shared/assets/icon/Eye';
@@ -221,7 +221,6 @@ export const AdminProductPage: FC = () => {
 									size='sm'
 									variant='light'
 									onClick={() => {
-										// @ts-ignore
 										dispatch(productModalActions.updateProductModal(product));
 										onOpenAdd();
 									}}
@@ -229,22 +228,20 @@ export const AdminProductPage: FC = () => {
 									<EditIcon width={18} height={18} className='opacity-50' />
 								</Button>
 							</Tooltip>
-							{/* <Tooltip content='Удалить' showArrow closeDelay={0}> */}
-							<ConfirmButton
-								size='sm'
-								isIconOnly
-								variant='light'
-								color='danger'
+							<ModalConfirm
 								onConfirm={() => dispatch(deleteProduct(product.article))}
-								confirmDescription={`Вы уверены, что хотите удалить продукт ${product.article}?`}
+								description={`Вы уверены, что хотите удалить продукт ${product.article}?`}
 							>
-								<DeleteIcon
-									color='hsl(var(--gift-danger-500))'
-									width={18}
-									height={18}
-								/>
-							</ConfirmButton>
-							{/* </Tooltip> */}
+								<Tooltip content='Удалить' showArrow closeDelay={0}>
+									<Button isIconOnly size='sm' variant='light' color='danger'>
+										<DeleteIcon
+											color='hsl(var(--gift-danger-500))'
+											width={18}
+											height={18}
+										/>
+									</Button>
+								</Tooltip>
+							</ModalConfirm>
 						</div>
 					);
 				default:

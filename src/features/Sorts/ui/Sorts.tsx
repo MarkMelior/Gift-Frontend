@@ -1,15 +1,13 @@
 'use client';
 
-import { ReduxStoreWithManager } from '@/app/store';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
 import { useAppDispatch } from '@/shared/lib/hooks';
-import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
-import { Slider } from '@nextui-org/react';
+import { Button, Slider } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import queryString from 'query-string';
-import { FC, useCallback, useEffect } from 'react';
-import { useSelector, useStore } from 'react-redux';
+import { FC, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { getSort } from '../model/selectors/getSort';
 import {
 	initialState,
@@ -64,20 +62,14 @@ export const Sorts: FC<SortsProps> = ({ onFetch }) => {
 		onFetch();
 	}, [sort, router, onFetch]);
 
-	const store = useStore() as ReduxStoreWithManager;
-
-	// ! TEMPORAL FIX
-	useEffect(() => {
-		store.reducerManager.add('sort', sortReducer);
-	}, [store.reducerManager]);
-
 	return (
 		<DynamicModuleLoader reducers={initialReducers}>
 			<div className={cls.wrapper}>
 				<Button
 					onClick={applyFilters}
-					starlight
-					customVariant='layer'
+					// starlight
+					// customVariant='layer'
+					color='primary'
 					className='py-4 !w-full'
 				>
 					Применить фильтры
@@ -147,7 +139,7 @@ export const Sorts: FC<SortsProps> = ({ onFetch }) => {
 						}}
 						className='max-w-md'
 					/>
-					<div className={cls.column}>
+					{/* <div className={cls.column}>
 						<Button
 							onClick={() => {
 								setMinPrice(0);
@@ -172,7 +164,7 @@ export const Sorts: FC<SortsProps> = ({ onFetch }) => {
 						>
 							Любой
 						</Button>
-					</div>
+					</div> */}
 				</div>
 				<div className={cls.sort}>
 					<header>

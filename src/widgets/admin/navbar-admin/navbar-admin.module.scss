@@ -2,11 +2,13 @@
 
 .wrapper {
 	position: fixed;
-	top: 50%;
+	top: auto;
+	bottom: 30px;
 	left: 25px;
+	left: 50%;
 	z-index: var(--z-index-navbar);
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	gap: .25rem;
 	align-items: center;
 	justify-content: center;
@@ -14,15 +16,13 @@
 	backdrop-filter: var(--blur-xl);
 	border: 1px solid var(--color-border);
 	border-radius: .625rem;
-	transform: translateY(-50%);
+	transform: translateX(-50%);
 
 	@include background(1);
 
 	@media (max-width: theme('screens.sm')) {
 		top: calc(var(--navbar-height-search-mobile) + 10px);
-		left: 50%;
-		flex-direction: row;
-		transform: translateX(-50%);
+		bottom: auto;
 	}
 }
 

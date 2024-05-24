@@ -15,7 +15,7 @@ export const initialState: SortState = {
 	age: 'adult',
 	sorting: 'popular',
 	minPrice: 0,
-	maxPrice: 30000,
+	maxPrice: 20000,
 };
 
 const sortInitialState = (): SortState => {
