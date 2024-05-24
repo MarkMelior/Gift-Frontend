@@ -7,7 +7,7 @@ interface ButtonAgeProps extends SortButtonProps {
 
 export const ageButton: ButtonAgeProps[] = [
 	{
-		text: 'Дитя',
+		text: 'Детишки',
 		color: '66, 153, 255',
 		key: 'kid',
 	},
@@ -17,7 +17,7 @@ export const ageButton: ButtonAgeProps[] = [
 		key: 'adult',
 	},
 	{
-		text: 'Старик',
+		text: 'В возрасте',
 		color: '66, 153, 255',
 		key: 'old',
 	},

@@ -38,6 +38,22 @@ export const productsApi = rtkApi.injectEndpoints({
 				};
 			},
 		}),
+		deleteProduct: build.mutation<ProductResponse, string>({
+			query: (productArticle) => ({
+				url: `/products/${productArticle}`,
+				method: 'DELETE',
+			}),
+		}),
+		updateProduct: build.mutation<
+			ProductResponse,
+			{ productArticle: string; body: ProductCreateRequest }
+		>({
+			query: ({ productArticle, body }) => ({
+				url: `/products/${productArticle}`,
+				method: 'PUT',
+				body,
+			}),
+		}),
 		// deleteProductImages: build.mutation<
 		// 	string[],
 		// 	{ productArticle: string; images: string }
@@ -72,7 +88,10 @@ export const productsApi = rtkApi.injectEndpoints({
 
 // export const addProductImages = productsApi.endpoints.addProductImages.initiate;
 
+export const updateProduct = productsApi.endpoints.addProduct.initiate;
 export const addProduct = productsApi.endpoints.addProduct.initiate;
+export const getProducts = productsApi.endpoints.getProducts.initiate;
+export const deleteProduct = productsApi.endpoints.deleteProduct.initiate;
 
 export const {
 	useGetProductQuery,

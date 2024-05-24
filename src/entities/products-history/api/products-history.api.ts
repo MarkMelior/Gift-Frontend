@@ -1,9 +1,9 @@
 import { rtkApi } from '@/shared/api/rtkApi';
-import { ProductCardResponse } from '@melior-gift/zod-contracts';
+import { ProductResponse } from '@melior-gift/zod-contracts';
 
 export const productsHistoryApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
-		getProductsHistory: build.query<ProductCardResponse[], void>({
+		getProductsHistory: build.query<ProductResponse[], void>({
 			query: () => ({
 				url: '/products-history',
 				method: 'GET',

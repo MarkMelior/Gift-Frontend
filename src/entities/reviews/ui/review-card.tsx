@@ -23,16 +23,14 @@ export const ReviewCard: FC<ReviewCardProps> = memo(({ review }) => {
 						(users && users[0].first + ' ' + users && users[0].last) ||
 						(users && users[0].username)
 					}
-					description={
-						<Link target='_blank' href='https://twitter.com/jrgarciadev'>
-							{`@${users && users[0].username}`}
-						</Link>
+					description={<Link href='#'>{`@${users && users[0].username}`}</Link>}
+					avatarProps={
+						users && users[0] && users[0].avatar
+							? {
+									src: `${process.env.UPLOADS}/avatars/${users[0].id}/${users[0].avatar}`,
+							  }
+							: undefined
 					}
-					avatarProps={{
-						src: `${process.env.UPLOADS}/avatars/${users && users[0].id}/${
-							users && users[0].avatar
-						}`,
-					}}
 				/>
 				<StarRating rating={review.rating} />
 			</div>

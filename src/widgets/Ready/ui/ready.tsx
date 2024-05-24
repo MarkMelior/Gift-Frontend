@@ -38,16 +38,16 @@ export const Ready: FC = memo(() => {
 				<h3>Готовы выбрать подарок?</h3>
 				<p>Восхитительно умная платформа для выбора подарков - бесплатно.</p>
 			</div>
-			<Link href='/shop'>
-				<Button
-					starlight
-					className='py-5 px-12 rounded-xl'
-					customVariant='layer'
-					startContent={<GiftIcon />}
-				>
-					Найти подарок
-				</Button>
-			</Link>
+			<Button
+				as={Link}
+				href='/shop'
+				starlight
+				className='py-5 px-12 rounded-xl'
+				customVariant='layer'
+				startContent={<GiftIcon />}
+			>
+				Найти подарок
+			</Button>
 			{theme === 'dark' && isMounted && (
 				<motion.div
 					initial={{ opacity: 0 }}

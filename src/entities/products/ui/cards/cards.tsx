@@ -2,7 +2,7 @@
 
 import { useDelay } from '@/shared/lib/hooks';
 import { ErrorScreen } from '@/shared/ui/errors';
-import { ProductCardResponse } from '@melior-gift/zod-contracts';
+import { ProductResponse } from '@melior-gift/zod-contracts';
 import { FC, memo } from 'react';
 import 'swiper/css/pagination';
 import { Card } from '../card/card';
@@ -10,7 +10,7 @@ import { CardSkeleton } from '../card/card.skeleton';
 import cls from './cards.module.scss';
 
 export interface CardsProps {
-	data: ProductCardResponse[] | undefined;
+	data: ProductResponse[] | undefined;
 	isLoading?: boolean;
 	error?: string;
 	skeletonCount?: number;

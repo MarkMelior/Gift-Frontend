@@ -100,7 +100,7 @@ export const MarketsEditor: FC = memo(() => {
 		(index: number) => {
 			dispatch(
 				productModalActions.updateProductModal({
-					markets: markets?.filter((_, i) => i !== index),
+					markets: markets?.filter((_, i: number) => i !== index),
 				}),
 			);
 		},
@@ -111,7 +111,7 @@ export const MarketsEditor: FC = memo(() => {
 		if (markets) {
 			dispatch(
 				productModalActions.updateProductModal({
-					markets: [...markets, ...productModalInitialState.markets],
+					markets: [...markets, ...productModalInitialState.data.markets],
 				}),
 			);
 		}

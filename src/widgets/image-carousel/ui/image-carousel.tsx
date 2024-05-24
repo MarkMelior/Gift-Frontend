@@ -52,6 +52,7 @@ export const ImageCarousel: FC<ImageCarouselProps> = memo(({ product }) => {
 				}}
 				modules={[Navigation, Thumbs]}
 				className={cls.image}
+				wrapperClass={cls.imageWrapper}
 				navigation={{
 					prevEl: cls.buttonPrev,
 					nextEl: cls.buttonNext,

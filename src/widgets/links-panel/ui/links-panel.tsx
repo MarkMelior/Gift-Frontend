@@ -8,10 +8,7 @@ import { Markets } from '@/shared/const';
 import { convertCurrency } from '@/shared/lib/features';
 import { Button } from '@/shared/ui/button';
 import { Notification } from '@/shared/ui/notification';
-import {
-	ProductCardResponse,
-	ProductMarkets,
-} from '@melior-gift/zod-contracts';
+import { ProductMarkets, ProductResponse } from '@melior-gift/zod-contracts';
 import { Tooltip } from '@nextui-org/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -19,7 +16,7 @@ import { FC, memo, useState } from 'react';
 import cls from './links-panel.module.scss';
 
 interface LinksPanelProps {
-	product: ProductCardResponse;
+	product: ProductResponse;
 }
 
 export const LinksPanel: FC<LinksPanelProps> = memo(({ product }) => {

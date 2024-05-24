@@ -1,9 +1,9 @@
 import { rtkApi } from '@/shared/api/rtkApi';
-import { ProductCardResponse } from '@melior-gift/zod-contracts';
+import { ProductResponse } from '@melior-gift/zod-contracts';
 
 export const favoritesApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
-		getFavoritesProducts: build.query<ProductCardResponse[], void>({
+		getFavoritesProducts: build.query<ProductResponse[], void>({
 			query: () => ({
 				url: '/favorites',
 				method: 'GET',

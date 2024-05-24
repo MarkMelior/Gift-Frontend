@@ -1,7 +1,8 @@
 {
 	"extends": "next/core-web-vitals",
 	"rules": {
-		"indent": [2, "tab", { "SwitchCase": 1 }],
+		// "indent": [2, "tab", { "SwitchCase": 1 }],
+		"indent": "off",
 		"react/jsx-indent": [2, "tab"],
 		"react/display-name": "off",
 		"@next/next/no-img-element": "off",

@@ -9,7 +9,7 @@ export interface ConfidentialityUser {
 }
 
 export interface UserState {
-	data?: UserResponse;
+	data?: Partial<UserResponse>;
 	isLoading: boolean;
 	error?: string;
 	access_token?: string;

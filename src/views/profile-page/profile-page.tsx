@@ -94,14 +94,14 @@ export const ProfilePage: FC<ProfilePageProps> = memo(() => {
 						<p>{user.email}</p>
 					</span>
 				</div>
-				<div className='flex gap-2'>
+				{/* <div className='flex gap-2'>
 					<Button variant='bordered' fullWidth>
 						Изменить почту
 					</Button>
 					<Button variant='bordered' fullWidth>
 						Изменить пароль
 					</Button>
-				</div>
+				</div> */}
 				<Table
 					hideHeader
 					isStriped

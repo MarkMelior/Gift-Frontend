@@ -1,6 +1,13 @@
 import { useAppDispatch } from './useAppDispatch/useAppDispatch';
+import { useDebounce } from './useDebounce/useDebounce';
 import { useDelay } from './useDelay/useDelay';
 import useLocalStorage from './useLocalstorage/useLocalstorage';
 import { useLocalstorageArray } from './useLocalstorageArray/useLocalstorageArray';
 
-export { useAppDispatch, useDelay, useLocalStorage, useLocalstorageArray };
+export {
+	useAppDispatch,
+	useDebounce,
+	useDelay,
+	useLocalStorage,
+	useLocalstorageArray,
+};

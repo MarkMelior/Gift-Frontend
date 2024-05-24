@@ -1,47 +1,40 @@
 'use client';
 
 import { Cards, useGetProductsQuery } from '@/entities/products';
-import { Sorts, getSort, sortReducer } from '@/features/sorts';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
+import { Sorts, getSort } from '@/features/sorts';
 import { Blackhole } from '@/shared/ui/blackhole';
-import { Button } from '@/shared/ui/button';
 import { NavigationPanel } from '@/widgets/navigation-panel';
 import { TopPage } from '@/widgets/top-page';
-import { ProductFindRequest } from '@melior-gift/zod-contracts';
-import { Image, Textarea } from '@nextui-org/react';
 import cn from 'clsx';
-import { FC, memo, useCallback, useState } from 'react';
+import { FC, memo, useCallback, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import cls from './shop-page.module.scss';
 
-const initialReducers: ReducersList = {
-	sort: sortReducer,
-};
-
 export const ShopPage: FC = memo(() => {
 	const sort = useSelector(getSort);
-	const FindProducts: ProductFindRequest = {
-		limit: 100,
-		filters: [...sort.category, sort.age, sort.sex],
-		maxPrice: sort.maxPrice,
-		minPrice: sort.minPrice,
-		sort: sort.sorting,
-	};
+
+	const FindProducts = useMemo(
+		() => ({
+			limit: 100,
+			filters: [...sort.category, sort.age, sort.sex],
+			maxPrice: sort.maxPrice,
+			minPrice: sort.minPrice,
+			sort: sort.sorting,
+		}),
+		[sort],
+	);
+
 	const [fetchData, setFetchData] = useState(FindProducts);
 
-	const {
-		data: products,
-		isLoading,
-		error,
-	} = useGetProductsQuery(fetchData, { skip: !fetchData });
+	const { data: products, isLoading, error } = useGetProductsQuery(fetchData);
 
 	const handleFetch = useCallback(() => {
 		setFetchData(FindProducts);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [sort]);
+	}, [FindProducts]);
 
 	return (
-		<DynamicModuleLoader reducers={initialReducers}>
+		<>
 			<TopPage
 				note='Найти подарок - легко'
 				title='Melior Gift'
@@ -56,9 +49,9 @@ export const ShopPage: FC = memo(() => {
 				<NavigationPanel />
 			</div>
 			<div className={cn(cls.wrapper, 'content')}>
-				<Sorts onFetch={() => handleFetch()} />
+				<Sorts onFetch={handleFetch} />
 				<div className={cls.block}>
-					<div className={cls.ai}>
+					{/* <div className={cls.ai}>
 						<Textarea
 							maxRows={2}
 							maxLength={250}
@@ -86,7 +79,7 @@ export const ShopPage: FC = memo(() => {
 						>
 							Найти подарок
 						</Button>
-					</div>
+					</div> */}
 					<Cards
 						data={products}
 						isLoading={isLoading}
@@ -95,6 +88,6 @@ export const ShopPage: FC = memo(() => {
 					/>
 				</div>
 			</div>
-		</DynamicModuleLoader>
+		</>
 	);
 });

@@ -43,6 +43,8 @@ export const ReviewsCarousel: FC = memo(() => {
 		setMounted(true);
 	}, []);
 
+	if (!reviews) return <></>;
+
 	return (
 		<>
 			<SlideHeading className='mt-20' text='Отзывы' />

@@ -5,12 +5,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { initAuthData } from '../services/initAuthData';
 import { UserState } from '../types/user';
 
-export const userInitialState: Omit<UserState, 'data'> & {
-	data: Partial<UserResponse>;
-} = {
+export const userInitialState: UserState = {
 	readonly: true,
 	isLoading: false,
-	data: { favorites: [] },
+	data: { favorites: [] } as unknown as UserResponse,
 };
 
 export const userSlice = createSlice({
@@ -45,10 +43,7 @@ export const userSlice = createSlice({
 			})
 			.addCase(
 				initAuthData.fulfilled,
-				(
-					state,
-					action: PayloadAction<UserResponse | Pick<UserResponse, 'favorites'>>,
-				) => {
+				(state, action: PayloadAction<UserState['data']>) => {
 					state.isLoading = false;
 					state.data = action.payload;
 				},

@@ -1,6 +1,6 @@
 'use client';
 
-import { useGetFavoritesProductsQuery } from '@/entities/favorites';
+import { useFavoritesProducts } from '@/entities/favorites';
 import { Cards, useGetProductsQuery } from '@/entities/products';
 import { useGetProductsHistoryQuery } from '@/entities/products-history';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
@@ -10,10 +10,10 @@ import { FC, memo } from 'react';
 import cls from './favorites-page.module.scss';
 
 export const FavoritesProducts: FC = memo(() => {
-	const { data: favoritesProducts, isLoading } = useGetFavoritesProductsQuery();
+	const { favoritesProducts, isLoading } = useFavoritesProducts();
 
 	const { data: recommendedProducts, isLoading: isLoadingProducts } =
-		useGetProductsQuery({ limit: 10 });
+		useGetProductsQuery({ limit: 6 });
 
 	const { data: productsHistory, isLoading: isLoadingProductsHistory } =
 		useGetProductsHistoryQuery();
@@ -23,16 +23,16 @@ export const FavoritesProducts: FC = memo(() => {
 			{!favoritesProducts && !isLoading ? (
 				<>
 					<div className={cls.notFound}>
-						<Link href='/shop' className='inline-block'>
-							<Button
-								starlight
-								className='py-5 px-12 rounded-xl'
-								customVariant='layer'
-								startContent={<GiftIcon />}
-							>
-								За подарками!
-							</Button>
-						</Link>
+						<Button
+							as={Link}
+							href='/shop'
+							starlight
+							className='py-5 px-12 rounded-xl'
+							customVariant='layer'
+							startContent={<GiftIcon />}
+						>
+							За подарками!
+						</Button>
 						<span className='text-xs text-gray-500'>
 							Избранные подарки не найдены
 						</span>

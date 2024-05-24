@@ -86,16 +86,16 @@ export const TopPage: FC<TopPageProps> = memo(
 					<div className={cls.information}>
 						{renderHeading}
 						<div className={`${cls.dots} noselect`} />
-						<Link href='/shop' className='w-fit'>
-							<Button
-								starlight
-								className='py-5 px-12 rounded-xl'
-								customVariant='layer'
-								startContent={<GiftIcon width='1.5rem' height='1.5rem' />}
-							>
-								Найти подарок
-							</Button>
-						</Link>
+						<Button
+							as={Link}
+							href='/shop'
+							starlight
+							className='py-5 px-12 rounded-xl'
+							customVariant='layer'
+							startContent={<GiftIcon width='1.5rem' height='1.5rem' />}
+						>
+							Найти подарок
+						</Button>
 					</div>
 				) : (
 					renderHeading

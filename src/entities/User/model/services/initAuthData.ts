@@ -1,12 +1,13 @@
 import { ThunkConfig } from '@/app/store';
 import { getLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
-import { AuthResponse, UserResponse } from '@melior-gift/zod-contracts';
+import { AuthResponse } from '@melior-gift/zod-contracts';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getUserDataApi } from '../../api/user.api';
+import { UserState } from '../types/user';
 
 export const initAuthData = createAsyncThunk<
-	UserResponse | Pick<UserResponse, 'favorites'>,
+	UserState['data'],
 	void,
 	ThunkConfig<string>
 >('user/initAuthData', async (_, { rejectWithValue, dispatch }) => {
@@ -16,7 +17,8 @@ export const initAuthData = createAsyncThunk<
 
 	if (!authUser) {
 		const favorites = getLocalstorage<string[]>(LocalstorageKeys.LIKED, []);
-		return { favorites };
+		const history = getLocalstorage<string[]>(LocalstorageKeys.HISTORY, []);
+		return { favorites, history };
 	}
 
 	try {

@@ -49,6 +49,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 	} = props;
 
 	const {
+		Component,
 		domRef,
 		children,
 		styles,
@@ -149,7 +150,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 	}, []);
 
 	return (
-		<button
+		<Component
 			type='button'
 			data-optimization={isOptimization}
 			className={cn(
@@ -170,7 +171,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 					<Ripple {...getRippleProps()} />
 				</div>
 			)}
-		</button>
+		</Component>
 	);
 });
 

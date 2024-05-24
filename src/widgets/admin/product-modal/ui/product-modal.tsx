@@ -1,3 +1,4 @@
+import { addProduct } from '@/entities/products';
 import { MarketsEditor, OptionsEditor } from '@/features/product-edit';
 import { SortSelectInput } from '@/features/sorts';
 import { UploadImages } from '@/features/upload-image';
@@ -25,6 +26,7 @@ import { FC, MouseEvent, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ZodError } from 'zod';
 import { getProductModal } from '../model/selectors/getProductModal';
+import { getProductModalErrors } from '../model/selectors/getProductModalErrors';
 import {
 	productModalActions,
 	productModalReducer,
@@ -46,6 +48,7 @@ export const ProductModal: FC<ProductModalProps> = ({
 }) => {
 	const dispatch = useAppDispatch();
 	const product = useSelector(getProductModal);
+	const productError = useSelector(getProductModalErrors);
 	const [images, setImages] = useState<FileList>();
 	const [showNotification, setShowNotification] = useState(false);
 
@@ -106,7 +109,9 @@ export const ProductModal: FC<ProductModalProps> = ({
 		}
 
 		try {
-			// await dispatch(addProduct({ body: product, images })).unwrap();
+			if (!product) throw new Error('Product not found');
+
+			await dispatch(addProduct({ body: product, images })).unwrap();
 
 			dispatch(productModalActions.clearProductModal());
 			onOpenChange(false);
@@ -144,14 +149,14 @@ export const ProductModal: FC<ProductModalProps> = ({
 										<form className='flex flex-col gap-5'>
 											<UploadImages
 												state={{ images, setImages }}
-												error={product?.errors?.images}
+												error={productError?.images}
 											/>
 											<Input
 												name='title'
 												label='Название продукта'
 												size='sm'
 												value={product?.title}
-												errorMessage={product?.errors?.title}
+												errorMessage={productError?.title}
 												onChange={(e) => onChangeTitle(e.target.value)}
 											/>
 											<SortSelectInput />

@@ -1,4 +1,6 @@
 .wrapper {
+	/* stylelint-disable-next-line value-no-vendor-prefix */
+	width: -webkit-fill-available;
 	min-height: var(--height-screen);
 	padding-top: 40px;
 }

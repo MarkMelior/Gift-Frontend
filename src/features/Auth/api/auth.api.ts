@@ -1,5 +1,6 @@
 import { userActions, userApi } from '@/entities/user';
 import { rtkApi } from '@/shared/api/rtkApi';
+import { setLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import {
 	AuthLoginRequest,
@@ -17,10 +18,7 @@ const authApi = rtkApi.injectEndpoints({
 			}),
 			onQueryStarted: (authData, { dispatch, queryFulfilled }) => {
 				queryFulfilled.then((response) => {
-					localStorage.setItem(
-						LocalstorageKeys.USER,
-						JSON.stringify(response.data),
-					);
+					setLocalstorage(LocalstorageKeys.USER, response.data);
 					dispatch(userActions.setAuthData(response.data.access_token));
 					dispatch(userApi.util.resetApiState());
 				});
@@ -34,10 +32,7 @@ const authApi = rtkApi.injectEndpoints({
 			}),
 			onQueryStarted: (authData, { dispatch, queryFulfilled }) => {
 				queryFulfilled.then((response) => {
-					localStorage.setItem(
-						LocalstorageKeys.USER,
-						JSON.stringify(response.data),
-					);
+					setLocalstorage(LocalstorageKeys.USER, response.data);
 					dispatch(userActions.setAuthData(response.data.access_token));
 					dispatch(userApi.util.resetApiState());
 				});

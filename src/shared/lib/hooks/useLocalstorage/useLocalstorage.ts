@@ -1,9 +1,11 @@
 'use client';
 
+import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { setLocalstorage } from '../../features';
 
 export default function useLocalStorage<T>(
-	key: string,
+	key: LocalstorageKeys,
 	defaultValue: T,
 ): [T, Dispatch<SetStateAction<T>>] {
 	const isMounted = useRef(false);
@@ -25,7 +27,7 @@ export default function useLocalStorage<T>(
 
 	useEffect(() => {
 		if (isMounted.current) {
-			window.localStorage.setItem(key, JSON.stringify(value));
+			setLocalstorage(key, value);
 		} else {
 			isMounted.current = true;
 		}

@@ -12,7 +12,7 @@ import {
 	productLink,
 } from '@/shared/lib/features';
 import { Button } from '@/shared/ui/button';
-import { ProductCardResponse } from '@melior-gift/zod-contracts';
+import { ProductResponse } from '@melior-gift/zod-contracts';
 import { Tooltip } from '@nextui-org/react';
 import cn from 'clsx';
 import crypto from 'crypto';
@@ -26,7 +26,7 @@ import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import cls from './card.module.scss';
 
 export interface CardProps {
-	data: ProductCardResponse;
+	data: ProductResponse;
 	size?: 'sm' | 'md';
 	isLoading?: boolean;
 }

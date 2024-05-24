@@ -1,25 +1,23 @@
-import { ProductCreateRequest } from '@melior-gift/zod-contracts';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-
-export type ProductModalState = ProductCreateRequest & {
-	errors?: DeepPartial<DeepStringify<ProductCreateRequest>>;
-};
+import { ProductModalState } from '../types/product-modal';
 
 export const productModalInitialState: ProductModalState = {
-	creativity: 6,
-	title: '',
-	description: '',
-	markets: [
-		{
-			market: 'ozon',
-			link: '',
-			price: 2999,
-			rating: 5,
-			reviewCount: 245,
-			oldPrice: 4999,
-		},
-	],
+	data: {
+		creativity: 6,
+		title: '',
+		description: '',
+		markets: [
+			{
+				market: 'ozon',
+				link: '',
+				price: 2999,
+				rating: 5,
+				reviewCount: 245,
+				oldPrice: 4999,
+			},
+		],
+	},
 };
 
 export const productModalSlice = createSlice({
@@ -32,26 +30,26 @@ export const productModalSlice = createSlice({
 		},
 		setErrorsProductModal: (
 			state,
-			action: PayloadAction<Partial<DeepStringify<ProductModalState>>>,
+			action: PayloadAction<ProductModalState['errors']>,
 		) => {
 			state.errors = { ...state.errors, ...action.payload };
 		},
 		updateProductModal: (
 			state,
-			action: PayloadAction<Partial<ProductModalState>>,
+			action: PayloadAction<Partial<ProductModalState['data']>>,
 		) => {
 			return { ...state, ...action.payload };
 		},
 		updateMarketsProductModal: (
 			state,
 			action: PayloadAction<
-				Partial<ProductModalState['markets'][0]> & { index: number }
+				Partial<ProductModalState['data']['markets'][0]> & { index: number }
 			>,
 		) => {
 			const { index, ...otherAction } = action.payload;
 
-			state.markets[index] = {
-				...state.markets[index],
+			state.data.markets[index] = {
+				...state.data.markets[index],
 				...otherAction,
 			};
 		},
@@ -59,14 +57,14 @@ export const productModalSlice = createSlice({
 			state,
 			action: PayloadAction<
 				// @ts-ignore
-				Partial<ProductModalState['options'][0]> & { index: number }
+				Partial<ProductModalState['data']['options'][0]> & { index: number }
 			>,
 		) => {
 			const { index, ...otherAction } = action.payload;
-			if (!state.options) state.options = [];
+			if (!state.data.options) state.data.options = [];
 
-			state.options[index] = {
-				...state.options[index],
+			state.data.options[index] = {
+				...state.data.options[index],
 				...otherAction,
 			};
 		},

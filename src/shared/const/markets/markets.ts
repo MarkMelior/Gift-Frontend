@@ -27,9 +27,9 @@ export const Markets: Record<MarketType, MarketParams> = {
 		color: 'var(--color-wildberries-rgb)',
 		image: 'wildberries.png',
 	},
-	// sber: {
-	// 	name: 'Sber Market',
-	// 	color: 'var(--color-sber-rgb)',
-	// 	image: 'sber-market.png',
-	// },
+	sber: {
+		name: 'Sber Market',
+		color: 'var(--color-sber-rgb)',
+		image: 'sber-market.png',
+	},
 };

@@ -1,7 +1,7 @@
 'use client';
 
-import { getUserAuthData, getUserState } from '@/entities/User';
-import { ModalAuth, useAuth } from '@/features/Auth';
+import { getUserAuthData, getUserState } from '@/entities/user';
+import { ModalAuth, useAuth } from '@/features/auth';
 import { getSettings, settingsActions } from '@/features/settings';
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';

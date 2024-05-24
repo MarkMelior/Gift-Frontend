@@ -1,5 +1,8 @@
 import {
 	addProduct,
+	deleteProduct,
+	getProducts,
+	updateProduct,
 	useAddProductMutation,
 	useGetProductQuery,
 	useGetProductsQuery,
@@ -15,6 +18,9 @@ export {
 	CardWideSkeleton,
 	Cards,
 	addProduct,
+	deleteProduct,
+	getProducts,
+	updateProduct,
 	useAddProductMutation,
 	useGetProductQuery,
 	useGetProductsQuery,
