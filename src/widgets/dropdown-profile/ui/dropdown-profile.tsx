@@ -1,13 +1,14 @@
 'use client';
 
-import { getUserAuthData, getUserState } from '@/entities/user';
-import { ModalAuth, useAuth } from '@/features/auth';
+import { ModalAuth, onUserLogout } from '@/features/auth';
 import { getSettings, settingsActions } from '@/features/settings';
+import { fetcher } from '@/shared/api/fetcher';
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
 import { MediaSize } from '@/shared/const';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Theme } from '@/shared/types/theme';
+import { UserResponse } from '@melior-gift/zod-contracts';
 import {
 	Dropdown,
 	DropdownItem,
@@ -25,6 +26,7 @@ import Link from 'next/link';
 import { FC, ReactNode, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import useSWR from 'swr';
 import cls from './dropdown-profile.module.scss';
 
 interface DropdownProfileProps {
@@ -37,14 +39,11 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
 
 	const dispatch = useAppDispatch();
-	const { onUserLogout } = useAuth();
-	const authData = useSelector(getUserAuthData);
-	const {
-		data: user,
-		isLoading: isLoadingUser,
-		error,
-	} = useSelector(getUserState);
 	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const { data: user, isLoading: isLoadingUser } = useSWR<UserResponse>(
+		'/api/user',
+		fetcher,
+	);
 
 	const {
 		isOpen: isOpenAuthModal,
@@ -155,7 +154,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 							Доллары
 						</DropdownItem>
 					</DropdownSection>
-					{authData ? (
+					{user ? (
 						<DropdownSection title='Аккаунт'>
 							<DropdownItem
 								as={Link}
@@ -164,7 +163,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 								className='opacity-100'
 								onClick={() => setIsOpen(false)}
 							>
-								{isLoadingUser || !user ? (
+								{isLoadingUser ? (
 									<div className='max-w-[300px] w-full flex items-center gap-2'>
 										<div>
 											<Skeleton className='flex rounded-full w-10 h-10' />

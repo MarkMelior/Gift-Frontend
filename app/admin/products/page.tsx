@@ -1,10 +1,8 @@
-'use client';
-
-import { useRoleAccess } from '@/entities/user';
+import { userRoles } from '@/entities/user';
 import { AdminProductPage, NotFoundPage } from '@/views';
 
-const AdminProduct = () => {
-	const { isAdmin, isManager } = useRoleAccess();
+const AdminProduct = async () => {
+	const { isAdmin, isManager } = await userRoles();
 
 	if (!isAdmin && !isManager) return <NotFoundPage />;
 

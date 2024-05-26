@@ -1,8 +1,6 @@
 'use client';
 
-import { useRoleAccess } from '@/entities/user';
 import { MediaSize } from '@/shared/const';
-import { NavbarAdmin } from '@/widgets/admin';
 import cn from 'clsx';
 import { memo } from 'react';
 import { useMediaQuery } from 'react-responsive';
@@ -18,7 +16,7 @@ interface NavbarProps {
 
 export const Navbar = memo(({ className, shouldHideOnScroll }: NavbarProps) => {
 	const isMobile = useMediaQuery({ maxWidth: MediaSize.SM });
-	const { isAdmin } = useRoleAccess();
+	// const { isAdmin } = useRoleAccess();
 
 	return (
 		<>
@@ -29,7 +27,7 @@ export const Navbar = memo(({ className, shouldHideOnScroll }: NavbarProps) => {
 			</header>
 			{isMobile && <NavbarSearch />}
 			<div className={cls.spacer} />
-			{isAdmin && <NavbarAdmin />}
+			{/* {isAdmin && <NavbarAdmin />} */}
 		</>
 	);
 });

@@ -9,7 +9,21 @@ import Link from 'next/link';
 import { FC, memo } from 'react';
 import cls from './favorites-page.module.scss';
 
-export const FavoritesProducts: FC = memo(() => {
+// * SSR TEST
+// async function getFavoritesProducts(
+// 	articles: string[] | undefined,
+// 	init?: RequestInit,
+// ) {
+// 	const articlesString = queryString.stringify({ articles });
+
+// 	const res = await fetch(
+// 		`http://localhost:8000/api/products/?${articlesString}`,
+// 		init,
+// 	);
+// 	return res.json();
+// }
+
+export const FavoritesProducts: FC = memo(async () => {
 	const { favoritesProducts, isLoading } = useFavoritesProducts();
 
 	const { data: recommendedProducts, isLoading: isLoadingProducts } =
@@ -17,6 +31,11 @@ export const FavoritesProducts: FC = memo(() => {
 
 	const { data: productsHistory, isLoading: isLoadingProductsHistory } =
 		useGetProductsHistoryQuery();
+
+	// * SSR TEST
+	// const articles = getLocalstorage<string[]>(LocalstorageKeys.LIKED);
+	// console.log(articles);
+	// const favoritesProducts = await getFavoritesProducts(articles);
 
 	return (
 		<>
@@ -39,7 +58,7 @@ export const FavoritesProducts: FC = memo(() => {
 					</div>
 				</>
 			) : (
-				<Cards data={favoritesProducts} isLoading={isLoading} />
+				<Cards data={favoritesProducts} />
 			)}
 			<div className={cls.recommended}>
 				<h3>Рекомендуемые товары</h3>

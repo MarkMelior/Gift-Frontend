@@ -11,12 +11,12 @@ import { Input } from '@/shared/ui/input';
 import { AuthRegisterRequest } from '@melior-gift/zod-contracts';
 import { FC, FormEvent, memo, useCallback } from 'react';
 import { useSelector, useStore } from 'react-redux';
-import { useRegisterUserMutation } from '../../api/auth.api';
 import { getRegisterFormData } from '../../model/selectors/getRegisterFormData';
 import {
 	registerFormActions,
 	registerFormReducer,
 } from '../../model/slice/register-form.slice';
+import { registerUser } from '../../services/registerUser';
 import cls from './modal-auth.module.scss';
 
 interface ModalFormRegisterProps {
@@ -32,7 +32,6 @@ export const ModalFormRegister: FC<ModalFormRegisterProps> = memo(
 		const dispatch = useAppDispatch();
 		const { reducerManager } = useStore() as ReduxStoreWithManager;
 		const formData = useSelector(getRegisterFormData);
-		const [registerUser] = useRegisterUserMutation();
 
 		const handleFulfilledResult = useCallback(() => {
 			onSubmit();
@@ -62,13 +61,14 @@ export const ModalFormRegister: FC<ModalFormRegisterProps> = memo(
 
 				try {
 					const { username, password, email } = formData;
-					await registerUser({ username, password, email }).unwrap();
+					await registerUser({ username, password, email });
+
 					handleFulfilledResult();
 				} catch (error: any) {
 					handleRejectedResult(error.data.message);
 				}
 			},
-			[formData, handleFulfilledResult, handleRejectedResult, registerUser],
+			[formData, handleFulfilledResult, handleRejectedResult],
 		);
 
 		return (

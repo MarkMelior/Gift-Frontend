@@ -1,5 +1,4 @@
 import { getUserDataApi, useFindUsersQuery, userApi } from './api/user.api';
-import { useRoleAccess } from './hooks/useRoleAccess';
 import { getUserAuthData } from './model/selectors/getUserAuthData';
 import { getUserData } from './model/selectors/getUserData';
 import { getUserFavorites } from './model/selectors/getUserFavorites';
@@ -13,8 +12,11 @@ import {
 	GameProfile,
 	GameProfileState,
 } from './model/types/user-game';
+import { getUser } from './services/getUser';
+import { userRoles } from './services/userRoles';
 
 export {
+	getUser,
 	getUserAuthData,
 	getUserData,
 	getUserDataApi,
@@ -22,10 +24,10 @@ export {
 	getUserState,
 	initAuthData,
 	useFindUsersQuery,
-	useRoleAccess,
 	userActions,
 	userApi,
 	userReducer,
+	userRoles,
 };
 
 export type {

@@ -1,5 +1,3 @@
-'use client';
-
 import { TopPage } from '@/widgets/top-page';
 import { Image } from '@nextui-org/react';
 import cn from 'clsx';

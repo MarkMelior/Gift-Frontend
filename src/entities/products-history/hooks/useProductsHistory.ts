@@ -1,3 +1,5 @@
+'use client';
+
 import { getUserAuthData, userActions } from '@/entities/user';
 import { getUserProductsHistory } from '@/entities/user/model/selectors/getUserProductsHistory';
 import { setLocalstorage } from '@/shared/lib/features';

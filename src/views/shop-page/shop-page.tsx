@@ -9,10 +9,10 @@ export const ShopPage: FC = memo(() => {
 	return (
 		<>
 			<TopPage
+				compact
 				note='Найти подарок - легко'
 				title='Melior Gift'
 				description='Находить креативные подарки теперь легко и приятно.'
-				compact
 				imageContent={
 					<img src='/images/pages/gift.png' alt='image' className='noselect' />
 				}

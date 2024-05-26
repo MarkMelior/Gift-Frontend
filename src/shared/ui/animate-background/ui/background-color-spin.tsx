@@ -4,7 +4,7 @@ import cls from './background-color-spin.module.scss';
 
 interface BackgroundColorSpinProps {
 	children: ReactNode;
-	className: string;
+	className?: string;
 }
 
 export const BackgroundColorSpin: FC<BackgroundColorSpinProps> = memo(

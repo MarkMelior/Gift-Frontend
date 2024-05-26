@@ -1,7 +1,7 @@
 'use client';
 
 import { getUserAuthData, getUserState } from '@/entities/user';
-import { ModalAuth, useAuth } from '@/features/auth';
+import { ModalAuth, onUserLogout } from '@/features/auth';
 import { ConvertData } from '@/shared/lib/features';
 import { BackgroundColorSpin } from '@/shared/ui/animate-background';
 import { Button as MyButton } from '@/shared/ui/button';
@@ -27,8 +27,7 @@ import cls from './profile-page.module.scss';
 export const ProfilePage: FC<ProfilePageProps> = memo(() => {
 	const { data: user, isLoading, error } = useSelector(getUserState);
 	const isUserLogged = useSelector(getUserAuthData);
-	const { onUserLogout } = useAuth();
-	const formattedDate = ConvertData(user?.updatedAt);
+	const formattedDate = ConvertData(user?.createdAt);
 
 	const {
 		isOpen: isOpenAuthModal,
@@ -74,7 +73,6 @@ export const ProfilePage: FC<ProfilePageProps> = memo(() => {
 	}
 
 	if (error) {
-		console.log(error);
 		return <ErrorScreen />;
 	}
 

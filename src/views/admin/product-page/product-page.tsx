@@ -1,13 +1,13 @@
 'use client';
 
 import { deleteProduct, useGetProductsQuery } from '@/entities/products';
-import { ModalConfirm } from '@/features/modal-confirm';
 import { DeleteIcon } from '@/shared/assets/icon/Delete';
 import { EditIcon } from '@/shared/assets/icon/Edit';
 import { EyeIcon } from '@/shared/assets/icon/Eye';
 import { SearchIcon } from '@/shared/assets/icon/Search';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Input } from '@/shared/ui/input';
+import { ModalConfirm } from '@/shared/ui/modal-confirm';
 import { ProductModal, productModalActions } from '@/widgets/admin';
 import { PageLoader } from '@/widgets/page-loader';
 import { ProductResponse } from '@melior-gift/zod-contracts';
@@ -232,15 +232,15 @@ export const AdminProductPage: FC = () => {
 								onConfirm={() => dispatch(deleteProduct(product.article))}
 								description={`Вы уверены, что хотите удалить продукт ${product.article}?`}
 							>
-								<Tooltip content='Удалить' showArrow closeDelay={0}>
-									<Button isIconOnly size='sm' variant='light' color='danger'>
-										<DeleteIcon
-											color='hsl(var(--gift-danger-500))'
-											width={18}
-											height={18}
-										/>
-									</Button>
-								</Tooltip>
+								{/* <Tooltip content='Удалить' showArrow closeDelay={0}> */}
+								<Button isIconOnly size='sm' variant='light' color='danger'>
+									<DeleteIcon
+										color='hsl(var(--gift-danger-500))'
+										width={18}
+										height={18}
+									/>
+								</Button>
+								{/* </Tooltip> */}
 							</ModalConfirm>
 						</div>
 					);

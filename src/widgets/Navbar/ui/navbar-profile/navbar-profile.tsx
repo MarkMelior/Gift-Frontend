@@ -1,14 +1,14 @@
-'use client';
-
-import { getUserState } from '@/entities/user';
+import { fetcher } from '@/shared/api/fetcher';
 import { UserIcon } from '@/shared/assets/icon/User';
 import { Avatar } from '@/shared/ui/avatar';
 import { DropdownProfile } from '@/widgets/dropdown-profile';
+import { UserResponse } from '@melior-gift/zod-contracts';
 import { memo } from 'react';
-import { useSelector } from 'react-redux';
+import useSWR from 'swr';
 
 export const NavbarProfile = memo(() => {
-	const { data: user, isLoading, error } = useSelector(getUserState);
+	// const user = await getUser();
+	const { data: user } = useSWR<UserResponse>('/api/user', fetcher);
 
 	return (
 		<DropdownProfile>

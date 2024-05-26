@@ -10,12 +10,12 @@ import { Input } from '@/shared/ui/input';
 import { AuthLoginRequest } from '@melior-gift/zod-contracts';
 import { FC, FormEvent, useCallback } from 'react';
 import { useSelector, useStore } from 'react-redux';
-import { useLoginUserMutation } from '../../api/auth.api';
 import { getLoginFormData } from '../../model/selectors/getLoginFormData';
 import {
 	loginFormActions,
 	loginFormReducer,
 } from '../../model/slice/login-form.slice';
+import { loginUser } from '../../services/loginUser';
 import cls from './modal-auth.module.scss';
 
 interface ModalFormLoginProps {
@@ -30,8 +30,6 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 	const dispatch = useAppDispatch();
 	const { reducerManager } = useStore() as ReduxStoreWithManager;
 	const formData = useSelector(getLoginFormData);
-
-	const [loginUser] = useLoginUserMutation();
 
 	const handleFulfilledResult = useCallback(() => {
 		onSubmit();
@@ -60,13 +58,14 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 
 			try {
 				const { login, password } = formData;
-				await loginUser({ login, password }).unwrap();
+				await loginUser({ login, password });
+
 				handleFulfilledResult();
 			} catch (error: any) {
 				handleRejectedResult(error.data.message);
 			}
 		},
-		[formData, handleFulfilledResult, handleRejectedResult, loginUser],
+		[formData, handleFulfilledResult, handleRejectedResult],
 	);
 
 	return (

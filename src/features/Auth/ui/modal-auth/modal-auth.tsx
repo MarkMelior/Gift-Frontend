@@ -1,6 +1,6 @@
 'use client';
 
-import { getUserState } from '@/entities/user';
+import { fetcher } from '@/shared/api/fetcher';
 import { CheckIcon } from '@/shared/assets/icon/Check';
 import { Component } from '@/shared/lib/components';
 import { BackgroundColorSpin } from '@/shared/ui/animate-background';
@@ -15,7 +15,7 @@ import {
 } from '@nextui-org/react';
 import Image from 'next/image';
 import { FC, useState } from 'react';
-import { useSelector } from 'react-redux';
+import useSWR from 'swr';
 import cls from './modal-auth.module.scss';
 import { ModalFormLogin } from './modal-form-login';
 import { ModalFormRegister } from './modal-form-register';
@@ -30,9 +30,9 @@ const ModalAuth: FC<ModalAuthProps> = ({ isOpen, onOpenChange }) => {
 	const [selected, setSelected] = useState('login');
 	const {
 		data: user,
-		isLoading: isLoadingUser,
-		error,
-	} = useSelector(getUserState);
+		isLoading: userIsLoading,
+		error: userError,
+	} = useSWR('/api/user', fetcher);
 
 	return (
 		<>

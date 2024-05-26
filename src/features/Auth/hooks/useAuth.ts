@@ -1,12 +1,10 @@
-import { userActions, userApi } from '@/entities/user';
-import { useAppDispatch } from '@/shared/lib/hooks';
+import Cookies from 'js-cookie';
 
 export const useAuth = () => {
-	const dispatch = useAppDispatch();
-
 	const onUserLogout = () => {
-		dispatch(userActions.logout());
-		dispatch(userApi.util.resetApiState());
+		Cookies.remove('accessToken');
+		Cookies.remove('refreshToken');
+		console.log(Cookies.get('refreshToken'));
 	};
 
 	return {
