@@ -23,7 +23,8 @@ export const ProductPage: FC<ProductPageProps> = memo(({ params }) => {
 	const productArticle = params.article.split('-').reverse()[0];
 
 	const { data: product } = useGetProductQuery(productArticle);
-	const { data: products, isLoading } = useGetProductsQuery({ limit: 10 });
+	const { data, isLoading } = useGetProductsQuery({ limit: 10 });
+	const products = data?.products;
 
 	if (!product) return <PageLoader />;
 

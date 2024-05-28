@@ -62,10 +62,10 @@
 	}
 
 	[data-slot="input-wrapper"] {
-		@include background(.05, false);
 		@apply rounded-lg;
 
 		height: 100% !important;
+		background: rgba(var(--color-main-rgb), .5);
 		backdrop-filter: var(--blur-xs);
 		border: 1px solid var(--color-border);
 		transition: all .6s ease;

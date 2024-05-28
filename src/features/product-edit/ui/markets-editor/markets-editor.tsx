@@ -3,12 +3,7 @@ import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
 import { Markets } from '@/shared/const';
 import { useAppDispatch } from '@/shared/lib/hooks';
-import {
-	getMarketsProductModal,
-	getProductModalErrors,
-	productModalActions,
-	productModalInitialState,
-} from '@/widgets/admin';
+
 import { MarketType } from '@melior-gift/zod-contracts';
 import type { Selection } from '@nextui-org/react';
 import {
@@ -21,6 +16,12 @@ import {
 } from '@nextui-org/react';
 import { FC, memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { getMarketsProductModal } from '../../model/selectors/getMarketsProductModal';
+import { getProductModalErrors } from '../../model/selectors/getProductModalErrors';
+import {
+	productModalActions,
+	productModalInitialState,
+} from '../../model/slice/product-modal.slice';
 
 export const MarketsEditor: FC = memo(() => {
 	const dispatch = useAppDispatch();

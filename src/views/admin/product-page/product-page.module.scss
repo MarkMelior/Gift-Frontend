@@ -1,14 +1,1 @@
-.wrapper {
-	/* stylelint-disable-next-line value-no-vendor-prefix */
-	width: -webkit-fill-available;
-	min-height: var(--height-screen);
-	padding-top: 40px;
-}
-
-.title {
-	display: -webkit-box;
-	max-width: 500px;
-	overflow: hidden;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-}
+.wrapper {}

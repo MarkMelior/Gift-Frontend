@@ -1,5 +1,5 @@
+import { getProductModal, productModalActions } from '@/features/product-edit';
 import { useAppDispatch } from '@/shared/lib/hooks';
-import { getProductModal, productModalActions } from '@/widgets/admin';
 import { SortFilters } from '@melior-gift/zod-contracts';
 import {
 	Select,

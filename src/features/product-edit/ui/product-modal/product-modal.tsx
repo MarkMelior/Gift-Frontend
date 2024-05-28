@@ -1,13 +1,9 @@
-import { addProduct } from '@/entities/products';
+import { addProduct, updateProduct } from '@/entities/products';
 import { MarketsEditor, OptionsEditor } from '@/features/product-edit';
 import { SortSelectInput } from '@/features/sorts';
 import { UploadImages } from '@/features/upload-image';
 import { CheckIcon } from '@/shared/assets/icon/Check';
-import {
-	Component,
-	DynamicModuleLoader,
-	ReducersList,
-} from '@/shared/lib/components';
+import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
 import { parseErrorPathToNestedObject } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Input } from '@/shared/ui/input';
@@ -25,17 +21,18 @@ import {
 import { FC, MouseEvent, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ZodError } from 'zod';
-import { getProductModal } from '../model/selectors/getProductModal';
-import { getProductModalErrors } from '../model/selectors/getProductModalErrors';
+import { getProductModal } from '../../model/selectors/getProductModal';
+import { getProductModalErrors } from '../../model/selectors/getProductModalErrors';
 import {
 	productModalActions,
 	productModalReducer,
-} from '../model/slice/product-modal.slice';
+} from '../../model/slice/product-modal.slice';
 import cls from './product-modal.module.scss';
 
 export interface ProductModalProps {
 	isOpen: boolean;
 	onOpenChange: (open: boolean) => void;
+	isEdit?: boolean;
 }
 
 const reducers: ReducersList = {
@@ -45,6 +42,7 @@ const reducers: ReducersList = {
 export const ProductModal: FC<ProductModalProps> = ({
 	isOpen,
 	onOpenChange,
+	isEdit,
 }) => {
 	const dispatch = useAppDispatch();
 	const product = useSelector(getProductModal);
@@ -99,7 +97,7 @@ export const ProductModal: FC<ProductModalProps> = ({
 	const onSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 
-		if (!images) {
+		if (!images && !isEdit) {
 			dispatch(
 				productModalActions.setErrorsProductModal({
 					images: 'Выберите изображения',
@@ -111,7 +109,13 @@ export const ProductModal: FC<ProductModalProps> = ({
 		try {
 			if (!product) throw new Error('Product not found');
 
-			await dispatch(addProduct({ body: product, images })).unwrap();
+			if (isEdit) {
+				await dispatch(
+					updateProduct({ body: product, productArticle: product.article! }),
+				).unwrap();
+			} else {
+				await dispatch(addProduct({ body: product, images: images! })).unwrap();
+			}
 
 			dispatch(productModalActions.clearProductModal());
 			onOpenChange(false);
@@ -131,84 +135,90 @@ export const ProductModal: FC<ProductModalProps> = ({
 
 	return (
 		<>
-			<Component isRender={isOpen} delayClose={500}>
-				<DynamicModuleLoader reducers={reducers}>
-					<Modal
-						isOpen={isOpen}
-						onOpenChange={onOpenChange}
-						size='lg'
-						scrollBehavior='inside'
-					>
-						<ModalContent>
-							{(onClose) => (
-								<>
-									<ModalHeader className='flex flex-col gap-1'>
-										Редактор продукта
-									</ModalHeader>
-									<ModalBody className={cls.body}>
-										<form className='flex flex-col gap-5'>
+			{/* <Component isRender={isOpen} delayClose={500}> */}
+			<DynamicModuleLoader reducers={reducers}>
+				<Modal
+					isOpen={isOpen}
+					onOpenChange={onOpenChange}
+					size='lg'
+					scrollBehavior='inside'
+				>
+					<ModalContent>
+						{(onClose) => (
+							<>
+								<ModalHeader className='flex flex-col gap-1'>
+									Редактор продукта
+								</ModalHeader>
+								<ModalBody className={cls.body}>
+									<form className='flex flex-col gap-5'>
+										{isEdit ? (
+											<></>
+										) : (
 											<UploadImages
 												state={{ images, setImages }}
 												error={productError?.images}
 											/>
-											<Input
-												name='title'
-												label='Название продукта'
-												size='sm'
-												value={product?.title}
-												errorMessage={productError?.title}
-												onChange={(e) => onChangeTitle(e.target.value)}
-											/>
-											<SortSelectInput />
-											<MarketsEditor />
-											<OptionsEditor />
-											<Slider
-												size='lg'
-												step={1}
-												name='creativity'
-												color='primary'
-												label='Креативность'
-												showSteps={true}
-												maxValue={10}
-												minValue={1}
-												className='max-w-md'
-												value={product?.creativity}
-												onChange={onChangeCreativity}
-											/>
-											<Textarea
-												label='Описание'
-												size='sm'
-												description='Добавьте дополнительную информацию для быстрого поиска'
-												name='description'
-												value={product?.description}
-												onChange={(e) => onChangeDescription(e.target.value)}
-											/>
-										</form>
-									</ModalBody>
-									<ModalFooter>
-										<Button
-											color='danger'
-											variant='light'
-											onPress={() => {
-												onClose();
-												dispatch(productModalActions.clearProductModal());
-											}}
-										>
-											Отменить
-										</Button>
-										<Button color='primary' onClick={onSubmit}>
-											Сохранить продукт
-										</Button>
-									</ModalFooter>
-								</>
-							)}
-						</ModalContent>
-					</Modal>
-				</DynamicModuleLoader>
-			</Component>
+										)}
+										<Input
+											name='title'
+											label='Название продукта'
+											size='sm'
+											value={product?.title}
+											errorMessage={productError?.title}
+											onChange={(e) => onChangeTitle(e.target.value)}
+										/>
+										<SortSelectInput />
+										<MarketsEditor />
+										<OptionsEditor />
+										<Slider
+											size='lg'
+											step={1}
+											name='creativity'
+											color='primary'
+											label='Креативность'
+											showSteps={true}
+											maxValue={10}
+											minValue={1}
+											className='max-w-md'
+											value={product?.creativity}
+											onChange={onChangeCreativity}
+										/>
+										<Textarea
+											label='Описание'
+											size='sm'
+											description='Добавьте дополнительную информацию для быстрого поиска'
+											name='description'
+											value={product?.description}
+											onChange={(e) => onChangeDescription(e.target.value)}
+										/>
+									</form>
+								</ModalBody>
+								<ModalFooter>
+									<Button
+										color='danger'
+										variant='light'
+										onPress={() => {
+											onClose();
+											dispatch(productModalActions.clearProductModal());
+										}}
+									>
+										Отменить
+									</Button>
+									<Button color='primary' onClick={onSubmit}>
+										Сохранить продукт
+									</Button>
+								</ModalFooter>
+							</>
+						)}
+					</ModalContent>
+				</Modal>
+			</DynamicModuleLoader>
+			{/* </Component> */}
 			{showNotification && (
 				<Notification
-					message='Продукт успешно добавлен!'
+					message={
+						isEdit ? 'Продукт успешно изменён!' : 'Продукт успешно добавлен!'
+					}
 					duration={3500}
 					placement='top'
 					onClose={() => setShowNotification(false)}

@@ -2,10 +2,10 @@
 
 import { useRoleAccess } from '@/entities/user';
 import { MediaSize } from '@/shared/const';
-import { NavbarAdmin } from '@/widgets/admin';
 import cn from 'clsx';
 import { memo } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { NavbarAdmin } from '../navbar-admin/navbar-admin';
 import { NavbarDesktop } from '../navbar-desktop/navbar-desktop';
 import { NavbarMobile } from '../navbar-mobile/navbar-mobile';
 import { NavbarSearch } from '../navbar-search/navbar-search';

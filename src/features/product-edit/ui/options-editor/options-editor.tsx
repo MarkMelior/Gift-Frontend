@@ -1,10 +1,11 @@
 import { DeleteIcon } from '@/shared/assets/icon/Delete';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Input } from '@/shared/ui/input';
-import { getProductModal, productModalActions } from '@/widgets/admin';
 import { Button } from '@nextui-org/react';
 import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import { getProductModal } from '../../model/selectors/getProductModal';
+import { productModalActions } from '../../model/slice/product-modal.slice';
 
 export const OptionsEditor = memo(() => {
 	const dispatch = useAppDispatch();

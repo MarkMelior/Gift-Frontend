@@ -38,7 +38,7 @@ export const productModalSlice = createSlice({
 			state,
 			action: PayloadAction<Partial<ProductModalState['data']>>,
 		) => {
-			return { ...state, ...action.payload };
+			state.data = { ...state.data, ...action.payload };
 		},
 		updateMarketsProductModal: (
 			state,

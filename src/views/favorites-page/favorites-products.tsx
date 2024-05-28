@@ -12,8 +12,10 @@ import cls from './favorites-page.module.scss';
 export const FavoritesProducts: FC = memo(() => {
 	const { favoritesProducts, isLoading } = useFavoritesProducts();
 
-	const { data: recommendedProducts, isLoading: isLoadingProducts } =
-		useGetProductsQuery({ limit: 6 });
+	const { data, isLoading: isLoadingProducts } = useGetProductsQuery({
+		limit: 6,
+	});
+	const recommendedProducts = data?.products;
 
 	const { data: productsHistory, isLoading: isLoadingProductsHistory } =
 		useGetProductsHistoryQuery();

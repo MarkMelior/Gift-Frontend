@@ -23,5 +23,6 @@ export const rtkApi = createApi({
 			return headers;
 		},
 	}),
+	tagTypes: ['Products'],
 	endpoints: (builder) => ({}),
 });

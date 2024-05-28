@@ -39,16 +39,13 @@ const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
 	const dispatch = useAppDispatch();
 	const query = useSelector(getQuery);
 	const queryInput = useSelector(getQueryInput);
-	const {
-		data: searchedData,
-		isLoading,
-		error,
-	} = useGetProductsQuery(
+	const { data, isLoading, error } = useGetProductsQuery(
 		{ limit: 20, param: query },
 		{
 			skip: !query,
 		},
 	);
+	const searchedData = data?.products;
 
 	const handleSearch = useCallback(
 		(e: FormEvent) => {

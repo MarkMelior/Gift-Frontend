@@ -23,11 +23,10 @@ export const ShopBlock = memo(() => {
 
 	const [fetchData, setFetchData] = useState(FindProducts);
 
-	const {
-		data: products,
-		isLoading,
-		error,
-	} = useGetProductsQuery(fetchData, { skip: !FindProducts });
+	const { data, isLoading, error } = useGetProductsQuery(fetchData, {
+		skip: !FindProducts,
+	});
+	const products = data?.products;
 
 	const handleFetch = useCallback(() => {
 		setFetchData(FindProducts);

@@ -44,10 +44,11 @@ export const BestProduct: FC = memo(() => {
 		slidesPerView = 1;
 	}
 
-	const { data: products, isLoading } = useGetProductsQuery({
+	const { data, isLoading } = useGetProductsQuery({
 		limit: 10,
 		articles: bestProducts,
 	});
+	const products = data?.products;
 
 	const [isMounted, setMounted] = useState(false);
 

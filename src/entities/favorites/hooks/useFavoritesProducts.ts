@@ -13,10 +13,10 @@ export const useFavoritesProducts = () => {
 	const { data: favoritesData, isLoading: isFavoritesLoading } =
 		useGetFavoritesProductsQuery();
 
-	const { data: productsData, isLoading: isProductsLoading } =
-		useGetProductsQuery({
-			articles: getLocalstorage<string[]>(LocalstorageKeys.LIKED),
-		});
+	const { data, isLoading: isProductsLoading } = useGetProductsQuery({
+		articles: getLocalstorage<string[]>(LocalstorageKeys.LIKED),
+	});
+	const productsData = data?.products;
 
 	if (isUserLogged) {
 		favoritesProducts = favoritesData;

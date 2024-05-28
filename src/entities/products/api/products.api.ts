@@ -4,15 +4,29 @@ import {
 	ProductFindRequest,
 	ProductResponse,
 } from '@melior-gift/zod-contracts';
+import { FetchBaseQueryMeta } from '@reduxjs/toolkit/query';
 
 export const productsApi = rtkApi.injectEndpoints({
 	endpoints: (build) => ({
-		getProducts: build.query<ProductResponse[], ProductFindRequest>({
+		getProducts: build.query<
+			{ products: ProductResponse[]; totalProducts: number },
+			ProductFindRequest
+		>({
 			query: (dto) => ({
 				url: '/products',
 				method: 'GET',
 				params: dto,
 			}),
+			transformResponse: (
+				response: ProductResponse[],
+				meta: FetchBaseQueryMeta,
+				args: ProductFindRequest,
+			) => {
+				const totalProducts = meta?.response?.headers.get('X-Total-Products');
+
+				return { products: response, totalProducts: Number(totalProducts) };
+			},
+			providesTags: ['Products'],
 		}),
 		getProduct: build.query<ProductResponse, string>({
 			query: (productArticle) => ({
@@ -37,12 +51,14 @@ export const productsApi = rtkApi.injectEndpoints({
 					body: formData,
 				};
 			},
+			invalidatesTags: ['Products'],
 		}),
 		deleteProduct: build.mutation<ProductResponse, string>({
 			query: (productArticle) => ({
 				url: `/products/${productArticle}`,
 				method: 'DELETE',
 			}),
+			invalidatesTags: ['Products'],
 		}),
 		updateProduct: build.mutation<
 			ProductResponse,
@@ -53,6 +69,7 @@ export const productsApi = rtkApi.injectEndpoints({
 				method: 'PUT',
 				body,
 			}),
+			invalidatesTags: ['Products'],
 		}),
 		// deleteProductImages: build.mutation<
 		// 	string[],
@@ -88,7 +105,7 @@ export const productsApi = rtkApi.injectEndpoints({
 
 // export const addProductImages = productsApi.endpoints.addProductImages.initiate;
 
-export const updateProduct = productsApi.endpoints.addProduct.initiate;
+export const updateProduct = productsApi.endpoints.updateProduct.initiate;
 export const addProduct = productsApi.endpoints.addProduct.initiate;
 export const getProducts = productsApi.endpoints.getProducts.initiate;
 export const deleteProduct = productsApi.endpoints.deleteProduct.initiate;
