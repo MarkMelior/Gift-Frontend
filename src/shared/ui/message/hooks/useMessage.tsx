@@ -1,23 +1,51 @@
 'use client';
 
 import { Progress, cn } from '@nextui-org/react';
-import { CSSProperties, useState } from 'react';
-import { Button } from '../../button';
+import {
+	CSSProperties,
+	ReactNode,
+	createContext,
+	useContext,
+	useState,
+} from 'react';
+import { FaCheckCircle } from 'react-icons/fa';
+import { FaCircleInfo } from 'react-icons/fa6';
+import { MdError } from 'react-icons/md';
 import cls from '../ui/message-list.module.scss';
+
+type MessageType = 'info' | 'success' | 'error';
 
 interface MessageOptions {
 	id: number;
 	content: string;
+	type?: MessageType;
 	animationCloseDuration?: number;
 	duration?: number;
-	type?: 'info' | 'success' | 'error';
 	onClose?: () => void;
 	onCancel?: () => void;
 	startContent?: JSX.Element;
 	closing?: boolean;
 }
 
-export const useMessage = () => {
+interface MessageContextProps {
+	showMessage: (props: Omit<MessageOptions, 'id'>) => void;
+}
+
+const MessageContext = createContext<MessageContextProps | undefined>(
+	undefined,
+);
+
+export const useMessage = (): MessageContextProps => {
+	const context = useContext(MessageContext);
+	if (!context) {
+		throw new Error('useMessage must be used within a MessageProvider');
+	}
+	return context;
+};
+
+export const MessageProvider: React.FC<{ children: ReactNode }> = ({
+	children,
+}) => {
 	const [messages, setMessages] = useState<MessageOptions[]>([]);
 
 	const showMessage = (props: Omit<MessageOptions, 'id'>) => {
@@ -60,59 +88,76 @@ export const useMessage = () => {
 		return () => clearTimeout(timeoutId);
 	};
 
-	const contextMessages = (
-		<div className={cls.wrapper}>
-			{messages.map(
-				({
-					id,
-					content,
-					animationCloseDuration = 300,
-					duration,
-					startContent,
-					closing,
-					onCancel,
-				}) => (
-					<article key={id} className='relative'>
-						<div
-							className={cn(cls.message, {
-								[cls.closing]: closing,
-							})}
-							style={
-								{
-									'--animation-duration-notification': `${duration}ms`,
-									'--animation-close-duration-notification': `${animationCloseDuration}ms`,
-								} as CSSProperties
-							}
-							onClick={() => removeMessage(id, animationCloseDuration)}
-						>
-							<Progress
-								className={cls.progress}
-								size='sm'
-								aria-label='Loading...'
-								color='success'
-							/>
-							<div className={cls.content}>
-								<div className={cls.startContent}>{startContent}</div>
-								<p>{content}</p>
-							</div>
-							{onCancel && (
-								<Button
-									slice
-									className={cls.cancel}
-									onClick={() => {
-										onCancel();
-										removeMessage(id, animationCloseDuration);
-									}}
-								>
-									Отменить
-								</Button>
-							)}
-						</div>
-					</article>
-				),
-			)}
-		</div>
-	);
+	const getTypeIcon = (type: MessageType) => {
+		switch (type) {
+			case 'info':
+				return <FaCircleInfo size={16} className='text-blue-500' />;
+			case 'success':
+				return <FaCheckCircle size={16} className='text-green-500' />;
+			case 'error':
+				return <MdError size={20} className='text-red-500' />;
+			default:
+				return null;
+		}
+	};
 
-	return { showMessage, contextMessages };
+	return (
+		<MessageContext.Provider value={{ showMessage }}>
+			{children}
+			<div className={cls.wrapper}>
+				{messages.map(
+					({
+						id,
+						content,
+						animationCloseDuration = 300,
+						duration,
+						startContent,
+						closing,
+						type = 'info',
+						onCancel,
+					}) => (
+						<article key={id} className='relative'>
+							<div
+								className={cn(cls.message, {
+									[cls.closing]: closing,
+								})}
+								style={
+									{
+										'--animation-duration-notification': `${duration}ms`,
+										'--animation-close-duration-notification': `${animationCloseDuration}ms`,
+									} as CSSProperties
+								}
+								onClick={() => removeMessage(id, animationCloseDuration)}
+							>
+								<Progress
+									className={cls.progress}
+									size='sm'
+									aria-label='Loading...'
+									color='success'
+								/>
+								<div className={cls.content}>
+									<div className={cls.startContent}>
+										{startContent ? startContent : getTypeIcon(type)}
+									</div>
+									<p>{content}</p>
+								</div>
+								{onCancel && (
+									<button
+										className={cls.cancel}
+										onClick={(e) => {
+											e.stopPropagation();
+											onCancel();
+											removeMessage(id, animationCloseDuration);
+										}}
+									>
+										Отменить
+									</button>
+								)}
+							</div>
+						</article>
+					),
+				)}
+			</div>
+		</MessageContext.Provider>
+	);
 };

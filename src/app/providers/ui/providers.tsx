@@ -2,6 +2,7 @@
 
 import { StoreProvider } from '@/app/store';
 import { Theme } from '@/shared/types/theme';
+import { MessageProvider } from '@/shared/ui/message';
 import { NextUIProvider } from '@nextui-org/react';
 import { ThemeProvider } from 'next-themes';
 import { ReactNode } from 'react';
@@ -12,7 +13,9 @@ export function Providers({ children }: { children: ReactNode }) {
 		<StoreProvider>
 			<ThemeProvider attribute='class' defaultTheme={Theme.DARK}>
 				<NextUIProvider>
-					<InitApp>{children}</InitApp>
+					<MessageProvider>
+						<InitApp>{children}</InitApp>
+					</MessageProvider>
 				</NextUIProvider>
 			</ThemeProvider>
 		</StoreProvider>

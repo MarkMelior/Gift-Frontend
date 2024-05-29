@@ -27,6 +27,7 @@
 		"**/*.tsx",
 		"**/*.jsx",
 		".next/types/**/*.ts"
+		// "node_modules/react-icons/**/*.{js,mjs.ts}"
 	],
 	"exclude": ["node_modules"]
 }

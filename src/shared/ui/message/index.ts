@@ -1,3 +1,3 @@
-import { useMessage } from './hooks/useMessage';
+import { MessageProvider, useMessage } from './hooks/useMessage';
 
-export { useMessage };
+export { MessageProvider, useMessage };

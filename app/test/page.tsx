@@ -5,7 +5,7 @@ import { Button } from '@nextui-org/react';
 import { FC } from 'react';
 
 const Test: FC = () => {
-	const { showMessage, contextMessages } = useMessage();
+	const { showMessage } = useMessage();
 
 	return (
 		<div className='content'>
@@ -26,14 +26,13 @@ const Test: FC = () => {
 				onClick={() =>
 					showMessage({
 						content: 'This is an error message',
-						type: 'error',
+						type: 'info',
 						onCancel: () => console.log('onCancel'),
 					})
 				}
 			>
 				Show Error Message
 			</Button>
-			{contextMessages}
 		</div>
 	);
 };

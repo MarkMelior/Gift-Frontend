@@ -1,18 +1,17 @@
 'use client';
 
-import { CheckIcon } from '@/shared/assets/icon/Check';
 import { CopyIcon } from '@/shared/assets/icon/Copy';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
 import { Markets } from '@/shared/const';
 import { convertCurrency } from '@/shared/lib/features';
 import { Button } from '@/shared/ui/button';
-import { Notification } from '@/shared/ui/notification';
+import { useMessage } from '@/shared/ui/message';
 import { ProductMarkets, ProductResponse } from '@melior-gift/zod-contracts';
 import { Tooltip } from '@nextui-org/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, memo, useState } from 'react';
+import { FC, memo } from 'react';
 import cls from './links-panel.module.scss';
 
 interface LinksPanelProps {
@@ -20,7 +19,7 @@ interface LinksPanelProps {
 }
 
 export const LinksPanel: FC<LinksPanelProps> = memo(({ product }) => {
-	const [showNotification, setShowNotification] = useState(false);
+	const { showMessage } = useMessage();
 
 	const renderLinks = (markets: ProductMarkets) => {
 		const convertedPrice = convertCurrency(markets.price);
@@ -73,7 +72,10 @@ export const LinksPanel: FC<LinksPanelProps> = memo(({ product }) => {
 							onClick={(e) => {
 								e.preventDefault();
 								navigator.clipboard.writeText(markets.link).then(() => {
-									setShowNotification(true);
+									showMessage({
+										content: 'Ссылка скопирована в буфер обмена',
+										type: 'success',
+									});
 								});
 							}}
 						/>
@@ -86,24 +88,6 @@ export const LinksPanel: FC<LinksPanelProps> = memo(({ product }) => {
 	return (
 		<div className={cls.wrapper}>
 			{product.markets.map((markets) => renderLinks(markets))}
-
-			{showNotification && (
-				<Notification
-					message='Ссылка скопирована в буфер обмена'
-					duration={2000}
-					placement='top'
-					onClose={() => setShowNotification(false)}
-					closeOnClick
-					startContent={
-						<CheckIcon
-							width={16}
-							height={16}
-							color='hsl(var(--gift-success))'
-							isSelected
-						/>
-					}
-				/>
-			)}
 		</div>
 	);
 });
