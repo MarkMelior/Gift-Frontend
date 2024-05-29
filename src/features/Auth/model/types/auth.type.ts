@@ -1,18 +1,13 @@
 export interface LoginState {
 	login: string;
-	loginError?: string;
 	password: string;
-	passwordError?: string;
 	remember: boolean;
-	error?: string;
+	error?: Partial<Omit<LoginState, 'error'>>;
 }
 
 export interface RegisterState {
 	email: string;
-	emailError?: string;
 	username: string;
-	usernameError?: string;
 	password: string;
-	passwordError?: string;
-	error?: string;
+	error?: Partial<Omit<RegisterState, 'error'>>;
 }

@@ -43,10 +43,10 @@ export const ProductOptions: FC<ProductOptionsProps> = memo(({ product }) => {
 							e.preventDefault();
 							toggleFavorites(e);
 							showMessage({
-								type: isFavorites ? 'error' : 'success',
+								type: isFavorites ? 'heart-remove' : 'heart-add',
 								content: isFavorites
-									? `Товар ${product.article} удален из избранного`
-									: `Товар ${product.article} добавлен в избранное`,
+									? `Подарок ${product.article} удален из избранного`
+									: `Подарок ${product.article} добавлен в избранное`,
 							});
 						}}
 						startContent={<HeartIcon />}

@@ -2,8 +2,8 @@
 	min-width: fit-content;
 
 	&:not(:hover) {
-		background-color: #3a3641;
-		box-shadow: 0 0 0 0.125rem rgb(var(--color-main-rgb), 1), 0 0 0 4px #3a3641;
+		background-color: theme('colors.zinc.800');
+		box-shadow: 0 0 0 0.125rem rgb(var(--color-main-rgb), 1), 0 0 0 4px theme('colors.zinc.800');
 	}
 
 	&[aria-expanded="true"] {

@@ -5,10 +5,10 @@ import { MailIcon } from '@/shared/assets/icon/Mail';
 import { PasswordIcon } from '@/shared/assets/icon/Password';
 import { UserIcon } from '@/shared/assets/icon/User';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
+import { ZodErrorsToObject } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
-import { AuthRegisterRequest } from '@melior-gift/zod-contracts';
 import { FC, FormEvent, memo, useCallback } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useRegisterUserMutation } from '../../api/auth.api';
@@ -17,7 +17,6 @@ import {
 	registerFormActions,
 	registerFormReducer,
 } from '../../model/slice/register-form.slice';
-import cls from './modal-auth.module.scss';
 
 interface ModalFormRegisterProps {
 	onSubmit: () => void;
@@ -32,29 +31,8 @@ export const ModalFormRegister: FC<ModalFormRegisterProps> = memo(
 		const dispatch = useAppDispatch();
 		const { reducerManager } = useStore() as ReduxStoreWithManager;
 		const formData = useSelector(getRegisterFormData);
+		const errors = useSelector(getRegisterFormData).error;
 		const [registerUser] = useRegisterUserMutation();
-
-		const handleFulfilledResult = useCallback(() => {
-			onSubmit();
-			reducerManager.remove('loginForm');
-			reducerManager.remove('registerForm');
-			dispatch({ type: `@DESTROY loginForm and registerForm reducer` });
-		}, [dispatch, onSubmit, reducerManager]);
-
-		const handleRejectedResult = useCallback(
-			(payload: AuthRegisterRequest) => {
-				if (typeof payload === 'string') {
-					dispatch(registerFormActions.setError(payload));
-				} else {
-					const { username, password, email } = payload;
-
-					dispatch(registerFormActions.setUsernameError(username));
-					dispatch(registerFormActions.setPasswordError(password));
-					dispatch(registerFormActions.setEmailError(email));
-				}
-			},
-			[dispatch],
-		);
 
 		const handleRegister = useCallback(
 			async (e: FormEvent) => {
@@ -62,65 +40,86 @@ export const ModalFormRegister: FC<ModalFormRegisterProps> = memo(
 
 				try {
 					const { username, password, email } = formData;
+
 					await registerUser({ username, password, email }).unwrap();
-					handleFulfilledResult();
+					onSubmit();
+					reducerManager.remove('loginForm');
+					reducerManager.remove('registerForm');
+					dispatch({
+						type: `@DESTROY loginForm and registerForm reducer`,
+					});
 				} catch (error: any) {
-					handleRejectedResult(error.data.message);
+					dispatch(registerFormActions.setError(ZodErrorsToObject(error)));
 				}
 			},
-			[formData, handleFulfilledResult, handleRejectedResult, registerUser],
+			[dispatch, formData, onSubmit, reducerManager, registerUser],
 		);
 
 		return (
 			<DynamicModuleLoader reducers={reducers}>
-				{formData.error && <div className={cls.error}>{formData.error}</div>}
 				<form onSubmit={handleRegister}>
 					<Input
 						name='username'
+						required
 						autoFocus
 						startContent={<UserIcon />}
 						placeholder='Придумайте логин'
 						variant='bordered'
-						isInvalid={!!formData.usernameError}
-						errorMessage={formData.usernameError}
+						isInvalid={!!errors?.username}
+						errorMessage={errors?.username}
 						value={formData.username}
 						onChange={(e) => {
 							dispatch(registerFormActions.setUsername(e.target.value));
-							dispatch(registerFormActions.setUsernameError(''));
-							dispatch(registerFormActions.setError(''));
+							dispatch(
+								registerFormActions.setError({
+									...formData.error,
+									username: '',
+								}),
+							);
 						}}
 					/>
 					<Input
 						name='email'
+						required
 						startContent={<MailIcon />}
 						placeholder='Введите Email'
 						variant='bordered'
-						isInvalid={!!formData.emailError}
-						errorMessage={formData.emailError}
+						isInvalid={!!errors?.email}
+						errorMessage={errors?.email}
 						value={formData.email}
 						onChange={(e) => {
 							dispatch(registerFormActions.setEmail(e.target.value));
-							dispatch(registerFormActions.setEmailError(''));
-							dispatch(registerFormActions.setError(''));
+							dispatch(
+								registerFormActions.setError({
+									...formData.error,
+									email: '',
+								}),
+							);
 						}}
 					/>
 					<Input
 						name='password'
+						required
 						startContent={<PasswordIcon />}
 						placeholder='Введите пароль'
 						type='password'
 						variant='bordered'
-						isInvalid={!!formData.passwordError}
-						errorMessage={formData.passwordError}
+						isInvalid={!!errors?.password}
+						errorMessage={errors?.password}
 						value={formData.password}
 						onChange={(e) => {
 							dispatch(registerFormActions.setPassword(e.target.value));
-							dispatch(registerFormActions.setPasswordError(''));
-							dispatch(registerFormActions.setError(''));
+							dispatch(
+								registerFormActions.setError({
+									...formData.error,
+									password: '',
+								}),
+							);
 						}}
 					/>
 					<Input
 						name='password2'
+						required
 						startContent={<PasswordIcon />}
 						placeholder='Повторите пароль'
 						type='password'

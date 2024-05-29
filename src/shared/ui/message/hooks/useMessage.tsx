@@ -9,11 +9,25 @@ import {
 	useState,
 } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
-import { FaCircleInfo } from 'react-icons/fa6';
+import {
+	FaCircleInfo,
+	FaHeartCircleMinus,
+	FaHeartCirclePlus,
+} from 'react-icons/fa6';
+import { IoIosAddCircle } from 'react-icons/io';
+import { IoCloseOutline, IoWarning } from 'react-icons/io5';
 import { MdError } from 'react-icons/md';
 import cls from '../ui/message-list.module.scss';
 
-type MessageType = 'info' | 'success' | 'error';
+type MessageType =
+	| 'info'
+	| 'success'
+	| 'error'
+	| 'warning'
+	| 'close'
+	| 'add'
+	| 'heart-add'
+	| 'heart-remove';
 
 interface MessageOptions {
 	id: number;
@@ -94,8 +108,18 @@ export const MessageProvider: React.FC<{ children: ReactNode }> = ({
 				return <FaCircleInfo size={16} className='text-blue-500' />;
 			case 'success':
 				return <FaCheckCircle size={16} className='text-green-500' />;
+			case 'add':
+				return <IoIosAddCircle size={16} className='text-green-500' />;
 			case 'error':
 				return <MdError size={20} className='text-red-500' />;
+			case 'close':
+				return <IoCloseOutline size={20} className='text-red-500' />;
+			case 'heart-add':
+				return <FaHeartCirclePlus size={20} className='text-green-500' />;
+			case 'heart-remove':
+				return <FaHeartCircleMinus size={20} className='text-red-500' />;
+			case 'warning':
+				return <IoWarning size={20} className='text-yellow-500' />;
 			default:
 				return null;
 		}

@@ -18,7 +18,7 @@ export const NavbarProfile = memo(() => {
 					user?.avatar &&
 					`${process.env.UPLOADS}/avatars/${user?.id}/${user.avatar}`
 				}
-				fallback={<UserIcon />}
+				fallback={<UserIcon color='white' />}
 				color='primary'
 				alt='Иконка пользователя'
 			/>

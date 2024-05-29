@@ -4,10 +4,10 @@ import { ReduxStoreWithManager } from '@/app/store';
 import { MailIcon } from '@/shared/assets/icon/Mail';
 import { PasswordIcon } from '@/shared/assets/icon/Password';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
+import { ZodErrorsToObject } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
-import { AuthLoginRequest } from '@melior-gift/zod-contracts';
 import { FC, FormEvent, useCallback } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useLoginUserMutation } from '../../api/auth.api';
@@ -16,7 +16,6 @@ import {
 	loginFormActions,
 	loginFormReducer,
 } from '../../model/slice/login-form.slice';
-import cls from './modal-auth.module.scss';
 
 interface ModalFormLoginProps {
 	onSubmit: () => void;
@@ -30,29 +29,9 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 	const dispatch = useAppDispatch();
 	const { reducerManager } = useStore() as ReduxStoreWithManager;
 	const formData = useSelector(getLoginFormData);
+	const errors = useSelector(getLoginFormData).error;
 
 	const [loginUser] = useLoginUserMutation();
-
-	const handleFulfilledResult = useCallback(() => {
-		onSubmit();
-		reducerManager.remove('loginForm');
-		reducerManager.remove('registerForm');
-		dispatch({ type: `@DESTROY loginForm and registerForm reducer` });
-	}, [dispatch, onSubmit, reducerManager]);
-
-	const handleRejectedResult = useCallback(
-		(payload: AuthLoginRequest) => {
-			if (typeof payload === 'string') {
-				dispatch(loginFormActions.setError(payload));
-			} else {
-				const { login, password } = payload;
-
-				dispatch(loginFormActions.setLoginError(login));
-				dispatch(loginFormActions.setPasswordError(password));
-			}
-		},
-		[dispatch],
-	);
 
 	const handleLogin = useCallback(
 		async (e: FormEvent) => {
@@ -60,53 +39,65 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 
 			try {
 				const { login, password } = formData;
+
 				await loginUser({ login, password }).unwrap();
-				handleFulfilledResult();
+				onSubmit();
+				reducerManager.remove('loginForm');
+				reducerManager.remove('registerForm');
+				dispatch({ type: `@DESTROY loginForm and registerForm reducer` });
 			} catch (error: any) {
-				handleRejectedResult(error.data.message);
+				dispatch(loginFormActions.setError(ZodErrorsToObject(error)));
 			}
 		},
-		[formData, handleFulfilledResult, handleRejectedResult, loginUser],
+		[dispatch, formData, loginUser, onSubmit, reducerManager],
 	);
 
 	return (
 		<DynamicModuleLoader reducers={reducers}>
 			<form onSubmit={handleLogin}>
-				{formData.error && <div className={cls.error}>{formData.error}</div>}
 				<Input
 					name='login'
+					required
 					autoFocus
 					startContent={<MailIcon />}
 					type='text'
 					placeholder='Введите логин или email'
 					variant='bordered'
-					isInvalid={!!formData.loginError}
-					errorMessage={formData.loginError}
+					isInvalid={!!errors?.login}
+					errorMessage={errors?.login}
 					value={formData.login}
 					onChange={(e) => {
 						dispatch(loginFormActions.setLogin(e.target.value));
-						dispatch(loginFormActions.setLoginError(''));
-						dispatch(loginFormActions.setError(''));
+						dispatch(
+							loginFormActions.setError({
+								...formData.error,
+								login: '',
+							}),
+						);
 					}}
 				/>
 				<Input
 					name='password'
+					required
 					startContent={<PasswordIcon />}
 					placeholder='Введите пароль'
 					type='password'
 					variant='bordered'
-					isInvalid={!!formData.passwordError}
-					errorMessage={formData.passwordError}
+					isInvalid={!!errors?.password}
+					errorMessage={errors?.password}
 					value={formData.password}
 					onChange={(e) => {
 						dispatch(loginFormActions.setPassword(e.target.value));
-						dispatch(loginFormActions.setPasswordError(''));
-						dispatch(loginFormActions.setError(''));
+						dispatch(
+							loginFormActions.setError({
+								...formData.error,
+								password: '',
+							}),
+						);
 					}}
 				/>
-				<div className='flex py-2 px-1 justify-between'>
-					{/* TODO */}
-					{/* <Checkbox
+				{/* <div className='flex py-2 px-1 justify-between'>
+					<Checkbox
 						classNames={{
 							label: 'text-small',
 						}}
@@ -116,11 +107,11 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 						}
 					>
 						Запомните меня
-					</Checkbox> */}
+					</Checkbox>
 					<Button clear disableRipple className={cls.button}>
 						Забыли пароль?
 					</Button>
-				</div>
+				</div> */}
 				<Button
 					customVariant='layer'
 					className='py-3 px-8 rounded-xl'

@@ -1,5 +1,6 @@
 'use client';
 
+import { Blackhole } from '@/shared/ui/blackhole';
 import { TopPage } from '@/widgets/top-page';
 import { Image } from '@nextui-org/react';
 import cn from 'clsx';
@@ -10,6 +11,7 @@ import { FavoritesProducts } from './favorites-products';
 export const FavoritesPage: FC = memo(() => {
 	return (
 		<div className={cn(cls.wrapper, 'content')}>
+			<Blackhole flip className='!mb-[-200px]' />
 			<TopPage
 				compact
 				note='Мой выбор'

@@ -2,12 +2,11 @@ import { addProduct, updateProduct } from '@/entities/products';
 import { MarketsEditor, OptionsEditor } from '@/features/product-edit';
 import { SortSelectInput } from '@/features/sorts';
 import { UploadImages } from '@/features/upload-image';
-import { CheckIcon } from '@/shared/assets/icon/Check';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
 import { parseErrorPathToNestedObject } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Input } from '@/shared/ui/input';
-import { Notification } from '@/shared/ui/notification';
+import { useMessage } from '@/shared/ui/message';
 import {
 	Button,
 	Modal,
@@ -48,7 +47,7 @@ export const ProductModal: FC<ProductModalProps> = ({
 	const product = useSelector(getProductModal);
 	const productError = useSelector(getProductModalErrors);
 	const [images, setImages] = useState<FileList>();
-	const [showNotification, setShowNotification] = useState(false);
+	const { showMessage } = useMessage();
 
 	const onChangeTitle = useCallback(
 		(value: string) => {
@@ -119,7 +118,12 @@ export const ProductModal: FC<ProductModalProps> = ({
 
 			dispatch(productModalActions.clearProductModal());
 			onOpenChange(false);
-			setShowNotification(true);
+			showMessage({
+				content: isEdit
+					? `Продукт ${product.article} успешно изменён!`
+					: `Продукт ${product.article} успешно добавлен!`,
+				type: 'success',
+			});
 		} catch (e: any) {
 			const error = e.data as ZodError;
 
@@ -213,26 +217,6 @@ export const ProductModal: FC<ProductModalProps> = ({
 					</ModalContent>
 				</Modal>
 			</DynamicModuleLoader>
-			{/* </Component> */}
-			{showNotification && (
-				<Notification
-					message={
-						isEdit ? 'Продукт успешно изменён!' : 'Продукт успешно добавлен!'
-					}
-					duration={3500}
-					placement='top'
-					onClose={() => setShowNotification(false)}
-					closeOnClick
-					startContent={
-						<CheckIcon
-							width={16}
-							height={16}
-							color='hsl(var(--gift-success))'
-							isSelected
-						/>
-					}
-				/>
-			)}
 		</>
 	);
 };

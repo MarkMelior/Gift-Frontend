@@ -15,22 +15,13 @@ export const registerFormSlice = createSlice({
 		setEmail: (state, action: PayloadAction<string>) => {
 			state.email = action.payload;
 		},
-		setEmailError: (state, action: PayloadAction<string>) => {
-			state.emailError = action.payload;
-		},
 		setUsername: (state, action: PayloadAction<string>) => {
 			state.username = action.payload;
-		},
-		setUsernameError: (state, action: PayloadAction<string>) => {
-			state.usernameError = action.payload;
 		},
 		setPassword: (state, action: PayloadAction<string>) => {
 			state.password = action.payload;
 		},
-		setPasswordError: (state, action: PayloadAction<string>) => {
-			state.passwordError = action.payload;
-		},
-		setError: (state, action: PayloadAction<string>) => {
+		setError: (state, action: PayloadAction<RegisterState['error']>) => {
 			state.error = action.payload;
 		},
 	},

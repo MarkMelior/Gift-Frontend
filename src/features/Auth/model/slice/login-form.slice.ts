@@ -15,19 +15,13 @@ export const loginFormSlice = createSlice({
 		setLogin: (state, action: PayloadAction<string>) => {
 			state.login = action.payload;
 		},
-		setLoginError: (state, action: PayloadAction<string>) => {
-			state.loginError = action.payload;
-		},
 		setPassword: (state, action: PayloadAction<string>) => {
 			state.password = action.payload;
-		},
-		setPasswordError: (state, action: PayloadAction<string>) => {
-			state.passwordError = action.payload;
 		},
 		setRemember: (state, action: PayloadAction<boolean>) => {
 			state.remember = action.payload;
 		},
-		setError: (state, action: PayloadAction<string>) => {
+		setError: (state, action: PayloadAction<LoginState['error']>) => {
 			state.error = action.payload;
 		},
 	},

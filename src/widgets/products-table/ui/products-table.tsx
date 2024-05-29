@@ -16,6 +16,7 @@ import { StarIcon } from '@/shared/assets/icon/Star';
 import { ConvertData } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import Input from '@/shared/ui/input/ui/input';
+import { useMessage } from '@/shared/ui/message';
 import { PageLoader } from '@/widgets/page-loader';
 import {
 	ProductResponse,
@@ -72,6 +73,7 @@ export const ProductsTable: FC = () => {
 	const products = data?.products;
 	const totalProducts = data?.totalProducts || 0;
 	const pages = Math.ceil(totalProducts / rowsPerPage);
+	const { showMessage } = useMessage();
 
 	const [isProductEdit, setIsProductEdit] = useState(false);
 	const [visibleColumns, setVisibleColumns] = useState<Selection>(
@@ -261,7 +263,13 @@ export const ProductsTable: FC = () => {
 					return (
 						<Button
 							size='sm'
-							onClick={() => navigator.clipboard.writeText(product._id)}
+							onClick={() => {
+								showMessage({
+									content: `ID ${product._id} скопирован!`,
+									type: 'success',
+								});
+								navigator.clipboard.writeText(product._id);
+							}}
 							startContent={<CopyIcon width={18} height={18} />}
 						>
 							{product._id}
@@ -271,7 +279,13 @@ export const ProductsTable: FC = () => {
 					return (
 						<Button
 							size='sm'
-							onClick={() => navigator.clipboard.writeText(product.article)}
+							onClick={() => {
+								showMessage({
+									content: `Артикул ${product.article} скопирован!`,
+									type: 'success',
+								});
+								navigator.clipboard.writeText(product.article);
+							}}
 							startContent={<CopyIcon width={18} height={18} />}
 						>
 							{product.article}
@@ -334,7 +348,13 @@ export const ProductsTable: FC = () => {
 								</Button>
 							</Tooltip>
 							<ModalConfirm
-								onConfirm={() => dispatch(deleteProduct(product.article))}
+								onConfirm={() => {
+									dispatch(deleteProduct(product.article));
+									showMessage({
+										content: `Продукт ${product.article} успешно удалён!`,
+										type: 'close',
+									});
+								}}
 								description={`Вы уверены, что хотите удалить продукт ${product.article}?`}
 							>
 								<Tooltip content='Удалить' showArrow closeDelay={0}>
@@ -353,7 +373,7 @@ export const ProductsTable: FC = () => {
 					return <>{cellValue}</>;
 			}
 		},
-		[dispatch, onOpenAdd],
+		[dispatch, onOpenAdd, showMessage],
 	);
 
 	const bottomContent = useMemo(() => {

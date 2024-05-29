@@ -6,13 +6,16 @@ import cls from './not-found-page.module.scss';
 
 const NotFoundPage: FC = memo(() => {
 	return (
-		<div className={cls.wrapper}>
-			<div className={cls.information}>
-				<h1>Ошибка 404</h1>
-				<p>Страница не существует</p>
-			</div>
-			<Link href='/'>
+		<>
+			{/* <Blackhole flip className='!mb-[-200px]' /> */}
+			<div className={cls.wrapper}>
+				<div className={cls.information}>
+					<h1>Ошибка 404</h1>
+					<p>Страница не существует</p>
+				</div>
 				<Button
+					as={Link}
+					href='/'
 					starlight
 					className='py-5 px-12 rounded-xl'
 					customVariant='layer'
@@ -27,8 +30,8 @@ const NotFoundPage: FC = memo(() => {
 				>
 					Вернуться на главную
 				</Button>
-			</Link>
-		</div>
+			</div>
+		</>
 	);
 });
 

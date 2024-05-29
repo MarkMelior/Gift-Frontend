@@ -12,6 +12,7 @@ import {
 	productLink,
 } from '@/shared/lib/features';
 import { Button } from '@/shared/ui/button';
+import { useMessage } from '@/shared/ui/message';
 import { ProductResponse } from '@melior-gift/zod-contracts';
 import { Tooltip } from '@nextui-org/react';
 import cn from 'clsx';
@@ -36,6 +37,7 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
 	const saltPagination = crypto.randomBytes(2).toString('hex');
 	const { addProductHistory } = useProductsHistory(data.article);
+	const { showMessage } = useMessage();
 
 	const { isFavorites, toggleFavorites } = useFavorites(data);
 
@@ -96,16 +98,30 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 						))}
 					</Swiper>
 				</div>
-				<Button
-					onClick={(e) => {
-						e.preventDefault();
-						window.open(data.markets[0].link, '_blank');
+				<div className={cls.hover}>
+					<div>
+						<Button
+							onClick={(e) => {
+								e.preventDefault();
+								window.open(data.markets[0].link, '_blank');
 
-						addProductHistory(e);
-					}}
-				>
-					Купить
-				</Button>
+								addProductHistory(e);
+							}}
+						>
+							Купить
+						</Button>
+					</div>
+					<Button
+						onClick={(e) => {
+							e.preventDefault();
+							window.open(data.markets[0].link, '_blank');
+
+							addProductHistory(e);
+						}}
+					>
+						Купить
+					</Button>
+				</div>
 			</div>
 			<div className={cls.infoWrapper}>
 				<div className={cls.info}>
@@ -180,6 +196,12 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 					onClick={(e: MouseEvent) => {
 						e.preventDefault();
 						toggleFavorites(e);
+						showMessage({
+							type: isFavorites ? 'heart-remove' : 'heart-add',
+							content: isFavorites
+								? `Подарок ${data.article} удален из избранного`
+								: `Подарок ${data.article} добавлен в избранное`,
+						});
 					}}
 					isIconOnly
 					startContent={<HeartIcon />}

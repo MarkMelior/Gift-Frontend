@@ -1,10 +1,10 @@
 'use client';
 
 import { getUserState } from '@/entities/user';
-import { CheckIcon } from '@/shared/assets/icon/Check';
 import { Component } from '@/shared/lib/components';
 import { BackgroundColorSpin } from '@/shared/ui/animate-background';
-import { Notification } from '@/shared/ui/notification';
+import { Logo } from '@/shared/ui/logo';
+import { useMessage } from '@/shared/ui/message';
 import {
 	Modal,
 	ModalBody,
@@ -13,7 +13,6 @@ import {
 	Tab,
 	Tabs,
 } from '@nextui-org/react';
-import Image from 'next/image';
 import { FC, useState } from 'react';
 import { useSelector } from 'react-redux';
 import cls from './modal-auth.module.scss';
@@ -26,7 +25,7 @@ export interface ModalAuthProps {
 }
 
 const ModalAuth: FC<ModalAuthProps> = ({ isOpen, onOpenChange }) => {
-	const [showNotification, setShowNotification] = useState(false);
+	const { showMessage } = useMessage();
 	const [selected, setSelected] = useState('login');
 	const {
 		data: user,
@@ -47,12 +46,13 @@ const ModalAuth: FC<ModalAuthProps> = ({ isOpen, onOpenChange }) => {
 						{(onClose) => (
 							<BackgroundColorSpin className={cls.modal}>
 								<ModalHeader className={cls.header}>
-									<Image
+									{/* <Image
 										src='/images/icons/logo-melior-white.svg'
 										width={24}
 										height={24}
 										alt='test'
-									/>
+									/> */}
+									<Logo scale={0.75} />
 									{selected === 'register' ? 'Регистрация' : 'Вход'}
 								</ModalHeader>
 								<ModalBody className={cls.body}>
@@ -68,7 +68,10 @@ const ModalAuth: FC<ModalAuthProps> = ({ isOpen, onOpenChange }) => {
 											<ModalFormLogin
 												onSubmit={() => {
 													onOpenChange(false);
-													setShowNotification(true);
+													showMessage({
+														content: `Добро пожаловать, ${user?.username}!`,
+														type: 'success',
+													});
 												}}
 											/>
 										</Tab>
@@ -76,7 +79,10 @@ const ModalAuth: FC<ModalAuthProps> = ({ isOpen, onOpenChange }) => {
 											<ModalFormRegister
 												onSubmit={() => {
 													onOpenChange(false);
-													setShowNotification(true);
+													showMessage({
+														content: `Добро пожаловать, ${user?.username}!`,
+														type: 'success',
+													});
 												}}
 											/>
 										</Tab>
@@ -86,23 +92,6 @@ const ModalAuth: FC<ModalAuthProps> = ({ isOpen, onOpenChange }) => {
 						)}
 					</ModalContent>
 				</Modal>
-				{showNotification && (
-					<Notification
-						message={`${user?.username}, добро пожаловать!`}
-						duration={5000}
-						placement='top'
-						onClose={() => setShowNotification(false)}
-						closeOnClick
-						startContent={
-							<CheckIcon
-								width={16}
-								height={16}
-								color='hsl(var(--gift-success))'
-								isSelected
-							/>
-						}
-					/>
-				)}
 			</Component>
 		</>
 	);
