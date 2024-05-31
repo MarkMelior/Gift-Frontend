@@ -7,6 +7,7 @@ import {
 	useGetProductQuery,
 	useGetProductsQuery,
 } from './api/products.api';
+import { useProduct } from './hooks/useProduct';
 import { CardWide } from './ui/card-wide/card-wide';
 import { CardWideSkeleton } from './ui/card-wide/card-wide.skeleton';
 import { Card } from './ui/card/card';
@@ -24,6 +25,7 @@ export {
 	useAddProductMutation,
 	useGetProductQuery,
 	useGetProductsQuery,
+	useProduct,
 };
 
 export type { CardsProps };

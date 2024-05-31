@@ -68,10 +68,11 @@ const ModalAuth: FC<ModalAuthProps> = ({ isOpen, onOpenChange }) => {
 											<ModalFormLogin
 												onSubmit={() => {
 													onOpenChange(false);
-													showMessage({
-														content: `Добро пожаловать, ${user?.username}!`,
-														type: 'success',
-													});
+													user?.username &&
+														showMessage({
+															content: `Добро пожаловать, ${user.username}!`,
+															type: 'success',
+														});
 												}}
 											/>
 										</Tab>
@@ -79,10 +80,11 @@ const ModalAuth: FC<ModalAuthProps> = ({ isOpen, onOpenChange }) => {
 											<ModalFormRegister
 												onSubmit={() => {
 													onOpenChange(false);
-													showMessage({
-														content: `Добро пожаловать, ${user?.username}!`,
-														type: 'success',
-													});
+													user?.username &&
+														showMessage({
+															content: `Добро пожаловать, ${user.username}!`,
+															type: 'success',
+														});
 												}}
 											/>
 										</Tab>

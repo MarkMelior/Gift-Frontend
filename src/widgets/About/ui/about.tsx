@@ -22,10 +22,8 @@ export const About: FC = memo(() => {
 							alt='Иконка микрофона'
 							className='noselect'
 						/>
-						<p>Поиск по голосу</p>
-						<p className={cls.swipeDescription}>
-							нейросеть найдёт нужный подарок
-						</p>
+						<p>Современный дизайн</p>
+						<p className={cls.swipeDescription}>Стильно и удобно</p>
 					</div>
 					<div className={cls.swipe}>
 						<Image

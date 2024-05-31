@@ -1,5 +1,6 @@
 'use client';
 
+import { Logo } from '@/shared/ui/logo';
 import { Tooltip } from '@nextui-org/react';
 import cn from 'clsx';
 import Link from 'next/link';
@@ -23,6 +24,7 @@ export const NavbarAdmin: FC = memo(() => {
 					📊
 				</Link>
 			</Tooltip> */}
+			<Logo scale={0.6} opacity={0.1} />
 			<Tooltip offset={10} content={'Продукты'} placement='top'>
 				<Link
 					href={'/admin/products'}

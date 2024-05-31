@@ -1,4 +1,8 @@
-export type ErrorDataKey = 'default' | 'not-found-search' | 'what-search';
+export type ErrorDataKey =
+	| 'default'
+	| 'not-found-search'
+	| 'what-search'
+	| 'unauthorized';
 
 export interface ErrorData {
 	key: ErrorDataKey;
@@ -25,5 +29,11 @@ export const errorsData: ErrorData[] = [
 		title: 'Мы ничего не нашли!',
 		description: 'Измените параметры поиска',
 		image: '404-error.png',
+	},
+	{
+		key: 'unauthorized',
+		title: 'Войдите или зарегистрируйтесь',
+		description: 'Вы не авторизованы',
+		image: 'lock.png',
 	},
 ];

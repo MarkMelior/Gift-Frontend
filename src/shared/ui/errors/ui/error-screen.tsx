@@ -1,19 +1,18 @@
 import { cn } from '@/shared/lib/features';
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import { ErrorDataKey, errorsData } from '../model/errors-data';
 import cls from './error-screen.module.scss';
 
 interface ErrorScreenProps {
-	title?: string;
-	description?: string;
-	image?: ReactNode;
 	className?: string;
 	fullHeight?: boolean;
 	typeError?: ErrorDataKey;
+	description?: string;
 }
 
 export const ErrorScreen: FC<ErrorScreenProps> = ({
 	typeError = 'default',
+	description,
 	className,
 	fullHeight,
 }) => {
@@ -30,7 +29,9 @@ export const ErrorScreen: FC<ErrorScreenProps> = ({
 			</div>
 			<div className={cls.text}>
 				<h6 className={cls.title}>{errorData.title}</h6>
-				<p className={cls.description}>{errorData.description}</p>
+				<p className={cls.description}>
+					{description || errorData.description}
+				</p>
 			</div>
 		</div>
 	);

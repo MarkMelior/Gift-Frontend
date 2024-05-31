@@ -7,7 +7,7 @@ export const columns = [
 	{ name: 'Описание', uid: 'description' },
 	{ name: 'Дата создания', uid: 'createdAt', sortable: true },
 	{ name: 'Дата обновления', uid: 'updatedAt', sortable: true },
-	{ name: 'Кол-во обновлений', uid: '__v' },
+	// { name: 'Кол-во обновлений', uid: '__v' },
 	{ name: 'Фильтры', uid: 'filters' },
 	// { name: 'Маркет', uid: 'markets', sortable: true },
 	// { name: 'Характеристики', uid: 'options' },

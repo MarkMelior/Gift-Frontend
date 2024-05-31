@@ -1,5 +1,6 @@
 'use client';
 
+import { useFavoritesProducts } from '@/entities/favorites';
 import { getUserAuthData, getUserState } from '@/entities/user';
 import { ModalAuth, useAuth } from '@/features/auth';
 import { ConvertData } from '@/shared/lib/features';
@@ -29,6 +30,7 @@ export const ProfilePage: FC<ProfilePageProps> = memo(() => {
 	const isUserLogged = useSelector(getUserAuthData);
 	const { onUserLogout } = useAuth();
 	const formattedDate = ConvertData(user?.updatedAt);
+	const { favoritesProducts } = useFavoritesProducts();
 
 	const {
 		isOpen: isOpenAuthModal,
@@ -36,15 +38,11 @@ export const ProfilePage: FC<ProfilePageProps> = memo(() => {
 		onOpenChange: onOpenChangeAuthModal,
 	} = useDisclosure();
 
-	if (!isUserLogged && !isLoading)
+	if (!isUserLogged) {
 		return (
 			<>
 				<div className={cls.notAuth}>
-					<ErrorScreen
-						title='Войдите или зарегистрируйтесь'
-						description='Вы не авторизованы'
-						image={<img src='/images/error/lock.png' />}
-					/>
+					<ErrorScreen typeError='unauthorized' />
 					<MyButton
 						starlight
 						className='py-5 px-12 rounded-xl'
@@ -68,6 +66,7 @@ export const ProfilePage: FC<ProfilePageProps> = memo(() => {
 				/>
 			</>
 		);
+	}
 
 	if (isLoading || !user) {
 		return <PageLoader />;
@@ -123,6 +122,29 @@ export const ProfilePage: FC<ProfilePageProps> = memo(() => {
 						<TableRow key='3'>
 							<TableCell>👀 Просмотрено подарков</TableCell>
 							<TableCell>{user.history?.length ?? 0}</TableCell>
+						</TableRow>
+						<TableRow key='4'>
+							<TableCell>🤑 Сумма избранных подарков</TableCell>
+							<TableCell>
+								{favoritesProducts?.reduce((total, item) => {
+									const price = item.markets?.[0]?.price || 0;
+									return total + price;
+								}, 0)}{' '}
+								₽
+							</TableCell>
+						</TableRow>
+						<TableRow key='5'>
+							<TableCell>💸 Сумма избранных подарков без скидок</TableCell>
+							<TableCell>
+								{favoritesProducts?.reduce((total, item) => {
+									const price =
+										item.markets?.[0]?.oldPrice ||
+										item.markets?.[0]?.price ||
+										0;
+									return total + price;
+								}, 0)}{' '}
+								₽
+							</TableCell>
 						</TableRow>
 					</TableBody>
 				</Table>

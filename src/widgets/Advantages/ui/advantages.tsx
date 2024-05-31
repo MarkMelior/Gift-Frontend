@@ -79,11 +79,17 @@ export const Advantages: FC = memo(() => {
 					text='Получайте дополнительный кэшбэк до 5% при покупке подарка через наш сайт!'
 				/>
 				<CardRotate
+					name='Дизайн'
+					color='#8875ff'
+					icon='/images/pages/code.png'
+					text='Современный дизайн, адаптивность и удобство использования.'
+				/>
+				{/* <CardRotate
 					name='Нейросети'
 					color='#8875ff'
 					icon='/images/pages/code.png'
 					text='Интеграция новейших технологий. Искусственный интеллект поможет тебе с выборам подарка.'
-				/>
+				/> */}
 			</div>
 			{theme === 'dark' && (
 				<motion.div

@@ -146,6 +146,9 @@ export const ProductModal: FC<ProductModalProps> = ({
 					onOpenChange={onOpenChange}
 					size='lg'
 					scrollBehavior='inside'
+					onClose={() => {
+						isEdit && dispatch(productModalActions.clearProductModal());
+					}}
 				>
 					<ModalContent>
 						{(onClose) => (
@@ -198,14 +201,7 @@ export const ProductModal: FC<ProductModalProps> = ({
 									</form>
 								</ModalBody>
 								<ModalFooter>
-									<Button
-										color='danger'
-										variant='light'
-										onPress={() => {
-											onClose();
-											dispatch(productModalActions.clearProductModal());
-										}}
-									>
+									<Button color='danger' variant='light' onPress={onClose}>
 										Отменить
 									</Button>
 									<Button color='primary' onClick={onSubmit}>

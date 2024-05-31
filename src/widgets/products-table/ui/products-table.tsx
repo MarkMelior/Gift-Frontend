@@ -74,6 +74,8 @@ export const ProductsTable: FC = () => {
 	const totalProducts = data?.totalProducts || 0;
 	const pages = Math.ceil(totalProducts / rowsPerPage);
 	const { showMessage } = useMessage();
+	// todo:
+	// const { addProduct } = useProduct();
 
 	const [isProductEdit, setIsProductEdit] = useState(false);
 	const [visibleColumns, setVisibleColumns] = useState<Selection>(
@@ -357,15 +359,15 @@ export const ProductsTable: FC = () => {
 								}}
 								description={`Вы уверены, что хотите удалить продукт ${product.article}?`}
 							>
-								<Tooltip content='Удалить' showArrow closeDelay={0}>
-									<Button isIconOnly size='sm' variant='light' color='danger'>
-										<DeleteIcon
-											color='hsl(var(--gift-danger-500))'
-											width={18}
-											height={18}
-										/>
-									</Button>
-								</Tooltip>
+								{/* <Tooltip content='Удалить' showArrow closeDelay={0}> */}
+								<Button isIconOnly size='sm' variant='light' color='danger'>
+									<DeleteIcon
+										color='hsl(var(--gift-danger-500))'
+										width={18}
+										height={18}
+									/>
+								</Button>
+								{/* </Tooltip> */}
 							</ModalConfirm>
 						</div>
 					);
