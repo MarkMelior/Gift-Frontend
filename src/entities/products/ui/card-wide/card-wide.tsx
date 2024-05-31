@@ -2,10 +2,10 @@ import { convertCurrency, productLink } from '@/shared/lib/features';
 import { ProductResponse } from '@melior-gift/zod-contracts';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import cls from './card-wide.module.scss';
 
-export const CardWide: FC<{ data: ProductResponse }> = memo(({ data }) => {
+export const CardWide: FC<{ data: ProductResponse }> = ({ data }) => {
 	const convertedPrice = convertCurrency(data.markets[0].price);
 	const convertedOldPrice = convertCurrency(data.markets[0].oldPrice);
 
@@ -66,4 +66,4 @@ export const CardWide: FC<{ data: ProductResponse }> = memo(({ data }) => {
 			</div>
 		</Link>
 	);
-});
+};

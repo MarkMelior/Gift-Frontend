@@ -7,13 +7,13 @@ import {
 	SelectSection,
 	Selection,
 } from '@nextui-org/react';
-import { FC, memo, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { ageButton } from '../model/const/age-button';
 import { categoryButton } from '../model/const/category-button';
 import { sexButton } from '../model/const/sex-button';
 
-export const SortSelectInput: FC = memo(() => {
+export const SortSelectInput: FC = () => {
 	const dispatch = useAppDispatch();
 	const product = useSelector(getProductModal);
 
@@ -66,4 +66,4 @@ export const SortSelectInput: FC = memo(() => {
 			</SelectSection>
 		</Select>
 	);
-});
+};

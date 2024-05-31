@@ -3,7 +3,7 @@
 import { useDelay } from '@/shared/lib/hooks';
 import { ErrorScreen } from '@/shared/ui/errors';
 import { ProductResponse } from '@melior-gift/zod-contracts';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import 'swiper/css/pagination';
 import { Card } from '../card/card';
 import { CardSkeleton } from '../card/card.skeleton';
@@ -17,28 +17,32 @@ export interface CardsProps {
 	size?: 'sm' | 'md';
 }
 
-export const Cards: FC<CardsProps> = memo(
-	({ data, isLoading, error, size, skeletonCount }) => {
-		const isTime = useDelay();
+export const Cards: FC<CardsProps> = ({
+	data,
+	isLoading,
+	error,
+	size,
+	skeletonCount,
+}) => {
+	const isTime = useDelay();
 
-		if ((!isLoading && !data && isTime) || error) {
-			return <ErrorScreen description={error && error} />;
-		}
+	if ((!isLoading && !data && isTime) || error) {
+		return <ErrorScreen description={error && error} />;
+	}
 
-		if (!isLoading && data && data.length === 0) {
-			return <ErrorScreen typeError='not-found-search' />;
-		}
+	if (!isLoading && data && data.length === 0) {
+		return <ErrorScreen typeError='not-found-search' />;
+	}
 
-		return (
-			<div className={cls.wrapper} data-size={size}>
-				{isLoading || !data ? (
-					<CardSkeleton size={size} skeletonCount={skeletonCount} />
-				) : (
-					data.map((cardData) => (
-						<Card size={size} key={cardData.article} data={cardData} />
-					))
-				)}
-			</div>
-		);
-	},
-);
+	return (
+		<div className={cls.wrapper} data-size={size}>
+			{isLoading || !data ? (
+				<CardSkeleton size={size} skeletonCount={skeletonCount} />
+			) : (
+				data.map((cardData) => (
+					<Card size={size} key={cardData.article} data={cardData} />
+				))
+			)}
+		</div>
+	);
+};

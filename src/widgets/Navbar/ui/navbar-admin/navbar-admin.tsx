@@ -5,10 +5,10 @@ import { Tooltip } from '@nextui-org/react';
 import cn from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import cls from './navbar-admin.module.scss';
 
-export const NavbarAdmin: FC = memo(() => {
+export const NavbarAdmin: FC = () => {
 	const pathname = usePathname();
 
 	return (
@@ -51,4 +51,4 @@ export const NavbarAdmin: FC = memo(() => {
 			</Tooltip> */}
 		</div>
 	);
-});
+};

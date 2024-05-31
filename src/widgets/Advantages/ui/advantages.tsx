@@ -8,12 +8,12 @@ import cn from 'clsx';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import MediaQuery from 'react-responsive';
 import cls from './advantages.module.scss';
 
-export const Advantages: FC = memo(() => {
+export const Advantages: FC = () => {
 	const { theme } = useTheme();
 	const isOptimization = useSelector(getSettingsOptimization);
 
@@ -23,7 +23,7 @@ export const Advantages: FC = memo(() => {
 		setMounted(true);
 	}, []);
 
-	if (!isMounted) return;
+	if (!isMounted) return <></>;
 
 	return (
 		<section className={cn(cls.wrapper, 'content')}>
@@ -113,4 +113,4 @@ export const Advantages: FC = memo(() => {
 			)}
 		</section>
 	);
-});
+};

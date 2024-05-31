@@ -20,12 +20,12 @@ import {
 } from '@nextui-org/react';
 import cn from 'clsx';
 import Image from 'next/image';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { ProfilePageProps } from '../../../app/profile/page';
 import cls from './profile-page.module.scss';
 
-export const ProfilePage: FC<ProfilePageProps> = memo(() => {
+export const ProfilePage: FC<ProfilePageProps> = () => {
 	const { data: user, isLoading, error } = useSelector(getUserState);
 	const isUserLogged = useSelector(getUserAuthData);
 	const { onUserLogout } = useAuth();
@@ -154,4 +154,4 @@ export const ProfilePage: FC<ProfilePageProps> = memo(() => {
 			</BackgroundColorSpin>
 		</div>
 	);
-});
+};

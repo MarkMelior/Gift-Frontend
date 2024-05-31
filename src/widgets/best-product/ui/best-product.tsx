@@ -11,7 +11,7 @@ import { Heading } from '@/widgets/heading';
 import cn from 'clsx';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
-import { FC, memo, useCallback, useEffect, useRef, useState } from 'react';
+import { FC, useCallback, useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
@@ -20,7 +20,7 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from './best-product.module.scss';
 
-export const BestProduct: FC = memo(() => {
+export const BestProduct: FC = () => {
 	const prevRef = useRef(null);
 	const nextRef = useRef(null);
 	const { theme } = useTheme();
@@ -150,4 +150,4 @@ export const BestProduct: FC = memo(() => {
 			</div>
 		</section>
 	);
-});
+};

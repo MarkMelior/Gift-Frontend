@@ -1,10 +1,10 @@
 import { Button } from '@/shared/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import cls from './not-found-page.module.scss';
 
-const NotFoundPage: FC = memo(() => {
+const NotFoundPage: FC = () => {
 	return (
 		<>
 			{/* <Blackhole flip className='!mb-[-200px]' /> */}
@@ -33,6 +33,6 @@ const NotFoundPage: FC = memo(() => {
 			</div>
 		</>
 	);
-});
+};
 
 export default NotFoundPage;

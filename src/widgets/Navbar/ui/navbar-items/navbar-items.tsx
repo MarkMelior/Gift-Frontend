@@ -1,13 +1,15 @@
+'use client';
+
 import { MediaSize } from '@/shared/const';
 import cn from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FC, memo, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { NavbarItemsList } from '../../model/items';
 import cls from './navbar-items.module.scss';
 
-export const NavbarItems: FC = memo(() => {
+export const NavbarItems: FC = () => {
 	const pathname = usePathname();
 	const isLG = useMediaQuery({ maxWidth: MediaSize.LG });
 
@@ -33,4 +35,4 @@ export const NavbarItems: FC = memo(() => {
 			))}
 		</>
 	);
-});
+};

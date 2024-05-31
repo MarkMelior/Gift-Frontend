@@ -11,14 +11,14 @@ import { ProductMarkets, ProductResponse } from '@melior-gift/zod-contracts';
 import { Tooltip } from '@nextui-org/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import cls from './links-panel.module.scss';
 
 interface LinksPanelProps {
 	product: ProductResponse;
 }
 
-export const LinksPanel: FC<LinksPanelProps> = memo(({ product }) => {
+export const LinksPanel: FC<LinksPanelProps> = ({ product }) => {
 	const { showMessage } = useMessage();
 
 	const renderLinks = (markets: ProductMarkets) => {
@@ -90,4 +90,4 @@ export const LinksPanel: FC<LinksPanelProps> = memo(({ product }) => {
 			{product.markets.map((markets) => renderLinks(markets))}
 		</div>
 	);
-});
+};

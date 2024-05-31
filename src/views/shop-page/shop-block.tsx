@@ -2,12 +2,12 @@
 
 import { Cards, useGetProductsQuery } from '@/entities/products';
 import { Sorts, getSort } from '@/features/sorts';
-import { cn } from '@nextui-org/react';
-import { memo, useCallback, useMemo, useState } from 'react';
+import cn from 'clsx';
+import { useCallback, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import cls from './shop-page.module.scss';
 
-export const ShopBlock = memo(() => {
+export const ShopBlock = () => {
 	const sort = useSelector(getSort);
 
 	const FindProducts = useMemo(
@@ -74,4 +74,4 @@ export const ShopBlock = memo(() => {
 			</div>
 		</div>
 	);
-});
+};

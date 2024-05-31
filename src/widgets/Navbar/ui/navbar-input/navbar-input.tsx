@@ -5,11 +5,11 @@ import { SearchIcon } from '@/shared/assets/icon/Search';
 import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/button';
 import { Kbd, useDisclosure } from '@nextui-org/react';
-import { FC, memo, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import cls from './navbar-input.module.scss';
 
-export const NavbarInput: FC = memo(() => {
+export const NavbarInput: FC = () => {
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
 
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -31,25 +31,17 @@ export const NavbarInput: FC = memo(() => {
 		};
 	}, [handleKeyDown]);
 
-	const [isMounted, setMounted] = useState(false);
-
-	useEffect(() => {
-		setMounted(true);
-	}, []);
-
 	return (
-		isMounted && (
-			<>
-				<Button
-					onClick={onOpen}
-					className={cls.searchButton}
-					startContent={<SearchIcon width={18} height={18} />}
-				>
-					Поиск
-					{!isMD && <Kbd keys={['ctrl']}>K</Kbd>}
-				</Button>
-				<ModalSearch isOpen={isOpen} onOpenChange={onOpenChange} />
-			</>
-		)
+		<>
+			<Button
+				onClick={onOpen}
+				className={cls.searchButton}
+				startContent={<SearchIcon width={18} height={18} />}
+			>
+				Поиск
+				{!isMD && <Kbd keys={['ctrl']}>K</Kbd>}
+			</Button>
+			<ModalSearch isOpen={isOpen} onOpenChange={onOpenChange} />
+		</>
 	);
-});
+};

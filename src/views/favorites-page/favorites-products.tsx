@@ -6,10 +6,10 @@ import { useGetProductsHistoryQuery } from '@/entities/products-history';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { Button } from '@/shared/ui/button';
 import Link from 'next/link';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import cls from './favorites-page.module.scss';
 
-export const FavoritesProducts: FC = memo(() => {
+export const FavoritesProducts: FC = () => {
 	const { favoritesProducts, isLoading } = useFavoritesProducts();
 
 	const { data, isLoading: isLoadingProducts } = useGetProductsQuery({
@@ -63,4 +63,4 @@ export const FavoritesProducts: FC = memo(() => {
 			)}
 		</>
 	);
-});
+};

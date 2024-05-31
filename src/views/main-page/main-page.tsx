@@ -6,9 +6,9 @@ import { NavigationPanel } from '@/widgets/navigation-panel';
 import { Ready } from '@/widgets/ready';
 import { ReviewsCarousel } from '@/widgets/reviews-carousel';
 import { TopPage } from '@/widgets/top-page';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 
-const MainPage: FC = memo(() => {
+const MainPage: FC = () => {
 	return (
 		<>
 			<TopPage
@@ -28,6 +28,6 @@ const MainPage: FC = memo(() => {
 			<Ready />
 		</>
 	);
-});
+};
 
 export default MainPage;

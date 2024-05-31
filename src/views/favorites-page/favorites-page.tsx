@@ -4,11 +4,11 @@ import { Blackhole } from '@/shared/ui/blackhole';
 import { TopPage } from '@/widgets/top-page';
 import { Image } from '@nextui-org/react';
 import cn from 'clsx';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import cls from './favorites-page.module.scss';
 import { FavoritesProducts } from './favorites-products';
 
-export const FavoritesPage: FC = memo(() => {
+export const FavoritesPage: FC = () => {
 	return (
 		<div className={cn(cls.wrapper, 'content')}>
 			<Blackhole flip className='!mb-[-200px]' />
@@ -30,4 +30,4 @@ export const FavoritesPage: FC = memo(() => {
 			<FavoritesProducts />
 		</div>
 	);
-});
+};

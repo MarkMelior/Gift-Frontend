@@ -2,12 +2,12 @@ import { DeleteIcon } from '@/shared/assets/icon/Delete';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { Input } from '@/shared/ui/input';
 import { Button } from '@nextui-org/react';
-import { memo, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { getProductModal } from '../../model/selectors/getProductModal';
 import { productModalActions } from '../../model/slice/product-modal.slice';
 
-export const OptionsEditor = memo(() => {
+export const OptionsEditor = () => {
 	const dispatch = useAppDispatch();
 	const options = useSelector(getProductModal)?.options;
 
@@ -96,4 +96,4 @@ export const OptionsEditor = memo(() => {
 			</Button>
 		</div>
 	);
-});
+};

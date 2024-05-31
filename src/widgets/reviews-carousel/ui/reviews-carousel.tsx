@@ -7,14 +7,14 @@ import { mainReviewsIds } from '@/shared/const/main-reviews/main-reviews';
 import { SlideHeading } from '@/shared/ui/slide-heading';
 import cn from 'clsx';
 import Image from 'next/image';
-import { FC, memo, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { Autoplay, FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from './reviews-carousel.module.scss';
 
-export const ReviewsCarousel: FC = memo(() => {
+export const ReviewsCarousel: FC = () => {
 	const isSM = useMediaQuery({ maxWidth: MediaSize.SM });
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
 	const isXL = useMediaQuery({ maxWidth: MediaSize.XL });
@@ -37,12 +37,7 @@ export const ReviewsCarousel: FC = memo(() => {
 		slidesPerView = 1;
 	}
 
-	const [isMounted, setMounted] = useState(false);
-
-	useEffect(() => {
-		setMounted(true);
-	}, []);
-
+	// todo
 	if (!reviews) return <></>;
 
 	return (
@@ -97,19 +92,17 @@ export const ReviewsCarousel: FC = memo(() => {
 						className={`${cls.video} noselect`}
 					/>
 				) : (
-					isMounted && (
-						<video
-							autoPlay
-							loop
-							muted
-							playsInline
-							className={cn(cls.video, 'noselect')}
-						>
-							<source src='/videos/encryption.webm' />
-						</video>
-					)
+					<video
+						autoPlay
+						loop
+						muted
+						playsInline
+						className={cn(cls.video, 'noselect')}
+					>
+						<source src='/videos/encryption.webm' />
+					</video>
 				)}
 			</div>
 		</>
 	);
-});
+};

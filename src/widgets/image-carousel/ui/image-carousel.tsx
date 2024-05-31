@@ -2,7 +2,7 @@
 
 import { Button } from '@/shared/ui/button';
 import { ProductResponse } from '@melior-gift/zod-contracts';
-import { FC, memo, useRef, useState } from 'react';
+import { FC, useRef, useState } from 'react';
 import { Mousewheel, Navigation, Thumbs } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper/types';
@@ -12,7 +12,7 @@ interface ImageCarouselProps {
 	product: ProductResponse;
 }
 
-export const ImageCarousel: FC<ImageCarouselProps> = memo(({ product }) => {
+export const ImageCarousel: FC<ImageCarouselProps> = ({ product }) => {
 	const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | undefined>();
 	const prevRef = useRef(null);
 	const nextRef = useRef(null);
@@ -78,4 +78,4 @@ export const ImageCarousel: FC<ImageCarouselProps> = memo(({ product }) => {
 			</Swiper>
 		</div>
 	);
-});
+};

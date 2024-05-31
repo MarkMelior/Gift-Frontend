@@ -1,11 +1,11 @@
 import { Blackhole } from '@/shared/ui/blackhole';
 import { NavigationPanel } from '@/widgets/navigation-panel';
 import { TopPage } from '@/widgets/top-page';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import { ShopBlock } from './shop-block';
 import cls from './shop-page.module.scss';
 
-export const ShopPage: FC = memo(() => {
+export const ShopPage: FC = () => {
 	return (
 		<>
 			<TopPage
@@ -24,4 +24,4 @@ export const ShopPage: FC = memo(() => {
 			<ShopBlock />
 		</>
 	);
-});
+};

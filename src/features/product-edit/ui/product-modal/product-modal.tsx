@@ -1,3 +1,5 @@
+'use client';
+
 import { addProduct, updateProduct } from '@/entities/products';
 import { MarketsEditor, OptionsEditor } from '@/features/product-edit';
 import { SortSelectInput } from '@/features/sorts';

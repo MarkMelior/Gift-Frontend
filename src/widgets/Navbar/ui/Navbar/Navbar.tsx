@@ -3,7 +3,6 @@
 import { useRoleAccess } from '@/entities/user';
 import { MediaSize } from '@/shared/const';
 import cn from 'clsx';
-import { memo } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { NavbarAdmin } from '../navbar-admin/navbar-admin';
 import { NavbarDesktop } from '../navbar-desktop/navbar-desktop';
@@ -16,7 +15,7 @@ interface NavbarProps {
 	shouldHideOnScroll?: boolean;
 }
 
-export const Navbar = memo(({ className, shouldHideOnScroll }: NavbarProps) => {
+export const Navbar = ({ className, shouldHideOnScroll }: NavbarProps) => {
 	const isMobile = useMediaQuery({ maxWidth: MediaSize.SM });
 	const { isAdmin } = useRoleAccess();
 
@@ -32,4 +31,4 @@ export const Navbar = memo(({ className, shouldHideOnScroll }: NavbarProps) => {
 			{isAdmin && <NavbarAdmin />}
 		</>
 	);
-});
+};

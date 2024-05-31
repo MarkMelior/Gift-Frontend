@@ -8,12 +8,12 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import cn from 'clsx';
 import { random } from 'maath';
 import { useTheme } from 'next-themes';
-import { Suspense, memo, useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './space-canvas.module.scss';
 
-const StarBackground = memo((props: any) => {
+const StarBackground = (props: any) => {
 	const ref: any = useRef();
 	const [sphere] = useState(() =>
 		random.inSphere(new Float32Array(5001), { radius: 1.2 }),
@@ -36,9 +36,9 @@ const StarBackground = memo((props: any) => {
 			</Points>
 		</group>
 	);
-});
+};
 
-export const SpaceCanvas = memo(() => {
+export const SpaceCanvas = () => {
 	const [isVisible, setIsVisible] = useState(true);
 	const { theme } = useTheme();
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
@@ -66,7 +66,7 @@ export const SpaceCanvas = memo(() => {
 	}, []);
 
 	if (!isVisible || theme === Theme.LIGHT || isMD || !isSpace || !isMounted)
-		return null;
+		return <></>;
 
 	return (
 		<div className={cn(cls.wrapper, 'noselect')}>
@@ -77,4 +77,4 @@ export const SpaceCanvas = memo(() => {
 			</Canvas>
 		</div>
 	);
-});
+};

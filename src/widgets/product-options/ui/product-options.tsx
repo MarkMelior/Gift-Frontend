@@ -6,14 +6,14 @@ import { Button } from '@/shared/ui/button';
 import { useMessage } from '@/shared/ui/message';
 import { ProductResponse } from '@melior-gift/zod-contracts';
 import cn from 'clsx';
-import { FC, MouseEvent, memo } from 'react';
+import { FC, MouseEvent } from 'react';
 import cls from './product-options.module.scss';
 
 interface ProductOptionsProps {
 	product: ProductResponse;
 }
 
-export const ProductOptions: FC<ProductOptionsProps> = memo(({ product }) => {
+export const ProductOptions: FC<ProductOptionsProps> = ({ product }) => {
 	const { isFavorites, toggleFavorites } = useFavorites(product);
 	const { showMessage } = useMessage();
 
@@ -57,4 +57,4 @@ export const ProductOptions: FC<ProductOptionsProps> = memo(({ product }) => {
 			</ul>
 		</>
 	);
-});
+};

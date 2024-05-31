@@ -15,11 +15,11 @@ import { ProductOptions } from '@/widgets/product-options';
 import { Tooltip } from '@nextui-org/react';
 import cn from 'clsx';
 import Image from 'next/image';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import { ProductPageProps } from '../../../app/product/[article]/page';
 import cls from './product-page.module.scss';
 
-export const ProductPage: FC<ProductPageProps> = memo(({ params }) => {
+export const ProductPage: FC<ProductPageProps> = ({ params }) => {
 	const productArticle = params.article.split('-').reverse()[0];
 
 	const { data: product } = useGetProductQuery(productArticle);
@@ -84,4 +84,4 @@ export const ProductPage: FC<ProductPageProps> = memo(({ params }) => {
 			</section>
 		</div>
 	);
-});
+};

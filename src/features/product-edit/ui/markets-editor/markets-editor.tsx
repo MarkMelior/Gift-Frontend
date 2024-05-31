@@ -14,7 +14,7 @@ import {
 	Select,
 	SelectItem,
 } from '@nextui-org/react';
-import { FC, memo, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { getMarketsProductModal } from '../../model/selectors/getMarketsProductModal';
 import { getProductModalErrors } from '../../model/selectors/getProductModalErrors';
@@ -23,7 +23,7 @@ import {
 	productModalInitialState,
 } from '../../model/slice/product-modal.slice';
 
-export const MarketsEditor: FC = memo(() => {
+export const MarketsEditor: FC = () => {
 	const dispatch = useAppDispatch();
 	const markets = useSelector(getMarketsProductModal);
 	const errors = useSelector(getProductModalErrors);
@@ -277,4 +277,4 @@ export const MarketsEditor: FC = memo(() => {
 			</Button>
 		</>
 	);
-});
+};

@@ -23,7 +23,7 @@ import cn from 'clsx';
 import crypto from 'crypto';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, MouseEvent, memo, useRef } from 'react';
+import { FC, MouseEvent, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
@@ -36,7 +36,7 @@ export interface CardProps {
 	isLoading?: boolean;
 }
 
-export const Card: FC<CardProps> = memo(({ data, size }) => {
+export const Card: FC<CardProps> = ({ data, size }) => {
 	const swiperRef = useRef<SwiperRef>(null);
 	const isPhone = useMediaQuery({ maxWidth: MediaSize.MD });
 	const saltPagination = crypto.randomBytes(2).toString('hex');
@@ -262,4 +262,4 @@ export const Card: FC<CardProps> = memo(({ data, size }) => {
 			/>
 		</>
 	);
-});
+};

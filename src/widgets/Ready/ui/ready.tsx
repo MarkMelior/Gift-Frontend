@@ -7,10 +7,10 @@ import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import cls from './ready.module.scss';
 
-export const Ready: FC = memo(() => {
+export const Ready: FC = () => {
 	const [isMounted, setMounted] = useState(false);
 	const { theme } = useTheme();
 
@@ -70,4 +70,4 @@ export const Ready: FC = memo(() => {
 			)}
 		</div>
 	);
-});
+};

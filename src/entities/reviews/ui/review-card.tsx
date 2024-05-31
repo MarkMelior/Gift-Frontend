@@ -3,14 +3,14 @@ import { StarRating } from '@/shared/ui/star-rating';
 import { ReviewResponse } from '@melior-gift/zod-contracts';
 import { User } from '@nextui-org/react';
 import Link from 'next/link';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import cls from './review-card.module.scss';
 
 interface ReviewCardProps {
 	review: ReviewResponse;
 }
 
-export const ReviewCard: FC<ReviewCardProps> = memo(({ review }) => {
+export const ReviewCard: FC<ReviewCardProps> = ({ review }) => {
 	const { data: users } = useFindUsersQuery({
 		usersIds: [review.userId],
 	});
@@ -37,4 +37,4 @@ export const ReviewCard: FC<ReviewCardProps> = memo(({ review }) => {
 			<p className={cls.text}>{review.comment}</p>
 		</div>
 	);
-});
+};

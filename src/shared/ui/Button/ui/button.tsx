@@ -10,7 +10,7 @@ import {
 	Spinner,
 	useButton,
 } from '@nextui-org/react';
-import { CSSProperties, forwardRef, memo, useEffect, useState } from 'react';
+import { CSSProperties, forwardRef, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './button.module.scss';
@@ -175,4 +175,4 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 	);
 });
 
-export default memo(Button);
+export default Button;

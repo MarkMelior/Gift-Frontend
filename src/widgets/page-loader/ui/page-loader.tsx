@@ -1,13 +1,13 @@
 import cn from 'clsx';
 import Image from 'next/image';
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import cls from './page-loader.module.scss';
 
 interface PageLoaderProps {
 	classNames?: string;
 }
 
-export const PageLoader: FC<PageLoaderProps> = memo(({ classNames }) => {
+export const PageLoader: FC<PageLoaderProps> = ({ classNames }) => {
 	return (
 		<section className={cn(cls.pageLoader, classNames)}>
 			<div className={cls.loader}>
@@ -22,4 +22,4 @@ export const PageLoader: FC<PageLoaderProps> = memo(({ classNames }) => {
 			</div>
 		</section>
 	);
-});
+};

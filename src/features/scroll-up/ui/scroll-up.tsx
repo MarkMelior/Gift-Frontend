@@ -3,14 +3,14 @@
 import { ArrowUpIcon } from '@/shared/assets/icon/ArrowUp';
 import { Button } from '@/shared/ui/button';
 import cn from 'clsx';
-import { FC, memo, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import cls from './scroll-up.module.scss';
 
 interface ScrollUpProps {
 	className?: string;
 }
 
-export const ScrollUp: FC<ScrollUpProps> = memo(({ className }) => {
+export const ScrollUp: FC<ScrollUpProps> = ({ className }) => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [prevScrollY, setPrevScrollY] = useState(0);
 
@@ -51,4 +51,4 @@ export const ScrollUp: FC<ScrollUpProps> = memo(({ className }) => {
 			Наверх
 		</Button>
 	);
-});
+};
