@@ -1,3 +1,5 @@
+'use client';
+
 import { ReduxStoreWithManager, RootState, RootStateKey } from '@/app/store';
 import type { Reducer } from '@reduxjs/toolkit';
 import { FC, ReactNode, useEffect } from 'react';

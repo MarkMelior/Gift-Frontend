@@ -1,36 +1,40 @@
 'use client';
 
-import { Cards, useGetProductsQuery } from '@/entities/products';
+import { Cards, getProducts } from '@/entities/products';
 import { Sorts, getSort } from '@/features/sorts';
+import { useAppDispatch } from '@/shared/lib/hooks';
+import { ProductResponse } from '@melior-gift/zod-contracts';
 import cn from 'clsx';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import cls from './shop-page.module.scss';
 
 export const ShopBlock = () => {
 	const sort = useSelector(getSort);
+	const dispatch = useAppDispatch();
 
-	const FindProducts = useMemo(
-		() => ({
-			limit: 100,
-			filters: [...sort.category, sort.age, sort.sex],
-			maxPrice: sort.maxPrice,
-			minPrice: sort.minPrice,
-			sort: sort.sorting,
-		}),
-		[sort],
-	);
-
-	const [fetchData, setFetchData] = useState(FindProducts);
-
-	const { data, isLoading, error } = useGetProductsQuery(fetchData, {
-		skip: !FindProducts,
-	});
-	const products = data?.products;
+	const [products, setProducts] = useState<ProductResponse[] | undefined>();
+	const [isLoading, setIsLoading] = useState(true);
 
 	const handleFetch = useCallback(() => {
-		setFetchData(FindProducts);
-	}, [FindProducts]);
+		dispatch(
+			getProducts({
+				limit: 100,
+				filters: [...sort.category, sort.age, sort.sex],
+				maxPrice: sort.maxPrice,
+				minPrice: sort.minPrice,
+				sort: sort.sorting,
+			}),
+		).then((res) => {
+			setProducts(res.data?.products);
+			setIsLoading(false);
+		});
+	}, [dispatch, sort]);
+
+	useEffect(() => {
+		handleFetch();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div className={cn(cls.wrapper, 'content')}>

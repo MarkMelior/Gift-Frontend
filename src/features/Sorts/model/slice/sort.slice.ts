@@ -10,7 +10,7 @@ import { getSortSearchParams } from '../features/getSortSearchParams';
 import { SortState } from '../types/sort.type';
 
 export const initialState: SortState = {
-	category: ['joke'],
+	category: ['birthday'],
 	sex: 'male',
 	age: 'adult',
 	sorting: 'popular',

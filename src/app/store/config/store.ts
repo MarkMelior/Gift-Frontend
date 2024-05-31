@@ -1,5 +1,6 @@
 import { userReducer } from '@/entities/user';
 import { settingsReducer } from '@/features/settings';
+import { sortReducer } from '@/features/sorts';
 import { $api } from '@/shared/api/api';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { setLocalstorage } from '@/shared/lib/features';
@@ -18,6 +19,7 @@ export function createReduxStore(
 		...asyncReducers,
 		settings: settingsReducer,
 		user: userReducer,
+		sort: sortReducer, // ! fixme
 		[rtkApi.reducerPath]: rtkApi.reducer,
 	};
 

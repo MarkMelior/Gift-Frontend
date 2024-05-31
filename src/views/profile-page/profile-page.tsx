@@ -29,7 +29,7 @@ export const ProfilePage: FC<ProfilePageProps> = () => {
 	const { data: user, isLoading, error } = useSelector(getUserState);
 	const isUserLogged = useSelector(getUserAuthData);
 	const { onUserLogout } = useAuth();
-	const formattedDate = ConvertData(user?.updatedAt);
+	const formattedDate = ConvertData(user?.createdAt);
 	const { favoritesProducts } = useFavoritesProducts();
 
 	const {
