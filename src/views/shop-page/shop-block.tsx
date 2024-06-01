@@ -1,10 +1,16 @@
 'use client';
 
 import { Cards, getProducts } from '@/entities/products';
-import { Sorts, getSort } from '@/features/sorts';
+import {
+	Sorts,
+	getSort,
+	getSortSearchParams,
+	sortActions,
+} from '@/features/sorts';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { ProductResponse } from '@melior-gift/zod-contracts';
 import cn from 'clsx';
+import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import cls from './shop-page.module.scss';
@@ -12,6 +18,7 @@ import cls from './shop-page.module.scss';
 export const ShopBlock = () => {
 	const sort = useSelector(getSort);
 	const dispatch = useAppDispatch();
+	const searchParams = useSearchParams();
 
 	const [products, setProducts] = useState<ProductResponse[] | undefined>();
 	const [isLoading, setIsLoading] = useState(true);
@@ -32,9 +39,20 @@ export const ShopBlock = () => {
 	}, [dispatch, sort]);
 
 	useEffect(() => {
-		handleFetch();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+		const sortState = getSortSearchParams(searchParams);
+		dispatch(sortActions.setSortState(sortState));
+	}, [dispatch, searchParams]);
+
+	const [isMounted, setIsMounted] = useState(false);
+
+	useEffect(() => {
+		setIsMounted(true);
 	}, []);
+
+	useEffect(() => {
+		if (isMounted) handleFetch();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isMounted]);
 
 	return (
 		<div className={cn(cls.wrapper, 'content')}>

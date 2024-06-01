@@ -6,7 +6,6 @@ import {
 } from '@melior-gift/zod-contracts';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { getSortSearchParams } from '../features/getSortSearchParams';
 import { SortState } from '../types/sort.type';
 
 export const initialState: SortState = {
@@ -16,22 +15,6 @@ export const initialState: SortState = {
 	sorting: 'popular',
 	minPrice: 0,
 	maxPrice: 20000,
-};
-
-const sortInitialState = (): SortState => {
-	const searchParams = new URLSearchParams(location.search);
-
-	const { age, category, sex, minPrice, maxPrice, sorting } =
-		getSortSearchParams(searchParams);
-
-	return {
-		category,
-		sex,
-		age,
-		sorting,
-		minPrice,
-		maxPrice,
-	};
 };
 
 const toggleMultiple = (state: string[], action: string) => {
@@ -47,7 +30,7 @@ const toggleMultiple = (state: string[], action: string) => {
 
 export const sortSlice = createSlice({
 	name: 'sort',
-	initialState: sortInitialState,
+	initialState,
 	reducers: {
 		toggleCategory: (state, action: PayloadAction<SortCategory>) => {
 			toggleMultiple(state.category, action.payload);
@@ -66,6 +49,9 @@ export const sortSlice = createSlice({
 		},
 		setMaxPrice: (state, action: PayloadAction<number>) => {
 			state.maxPrice = action.payload;
+		},
+		setSortState: (state, action: PayloadAction<SortState>) => {
+			Object.assign(state, action.payload);
 		},
 	},
 });

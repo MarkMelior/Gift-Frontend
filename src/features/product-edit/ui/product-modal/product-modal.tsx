@@ -3,7 +3,7 @@
 import { addProduct, updateProduct } from '@/entities/products';
 import { MarketsEditor, OptionsEditor } from '@/features/product-edit';
 import { SortSelectInput } from '@/features/sorts';
-import { UploadImages } from '@/features/upload-image';
+import { ChangeImages, UploadImages } from '@/features/upload-image';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
 import { parseErrorPathToNestedObject } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks';
@@ -161,7 +161,7 @@ export const ProductModal: FC<ProductModalProps> = ({
 								<ModalBody className={cls.body}>
 									<form className='flex flex-col gap-5'>
 										{isEdit ? (
-											<></>
+											<ChangeImages />
 										) : (
 											<UploadImages
 												state={{ images, setImages }}
