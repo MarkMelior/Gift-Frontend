@@ -5,6 +5,6 @@
 	}
 
 	background: var(--bg-noise),
-	rgba(var(--color-main-rgb), $opacity);
+	rgba(var(--color-main-rgb), $opacity) !important;
 	border: $border;
 }

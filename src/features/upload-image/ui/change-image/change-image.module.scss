@@ -3,13 +3,13 @@
 .images {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 10px;
 }
 
 .image {
 	position: relative;
 	width: 96px;
 	height: 96px;
+	margin-right: 5px;
 	overflow: hidden;
 	cursor: grab;
 	background-color: white;

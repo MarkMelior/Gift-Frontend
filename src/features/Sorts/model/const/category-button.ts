@@ -7,7 +7,7 @@ interface ButtonCategoryProps extends SortButtonProps {
 
 export const categoryButton: ButtonCategoryProps[] = [
 	{
-		text: '🎉 День рождение',
+		text: '🎉 День рождения',
 		color: '255, 202, 66',
 		key: 'birthday',
 	},

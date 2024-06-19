@@ -2,7 +2,7 @@
 
 .wrapper {
 	/* stylelint-disable-next-line value-no-vendor-prefix */
-	width: -webkit-fill-available;
+	width: -webkit-fill-available !important;
 	min-height: var(--height-screen);
 	padding-top: 40px;
 }

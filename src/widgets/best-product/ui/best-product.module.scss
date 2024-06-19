@@ -1,9 +1,9 @@
 .wrapper {
 	position: relative;
-	margin-top: 210px;
+	margin-top: 210px !important;
 
 	@media (max-width: theme('screens.sm')) {
-		margin-top: 130px;
+		margin-top: 130px !important;
 
 		h1 {
 			font-size: theme('fontSize.3xl') !important;

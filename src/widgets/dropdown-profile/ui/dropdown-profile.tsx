@@ -190,7 +190,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 								color='danger'
 								onClick={onUserLogout}
 							>
-								Выйти с аккаунта
+								Выйти из аккаунта
 							</DropdownItem>
 						</DropdownSection>
 					) : (

@@ -149,7 +149,7 @@ export const ProfilePage: FC<ProfilePageProps> = () => {
 					</TableBody>
 				</Table>
 				<Button variant='flat' color='danger' onClick={onUserLogout}>
-					Выйти с аккаунта
+					Выйти из аккаунта
 				</Button>
 			</BackgroundColorSpin>
 		</div>
