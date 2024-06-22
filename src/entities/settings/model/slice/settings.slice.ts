@@ -1,6 +1,6 @@
+import { buildSlice } from '@/shared/lib/store';
 import { Currency } from '@/shared/types/localization';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
 import { SettingsState } from '../types/settings-state.type';
 
 export const settingsInitialState: SettingsState = {
@@ -10,7 +10,7 @@ export const settingsInitialState: SettingsState = {
 	globalIsLoading: true,
 };
 
-export const settingsSlice = createSlice({
+export const settingsSlice = buildSlice({
 	name: 'settings',
 	initialState: settingsInitialState,
 	reducers: {
@@ -36,5 +36,8 @@ export const settingsSlice = createSlice({
 	},
 });
 
-export const { actions: settingsActions } = settingsSlice;
-export const { reducer: settingsReducer } = settingsSlice;
+export const {
+	actions: settingsActions,
+	reducer: settingsReducer,
+	useActions: useSettingsActions,
+} = settingsSlice;

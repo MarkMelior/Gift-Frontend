@@ -1,8 +1,8 @@
 'use client';
 
-import { getLocalstorage, setLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { MouseEvent, useState } from 'react';
+import { getLocalstorage, setLocalstorage } from '../../features';
 
 export const useLocalstorageArray = <T>(
 	key: LocalstorageKeys,

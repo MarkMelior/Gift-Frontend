@@ -3,9 +3,7 @@
 import { deleteProduct, useGetProductsQuery } from '@/entities/products';
 import { ModalConfirm } from '@/features/modal-confirm';
 import { ProductModal, productModalActions } from '@/features/product-edit';
-import { ageButton } from '@/features/sorts/model/const/age-button';
-import { categoryButton } from '@/features/sorts/model/const/category-button';
-import { sexButton } from '@/features/sorts/model/const/sex-button';
+import { ageButton, categoryButton, sexButton } from '@/features/sorts';
 import { CopyIcon } from '@/shared/assets/icon/Copy';
 import { DeleteIcon } from '@/shared/assets/icon/Delete';
 import { EditIcon } from '@/shared/assets/icon/Edit';

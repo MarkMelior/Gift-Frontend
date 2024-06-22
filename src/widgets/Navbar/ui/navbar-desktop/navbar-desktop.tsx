@@ -1,12 +1,11 @@
 'use client';
 
-import { getGlobalIsLoading } from '@/features/settings';
+import { useSettings } from '@/entities/settings';
 import { MediaSize, getRouteMain } from '@/shared/const';
 import { Logo } from '@/shared/ui/logo';
 import { Spinner, Tooltip } from '@nextui-org/react';
 import Link from 'next/link';
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
 import MediaQuery from 'react-responsive';
 import { NavbarInput } from '../navbar-input/navbar-input';
 import { NavbarItems } from '../navbar-items/navbar-items';
@@ -14,7 +13,7 @@ import { NavbarProfile } from '../navbar-profile/navbar-profile';
 import cls from './navbar-desktop.module.scss';
 
 export const NavbarDesktop: FC = () => {
-	const isLoading = useSelector(getGlobalIsLoading);
+	const { globalIsLoading } = useSettings();
 
 	return (
 		<>
@@ -23,7 +22,7 @@ export const NavbarDesktop: FC = () => {
 					<Logo />
 				</Link>
 				<NavbarInput />
-				{isLoading && (
+				{globalIsLoading && (
 					<MediaQuery minWidth={MediaSize.SM}>
 						<Tooltip
 							offset={15}

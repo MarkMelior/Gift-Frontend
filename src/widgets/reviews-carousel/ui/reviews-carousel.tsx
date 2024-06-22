@@ -1,14 +1,13 @@
 'use client';
 
 import { ReviewCard, useGetReviewsQuery } from '@/entities/reviews';
-import { getSettingsOptimization } from '@/features/settings';
+import { useSettings } from '@/entities/settings';
 import { MediaSize } from '@/shared/const';
 import { mainReviewsIds } from '@/shared/const/main-reviews/main-reviews';
 import { SlideHeading } from '@/shared/ui/slide-heading';
 import cn from 'clsx';
 import Image from 'next/image';
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { Autoplay, FreeMode } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -18,7 +17,7 @@ export const ReviewsCarousel: FC = () => {
 	const isSM = useMediaQuery({ maxWidth: MediaSize.SM });
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
 	const isXL = useMediaQuery({ maxWidth: MediaSize.XL });
-	const isOptimization = useSelector(getSettingsOptimization);
+	const { optimization } = useSettings();
 
 	const { data: reviews } = useGetReviewsQuery({
 		limit: 10,
@@ -83,7 +82,7 @@ export const ReviewsCarousel: FC = () => {
 						))}
 					</Swiper>
 				</div>
-				{isSM || isOptimization ? (
+				{isSM || optimization ? (
 					<Image
 						src='/images/pages/encryption.png'
 						alt='Blackhole'

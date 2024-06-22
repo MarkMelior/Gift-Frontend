@@ -1,8 +1,8 @@
+import { SettingsState } from '@/entities/settings';
 import { UserState } from '@/entities/user';
 import { LoginState, RegisterState } from '@/features/auth';
 import { ProductModalState } from '@/features/product-edit';
 import { SearchState } from '@/features/search';
-import { SettingsState } from '@/features/settings';
 import { SortState } from '@/features/sorts';
 import { rtkApi } from '@/shared/api/rtkApi';
 import type {

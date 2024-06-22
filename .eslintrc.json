@@ -1,5 +1,6 @@
 {
 	"extends": "next/core-web-vitals",
+	"plugins": ["ulbi-tv-plugin"],
 	"rules": {
 		// "indent": [2, "tab", { "SwitchCase": 1 }],
 		"indent": "off",
@@ -12,6 +13,30 @@
 			{
 				"component": true,
 				"html": true
+			}
+		],
+		"ulbi-tv-plugin/path-checker": [
+			"error",
+			{
+				"alias": "@"
+			}
+		],
+		"ulbi-tv-plugin/layer-imports": [
+			"error",
+			{
+				"alias": "@",
+				"ignoreImportPatterns": ["**/testing", "**/store"]
+			}
+		],
+		"ulbi-tv-plugin/public-api-imports": [
+			"error",
+			{
+				"alias": "@",
+				"testFilesPatterns": [
+					"**/*.test.*",
+					"**/*.story.*",
+					"**/StoreDecorator.tsx"
+				]
 			}
 		]
 	}

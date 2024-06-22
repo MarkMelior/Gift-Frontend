@@ -1,7 +1,6 @@
 'use client';
 
 import { addProduct, updateProduct } from '@/entities/products';
-import { MarketsEditor, OptionsEditor } from '@/features/product-edit';
 import { SortSelectInput } from '@/features/sorts';
 import { ChangeImages, UploadImages } from '@/features/upload-image';
 import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components';
@@ -28,6 +27,8 @@ import {
 	productModalActions,
 	productModalReducer,
 } from '../../model/slice/product-modal.slice';
+import { OptionsEditor } from '../../ui/options-editor/options-editor';
+import { MarketsEditor } from '../markets-editor/markets-editor';
 import cls from './product-modal.module.scss';
 
 export interface ProductModalProps {

@@ -1,11 +1,10 @@
 'use client';
 
-import { getSettingsOptimization } from '@/features/settings';
+import { useSettings } from '@/entities/settings';
 import { MediaSize } from '@/shared/const';
 import cn from 'clsx';
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './blackhole.module.scss';
 
@@ -22,7 +21,7 @@ export const Blackhole: FC<BlackholeProps> = ({
 }) => {
 	const [mounted, setMounted] = useState(false);
 	const isMobile = useMediaQuery({ maxWidth: MediaSize.MD });
-	const isOptimization = useSelector(getSettingsOptimization);
+	const { optimization } = useSettings();
 
 	useEffect(() => {
 		setMounted(true);
@@ -47,7 +46,7 @@ export const Blackhole: FC<BlackholeProps> = ({
 				<div />
 				<div />
 			</div>
-			{isMobile || isOptimization ? (
+			{isMobile || optimization ? (
 				<Image
 					src='/images/pages/blackhole.png'
 					alt='Blackhole'

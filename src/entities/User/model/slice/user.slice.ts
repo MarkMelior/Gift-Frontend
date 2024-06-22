@@ -1,7 +1,7 @@
+import { buildSlice } from '@/shared/lib/store';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { UserResponse } from '@melior-gift/zod-contracts';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
 import { initAuthData } from '../services/initAuthData';
 import { UserState } from '../types/user';
 
@@ -11,7 +11,7 @@ export const userInitialState: UserState = {
 	data: { favorites: [] } as unknown as UserResponse,
 };
 
-export const userSlice = createSlice({
+export const userSlice = buildSlice({
 	name: 'user',
 	initialState: userInitialState,
 	reducers: {
@@ -55,5 +55,8 @@ export const userSlice = createSlice({
 	},
 });
 
-export const { actions: userActions } = userSlice;
-export const { reducer: userReducer } = userSlice;
+export const {
+	actions: userActions,
+	reducer: userReducer,
+	useActions: useUserActions,
+} = userSlice;

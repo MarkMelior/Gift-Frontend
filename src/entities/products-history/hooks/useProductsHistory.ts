@@ -1,5 +1,8 @@
-import { getUserAuthData, userActions } from '@/entities/user';
-import { getUserProductsHistory } from '@/entities/user/model/selectors/getUserProductsHistory';
+import {
+	getUserAuthData,
+	getUserProductsHistory,
+	userActions,
+} from '@/entities/user';
 import { setLocalstorage } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { LocalstorageKeys } from '@/shared/types/localstorage';

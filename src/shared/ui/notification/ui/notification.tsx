@@ -1,7 +1,6 @@
 'use client';
 
 import { CrossIcon } from '@/shared/assets/icon/Cross';
-import { Button } from '@/shared/ui/button';
 import { Progress } from '@nextui-org/react';
 import cn from 'clsx';
 import {
@@ -12,6 +11,7 @@ import {
 	useEffect,
 	useState,
 } from 'react';
+import { Button } from '../../button';
 import cls from './notification.module.scss';
 
 interface NotificationProps {

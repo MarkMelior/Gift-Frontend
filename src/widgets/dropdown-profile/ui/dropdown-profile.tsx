@@ -1,12 +1,11 @@
 'use client';
 
+import { useSettings, useSettingsActions } from '@/entities/settings';
 import { getUserAuthData, getUserState } from '@/entities/user';
 import { ModalAuth, useAuth } from '@/features/auth';
-import { getSettings, settingsActions } from '@/features/settings';
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
 import { MediaSize } from '@/shared/const';
-import { useAppDispatch } from '@/shared/lib/hooks';
 import { Theme } from '@/shared/types/theme';
 import {
 	Dropdown,
@@ -36,7 +35,6 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 	const isDark = theme === Theme.DARK;
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
 
-	const dispatch = useAppDispatch();
 	const { onUserLogout } = useAuth();
 	const authData = useSelector(getUserAuthData);
 	const {
@@ -56,7 +54,10 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 		currency: isUSD,
 		optimization: isOptimization,
 		space: isSpace,
-	} = useSelector(getSettings);
+	} = useSettings();
+
+	const { toggleSpace, toggleOptimization, changeCurrency } =
+		useSettingsActions();
 
 	const isSpaceAllowed = !isMD && isDark && !isOptimization;
 
@@ -83,7 +84,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 								isMD ? 'Не работает на мобильных' : 'Добавить космос!'
 							}
 							onClick={() => {
-								dispatch(settingsActions.toggleSpace());
+								toggleSpace();
 							}}
 							startContent={
 								<Switch
@@ -120,7 +121,7 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 							key='optimization'
 							description='Убрать все эффекты'
 							onClick={() => {
-								dispatch(settingsActions.toggleOptimization());
+								toggleOptimization();
 							}}
 							startContent={
 								<Switch
@@ -138,9 +139,9 @@ export const DropdownProfile: FC<DropdownProfileProps> = ({ children }) => {
 							description='Отображать цены в $'
 							onClick={() => {
 								if (isUSD === 'USD') {
-									dispatch(settingsActions.changeCurrency('RUB'));
+									changeCurrency('RUB');
 								} else {
-									dispatch(settingsActions.changeCurrency('USD'));
+									changeCurrency('USD');
 								}
 							}}
 							startContent={

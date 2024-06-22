@@ -1,12 +1,12 @@
 'use client';
 
-import { deleteProduct as deleteProductDispatcher } from '@/entities/products';
 import { ProductModal, productModalActions } from '@/features/product-edit';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { useMessage } from '@/shared/ui/message';
 import { ProductResponse } from '@melior-gift/zod-contracts';
 import { useDisclosure } from '@nextui-org/react';
 import { createPortal } from 'react-dom';
+import { deleteProduct as deleteProductDispatcher } from '../api/products.api';
 
 // ! TODO
 export const useProduct = () => {

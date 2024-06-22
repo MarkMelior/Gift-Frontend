@@ -1,6 +1,6 @@
 'use client';
 
-import { getSettingsSpace } from '@/features/settings';
+import { useSettings } from '@/entities/settings';
 import { MediaSize } from '@/shared/const';
 import { Theme } from '@/shared/types/theme';
 import { PointMaterial, Points } from '@react-three/drei';
@@ -9,7 +9,6 @@ import cn from 'clsx';
 import { random } from 'maath';
 import { useTheme } from 'next-themes';
 import { Suspense, useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import cls from './space-canvas.module.scss';
 
@@ -42,7 +41,7 @@ export const SpaceCanvas = () => {
 	const [isVisible, setIsVisible] = useState(true);
 	const { theme } = useTheme();
 	const isMD = useMediaQuery({ maxWidth: MediaSize.MD });
-	const isSpace = useSelector(getSettingsSpace);
+	const { space } = useSettings();
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -65,7 +64,7 @@ export const SpaceCanvas = () => {
 		setMounted(true);
 	}, []);
 
-	if (!isVisible || theme === Theme.LIGHT || isMD || !isSpace || !isMounted)
+	if (!isVisible || theme === Theme.LIGHT || isMD || !space || !isMounted)
 		return <></>;
 
 	return (
