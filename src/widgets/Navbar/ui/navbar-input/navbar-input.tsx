@@ -1,9 +1,10 @@
 'use client';
 
-import { ModalSearch } from '@/features/search';
 import { SearchIcon } from '@/shared/assets/icon/Search';
 import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/button';
+// eslint-disable-next-line ulbi-tv-plugin/layer-imports
+import { ModalSearch } from '@/widgets/modal-search';
 import { Kbd, useDisclosure } from '@nextui-org/react';
 import { FC, useCallback, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';

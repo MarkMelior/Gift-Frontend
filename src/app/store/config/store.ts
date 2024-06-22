@@ -1,10 +1,10 @@
-import { settingsReducer } from '@/entities/settings';
 import { userReducer } from '@/entities/user';
-import { sortReducer } from '@/features/sorts';
 import { $api } from '@/shared/api/api';
 import { rtkApi } from '@/shared/api/rtkApi';
+import { settingsReducer } from '@/shared/config/settings';
 import { setLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
+import { sortReducer } from '@/widgets/sorts';
 import type { ReducersMapObject } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
 import { loaderMiddleware } from './loader-middleware';

@@ -1,8 +1,8 @@
 'use client';
 
 import { useRoleAccess } from '@/entities/user';
+import { PageLoader } from '@/shared/ui/page-loader';
 import { AdminProductPage } from '@/views';
-import { PageLoader } from '@/widgets/page-loader';
 
 const AdminProduct = () => {
 	const { isAdmin, isManager } = useRoleAccess();

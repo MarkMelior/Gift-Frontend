@@ -1,13 +1,13 @@
 'use client';
 
-import { Cards, getProducts } from '@/entities/products';
+import { Cards, getProducts } from '@/features/products';
+import { useAppDispatch } from '@/shared/lib/hooks';
 import {
 	Sorts,
 	getSort,
 	getSortSearchParams,
 	sortActions,
-} from '@/features/sorts';
-import { useAppDispatch } from '@/shared/lib/hooks';
+} from '@/widgets/sorts';
 import { ProductResponse } from '@melior-gift/zod-contracts';
 import cn from 'clsx';
 import { useSearchParams } from 'next/navigation';

@@ -1,7 +1,7 @@
 'use client';
 
 import { ReviewCard, useGetReviewsQuery } from '@/entities/reviews';
-import { useSettings } from '@/entities/settings';
+import { useSettings } from '@/shared/config/settings';
 import { MediaSize } from '@/shared/const';
 import { mainReviewsIds } from '@/shared/const/main-reviews/main-reviews';
 import { SlideHeading } from '@/shared/ui/slide-heading';

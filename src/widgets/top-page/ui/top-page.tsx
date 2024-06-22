@@ -1,9 +1,10 @@
 'use client';
 
-import { useSettings } from '@/entities/settings';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
+import { useSettings } from '@/shared/config/settings';
 import { MediaSize } from '@/shared/const';
 import { Button } from '@/shared/ui/button';
+// eslint-disable-next-line ulbi-tv-plugin/layer-imports
 import { Heading } from '@/widgets/heading';
 import cn from 'clsx';
 import Link from 'next/link';

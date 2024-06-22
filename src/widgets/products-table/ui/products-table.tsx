@@ -1,9 +1,12 @@
 'use client';
 
-import { deleteProduct, useGetProductsQuery } from '@/entities/products';
 import { ModalConfirm } from '@/features/modal-confirm';
-import { ProductModal, productModalActions } from '@/features/product-edit';
-import { ageButton, categoryButton, sexButton } from '@/features/sorts';
+import {
+	ProductModal,
+	deleteProduct,
+	productModalActions,
+	useGetProductsQuery,
+} from '@/features/products';
 import { CopyIcon } from '@/shared/assets/icon/Copy';
 import { DeleteIcon } from '@/shared/assets/icon/Delete';
 import { EditIcon } from '@/shared/assets/icon/Edit';
@@ -15,7 +18,9 @@ import { ConvertData } from '@/shared/lib/features';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import Input from '@/shared/ui/input/ui/input';
 import { useMessage } from '@/shared/ui/message';
-import { PageLoader } from '@/widgets/page-loader';
+import { PageLoader } from '@/shared/ui/page-loader';
+// eslint-disable-next-line ulbi-tv-plugin/layer-imports
+import { ageButton, categoryButton, sexButton } from '@/widgets/sorts';
 import {
 	ProductResponse,
 	SortFilters,

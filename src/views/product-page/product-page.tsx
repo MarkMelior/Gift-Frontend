@@ -4,13 +4,13 @@ import {
 	Cards,
 	useGetProductQuery,
 	useGetProductsQuery,
-} from '@/entities/products';
+} from '@/features/products';
 import { Markets } from '@/shared/const';
 import { ConvertData } from '@/shared/lib/features';
 import { Light } from '@/shared/ui/light';
+import { PageLoader } from '@/shared/ui/page-loader';
 import { ImageCarousel } from '@/widgets/image-carousel';
 import { LinksPanel } from '@/widgets/links-panel';
-import { PageLoader } from '@/widgets/page-loader';
 import { ProductOptions } from '@/widgets/product-options';
 import { Tooltip } from '@nextui-org/react';
 import cn from 'clsx';

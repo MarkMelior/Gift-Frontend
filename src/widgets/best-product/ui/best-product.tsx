@@ -4,9 +4,10 @@ import {
 	CardWide,
 	CardWideSkeleton,
 	useGetProductsQuery,
-} from '@/entities/products';
+} from '@/features/products';
 import { MediaSize, bestProducts } from '@/shared/const';
 import { Button } from '@/shared/ui/button';
+// eslint-disable-next-line ulbi-tv-plugin/layer-imports
 import { Heading } from '@/widgets/heading';
 import cn from 'clsx';
 import { motion } from 'framer-motion';

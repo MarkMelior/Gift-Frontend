@@ -1,13 +1,13 @@
 'use client';
 
-import { useFavoritesProducts } from '@/entities/favorites';
 import { getUserAuthData, getUserState } from '@/entities/user';
 import { ModalAuth, useAuth } from '@/features/auth';
+import { useFavoritesProducts } from '@/features/favorites';
 import { ConvertData } from '@/shared/lib/features';
 import { BackgroundColorSpin } from '@/shared/ui/animate-background';
 import { Button as MyButton } from '@/shared/ui/button';
 import { ErrorScreen } from '@/shared/ui/errors';
-import { PageLoader } from '@/widgets/page-loader';
+import { PageLoader } from '@/shared/ui/page-loader';
 import {
 	Button,
 	Table,

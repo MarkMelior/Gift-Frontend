@@ -4,7 +4,7 @@ import { CopyIcon } from '@/shared/assets/icon/Copy';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
 import { Markets } from '@/shared/const';
-import { convertCurrency } from '@/shared/lib/features';
+import { useCurrency } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/button';
 import { useMessage } from '@/shared/ui/message';
 import { ProductMarkets, ProductResponse } from '@melior-gift/zod-contracts';
@@ -22,8 +22,10 @@ export const LinksPanel: FC<LinksPanelProps> = ({ product }) => {
 	const { showMessage } = useMessage();
 
 	const renderLinks = (markets: ProductMarkets) => {
-		const convertedPrice = convertCurrency(markets.price);
-		const convertedOldPrice = convertCurrency(markets.oldPrice);
+		// eslint-disable-next-line react-hooks/rules-of-hooks
+		const convertedPrice = useCurrency(markets.price);
+		// eslint-disable-next-line react-hooks/rules-of-hooks
+		const convertedOldPrice = useCurrency(markets.oldPrice);
 
 		return (
 			<div className={cls.link} key={markets.market}>

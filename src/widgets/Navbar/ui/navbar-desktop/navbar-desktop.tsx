@@ -1,6 +1,6 @@
 'use client';
 
-import { useSettings } from '@/entities/settings';
+import { useSettings } from '@/shared/config/settings';
 import { MediaSize, getRouteMain } from '@/shared/const';
 import { Logo } from '@/shared/ui/logo';
 import { Spinner, Tooltip } from '@nextui-org/react';

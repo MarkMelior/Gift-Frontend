@@ -1,10 +1,10 @@
-import { SettingsState } from '@/entities/settings';
 import { UserState } from '@/entities/user';
 import { LoginState, RegisterState } from '@/features/auth';
-import { ProductModalState } from '@/features/product-edit';
-import { SearchState } from '@/features/search';
-import { SortState } from '@/features/sorts';
+import { ProductModalState } from '@/features/products';
 import { rtkApi } from '@/shared/api/rtkApi';
+import { SettingsState } from '@/shared/config/settings';
+import { SearchState } from '@/widgets/modal-search';
+import { SortState } from '@/widgets/sorts';
 import type {
 	EnhancedStore,
 	Reducer,

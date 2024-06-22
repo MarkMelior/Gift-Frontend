@@ -1,6 +1,6 @@
 'use client';
 
-import { useSettings } from '@/entities/settings';
+import { useSettings } from '@/shared/config/settings';
 import { MediaSize } from '@/shared/const';
 import cn from 'clsx';
 import Image from 'next/image';

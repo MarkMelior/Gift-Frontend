@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import { settingsActions } from '@/entities/settings';
+import { settingsActions } from '@/shared/config/settings';
 import { Middleware } from '@reduxjs/toolkit';
 
 export const loaderMiddleware: Middleware =

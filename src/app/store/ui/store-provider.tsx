@@ -1,4 +1,4 @@
-import { SettingsState } from '@/entities/settings';
+import { SettingsState } from '@/shared/config/settings';
 import { getLocalstorage } from '@/shared/lib/features';
 import { LocalstorageKeys } from '@/shared/types/localstorage';
 import { AuthResponse } from '@melior-gift/zod-contracts';

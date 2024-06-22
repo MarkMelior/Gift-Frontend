@@ -1,6 +1,6 @@
 'use client';
 
-import { useSettings } from '@/entities/settings';
+import { useSettings } from '@/shared/config/settings';
 import { MediaSize } from '@/shared/const';
 import { Theme } from '@/shared/types/theme';
 import { PointMaterial, Points } from '@react-three/drei';

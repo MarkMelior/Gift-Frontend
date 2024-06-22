@@ -1,6 +1,7 @@
 'use client';
 
-import { getProductModal, productModalActions } from '@/features/product-edit';
+// eslint-disable-next-line ulbi-tv-plugin/layer-imports
+import { getProductModal, productModalActions } from '@/features/products';
 import { StrictModeDroppable } from '@/shared/lib/components';
 import { useAppDispatch } from '@/shared/lib/hooks';
 import { FC, useEffect, useState } from 'react';

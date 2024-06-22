@@ -1,4 +1,3 @@
-import { convertCurrency } from './convert-currency/convert-currency';
 import { ConvertData } from './convert-date/convert-date';
 import { getLocalstorage } from './localstorage/getLocalstorage';
 import { setLocalstorage } from './localstorage/setLocalstorage';
@@ -13,7 +12,6 @@ export {
 	ConvertData,
 	ZodErrorsToObject,
 	cn,
-	convertCurrency,
 	getLocalstorage,
 	parseErrorPathToNestedObject,
 	productLink,

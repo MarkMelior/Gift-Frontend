@@ -1,6 +1,6 @@
 'use client';
 
-import { useFavorites } from '@/entities/favorites';
+import { useFavorites } from '@/features/favorites';
 import { HeartIcon } from '@/shared/assets/icon/Heart';
 import { Button } from '@/shared/ui/button';
 import { useMessage } from '@/shared/ui/message';

@@ -1,10 +1,10 @@
 'use client';
 
-import { useSettings, useSettingsActions } from '@/entities/settings';
 import { getUserAuthData, getUserState } from '@/entities/user';
 import { ModalAuth, useAuth } from '@/features/auth';
 import { MoonIcon } from '@/shared/assets/icon/Moon';
 import { SunIcon } from '@/shared/assets/icon/Sun';
+import { useSettings, useSettingsActions } from '@/shared/config/settings';
 import { MediaSize } from '@/shared/const';
 import { Theme } from '@/shared/types/theme';
 import {

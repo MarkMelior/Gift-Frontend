@@ -1,8 +1,11 @@
 'use client';
 
-import { useFavoritesProducts } from '@/entities/favorites';
-import { Cards, useGetProductsQuery } from '@/entities/products';
-import { useGetProductsHistoryQuery } from '@/entities/products-history';
+import { useFavoritesProducts } from '@/features/favorites';
+import {
+	Cards,
+	useGetProductsHistoryQuery,
+	useGetProductsQuery,
+} from '@/features/products';
 import { GiftIcon } from '@/shared/assets/icon/Gift';
 import { Button } from '@/shared/ui/button';
 import Link from 'next/link';

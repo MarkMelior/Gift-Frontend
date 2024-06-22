@@ -79,19 +79,14 @@ NEXT_PUBLIC_UPLOADS=http://localhost:8000/uploads // ссылка на хран�
 
 ## Сущности (entities)
 
-- [favorites](/src/entities/favorites)
-- [products](/src/entities/products)
-- [products-history](/src/entities/products-history)
 - [reviews](/src/entities/reviews)
 - [user](/src/entities/user)
 
 ## Фичи (features)
 
 - [auth](/src/features/auth)
+- [favorites](/src/features/favorites)
 - [modal-confirm](/src/features/modal-confirm)
-- [product-edit](/src/features/product-edit)
+- [products](/src/features/products)
 - [scroll-up](/src/features/scroll-up)
-- [search](/src/features/search)
-- [settings](/src/features/settings)
-- [sorts](/src/features/sorts)
 - [upload-image](/src/features/upload-image)
