@@ -1,5 +1,4 @@
-import { getProductModal, productModalActions } from '@/features/products';
-import { useAppDispatch } from '@/shared/lib/hooks';
+import { getProductModal, useProductModalActions } from '@/features/products';
 import { SortFilters } from '@melior-gift/zod-contracts';
 import {
 	Select,
@@ -14,18 +13,16 @@ import { categoryButton } from '../model/const/category-button';
 import { sexButton } from '../model/const/sex-button';
 
 export const SortSelectInput: FC = () => {
-	const dispatch = useAppDispatch();
 	const product = useSelector(getProductModal);
+	const { updateProductModal } = useProductModalActions();
 
 	const onChangeFilters = useCallback(
 		(value: Selection) => {
-			dispatch(
-				productModalActions.updateProductModal({
-					filters: Array.from(value) as SortFilters[],
-				}),
-			);
+			updateProductModal({
+				filters: Array.from(value) as SortFilters[],
+			});
 		},
-		[dispatch],
+		[updateProductModal],
 	);
 
 	return (

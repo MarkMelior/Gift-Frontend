@@ -7,7 +7,6 @@ import {
 	DynamicModuleLoader,
 	ReducersList,
 } from '@/shared/lib/components';
-import { useAppDispatch } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/button';
 import { ErrorScreen } from '@/shared/ui/errors';
 import { Input } from '@/shared/ui/input';
@@ -23,7 +22,7 @@ import { FC, FormEvent, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { getQuery } from '../model/selectors/getQuery';
 import { getQueryInput } from '../model/selectors/getQueryInput';
-import { searchActions, searchReducer } from '../model/slice/search.slice';
+import { searchReducer, useSearchActions } from '../model/slice/search.slice';
 import cls from './modal-search.module.scss';
 
 export interface ModalSearchProps {
@@ -36,7 +35,7 @@ const initialReducers: ReducersList = {
 };
 
 const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
-	const dispatch = useAppDispatch();
+	const { setQuery, setQueryInput } = useSearchActions();
 	const query = useSelector(getQuery);
 	const queryInput = useSelector(getQueryInput);
 	const { data, isLoading, error } = useGetProductsQuery(
@@ -51,9 +50,9 @@ const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
 		(e: FormEvent) => {
 			e.preventDefault();
 
-			dispatch(searchActions.setQuery(queryInput));
+			setQuery(queryInput);
 		},
-		[dispatch, queryInput],
+		[queryInput, setQuery],
 	);
 
 	const renderBody = useCallback(() => {
@@ -96,7 +95,7 @@ const ModalSearch: FC<ModalSearchProps> = ({ isOpen, onOpenChange }) => {
 											autoFocus
 											variant='bordered'
 											onChange={(e) => {
-												dispatch(searchActions.setQueryInput(e.target.value));
+												setQueryInput(e.target.value);
 											}}
 											value={queryInput}
 											startContent={<SearchIcon />}

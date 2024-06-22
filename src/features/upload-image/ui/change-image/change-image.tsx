@@ -1,9 +1,8 @@
 'use client';
 
 // eslint-disable-next-line ulbi-tv-plugin/layer-imports
-import { getProductModal, productModalActions } from '@/features/products';
+import { getProductModal, useProductModalActions } from '@/features/products';
 import { StrictModeDroppable } from '@/shared/lib/components';
-import { useAppDispatch } from '@/shared/lib/hooks';
 import { FC, useEffect, useState } from 'react';
 import { DragDropContext, Draggable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
@@ -12,7 +11,7 @@ import cls from './change-image.module.scss';
 export const ChangeImages: FC = () => {
 	const product = useSelector(getProductModal);
 	const [images, setImages] = useState<string[]>([]);
-	const dispatch = useAppDispatch();
+	const { updateProductModal } = useProductModalActions();
 
 	useEffect(() => {
 		if (product?.images) {
@@ -21,9 +20,7 @@ export const ChangeImages: FC = () => {
 	}, [product?.images]);
 
 	const handleImageChange = (newImages: string[]) => {
-		dispatch(
-			productModalActions.updateProductModal({ ...product, images: newImages }),
-		);
+		updateProductModal({ ...product, images: newImages });
 	};
 
 	const onDragEnd = (result: any) => {

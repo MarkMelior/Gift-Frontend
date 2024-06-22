@@ -6,9 +6,9 @@ import {
 	addProduct,
 	getProductModal,
 	getProductModalErrors,
-	productModalActions,
 	productModalReducer,
 	updateProduct,
+	useProductModalActions,
 } from '@/features/products';
 import { ChangeImages, UploadImages } from '@/features/upload-image';
 import { DynamicModuleLoader } from '@/shared/lib/components';
@@ -49,6 +49,8 @@ export const ProductModal: FC<ProductModalProps> = ({
 	isEdit,
 }) => {
 	const dispatch = useAppDispatch();
+	const { updateProductModal, setErrorsProductModal, clearProductModal } =
+		useProductModalActions();
 	const product = useSelector(getProductModal);
 	const productError = useSelector(getProductModalErrors);
 	const [images, setImages] = useState<FileList>();
@@ -56,18 +58,14 @@ export const ProductModal: FC<ProductModalProps> = ({
 
 	const onChangeTitle = useCallback(
 		(value: string) => {
-			dispatch(
-				productModalActions.updateProductModal({
-					title: value,
-				}),
-			);
-			dispatch(
-				productModalActions.setErrorsProductModal({
-					title: '',
-				}),
-			);
+			updateProductModal({
+				title: value,
+			});
+			setErrorsProductModal({
+				title: '',
+			});
 		},
-		[dispatch],
+		[setErrorsProductModal, updateProductModal],
 	);
 
 	const onChangeCreativity = useCallback(
@@ -78,35 +76,28 @@ export const ProductModal: FC<ProductModalProps> = ({
 			} else {
 				creativityValue = value[0];
 			}
-			dispatch(
-				productModalActions.updateProductModal({
-					creativity: creativityValue,
-				}),
-			);
+
+			updateProductModal({ creativity: creativityValue });
 		},
-		[dispatch],
+		[updateProductModal],
 	);
 
 	const onChangeDescription = useCallback(
 		(value: string) => {
-			dispatch(
-				productModalActions.updateProductModal({
-					description: value,
-				}),
-			);
+			updateProductModal({
+				description: value,
+			});
 		},
-		[dispatch],
+		[updateProductModal],
 	);
 
 	const onSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
 
 		if (!images && !isEdit) {
-			dispatch(
-				productModalActions.setErrorsProductModal({
-					images: 'Выберите изображения',
-				}),
-			);
+			setErrorsProductModal({
+				images: 'Выберите изображения',
+			});
 			return;
 		}
 
@@ -121,7 +112,7 @@ export const ProductModal: FC<ProductModalProps> = ({
 				await dispatch(addProduct({ body: product, images: images! })).unwrap();
 			}
 
-			dispatch(productModalActions.clearProductModal());
+			clearProductModal();
 			onOpenChange(false);
 			showMessage({
 				content: isEdit
@@ -133,10 +124,8 @@ export const ProductModal: FC<ProductModalProps> = ({
 			const error = e.data as ZodError;
 
 			error.issues.map((error) => {
-				dispatch(
-					productModalActions.setErrorsProductModal(
-						parseErrorPathToNestedObject(error.path, error.message),
-					),
+				setErrorsProductModal(
+					parseErrorPathToNestedObject(error.path, error.message),
 				);
 			});
 		}
@@ -156,7 +145,7 @@ export const ProductModal: FC<ProductModalProps> = ({
 					size='lg'
 					scrollBehavior='inside'
 					onClose={() => {
-						isEdit && dispatch(productModalActions.clearProductModal());
+						isEdit && clearProductModal();
 					}}
 				>
 					<ModalContent>

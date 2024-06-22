@@ -13,8 +13,8 @@ import { useSelector, useStore } from 'react-redux';
 import { useLoginUserMutation } from '../../api/auth.api';
 import { getLoginFormData } from '../../model/selectors/getLoginFormData';
 import {
-	loginFormActions,
 	loginFormReducer,
+	useLoginFormActions,
 } from '../../model/slice/login-form.slice';
 
 interface ModalFormLoginProps {
@@ -30,6 +30,8 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 	const { reducerManager } = useStore() as ReduxStoreWithManager;
 	const formData = useSelector(getLoginFormData);
 	const errors = useSelector(getLoginFormData).error;
+	const { setError, setLogin, setPassword, setRemember } =
+		useLoginFormActions();
 
 	const [loginUser] = useLoginUserMutation();
 
@@ -46,10 +48,10 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 				reducerManager.remove('registerForm');
 				dispatch({ type: `@DESTROY loginForm and registerForm reducer` });
 			} catch (error: any) {
-				dispatch(loginFormActions.setError(ZodErrorsToObject(error)));
+				setError(ZodErrorsToObject(error));
 			}
 		},
-		[dispatch, formData, loginUser, onSubmit, reducerManager],
+		[dispatch, formData, loginUser, onSubmit, reducerManager, setError],
 	);
 
 	return (
@@ -67,13 +69,11 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 					errorMessage={errors?.login}
 					value={formData.login}
 					onChange={(e) => {
-						dispatch(loginFormActions.setLogin(e.target.value));
-						dispatch(
-							loginFormActions.setError({
-								...formData.error,
-								login: '',
-							}),
-						);
+						setLogin(e.target.value);
+						setError({
+							...formData.error,
+							login: '',
+						});
 					}}
 				/>
 				<Input
@@ -87,13 +87,11 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 					errorMessage={errors?.password}
 					value={formData.password}
 					onChange={(e) => {
-						dispatch(loginFormActions.setPassword(e.target.value));
-						dispatch(
-							loginFormActions.setError({
-								...formData.error,
-								password: '',
-							}),
-						);
+						setPassword(e.target.value);
+						setError({
+							...formData.error,
+							password: '',
+						});
 					}}
 				/>
 				{/* <div className='flex py-2 px-1 justify-between'>

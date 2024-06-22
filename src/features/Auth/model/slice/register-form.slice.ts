@@ -1,5 +1,5 @@
+import { buildSlice } from '@/shared/lib/store';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
 import { RegisterState } from '../types/auth.type';
 
 export const registerFormInitialState: RegisterState = {
@@ -8,7 +8,7 @@ export const registerFormInitialState: RegisterState = {
 	password: '',
 };
 
-export const registerFormSlice = createSlice({
+export const registerFormSlice = buildSlice({
 	name: 'register-form',
 	initialState: registerFormInitialState,
 	reducers: {
@@ -27,5 +27,8 @@ export const registerFormSlice = createSlice({
 	},
 });
 
-export const { actions: registerFormActions } = registerFormSlice;
-export const { reducer: registerFormReducer } = registerFormSlice;
+export const {
+	actions: registerFormActions,
+	reducer: registerFormReducer,
+	useActions: useRegisterFormActions,
+} = registerFormSlice;

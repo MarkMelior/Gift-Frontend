@@ -1,11 +1,12 @@
-import { userActions, userApi } from '@/entities/user';
+import { useUserActions, userApi } from '@/entities/user';
 import { useAppDispatch } from '@/shared/lib/hooks';
 
 export const useAuth = () => {
 	const dispatch = useAppDispatch();
+	const { logout } = useUserActions();
 
 	const onUserLogout = () => {
-		dispatch(userActions.logout());
+		logout();
 		dispatch(userApi.util.resetApiState());
 	};
 

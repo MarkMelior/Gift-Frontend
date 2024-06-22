@@ -16,6 +16,7 @@ import {
 	productModalActions,
 	productModalInitialState,
 	productModalReducer,
+	useProductModalActions,
 } from './model/slice/product-modal.slice';
 import { ProductModalState } from './model/types/product-modal';
 import { CardWide } from './ui/card-wide/card-wide';
@@ -44,6 +45,7 @@ export {
 	useGetProductQuery,
 	useGetProductsHistoryQuery,
 	useGetProductsQuery,
+	useProductModalActions,
 	useProductsHistory,
 };
 export type { ProductModalState };

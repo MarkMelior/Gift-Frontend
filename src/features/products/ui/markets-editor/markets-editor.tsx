@@ -2,7 +2,6 @@ import { DeleteIcon } from '@/shared/assets/icon/Delete';
 import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
 import { Markets } from '@/shared/const';
-import { useAppDispatch } from '@/shared/lib/hooks';
 
 import { MarketType } from '@melior-gift/zod-contracts';
 import type { Selection } from '@nextui-org/react';
@@ -19,104 +18,89 @@ import { useSelector } from 'react-redux';
 import { getMarketsProductModal } from '../../model/selectors/getMarketsProductModal';
 import { getProductModalErrors } from '../../model/selectors/getProductModalErrors';
 import {
-	productModalActions,
 	productModalInitialState,
+	useProductModalActions,
 } from '../../model/slice/product-modal.slice';
 
 export const MarketsEditor: FC = () => {
-	const dispatch = useAppDispatch();
 	const markets = useSelector(getMarketsProductModal);
 	const errors = useSelector(getProductModalErrors);
+	const { updateMarketsProductModal, updateProductModal } =
+		useProductModalActions();
 
 	const onChangeMarket = useCallback(
 		(value: Selection, index: number) => {
-			dispatch(
-				productModalActions.updateMarketsProductModal({
-					market: Array.from(value)[0] as MarketType,
-					index,
-				}),
-			);
+			updateMarketsProductModal({
+				market: Array.from(value)[0] as MarketType,
+				index,
+			});
 		},
-		[dispatch],
+		[updateMarketsProductModal],
 	);
 
 	const onChangeLink = useCallback(
 		(value: string, index: number) => {
-			dispatch(
-				productModalActions.updateMarketsProductModal({ link: value, index }),
-			);
+			updateMarketsProductModal({ link: value, index });
 		},
-		[dispatch],
+		[updateMarketsProductModal],
 	);
 
 	const onChangeRating = useCallback(
 		(value: string, index: number) => {
-			dispatch(
-				productModalActions.updateMarketsProductModal({
-					rating: Number(value),
-					index,
-				}),
-			);
+			updateMarketsProductModal({
+				rating: Number(value),
+				index,
+			});
 		},
-		[dispatch],
+		[updateMarketsProductModal],
 	);
 
 	const onChangeReviewCount = useCallback(
 		(value: string, index: number) => {
-			dispatch(
-				productModalActions.updateMarketsProductModal({
-					reviewCount: Number(value),
-					index,
-				}),
-			);
+			updateMarketsProductModal({
+				reviewCount: Number(value),
+				index,
+			});
 		},
-		[dispatch],
+		[updateMarketsProductModal],
 	);
 
 	const onChangePrice = useCallback(
 		(value: string, index: number) => {
-			dispatch(
-				productModalActions.updateMarketsProductModal({
-					price: Number(value),
-					index,
-				}),
-			);
+			updateMarketsProductModal({
+				price: Number(value),
+				index,
+			});
 		},
-		[dispatch],
+		[updateMarketsProductModal],
 	);
 
 	const onChangeOldPrice = useCallback(
 		(value: string, index: number) => {
-			dispatch(
-				productModalActions.updateMarketsProductModal({
-					oldPrice: Number(value),
-					index,
-				}),
-			);
+			updateMarketsProductModal({
+				oldPrice: Number(value),
+				index,
+			});
 		},
-		[dispatch],
+		[updateMarketsProductModal],
 	);
 
 	const removeMarket = useCallback(
 		(index: number) => {
-			dispatch(
-				productModalActions.updateProductModal({
-					markets: markets?.filter((_, i: number) => i !== index),
-				}),
-			);
+			updateProductModal({
+				markets: markets?.filter((_, i: number) => i !== index),
+			});
 		},
-		[dispatch, markets],
+		[updateProductModal, markets],
 	);
 
 	const addMarket = useCallback(() => {
 		if (markets) {
-			dispatch(
-				productModalActions.updateProductModal({
-					markets: [...markets, ...productModalInitialState.data.markets],
-				}),
-			);
+			updateProductModal({
+				markets: [...markets, ...productModalInitialState.data.markets],
+			});
 		}
-	}, [dispatch, markets]);
+	}, [updateProductModal, markets]);
 
 	if (!markets) return null;
 

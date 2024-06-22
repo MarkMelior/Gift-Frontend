@@ -4,8 +4,8 @@ import { ModalConfirm } from '@/features/modal-confirm';
 import {
 	ProductModal,
 	deleteProduct,
-	productModalActions,
 	useGetProductsQuery,
+	useProductModalActions,
 } from '@/features/products';
 import { CopyIcon } from '@/shared/assets/icon/Copy';
 import { DeleteIcon } from '@/shared/assets/icon/Delete';
@@ -58,6 +58,7 @@ export const ProductsTable: FC = () => {
 		onOpenChange: onOpenChangeAdd,
 	} = useDisclosure();
 	const dispatch = useAppDispatch();
+	const { updateProductModal } = useProductModalActions();
 	const [rowsPerPage, setRowsPerPage] = useState(5);
 	const [filterValue, setFilterValue] = useState('');
 	const [page, setPage] = useState(1);
@@ -345,7 +346,7 @@ export const ProductsTable: FC = () => {
 									variant='light'
 									onClick={() => {
 										setIsProductEdit(true);
-										dispatch(productModalActions.updateProductModal(product));
+										updateProductModal(product);
 										onOpenAdd();
 									}}
 								>
@@ -378,7 +379,7 @@ export const ProductsTable: FC = () => {
 					return <>{cellValue}</>;
 			}
 		},
-		[dispatch, onOpenAdd, showMessage],
+		[dispatch, onOpenAdd, showMessage, updateProductModal],
 	);
 
 	const bottomContent = useMemo(() => {

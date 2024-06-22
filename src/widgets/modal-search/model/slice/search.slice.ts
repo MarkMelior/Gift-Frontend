@@ -1,5 +1,5 @@
+import { buildSlice } from '@/shared/lib/store';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
 import { SearchState } from '../types/search-state.type';
 
 export const searchInitialState: SearchState = {
@@ -7,7 +7,7 @@ export const searchInitialState: SearchState = {
 	queryInput: '',
 };
 
-export const searchSlice = createSlice({
+export const searchSlice = buildSlice({
 	name: 'search',
 	initialState: searchInitialState,
 	reducers: {
@@ -20,5 +20,8 @@ export const searchSlice = createSlice({
 	},
 });
 
-export const { actions: searchActions } = searchSlice;
-export const { reducer: searchReducer } = searchSlice;
+export const {
+	actions: searchActions,
+	reducer: searchReducer,
+	useActions: useSearchActions,
+} = searchSlice;

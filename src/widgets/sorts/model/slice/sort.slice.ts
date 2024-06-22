@@ -1,3 +1,4 @@
+import { buildSlice } from '@/shared/lib/store';
 import {
 	SortAge,
 	SortCategory,
@@ -5,7 +6,6 @@ import {
 	SortSorting,
 } from '@melior-gift/zod-contracts';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
 import { SortState } from '../types/sort.type';
 
 export const initialState: SortState = {
@@ -28,7 +28,7 @@ const toggleMultiple = (state: string[], action: string) => {
 	}
 };
 
-export const sortSlice = createSlice({
+export const sortSlice = buildSlice({
 	name: 'sort',
 	initialState,
 	reducers: {
@@ -56,5 +56,8 @@ export const sortSlice = createSlice({
 	},
 });
 
-export const { actions: sortActions } = sortSlice;
-export const { reducer: sortReducer } = sortSlice;
+export const {
+	actions: sortActions,
+	reducer: sortReducer,
+	useActions: useSortActions,
+} = sortSlice;

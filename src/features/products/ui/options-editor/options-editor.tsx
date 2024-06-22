@@ -5,56 +5,50 @@ import { Button } from '@nextui-org/react';
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { getProductModal } from '../../model/selectors/getProductModal';
-import { productModalActions } from '../../model/slice/product-modal.slice';
+import { useProductModalActions } from '../../model/slice/product-modal.slice';
 
 export const OptionsEditor = () => {
 	const dispatch = useAppDispatch();
 	const options = useSelector(getProductModal)?.options;
+	const { updateOptionsProductModal, updateProductModal } =
+		useProductModalActions();
 
 	const onChangeName = useCallback(
 		(value: string, index: number) => {
-			dispatch(
-				productModalActions.updateOptionsProductModal({
-					name: value,
-					value: options && options[index].value,
-					index,
-				}),
-			);
+			updateOptionsProductModal({
+				name: value,
+				value: options && options[index].value,
+				index,
+			});
 		},
-		[dispatch, options],
+		[updateOptionsProductModal, options],
 	);
 
 	const onChangeValue = useCallback(
 		(value: string, index: number) => {
-			dispatch(
-				productModalActions.updateOptionsProductModal({
-					name: options && options[index].name,
-					value,
-					index,
-				}),
-			);
+			updateOptionsProductModal({
+				name: options && options[index].name,
+				value,
+				index,
+			});
 		},
-		[dispatch, options],
+		[updateOptionsProductModal, options],
 	);
 
 	const removeOption = useCallback(
 		(index: number) => {
-			dispatch(
-				productModalActions.updateProductModal({
-					options: options?.filter((_, i) => i !== index),
-				}),
-			);
+			updateProductModal({
+				options: options?.filter((_, i) => i !== index),
+			});
 		},
-		[dispatch, options],
+		[updateProductModal, options],
 	);
 
 	const addOption = useCallback(() => {
-		dispatch(
-			productModalActions.updateProductModal({
-				options: [...(options ?? []), { name: '', value: '' }],
-			}),
-		);
-	}, [dispatch, options]);
+		updateProductModal({
+			options: [...(options ?? []), { name: '', value: '' }],
+		});
+	}, [updateProductModal, options]);
 
 	return (
 		<div className='flex flex-col gap-2'>

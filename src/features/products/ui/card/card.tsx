@@ -7,7 +7,7 @@ import { ReviewIcon } from '@/shared/assets/icon/Review';
 import { StarIcon } from '@/shared/assets/icon/Star';
 import { Markets, MediaSize } from '@/shared/const';
 import { ConvertData, productLink } from '@/shared/lib/features';
-import { useAppDispatch, useCurrency } from '@/shared/lib/hooks';
+import { useCurrency } from '@/shared/lib/hooks';
 import { Button } from '@/shared/ui/button';
 import { useMessage } from '@/shared/ui/message';
 import { ProductResponse } from '@melior-gift/zod-contracts';
@@ -24,7 +24,7 @@ import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
 import { ProductModal } from '../../../../widgets/product-modal/product-modal';
 import { useFavorites } from '../../../favorites';
 import { useProductsHistory } from '../../hooks/useProductsHistory';
-import { productModalActions } from '../../model/slice/product-modal.slice';
+import { useProductModalActions } from '../../model/slice/product-modal.slice';
 import cls from './card.module.scss';
 
 export interface CardProps {
@@ -40,7 +40,7 @@ export const Card: FC<CardProps> = ({ data, size }) => {
 	const { addProductHistory } = useProductsHistory(data.article);
 	const { showMessage } = useMessage();
 	const { isAdmin } = useRoleAccess();
-	const dispatch = useAppDispatch();
+	const { updateProductModal } = useProductModalActions();
 	const {
 		isOpen: isOpenEdit,
 		onOpen: onOpenEdit,
@@ -135,7 +135,7 @@ export const Card: FC<CardProps> = ({ data, size }) => {
 										onClick={(e) => {
 											e.preventDefault();
 
-											dispatch(productModalActions.updateProductModal(data));
+											updateProductModal(data);
 											onOpenEdit();
 										}}
 									>

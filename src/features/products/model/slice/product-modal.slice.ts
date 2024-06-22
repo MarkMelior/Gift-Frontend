@@ -1,5 +1,5 @@
+import { buildSlice } from '@/shared/lib/store';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
 import { ProductModalState } from '../types/product-modal';
 
 export const productModalInitialState: ProductModalState = {
@@ -20,7 +20,7 @@ export const productModalInitialState: ProductModalState = {
 	},
 };
 
-export const productModalSlice = createSlice({
+export const productModalSlice = buildSlice({
 	name: 'productModal',
 	initialState: productModalInitialState,
 	reducers: {
@@ -71,5 +71,8 @@ export const productModalSlice = createSlice({
 	},
 });
 
-export const { actions: productModalActions, reducer: productModalReducer } =
-	productModalSlice;
+export const {
+	actions: productModalActions,
+	reducer: productModalReducer,
+	useActions: useProductModalActions,
+} = productModalSlice;

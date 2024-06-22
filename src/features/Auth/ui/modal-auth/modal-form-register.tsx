@@ -14,8 +14,8 @@ import { useSelector, useStore } from 'react-redux';
 import { useRegisterUserMutation } from '../../api/auth.api';
 import { getRegisterFormData } from '../../model/selectors/getRegisterFormData';
 import {
-	registerFormActions,
 	registerFormReducer,
+	useRegisterFormActions,
 } from '../../model/slice/register-form.slice';
 
 interface ModalFormRegisterProps {
@@ -32,6 +32,8 @@ export const ModalFormRegister: FC<ModalFormRegisterProps> = ({ onSubmit }) => {
 	const formData = useSelector(getRegisterFormData);
 	const errors = useSelector(getRegisterFormData).error;
 	const [registerUser] = useRegisterUserMutation();
+	const { setEmail, setError, setPassword, setUsername } =
+		useRegisterFormActions();
 
 	const handleRegister = useCallback(
 		async (e: FormEvent) => {
@@ -48,10 +50,10 @@ export const ModalFormRegister: FC<ModalFormRegisterProps> = ({ onSubmit }) => {
 					type: `@DESTROY loginForm and registerForm reducer`,
 				});
 			} catch (error: any) {
-				dispatch(registerFormActions.setError(ZodErrorsToObject(error)));
+				setError(ZodErrorsToObject(error));
 			}
 		},
-		[dispatch, formData, onSubmit, reducerManager, registerUser],
+		[dispatch, formData, onSubmit, reducerManager, registerUser, setError],
 	);
 
 	return (
@@ -68,13 +70,11 @@ export const ModalFormRegister: FC<ModalFormRegisterProps> = ({ onSubmit }) => {
 					errorMessage={errors?.username}
 					value={formData.username}
 					onChange={(e) => {
-						dispatch(registerFormActions.setUsername(e.target.value));
-						dispatch(
-							registerFormActions.setError({
-								...formData.error,
-								username: '',
-							}),
-						);
+						setUsername(e.target.value);
+						setError({
+							...formData.error,
+							username: '',
+						});
 					}}
 				/>
 				<Input
@@ -87,13 +87,11 @@ export const ModalFormRegister: FC<ModalFormRegisterProps> = ({ onSubmit }) => {
 					errorMessage={errors?.email}
 					value={formData.email}
 					onChange={(e) => {
-						dispatch(registerFormActions.setEmail(e.target.value));
-						dispatch(
-							registerFormActions.setError({
-								...formData.error,
-								email: '',
-							}),
-						);
+						setEmail(e.target.value);
+						setError({
+							...formData.error,
+							email: '',
+						});
 					}}
 				/>
 				<Input
@@ -107,13 +105,11 @@ export const ModalFormRegister: FC<ModalFormRegisterProps> = ({ onSubmit }) => {
 					errorMessage={errors?.password}
 					value={formData.password}
 					onChange={(e) => {
-						dispatch(registerFormActions.setPassword(e.target.value));
-						dispatch(
-							registerFormActions.setError({
-								...formData.error,
-								password: '',
-							}),
-						);
+						setPassword(e.target.value);
+						setError({
+							...formData.error,
+							password: '',
+						});
 					}}
 				/>
 				<Input

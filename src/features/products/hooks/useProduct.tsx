@@ -7,7 +7,7 @@ import { useDisclosure } from '@nextui-org/react';
 import { createPortal } from 'react-dom';
 import { ProductModal } from '../../../widgets/product-modal/product-modal';
 import { deleteProduct as deleteProductDispatcher } from '../api/products.api';
-import { productModalActions } from '../model/slice/product-modal.slice';
+import { useProductModalActions } from '../model/slice/product-modal.slice';
 
 // TODO
 export const useProduct = () => {
@@ -18,6 +18,7 @@ export const useProduct = () => {
 		onOpen: onOpenAdd,
 		onOpenChange: onOpenChangeAdd,
 	} = useDisclosure();
+	const { updateProductModal } = useProductModalActions();
 
 	const deleteProduct = (article: string) => {
 		// createPortal(
@@ -42,7 +43,7 @@ export const useProduct = () => {
 	};
 
 	const editProduct = (data: ProductResponse) => {
-		dispatch(productModalActions.updateProductModal(data));
+		updateProductModal(data);
 
 		createPortal(
 			<ProductModal isOpen={isOpenAdd} isEdit onOpenChange={onOpenChangeAdd} />,

@@ -6,7 +6,7 @@ import {
 	Sorts,
 	getSort,
 	getSortSearchParams,
-	sortActions,
+	useSortActions,
 } from '@/widgets/sorts';
 import { ProductResponse } from '@melior-gift/zod-contracts';
 import cn from 'clsx';
@@ -19,6 +19,7 @@ export const ShopBlock = () => {
 	const sort = useSelector(getSort);
 	const dispatch = useAppDispatch();
 	const searchParams = useSearchParams();
+	const { setSortState } = useSortActions();
 
 	const [products, setProducts] = useState<ProductResponse[] | undefined>();
 	const [isLoading, setIsLoading] = useState(true);
@@ -40,8 +41,8 @@ export const ShopBlock = () => {
 
 	useEffect(() => {
 		const sortState = getSortSearchParams(searchParams);
-		dispatch(sortActions.setSortState(sortState));
-	}, [dispatch, searchParams]);
+		setSortState(sortState);
+	}, [dispatch, searchParams, setSortState]);
 
 	const [isMounted, setIsMounted] = useState(false);
 

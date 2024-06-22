@@ -1,5 +1,5 @@
+import { buildSlice } from '@/shared/lib/store';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
 import { LoginState } from '../types/auth.type';
 
 export const loginFormInitialState: LoginState = {
@@ -8,7 +8,7 @@ export const loginFormInitialState: LoginState = {
 	remember: true,
 };
 
-export const loginFormSlice = createSlice({
+export const loginFormSlice = buildSlice({
 	name: 'login-form',
 	initialState: loginFormInitialState,
 	reducers: {
@@ -27,5 +27,8 @@ export const loginFormSlice = createSlice({
 	},
 });
 
-export const { actions: loginFormActions } = loginFormSlice;
-export const { reducer: loginFormReducer } = loginFormSlice;
+export const {
+	actions: loginFormActions,
+	reducer: loginFormReducer,
+	useActions: useLoginFormActions,
+} = loginFormSlice;
