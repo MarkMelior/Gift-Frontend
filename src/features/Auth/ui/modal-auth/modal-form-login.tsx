@@ -43,6 +43,7 @@ export const ModalFormLogin: FC<ModalFormLoginProps> = ({ onSubmit }) => {
 				const { login, password } = formData;
 
 				await loginUser({ login, password }).unwrap();
+
 				onSubmit();
 				reducerManager.remove('loginForm');
 				reducerManager.remove('registerForm');

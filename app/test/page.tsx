@@ -1,38 +1,11 @@
-'use client';
-
-import { useMessage } from '@/shared/ui/message';
-import { Button } from '@nextui-org/react';
 import { FC } from 'react';
 
-const Test: FC = () => {
-	const { showMessage } = useMessage();
+const Test: FC = async () => {
+	// const user = axios.get('/api/user');
 
 	return (
-		<div className='content'>
-			<Button
-				color='success'
-				onClick={() =>
-					showMessage({
-						content: 'This is a success message',
-						type: 'success',
-						duration: 3000,
-					})
-				}
-			>
-				Show Success Message
-			</Button>
-			<Button
-				color='danger'
-				onClick={() =>
-					showMessage({
-						content: 'This is an error message',
-						type: 'info',
-						onCancel: () => console.log('onCancel'),
-					})
-				}
-			>
-				Show Error Message
-			</Button>
+		<div className='content h-[1000px] flex flex-col gap-3 pt-20'>
+			<button>test</button>
 		</div>
 	);
 };
