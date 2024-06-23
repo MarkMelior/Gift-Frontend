@@ -25,11 +25,11 @@
 
 - Выбраны оптимальные технологии и инструменты, включая React, Next.js, TypeScript, Redux Toolkit, RTK Query, SCSS и TailwindCSS для Fronted и Nest.js, Mongoose, Zod, Docker, JWT для Backend;
 
-- Проект написан в соответствии с методологией Feature-Sliced Design и AppRouter (Next.js);
+- Проект написан в соответствии с методологией [Feature Sliced Design](https://feature-sliced.design/docs) и [AppRouter](https://nextjs.org/docs/app) (Next.js);
 
 - Обеспечена полная типизация проекта с использованием TypeScript;
 
-- Взаимодействие с данными осуществляется с помощью Redux Toolkit, запросы на сервер отправляются с помощью RTK query;
+- Взаимодействие с данными осуществляется с помощью Redux Toolkit, запросы на сервер отправляются через [RTK query](/src/shared/api/rtkApi.ts);
 
 - Для асинхронного подключения редюсеров (чтобы не тянуть их в общий бандл) используется [DynamicModuleLoader](/src/shared/lib/components/dynamic-module-loader/dynamic-module-loader.tsx);
 
